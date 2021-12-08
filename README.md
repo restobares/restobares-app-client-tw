@@ -18,26 +18,27 @@ Si necesitan una guia del combine reducer: https://redux.js.org/api/combinereduc
 
 Ejemplo ruta landing page:
 restobar.com/
-Ejemplo ruta de registro de usuario: (nuevo)
+Ejemplo ruta de registro de usuario:
 restobar.com/registro
-Ejemplo ruta comensal
-restobar.com/restorant/mesa/5
-restobar.com/restorant/mesa/5/menu
-restobar.com/restorant/mesa/5/cuenta
-restobar.com/restorant/mesa/5/feedback
-Ejemplo ruta personal/admin:
-restobar.com/restorant/login
-Ejemplo ruta admin (nuevas):
-restobar.com/restorant/admin
-restobar.com/restorant/admin/recaudacion
-restobar.com/restorant/admin/cuenta
-restobar.com/restorant/admin/feedback
-restobar.com/restorant/admin/menu
-restobar.com/restorant/admin/menu/:idPlatillo
+restobar.com/confirmacion/:token
+Ejemplo ruta login:
+restobar.com/login
+Ejemplo ruta comensal:
+restobar.com/:idResto/mesa/:idMesa
+restobar.com/:idResto/mesa/:idMesa/menu
+restobar.com/:idResto/mesa/:idMesa/cuenta
+restobar.com/:idResto/mesa/:idMesa/feedback
+Ejemplo ruta admin:
+restobar.com/:idResto/admin
+restobar.com/:idResto/admin/mesas
+restobar.com/:idResto/admin/recaudacion
+restobar.com/:idResto/admin/cuenta
+restobar.com/:idResto/admin/feedback
+restobar.com/:idResto/admin/menu/:idPlatillo
 Ejemplo ruta personal:
-restobar.com/restorant/personal
-restobar.com/restorant/personal/mesas
-restobar.com/restorant/personal/ordenes 
+restobar.com/:idResto/personal
+restobar.com/:idResto/personal/mesas
+restobar.com/:idResto/personal/ordenes 
 
 # Tailwind
 
