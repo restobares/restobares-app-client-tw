@@ -16,6 +16,7 @@ Si necesitan una guia del combine reducer: https://redux.js.org/api/combinereduc
 
 # Rutas a crear
 
+Ejemplo ruta landing page:
 restobar.com/
 Ejemplo ruta de registro de usuario: (nuevo)
 restobar.com/registro
@@ -26,12 +27,17 @@ restobar.com/restorant/mesa/5/cuenta
 restobar.com/restorant/mesa/5/feedback
 Ejemplo ruta personal/admin:
 restobar.com/restorant/login
-Ejemplo ruta admin:
+Ejemplo ruta admin (nuevas):
 restobar.com/restorant/admin
+restobar.com/restorant/admin/recaudacion
+restobar.com/restorant/admin/cuenta
+restobar.com/restorant/admin/feedback
+restobar.com/restorant/admin/menu
+restobar.com/restorant/admin/menu/:idPlatillo
 Ejemplo ruta personal:
 restobar.com/restorant/personal
 restobar.com/restorant/personal/mesas
-restobar.com/restorant/personal/ordenes
+restobar.com/restorant/personal/ordenes 
 
 # Tailwind
 
