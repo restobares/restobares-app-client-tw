@@ -36,7 +36,28 @@ const ActiveOrders = () => {
   
   return (
     <div className="w-10/12 md:w-8/12 lg:7/12 mx-auto relative py-20">
-      
+      {dummyOrders.map((order) => {
+        return (
+          <div className="px-6 py-4 bg-blue-600 text-white rounded-lg mb-5">
+            <h1 className="text-lg">Mesa: {order.tableNumber}</h1>
+            {order.orderItems.map((item) => {
+              return (
+                <div className="grid grid-cols-2 text-xl">
+                  <h1>{item.name}</h1>
+                  <h1>{item.quantity}</h1>
+                </div>
+              )
+            })}
+            {order.comments !== "" &&
+            <>
+              <h1>Comentarios</h1>
+              <h1>{order.comments}</h1>
+            </>
+            }
+            
+          </div>
+        )
+      })}
     </div>
   )
 }
