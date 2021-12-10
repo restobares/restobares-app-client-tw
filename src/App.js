@@ -1,6 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+//components
 import LandingPage from './components/LandingPage/LandingPage.jsx'
+import Menu from './components/Menu/Menu.jsx'
+
 
 function App() {
   return (
