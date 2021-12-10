@@ -1,3 +1,6 @@
 export const ActionTypes = {
-  
+  GET_CATEGORIES: "GET_CATEGORIES",
+  GET_LABELS: "GET_LABELS",
+  GET_MENU: "GET_MENU",
+  GET_ORDERS: "GET_ORDERS"
 }
