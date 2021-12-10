@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
+import { getCategories } from '../../redux/actions'
 
 
 export default function LandingPage () {
