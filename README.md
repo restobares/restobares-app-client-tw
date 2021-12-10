@@ -43,3 +43,95 @@ restobar.com/:idResto/personal/ordenes
 # Tailwind
 
 No crear css de componentes solo clases globales y las clases de elementos HTML del mismo TW.
+
+
+# Componentes
+
+ ----------------- <RUTAS> ----------------- 
+
+// Ruta principal               <Landing>   --> Componente contenedor
+                                            --> Nombre del local   
+                                            --> Img logo del comercio
+                                            --> bg-image + fondo color con opacidad
+                                            --> Contiene boton <Link> hacia la ruta -> Restorant/mesa/:id                                     
+                                            --> Caja con texto descriptivo del local
+
+//Restorant/mesa/:id/menu     <OrderBoard>  --> Componente contenedor  
+                                            --> NavBar Horizontal superior <OrderBar>
+                                            --> Nav vertical lateral izq  <FilterBar>
+                                            --> Componente contenedor <FoodCarrousel>                                   
+
+//Restorant/mesa/:id/cuenta    <BillBoard>  --> Componente contenedor  
+                                            --> NavBar Horizontal superior <BillBar>
+                                            --> Componente contenedor <OrdersCarrousel>                                   
+                                            --> Nav Horizontal inferior  <PayBar>
+
+
+//Restorant/mesa/:id/pago      <PayBoard>   --> Componente contenedor  
+                                            --> NavBar Horizontal superior <BillBar> ?? renderizado condicional para mostrar precio
+                                            --> Boton para pagar en mesa -> mientras este activo renderizar <LocalPay> 
+                                            --> Boton para pagar en mesa -> mientras este activo renderizar <MercadoPago>
+
+
+ ----------------- <COMPONENTES-RUTAS> ----------------- 
+ <Landing>
+ <OrderBoard>
+ <BillBoard>
+ <PayBoard>
+ ----------------- <COMPONENTES-HIJOS> ----------------- 
+
+<OrderBar> {
+        --> Boton para activar o desactivar <FillterBar> 
+        --> Componente de busqueda  <Search> --> input + btn icon lupa
+        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+}
+
+<FilterBar> {
+        --> Componente <SetOrder>  --> Ordenar por + Selector con ordenamiento por Importancia || Mayor precio || Menor precio
+        --> Componente de filtrado  <FilterCards> --> componente de logica .map  renderiza  el componente <FilterdCard> --> Nombre de la categoria
+                                                                                                                        --> Img de categoria
+                                                                                                                        --> :active --> Render Ul list Sub categorias -> SetFilter
+}
+
+
+---> VOY POR ACA
+
+<FoodCarrousel> {
+        --> Boton para activar o desactivar <FillterBar> 
+        --> Componente de busquedar  <Search> 
+        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+}
+
+<BillBar> {
+        --> Boton para activar o desactivar <FillterBar> 
+        --> Componente de busquedar  <Search> 
+        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+}
+
+<OrdersCarrousel> {
+        --> Boton para activar o desactivar <FillterBar> 
+        --> Componente de busquedar  <Search> 
+        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+}
+
+<PayBar> {
+        --> Boton para activar o desactivar <FillterBar> 
+        --> Componente de busquedar  <Search> 
+        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+}
+
+<LocalPay> {
+        --> Boton para activar o desactivar <FillterBar> 
+        --> Componente de busquedar  <Search> 
+        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+}
+
+<MercadoPago> {
+        --> Boton para activar o desactivar <FillterBar> 
+        --> Componente de busquedar  <Search> 
+        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+}
+
+
+
+
