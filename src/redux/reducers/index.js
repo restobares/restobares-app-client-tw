@@ -14,7 +14,7 @@ export default combineReducers({
   labels,
   menu,
   tables,
-  user
+  user,
   productCounter,
 
 })
