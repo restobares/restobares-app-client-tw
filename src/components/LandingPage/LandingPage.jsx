@@ -1,4 +1,5 @@
 import React from 'react'
+import { getCategories } from '../../redux/actions'
 
 const LandingPage = () => {
   return (
