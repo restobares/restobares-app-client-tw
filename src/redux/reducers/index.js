@@ -3,6 +3,7 @@ import categories from "./categories";
 import labels from "./labels";
 import menu from "./menu";
 import tables from "./tables";
+import productCounter from "./productCounter";
 
 
 
@@ -11,5 +12,6 @@ export default combineReducers({
   labels,
   menu,
   labels,
-  tables
+  tables,
+  productCounter
 })
