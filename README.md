@@ -69,8 +69,9 @@ No crear css de componentes solo clases globales y las clases de elementos HTML 
 
 //Restorant/mesa/:id/pago      <PayBoard>   --> Componente contenedor  
                                             --> NavBar Horizontal superior <BillBar> ?? renderizado condicional para mostrar precio
+                                            --> Total a pagar: {Total consumido}
                                             --> Boton para pagar en mesa -> mientras este activo renderizar <LocalPay> 
-                                            --> Boton para pagar en mesa -> mientras este activo renderizar <MercadoPago>
+                                            --> Boton para pagar por tarjeta -> mientras este activo renderizar <MercadoPago>
 
 
  ----------------- <COMPONENTES-RUTAS> ----------------- 
@@ -93,43 +94,46 @@ No crear css de componentes solo clases globales y las clases de elementos HTML 
                                                                                                                         --> :active --> Render Ul list Sub categorias -> SetFilter
 }
 
-
----> VOY POR ACA
-
 <FoodCarrousel> {
-        --> Boton para activar o desactivar <FillterBar> 
-        --> Componente de busquedar  <Search> 
-        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+        componente de logica .map  renderiza  el componente <OrderCard>   --> Nombre del alimento
+                                                                          --> Img del alimento
+                                                                          --> Precio Unitari      
+                                                                          --> Descripcion
+                                                                          --> Button --> +  Aumentar Unidades para pedir
+                                                                          --> Button --> -  Restar Unidades para pedir
+                                                                          --> Button -->    Agregar al carro                                                                        
+                                                                          --> Contador de Unidades + Precio de la suma de unidades
 }
 
 <BillBar> {
-        --> Boton para activar o desactivar <FillterBar> 
-        --> Componente de busquedar  <Search> 
-        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+        --> Boton <Link> Home --> hacia la ruta anterior  
+        --> ? mostrar solo en la ruta cuenta --> Consumo Actual --> Ya pedidos
 }
+---> VOY POR ACA
 
 <OrdersCarrousel> {
-        --> Boton para activar o desactivar <FillterBar> 
-        --> Componente de busquedar  <Search> 
-        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+        --> Componente de logica .map  renderiza  el componente <OrderedCard> --> Nombre del alimento
+                                                                              --> Img del alimento
+                                                                              --> Precio Total      
+                                                                              --> Cantidad de unidades
+                                                                              ---> Si ya fue pedido --> cambia bg-color
+                                                                                                    --> se Agrega la etiqueta Pedido en el margen inferior izq
 }
 
 <PayBar> {
-        --> Boton para activar o desactivar <FillterBar> 
-        --> Componente de busquedar  <Search> 
-        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+        --> Barra horizontal inferior cuenta con --> Nuevo Pedido : --> Costo total de elementos no pedidos
+                                                 --> Button --> Pedir --> Agrega los items no pedidos a la lista de pedidos
+                                                 --> Button --> Pagar --> <Link> hacia la ruta pagar 
 }
 
 <LocalPay> {
-        --> Boton para activar o desactivar <FillterBar> 
-        --> Componente de busquedar  <Search> 
-        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+        --> Renderiza un boton indicando que espere en la mesa || ir a la caja
 }
 
 <MercadoPago> {
-        --> Boton para activar o desactivar <FillterBar> 
-        --> Componente de busquedar  <Search> 
-        --> Boton Link hacia el Carrito //Restorant/mesa/:id/cuenta --> Este boton tiene en su costado un contador de elementos en el carro
+        --> Total a pagar
+        --> Componente para ingreso de datos de la tarjeta/Mercadopago
+        --> Button --> Pagar --> Finalizar
 }
 
 
