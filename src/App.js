@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <div className="global">
         <Routes>
-          <Route path="/home" element={<LandingPage />}></Route>
+          <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
