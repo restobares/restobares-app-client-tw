@@ -4,7 +4,7 @@ const initialState = [];
 
 function tables(state = initialState, action) {
 
-  if (action.type === ActionTypes.GET_MENU) {
+  if (action.type === ActionTypes.GET_TABLES) {
     return [...state, action.payload];
   }
   return state;
