@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 //components
 import LandingPage from './components/Routes/LandingPage/LandingPage.jsx'
-// import Menu from './components/Menu/Menu.jsx'
+import OrderBoard from './components/Routes/OrderBoard/OrderBoard.jsx'
 
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <div className="global">
         <Routes>
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
+          <Route path="resto/table/:id/menu" element={<OrderBoard />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

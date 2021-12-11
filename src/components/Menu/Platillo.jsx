@@ -28,10 +28,10 @@ const Platillo = ({platillo, cart, setCart, platillos}) => {
     }
 
     //eliminar
-    const delPlatillo = (id) => {
+    /* const delPlatillo = (id) => {
         const platillos = cart.filter((platillo) => platillo.id !== id)
         setCart(platillos)
-    }
+    } */
 
 
 
@@ -52,19 +52,19 @@ const Platillo = ({platillo, cart, setCart, platillos}) => {
           <div>
             <p className="justifi-center mt-3 mb-5"> {price} </p>
           </div>
-
-          {platillos ? (
-            (
             <div>
               <button className="bg-red-200 rounded-md" type="button" onClick={() => addPlatillo(id)} >Agregar</button>
             </div>
+
+         {/*  {platillos ? (
+            (
             )
           ) : (
               <div>
                 <button className="bg-green-400 rounded-md pr-1 pl-1" type="button" onClick={() => delPlatillo(id)} >✔</button>
                 <button className="bg-red-400 rounded-md pr-1 pl-1" type="button" onClick={() => delPlatillo(id)} >✖</button>
               </div>
-          )}
+          )} */}
 
         </div>
     );
