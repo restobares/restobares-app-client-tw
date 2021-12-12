@@ -23,7 +23,7 @@ const OrderCard = ({platillo}) => {
 
     return (
         <div className="container mt-5 mb-3 float-left rounded-br-lg bg-pink-400 text-white space-x-0.5"> 
-          <div className="float-left m-0 ">
+          <div className="float-left m-0 object-cover">
             <img src={img} style={{width:100,height:100, borderRadius:5}} alt="" />
           </div>
           <div className="float-left ml-2 mr-3">
