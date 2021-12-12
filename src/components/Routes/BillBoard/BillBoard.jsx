@@ -3,8 +3,8 @@ import BillBar from '../../ChildrenComponents/BillBar.jsx';
 import OrdersCarousel from '../../ChildrenComponents/OrdersCarousel.jsx';
 import PayBar from '../../ChildrenComponents/PayBar.jsx';
 
-// Simula lo almacenado en el store, cambienle el nombre como prefieran
 
+// Simula lo almacenado en el store, cambienle el nombre como prefier
 var pedido = [
 	{
 		name: 'Pollo',
@@ -62,13 +62,16 @@ var currentOrder = {
 };
 
 const BillBoard = () => {
-	return (
-		<div>
-			<BillBar pedido={pedido} currentOrder={currentOrder}/>
-			<OrdersCarousel pedido={pedido} currentOrder={currentOrder}/>
-			<PayBar pedido={pedido} currentOrder={currentOrder}/>
-		</div>
-	)
+ 
+ 
+  return (
+    
+    <div>
+      <BillBar pedido={pedido} currentOrder={currentOrder} />
+      <OrdersCarousel pedido={pedido} currentOrder={currentOrder} />
+      <PayBar pedido={pedido} currentOrder={currentOrder} />
+    </div>
+  );
 }
 
 export default BillBoard
