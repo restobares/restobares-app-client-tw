@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 //componente platillo
 import OrderCard from '../../AuxiliarComponents/OrderCard';
+import OrderBar from '../../ChildrenComponents/OrderBar';
 
 const idTable = 1;
 const idResto = 1;
@@ -94,11 +95,12 @@ export default function OrderBoard (/* props: {name, description, price, img} */
 
     return (
       <Fragment>
-	 		<h1>Menu Principal</h1>
+	 		{/* <h1>Menu Principal</h1>
 			
 	 		<Link to={`/resto/${idResto}/table/${idTable}/order`}>
 	 			<h1>{'Ver Cuenta -->'}</h1>
-	 		</Link>
+	 		</Link> */}
+       <OrderBar/>
         {menu.map((platillo) =>(
         <OrderCard
           product_id={platillo.product_id}

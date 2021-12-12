@@ -122,7 +122,7 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
               <div>
                 <p>{el.product_name}</p>
                 <p>{el.details}</p>
-                <p>${el.price}</p>
+                <p>Total Price: ${el.price}</p>
                 <p>Quantity: {el.quantity}</p>
                 
               </div>
