@@ -1,15 +1,11 @@
-import React, { Fragment } from 'react';
-
-//componente platillo
+import React from 'react'
+import { Link } from 'react-router-dom'
 import OrderCard from '../../AuxiliarComponents/OrderCard';
 
+const idTable = 1;
+const idResto = 1;
 
-
-
-export default function OrderBoard (/* props: {name, description, price, img} */) {
-  
-  // Estado de platillos con su listado
-  const menu = [
+const menu = [
     {
       product_id: 1,
       product_name: "Hamburguesa",
@@ -50,7 +46,10 @@ export default function OrderBoard (/* props: {name, description, price, img} */
       category_id: 4,
       labels: [1, 2, 3],
     },
-    {
+
+
+
+{
       product_id: 5,
       product_name: "Empanadas",
       details: "Hola soy la descripción de tu platillo.",
@@ -72,22 +71,24 @@ export default function OrderBoard (/* props: {name, description, price, img} */
     }
   ];
 
-  // Estado del carrito
 
-  //const [cart, setCart] = useState([]);
-
-
-    return (
-      <Fragment>
-        {menu.map((platillo) =>(
-         <OrderCard 
+const OrderBoard = () => {
+	return (
+		<div>
+			<h1>Menu Principal</h1>
+			
+			<Link to={`/resto/${idResto}/table/${idTable}/order`}>
+				<h1>{'Ver Cuenta -->'}</h1>
+			</Link>
+			{menu.map((platillo) =>(
+         <OrderCard
           key={menu.id}
           platillo={platillo}
           platillos={menu}
          />
         ))}
-
-      </Fragment>
-     )
+		</div>
+	)
 }
 
+export default OrderBoard

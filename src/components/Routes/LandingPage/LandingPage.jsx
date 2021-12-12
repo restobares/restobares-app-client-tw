@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getCategories } from '../../../redux/actions'
 
 
 
 export default function LandingPage () {
-
+  const { idResto, idTable } = useParams();
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -32,7 +32,7 @@ export default function LandingPage () {
           
 
             <button className="btn text-button text-white" onClick={
-                () => navigate ('/resto/table/:id/menu')
+                () => navigate (`/resto/${idTable}/table/${idTable}/menu`)
             }>Entrar</button>
 
         </div>
