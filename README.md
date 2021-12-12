@@ -105,6 +105,7 @@ No crear css de componentes solo clases globales y las clases de elementos HTML 
                                                                           --> Button -->    Agregar al carro                                                                        
                                                                           --> Contador de Unidades + Precio de la suma de unidades
 }
+asdasda
 
 <BillBar> {
         --> Boton <Link> Home --> hacia la ruta anterior  
