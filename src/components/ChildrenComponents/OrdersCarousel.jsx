@@ -4,8 +4,40 @@ import { useSelector, useDispatch } from "react-redux";
 const OrdersCarousel = ({ pedido, currentOrder }) => {
   // const img = "https://i.blogs.es/579bad/pollo-de-jordi-cruz/1366_2000.jpg";
   const dispatch = useDispatch();
-  const { addOrder } = useSelector((state) => state);
+  // const { addOrder } = useSelector((state) => state);
 
+  const {menu, cart}= useSelector((state)=>state);
+
+  let addOrder = []
+
+  for (var i in cart) {
+    if(i==="count") continue;
+    var product_id = cart[i].product_id
+    var product_quantity = cart[i].quantity
+  
+    var elementFound = menu.find((element) => element.product_id === product_id);
+  
+    addOrder.push({
+      name: elementFound.product_name,
+      price: elementFound.price*product_quantity,
+      img: elementFound.img,
+      details: elementFound.details,
+      product_id: product_id,
+      quantity: product_quantity
+    })
+  }
+
+
+  // let addOrder= cart.map(product=>{
+  //   let order= menu.find(ele=>ele.product_id===product.product_id)
+  //  return {
+  //   ...product, 
+  //   order.product_name,
+  //   order.details,
+  //   order.price,
+  // }})
+  // menu.find()
+  console.log(addOrder);
   return (
     <div>
       {addOrder.map((el) => {
@@ -25,6 +57,8 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
                 <p>{el.product_name}</p>
                 <p>{el.details}</p>
                 <p>${el.price}</p>
+                <p>{el.quantity}</p>
+                
               </div>
               <div className="bg-pink-500 w-10 h-6 mx-1">Pedido</div>
               {/* {
