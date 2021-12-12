@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useParams } from 'react-router-dom';
 
 //componente platillo
 import OrderCard from '../../AuxiliarComponents/OrderCard';
@@ -7,6 +8,8 @@ import OrderCard from '../../AuxiliarComponents/OrderCard';
 
 
 export default function OrderBoard (/* props: {name, description, price, img} */) {
+
+  const { idTable } = useParams();
   
   // Estado de platillos con su listado
   const menu = [
@@ -80,14 +83,15 @@ export default function OrderBoard (/* props: {name, description, price, img} */
     return (
       <Fragment>
         {menu.map((platillo) =>(
-         <OrderCard 
-          key={menu.id}
+        <OrderCard
+          id={platillo.product_id}
+          key={platillo.product_id}
           platillo={platillo}
           platillos={menu}
-         />
+        />
         ))}
 
       </Fragment>
-     )
+    )
 }
 

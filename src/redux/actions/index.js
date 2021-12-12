@@ -4,6 +4,8 @@ import { getUser } from "./getUser";
 import { getMenu } from "./getMenu";
 import { filterMenuByCategory } from "./filterMenuByCategories";
 import { filterMenuByLabels } from "./filterMenuByLabels";
+import { addOrder } from "./addOrder";
+import { removeOrder } from "./removeOrder";
 
 export {
   getCategories,
@@ -11,5 +13,7 @@ export {
   getUser,
   getMenu,
   filterMenuByCategory,
-  filterMenuByLabels
+  filterMenuByLabels,
+  addOrder,
+  removeOrder
 };
