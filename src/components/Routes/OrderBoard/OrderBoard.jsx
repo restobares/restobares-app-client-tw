@@ -1,11 +1,29 @@
+<<<<<<< HEAD
 import React from 'react'
 import { Link } from 'react-router-dom'
+=======
+import React, { Fragment } from 'react';
+import { useParams } from 'react-router-dom';
+
+//componente platillo
+>>>>>>> 63462ebc7ab8ebdbe438c982b0772792ecbabdb7
 import OrderCard from '../../AuxiliarComponents/OrderCard';
 
 const idTable = 1;
 const idResto = 1;
 
+<<<<<<< HEAD
 const menu = [
+=======
+
+
+export default function OrderBoard (/* props: {name, description, price, img} */) {
+
+  const { idTable } = useParams();
+  
+  // Estado de platillos con su listado
+  const menu = [
+>>>>>>> 63462ebc7ab8ebdbe438c982b0772792ecbabdb7
     {
       product_id: 1,
       product_name: "Hamburguesa",
@@ -72,6 +90,7 @@ const menu = [
   ];
 
 
+<<<<<<< HEAD
 const OrderBoard = () => {
 	return (
 		<div>
@@ -83,12 +102,27 @@ const OrderBoard = () => {
 			{menu.map((platillo) =>(
          <OrderCard
           key={menu.id}
+=======
+
+    return (
+      <Fragment>
+        {menu.map((platillo) =>(
+        <OrderCard
+          id={platillo.product_id}
+          key={platillo.product_id}
+>>>>>>> 63462ebc7ab8ebdbe438c982b0772792ecbabdb7
           platillo={platillo}
           platillos={menu}
-         />
+        />
         ))}
+<<<<<<< HEAD
 		</div>
 	)
+=======
+
+      </Fragment>
+    )
+>>>>>>> 63462ebc7ab8ebdbe438c982b0772792ecbabdb7
 }
 
 export default OrderBoard
