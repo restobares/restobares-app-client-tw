@@ -74,6 +74,7 @@ No crear css de componentes solo clases globales y las clases de elementos HTML 
                                             --> Boton para pagar por tarjeta -> mientras este activo renderizar <MercadoPago>
 
 
+
  ----------------- <COMPONENTES-RUTAS> ----------------- 
  <Landing>
  <OrderBoard>
