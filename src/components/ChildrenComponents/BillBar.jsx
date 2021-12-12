@@ -21,7 +21,8 @@ const BillBar = ({pedido, currentOrder,menu}) => {
 	
 	  var elementFound = menu.find((element) => element.product_id === product_id);
 	
-	  totalPrice = totalPrice + (product_quantity * elementFound.price );
+	  if(product_quantity>0){
+		totalPrice = totalPrice + (product_quantity * elementFound.price );}
 	}
 
 

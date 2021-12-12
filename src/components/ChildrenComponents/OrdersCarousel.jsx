@@ -82,7 +82,7 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
     var elementFound = menu.find((element) => 
     
     element.product_id === product_id);
-  
+    if(product_quantity>0){
     addOrder.push({
       name: elementFound.product_name,
       price: elementFound.price*product_quantity,
@@ -90,7 +90,7 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
       details: elementFound.details,
       product_id: product_id,
       quantity: product_quantity
-    })
+    })}
   }
 
 
