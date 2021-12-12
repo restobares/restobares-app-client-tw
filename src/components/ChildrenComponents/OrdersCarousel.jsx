@@ -7,7 +7,7 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
   const { addOrder } = useSelector((state) => state);
 
   return (
-    <div>
+    <div className="mb-auto">
       {addOrder.map((el) => {
         return (
           <div className="container mt-5 mb-3 float-left rounded-br-lg bg-pink-400 text-white space-x-0.5">

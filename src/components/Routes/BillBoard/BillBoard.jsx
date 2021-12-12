@@ -66,7 +66,7 @@ const BillBoard = () => {
  
   return (
     
-    <div>
+    <div className='flex flex-col h-screen justify-between'>
       <BillBar pedido={pedido} currentOrder={currentOrder} />
       <OrdersCarousel pedido={pedido} currentOrder={currentOrder} />
       <PayBar pedido={pedido} currentOrder={currentOrder} />
