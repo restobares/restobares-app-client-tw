@@ -23,7 +23,7 @@ const OrderCard = ({ platillo }) => {
   const cart = useSelector((state) => state.cart);
   
   const addPlatillo = () => {
-    dispatch(addOrder(platillo));
+    dispatch(addOrder(platillo,idTable));
   };
 
   return (

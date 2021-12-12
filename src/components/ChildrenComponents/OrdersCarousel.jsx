@@ -24,7 +24,7 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
               <div>
                 <p>{el.product_name}</p>
                 <p>{el.details}</p>
-                <p>{el.price}</p>
+                <p>${el.price}</p>
               </div>
               <div className="bg-pink-500 w-10 h-6 mx-1">Pedido</div>
               {/* {

@@ -101,10 +101,11 @@ export default function OrderBoard (/* props: {name, description, price, img} */
 	 		</Link>
         {menu.map((platillo) =>(
         <OrderCard
-          id={platillo.product_id}
+          product_id={platillo.product_id}
           key={platillo.product_id}
           platillo={platillo}
           platillos={menu}
+          
         />
         ))}
       </Fragment>

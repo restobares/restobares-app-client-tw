@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants";
 
 const initialState = {
-  count: 0
+  count: 0,
 };
 
 
@@ -14,7 +14,8 @@ function cart(state = initialState, action) {
         ...state,
         count: state.count + 1,
         [action.payload.idProduct]: {
-          id: action.payload.idProduct,
+          product_id: action.payload.idProduct,
+          table_id: action.payload.idTable,
           quantity: state.count + 1
         }
       }
@@ -26,7 +27,8 @@ function cart(state = initialState, action) {
       return {
         ...state,
         [action.payload.idProduct]: {
-          id: action.payload.idProduct,
+          product_id: action.payload.idProduct,
+          table_id: action.payload.idTable,
           quantity: state[action.payload.idProduct].quantity + 1
         }
       }
@@ -40,7 +42,8 @@ function cart(state = initialState, action) {
       state = {
         ...state,
         [action.payload.idProduct]: {
-          id: action.payload.idProduct,
+          product_id: action.payload.idProduct,
+          table_id: action.payload.idTable,
           quantity: state[action.payload.idProduct].quantity - 1
         }
       }
