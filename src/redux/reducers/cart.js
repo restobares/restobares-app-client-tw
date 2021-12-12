@@ -7,7 +7,7 @@ const initialState = {
 
 function cart(state = initialState, action) {
 
-  if (action.type === ActionTypes.ADD_ORDER) {
+  if (action.type === ActionTypes.ADD_PRODUCT) {
 
     if (!state[action.payload.idProduct]) {
       state = {
@@ -33,7 +33,7 @@ function cart(state = initialState, action) {
     }
     
   }
-  if (action.type === ActionTypes.REMOVE_ORDER) {
+  if (action.type === ActionTypes.REMOVE_PRODUCT) {
 
     // esto actualiza la cantidad a la baja
     if (state[action.payload.idProduct]) {

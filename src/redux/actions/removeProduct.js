@@ -1,6 +1,6 @@
 import { ActionTypes } from "../constants";
 
-export function removeOrder(idProduct, idTable) {
+export function removeProduct(idProduct, idTable) {
 
   return {
     type: ActionTypes.REMOVE_ORDER,
