@@ -1,9 +1,11 @@
 import { ActionTypes } from "../constants";
 
-export function addOrder(payload) {
+export function addOrder(platillo,idTable) {
   return {
     type: ActionTypes.ADD_ORDER,
-    payload,
+    payload:{
+      ...platillo, idTable
+    }
   };
 }
 
