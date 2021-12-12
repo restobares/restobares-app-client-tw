@@ -31,7 +31,7 @@ const OrderCard = ({platillo}) => {
             <p className="float-left mt-1"> {details} </p>
           </div>
           <div className="float-left">
-            <p className="justifi-center mt-1 mb-8"> ${price} </p>
+            <p className="mt-1 mb-8"> ${price} </p>
             <button className="bg-pink-500 rounded-md mt-4 mb-2 px-2 mr-2" type="button" >Agregar</button>
           </div>
             <div className="rounded-br-lg float-left plus-minus">
