@@ -34,3 +34,15 @@
   @apply flex
   justify-between
 }
+
+.nav-bar{
+  @apply bg-pink-800 h-16
+}
+
+.pill{
+  @apply bg-pink-100 h-12 mt-2  rounded-full w-80
+}
+
+.button {
+  @apply  bg-pink-100 h-12 mt-2  rounded-full w-12
+}
