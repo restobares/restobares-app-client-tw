@@ -6,3 +6,4 @@ export function addOrder(payload) {
     payload,
   };
 }
+
