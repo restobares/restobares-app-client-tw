@@ -12,7 +12,7 @@ function App() {
       <div className="global">
         <Routes>
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
-          <Route path="resto/table/:id/menu" element={<OrderBoard />}></Route>
+          <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
