@@ -32,7 +32,7 @@ export default function LandingPage () {
           
 
             <button className="btn text-button text-white" onClick={
-                () => navigate ('/Menu')
+                () => navigate ('/resto/table/:id/menu')
             }>Entrar</button>
 
         </div>

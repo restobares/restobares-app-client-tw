@@ -4,7 +4,7 @@ import { decrement, increment } from '../../redux/reducers/counter'; */
 
 //componente platillo
 import Platillo from './Platillo';
-import Cart from './Cart';
+import Cart from '../Routes/OrderBoard/Cart';
 
 
 

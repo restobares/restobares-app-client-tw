@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 //components
 import LandingPage from './components/Routes/LandingPage/LandingPage.jsx'
 import BillBoard from './components/Routes/BillBoard/BillBoard.jsx'
+import OrderBoard from './components/Routes/OrderBoard/OrderBoard.jsx'
 // import Menu from './components/Menu/Menu.jsx'
 
 
@@ -13,6 +14,7 @@ function App() {
       <div className="global">
         <Routes>
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
+          <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
           <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
         </Routes>
       </div>
