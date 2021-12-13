@@ -1,4 +1,6 @@
 import { ActionTypes } from "../constants";
+import cart from "../reducers/cart";
+import menu from "../reducers/menu";
 
 export function addOrder(idProduct, idTable) {
 
@@ -10,3 +12,4 @@ export function addOrder(idProduct, idTable) {
     }
   }
 }
+
