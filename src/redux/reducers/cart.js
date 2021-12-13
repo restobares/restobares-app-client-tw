@@ -2,14 +2,21 @@ import { ActionTypes } from "../constants";
 
 const initialState = {
   count: 0,
+  billedCart:{}
 };
 
 
 function cart(state = initialState, action) {
 
+  if(action.type === ActionTypes.GET_CART) {
+    return {
+      ...state
+    }
+  }
+
   if (action.type === ActionTypes.ADD_PRODUCT) {
 
-    if (!state[action.payload.idProduct]) {
+    if (!state[action.payload.idProduct] || Object.keys(state[action.payload.idProduct]).length === 0) {
       state = {
         ...state,
         count: state.count + 1,
@@ -51,11 +58,47 @@ function cart(state = initialState, action) {
       if (state[action.payload.idProduct].quantity === 0) {
         return {
           ...state,
-          [action.payload.idProduct]: undefined
+          [action.payload.idProduct]: {}
         }
       }
       return state;
     }    
+  }
+
+  if (action.type === ActionTypes.ADD_ORDER_TO_CART) {
+
+    // return {
+    //   count: 0,
+    //   billedCart: {
+    //     ...state.billedCart,
+    //     ...state,
+    //   }
+    // }
+    var newBilledCart = {
+      ...state.billedCart
+    }
+
+    for (var i in state) {
+      if(i==="count" || i === "billedCart") continue;
+      newBilledCart[i] = {}
+      if (state.billedCart.hasOwnProperty(i)) {
+        
+        newBilledCart[i] = {}
+
+        newBilledCart[i].quantity = state.billedCart[i].quantity + state[i].quantity;
+        newBilledCart[i].product_id = state.billedCart[i].product_id;
+
+      } else {
+
+        newBilledCart[i].quantity = state[i].quantity;
+        newBilledCart[i].product_id = state[i].product_id
+      }
+    }
+    return {
+      
+      count: 0,
+      billedCart: newBilledCart
+    }
   }
   return state;
 }
