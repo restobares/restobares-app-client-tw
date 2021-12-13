@@ -72,6 +72,16 @@ const menu = [
     discount_id: 6,
     category_id: 6,
     labels: [1, 2, 3],
+  },
+  {
+    product_id: 7,
+    product_name: "Fernet papá",
+    details: "Hola soy la descripción de tu platillo.",
+    price: 10.00,
+    img: "https://pbs.twimg.com/media/B4iFFySIEAA8sf5.jpg",
+    discount_id: 7,
+    category_id: 7,
+    labels: [1, 2, 3],
   }
 ];
 
