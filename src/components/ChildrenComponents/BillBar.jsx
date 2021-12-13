@@ -15,7 +15,7 @@ const BillBar = ({pedido, currentOrder,menu}) => {
 
 	var totalPrice = 0
 	for (var i in cart) {
-	 if(i==="count")continue;
+	 if(i==="count" || i === "billedCart")continue;
 	  var product_id = cart[i].product_id;
 	  var product_quantity = cart[i].quantity;
 	
@@ -34,7 +34,9 @@ const BillBar = ({pedido, currentOrder,menu}) => {
 				{ totalPrice}
 			</div>
 			<Link to={`/resto/${idResto}/table/${idTable}/menu`}>
-				<button className='button ml-80'> {"<-"}</button>
+				<button className='button ml-80'>
+				<img src="https://img.icons8.com/ios/50/aa0020/restaurant-menu.png" width="40" className='ml-1'/>
+				</button>
 			</Link>
 		</div>
 	)

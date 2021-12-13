@@ -46,7 +46,7 @@ const OrderCard = ({ platillo }) => {
         </div>
       <div className="float-ri">
         <div className="float-left  w-48 bg-pink-700 text-xl h-8 mt-2 rounded-md px-2 mx-2">
-        <h1 className="inline-block mt-1"> Cantidad:   </h1><h1 className=" inline-block ml-4 "> {cart[product_id] ? cart[product_id].quantity : 0}</h1><h1 className=" inline-block ml-4 pr-2 "> XXXX $</h1>
+        <h1 className="inline-block mt-1"> Cantidad:   </h1><h1 className=" inline-block ml-4 "> {cart[product_id] ? cart[product_id].quantity : 0}</h1><h1 className=" inline-block ml-4 pr-2 "> ----- $</h1>
         </div>
         <button
           className=" bg-pink-700 h-8 text-2xl rounded-md mt-2 mb-2 px-2 mr-2 ml-4"
@@ -58,8 +58,9 @@ const OrderCard = ({ platillo }) => {
         <button className="mt-12 text-center text-2xl" onClick={add}>
           ➕
         </button>
+        <h1 className="mt-6">{cart[product_id] ? (cart[product_id].quantity || 0)  : 0}</h1>
         <div className="pl-2 flex item-center">
-        <button className="mt-12 mx-auto" disabled={!cart[product_id] || cart[product_id]. quantity === 0} onClick={minus}>➖</button>
+        <button className="mt-6 mx-auto" disabled={!cart[product_id] || cart[product_id]. quantity === 0} onClick={minus}>➖</button>
         </div>
       </div>
     </div>
