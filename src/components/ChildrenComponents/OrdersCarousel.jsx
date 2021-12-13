@@ -44,8 +44,6 @@ const menu = [
     labels: [1, 2, 3],
   },
 
-
-
 {
     product_id: 5,
     product_name: "Empanadas",
@@ -64,6 +62,16 @@ const menu = [
     img: "https://img1.wsimg.com/isteam/ip/9d354e1d-14a1-4160-9592-069c2b7e3474/Bandeja-Paisa.jpg/:/cr=t:12.5%25,l:0%25,w:100%25,h:75%25/rs=w:600,h:300,cg:true",
     discount_id: 6,
     category_id: 6,
+    labels: [1, 2, 3],
+  },
+  {
+    product_id: 7,
+    product_name: "Fernet papá",
+    details: "Hola soy la descripción de tu platillo.",
+    price: 10.00,
+    img: "https://pbs.twimg.com/media/B4iFFySIEAA8sf5.jpg",
+    discount_id: 7,
+    category_id: 7,
     labels: [1, 2, 3],
   }
 ];
