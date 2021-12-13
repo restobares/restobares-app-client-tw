@@ -11,6 +11,8 @@ const OrderCard = ({ platillo }) => {
   
   const dispatch = useDispatch();  
   
+  const {cart} = useSelector((state)=>state);
+
   const add = () => {
     
     dispatch(addProduct(product_id, idTable))
@@ -20,10 +22,9 @@ const OrderCard = ({ platillo }) => {
     dispatch(removeProduct(product_id, idTable))
   }
     
-  const cart = useSelector((state) => state.cart);
   
   const addPlatillo = () => {
-    dispatch(addOrder(platillo));
+    dispatch(addOrder(cart));
   };
 
   return (
