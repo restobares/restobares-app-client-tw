@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { getCart } from "../../redux/actions";
+
 const menu = [
   {
     product_id: 1,
@@ -65,6 +67,8 @@ const menu = [
     labels: [1, 2, 3],
   }
 ];
+
+
 const OrdersCarousel = ({ pedido, currentOrder }) => {
   // const img = "https://i.blogs.es/579bad/pollo-de-jordi-cruz/1366_2000.jpg";
   const dispatch = useDispatch();
@@ -74,8 +78,11 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
 
   let addOrder = []
 
+  useEffect(() => {
+    dispatch(getCart())
+  }, [dispatch])
   for (var i in cart) {
-    if(i==="count") continue;
+    if(i==="count" || i === "billed.cart") continue;
     var product_id = cart[i].product_id
     var product_quantity = cart[i].quantity
   
@@ -84,6 +91,28 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
     element.product_id === product_id);
     if(product_quantity>0){
     addOrder.push({
+      name: elementFound.product_name,
+      price: elementFound.price*product_quantity,
+      img: elementFound.img,
+      details: elementFound.details,
+      product_id: product_id,
+      quantity: product_quantity
+    })}
+  }
+
+  let ordersConfirmed = [];
+  console.log(cart.billedCart)
+  for (var i in cart.billedCart) {
+    if(i==="count" || i === "billed.cart") continue;
+    var product_id = cart.billedCart[i].product_id
+    var product_quantity = cart.billedCart[i].quantity
+  
+    var elementFound = menu.find((element) => 
+    
+    element.product_id === product_id);
+
+    if(product_quantity>0){
+    ordersConfirmed.push({
       name: elementFound.product_name,
       price: elementFound.price*product_quantity,
       img: elementFound.img,
@@ -103,7 +132,7 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
   //   order.price,
   // }})
   // menu.find()
-  console.log(addOrder);
+  // console.log(addOrder);
   return (
     <div className="mb-auto">
       {addOrder.map((el) => {
@@ -135,6 +164,36 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
             </div>
           </div>
         );
+      })}
+      {ordersConfirmed.length > 0 && ordersConfirmed.map((order) => {
+        return (
+          <div className="container mt-5 mb-3 float-left rounded-br-lg bg-pink-300 text-white space-x-0.5">
+            <div className="float-left m-0 ">
+              <img
+                src={order.img}
+                style={{ width: 100, height: 100, borderRadius: 5 }}
+                alt=""
+              />
+            </div>
+            {/*Titulo*/}
+
+            <div className="flex flex-row ml-4 mt-1 text-left align-items-start">
+              <div>
+                <p>{order.product_name}</p>
+                <p>{order.details}</p>
+                <p>Total Price: ${order.price}</p>
+                <p>Quantity: {order.quantity}</p>
+                
+              </div>
+              <div className="bg-pink-500 w-10 h-6 mx-1">Pedido</div>
+              {/* {
+			  pedido
+			  ? <div className="bg-pink-500 w-10 h-6 mx-1">Pedido</div>
+			  : <button className="bg-pink-500 w-10 h-6 mx-1">X</button>
+		  } */}
+            </div>
+          </div>
+        )
       })}
     </div>
   );

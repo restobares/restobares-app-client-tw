@@ -15,7 +15,7 @@ const BillBar = ({pedido, currentOrder,menu}) => {
 
 	var totalPrice = 0
 	for (var i in cart) {
-	 if(i==="count")continue;
+	 if(i==="count" || i === "billedCart")continue;
 	  var product_id = cart[i].product_id;
 	  var product_quantity = cart[i].quantity;
 	
