@@ -60,7 +60,7 @@ const OrderCard = ({ platillo }) => {
         </button>
         <h1 className="mt-6">{cart[product_id] ? (cart[product_id].quantity || 0)  : 0}</h1>
         <div className="pl-2 flex item-center">
-        <button className="mt-6 mx-auto" disabled={!cart[product_id] || cart[product_id]. quantity === 0} onClick={minus}>➖</button>
+        <button className="mt-6 mx-auto" disabled={!cart[product_id] || !cart[product_id]. quantity} onClick={minus}>➖</button>
         </div>
       </div>
     </div>
