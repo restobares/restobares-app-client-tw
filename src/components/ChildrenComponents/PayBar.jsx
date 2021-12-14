@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addOrderToCart } from '../../redux/actions';
+
+const idTable = 1;
+const idResto = 1;
 
 const PayBar = ({menu}) => {
 	const {cart}= useSelector((state)=>state);
@@ -31,7 +35,9 @@ const PayBar = ({menu}) => {
 			<h1 className='inline-block ml-4 text-white '>Nuevo consumo ${totalPrice} </h1>
 			</div>
 			<button className='button ml-80 overflow-auto' onClick={pedir}> Pedir</button>
+			<Link to={`/resto/${idResto}/table/${idTable}/bill`}>
 			<button className='button ml-12'> Pagar</button>
+			</Link>
 
 		</div>
 	)
