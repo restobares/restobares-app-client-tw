@@ -30,6 +30,12 @@ var pedido = [
 		totalPrice: 230,
 		description: 'Lorem Impsum la puta que lo pariooooooooo',
 	},
+	{
+		name: "Fernet papá",
+		quantity: 2,
+		details: "Hola soy la descripción de tu platillo.",
+		totalPrice: 10.00,
+	}
 ]
 var currentOrder = {
 	products:  [
@@ -57,6 +63,16 @@ var currentOrder = {
 			totalPrice: 230,
 			description: 'Lorem Impsum la puta que lo pariooooooooo',
 		},
+		{
+			product_id: 7,
+			product_name: "Fernet papá",
+			details: "Hola soy la descripción de tu platillo.",
+			price: 10.00,
+			img: "https://vintageliquor.com/wp-content/uploads/2013/12/FERNET_BRANCA_BITTERS_750ml.jpg",
+			discount_id: 7,
+			category_id: 7,
+			labels: [1, 2, 3],
+		  }
 	],
 	comments: 'Las papas sin sal porfa'
 };
@@ -101,10 +117,7 @@ const menu = [
 	  category_id: 4,
 	  labels: [1, 2, 3],
 	},
-  
-  
-  
-  {
+   {
 	  product_id: 5,
 	  product_name: "Empanadas",
 	  details: "Hola soy la descripción de tu platillo.",
@@ -123,7 +136,17 @@ const menu = [
 	  discount_id: 6,
 	  category_id: 6,
 	  labels: [1, 2, 3],
-	}
+	},
+	{
+		product_id: 7,
+		product_name: "Fernet papá",
+		details: "Hola soy la descripción de tu platillo.",
+		price: 10.00,
+		img: "https://pbs.twimg.com/media/B4iFFySIEAA8sf5.jpg",
+		discount_id: 7,
+		category_id: 7,
+		labels: [1, 2, 3],
+	  }
   ];
 
 const BillBoard = () => {
