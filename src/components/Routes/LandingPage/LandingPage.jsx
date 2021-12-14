@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCategories } from '../../../redux/actions'
+import { getCategories, getUser } from '../../../redux/actions'
 
 
 
 export default function LandingPage () {
   const { idResto, idTable } = useParams();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user)
 
-  useEffect(()=>{
-    dispatch(getCategories())
+  useEffect(() => {
+    // dispatch(getCategories())
+    dispatch(getUser())
   },[dispatch])
 
   const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
@@ -24,7 +26,7 @@ export default function LandingPage () {
       </div>
             
       <div className="relative place-self-center">
-            <h2 className="titulo mb-10 pt-10 text-center text-white ">¡Bienvenidos!</h2>
+            <h2 className="titulo mb-10 pt-10 text-center text-white ">¡Bienvenidos! {user.title}</h2>
 
             <div className="flex items-center justify-center mb-10  mx-auto rounded-full ">
               <img className="mx-auto rounded-full sm:w-80 h-80 md:w-96 h-96" src={logo} alt="logo"/>

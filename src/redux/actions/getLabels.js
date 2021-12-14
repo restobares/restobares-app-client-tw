@@ -5,7 +5,7 @@ export function getLabels() {
 
   return async function(dispatch) {
 
-    var json = await axios.get('http://localhost:3001/get/labels');
+    var json = await axios.get('http://localhost:3001/labels');
 
     return dispatch({
       type: ActionTypes.GET_LABELS,

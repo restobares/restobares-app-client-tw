@@ -5,7 +5,10 @@ const initialState = {};
 function user(state = initialState, action) {
 
   if (action.type === ActionTypes.GET_USER) {
-    return {...action.payload};
+    return {
+      ...state,
+      ...action.payload
+    };
   }
   return state;
 }
