@@ -23,9 +23,6 @@ const OrderCard = ({ platillo }) => {
   }
     
   
-  const addPlatillo = () => {
-    dispatch(addOrder(cart));
-  };
 
   return (
     <div className="flex  mr-8 mt-5  h-60 float-right  bg-pink-400 text-white rounded-br-3xl w-11/12 ">
@@ -46,12 +43,8 @@ const OrderCard = ({ platillo }) => {
         </div>
       <div className="float-ri">
         <div className="float-left  w-48 bg-pink-700 text-xl h-8 mt-2 rounded-md px-2 mx-2">
-        <h1 className="inline-block mt-1"> Cantidad:   </h1><h1 className=" inline-block ml-4 "> {cart[product_id] ? cart[product_id].quantity : 0}</h1><h1 className=" inline-block ml-4 pr-2 "> ----- $</h1>
+        <h1 className="inline-block mt-1"> Cantidad:   </h1><h1 className=" inline-block ml-4 "> {cart[product_id] ? cart[product_id].quantity : 0}</h1><h1 className=" inline-block ml-4 pr-2 "> $ {cart[product_id] ? cart[product_id].quantity*price : '---'} </h1>
         </div>
-        <button
-          className=" bg-pink-700 h-8 text-2xl rounded-md mt-2 mb-2 px-2 mr-2 ml-4"
-          type="button"
-          onClick={addPlatillo}> Agregar </button>
       </div>
       </div>
       <div className="bg-pink-700 w-16 float-right rounded-br-3xl ">
