@@ -162,12 +162,12 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
               <div className="clear-left bg-pink-500 mt-2 mr-2 text-2xl rounded-xl">
                 <p className="float-left mt-1 ml-2"> {el.details} </p>
 
-                <p>Total Price: ${el.price}</p>
-                <p>Quantity: {el.quantity}</p>
+                <p>- </p>
+                <p></p>
 
               </div>
               <div className="float-left w-48 mt-28 py-1 ml-2 rounded-md bg-pink-700 px-4 text-2xl ">
-              <p className="float-right ml-4"> $</p><p className="float-right">{el.price}</p> <p className="float-left mr-2"> Cant XXX</p>
+              <p className="float-right ml-4"> $</p><p className="float-right">{el.price}</p> <p className="float-left mr-2"> Cantidad: {el.quantity}</p>
               </div>
               </div>
               <div className="float-right  mt-28 py-1 mr-4 rounded-md rounded-br-xl bg-pink-500 px-4 text-2xl">Pedido</div>
