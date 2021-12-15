@@ -19,7 +19,7 @@ const PayBoard = () => {
       <div className='nav-bar pb-2'>
       <button className='float-right mr-2 button'>
 			<Link to={`/resto/${idResto}/table/${idTable}/order`}>
-				<img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/aa0020/external-food-app-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" width="24" className='ml-1'/>
+				<img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/aa0020/external-food-app-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" width="24" className='ml-1' alt=""/>
 			</Link>
 			</button>
       </div>
