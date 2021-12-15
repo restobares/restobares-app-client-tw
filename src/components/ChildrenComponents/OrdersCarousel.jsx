@@ -145,69 +145,59 @@ const OrdersCarousel = ({ pedido, currentOrder }) => {
     <div className="mb-auto">
       {addOrder.map((el) => {
         return (
-          <div className="flex float-right mt-5 w-11/12 h-60 bg-pink-400  text-white rounded-br-3xl mr-8">
-            <div className="float-left w-80 ">
-              <img className="object-cover min-w-full min-h-full "
-                src={el.img}
-                style={{ width: 100, height: 100, borderRadius: 5 }}
-                alt=""
-              />
-            </div>
-            {/*Titulo*/}
 
-            <div className="">
-              <div>
-              
-              <p className=" text-3xl bg-pink-700 w-96"> {el.product_name} </p>
-              <div className="clear-left bg-pink-500 mt-2 mr-2 text-2xl rounded-xl">
-                <p className="float-left mt-1 ml-2"> {el.details} </p>
+          <div className="flex  h-40 float-right  bg-pink-400 text-white rounded-br-3xl w-full mt-2">   
+      <div className="float-left w-80">
+        <img className="object-cover min-w-full min-h-full"
+          src={el.img}
+          style={{ width: 100, height: 100, borderRadius: 5 }}
+          alt=""
+          />
+      </div>
+      <div className="bg-pink-500 h-40 w-80 float-right">
+        <div className="bg-pink-600 h-8">
+        <p className="float-left ml-1 mt-1 text-2xl "> {el.name} </p>
+        </div>
+        <div className="h-24 mt-1 mx-1 text-xl mb-1">
+        <p className="float-left ml-4"> {el.details} </p>
+        </div>
+      <div className="">
+        <div className="float-left w-full bg-pink-600 text-md h-6  ">
+        <h1 className="inline-block text-left "> Cantidad:   </h1><h1 className=" inline-block ml-2 "> {el.quantity}</h1><h1 className=" inline-block ml-4 pr-2 "> $ {el.price} </h1>
+        </div>
+      </div>
+      </div>
 
-                <p>- </p>
-                <p></p>
-
-              </div>
-              <div className="float-left w-48 mt-28 py-1 ml-2 rounded-md bg-pink-700 px-4 text-2xl ">
-              <p className="float-right ml-4"> $</p><p className="float-right">{el.price}</p> <p className="float-left mr-2"> Cantidad: {el.quantity}</p>
-              </div>
-              </div>
-              <div className="float-right  mt-28 py-1 mr-4 rounded-md rounded-br-xl bg-pink-500 px-4 text-2xl">Pedido</div>
-              {/* {
-			  pedido
-			  ? <div className="bg-pink-500 w-10 h-6 mx-1">Pedido</div>
-			  : <button className="bg-pink-500 w-10 h-6 mx-1">X</button>
-		  } */}
-            </div>
-          </div>
+        </div>
         );
       })}
       {ordersConfirmed.length > 0 && ordersConfirmed.map((order) => {
         return (
-          <div className="container mt-5 mb-3 float-left rounded-br-lg bg-pink-300 text-white space-x-0.5">
-            <div className="float-left m-0 ">
-              <img
-                src={order.img}
-                style={{ width: 100, height: 100, borderRadius: 5 }}
-                alt=""
+          
+          <div className="flex  h-40 float-right  bg-gray-400 text-white rounded-br-3xl w-full mt-2">   
+          <div className="float-left w-80">
+            <div className="absolute bg-gray-800 w-20 h-7 rounded-full ml-10 mt-1 bg-opacity-80"><p className="mt-1">Pedido</p></div>
+            <img className="object-cover min-w-full min-h-full "
+              src={order.img}
+              style={{ width: 100, height: 100, borderRadius: 5 }}
+              alt=""
               />
+          </div>
+          <div className="bg-gray-500 h-40 w-80 float-right">
+            <div className="bg-gray-600 h-8">
+            <p className="float-left ml-1 mt-1 text-2xl "> {order.name} </p>
             </div>
-            {/*Titulo*/}
-
-            <div className="flex flex-row ml-4 mt-1 text-left align-items-start">
-              <div>
-                <p>{order.product_name}</p>
-                <p>{order.details}</p>
-                <p>Total Price: ${order.price}</p>
-                <p>Quantity: {order.quantity}</p>
-                
-              </div>
-              <div className="bg-pink-500 w-10 h-6 mx-1">Pedido</div>
-              {/* {
-			  pedido
-			  ? <div className="bg-pink-500 w-10 h-6 mx-1">Pedido</div>
-			  : <button className="bg-pink-500 w-10 h-6 mx-1">X</button>
-		  } */}
+            <div className="h-24 mt-1 mx-1 text-xl mb-1">
+            <p className="float-left ml-4"> {order.details} </p>
+            </div>
+          <div className="">
+            <div className="float-left w-full bg-gray-800 text-md h-6   ">
+            <h1 className="inline-block text-left "> Cantidad:   </h1><h1 className=" inline-block ml-2 "> {order.quantity}</h1><h1 className=" inline-block ml-4 pr-2 "> $ {order.price} </h1>
             </div>
           </div>
+          </div>
+    
+            </div>
         )
       })}
     </div>
