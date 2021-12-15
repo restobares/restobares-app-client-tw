@@ -6,6 +6,7 @@ import LandingPage from './components/Routes/LandingPage/LandingPage.jsx'
 import BillBoard from './components/Routes/BillBoard/BillBoard.jsx'
 import OrderBoard from './components/Routes/OrderBoard/OrderBoard.jsx'
 import PayBoard from './components/Routes/PayBoard/PayBoard.jsx';
+import Payment from './components/Routes/PayBoard/Payment.jsx';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
           <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
           <Route path="resto/:idResto/table/:idMesa/bill" element={<PayBoard />} ></Route>
+          <Route path="resto/:idResto/table/:idMesa/payment" element={<Payment />} ></Route>
         </Routes>
       </div>
     </BrowserRouter>

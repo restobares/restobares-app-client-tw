@@ -1,10 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
+import Modal from './Modal'
 
 const idTable = 5;
 const idResto = 5;
 
+
 const PayBoard = () => {
+
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(prev => !prev);
+  }
+
   return (
     <div>
       <div className='nav-bar pb-2'>
@@ -24,27 +33,17 @@ const PayBoard = () => {
        </div>
       </div>
 
-      {/*en pagina*/}
-
-
-
-      <button className="bg-pink-700 text-xl font-semibold text-white p-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+      <button onClick={openModal} className="bg-pink-700 text-xl font-semibold text-white p-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pagar en Mesa
       </button>
+
+    <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
       <button className="bg-pink-700 text-xl font-semibold text-white p-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pagar con Tarjeta
       </button>
+    </Link>
 
-
-      <div className="p-2 mt-10 inline-block">
-        <div className="w-60 h-60 bg-pink-700 rounded-full border-2 border-pink-900 sm:w-auto">
-          <h1 className='pt-5'></h1>
-          <img className="ml-16" src="https://media2.giphy.com/media/1gQwNktlzyKsje8hYT/giphy.gif?cid=790b7611eecec2c3c468a85a3d4879aebd1842028814a3b2&rid=giphy.gif&ct=s"  width="120" alt="" />
-          <h1 className=' text-2xl text-red-50 font-bold'>Espere en la Mesa, por favor</h1>
-        </div>
-      </div>
-
-
+      <Modal showModal={showModal} setShowModal={setShowModal} />
 
     </div>
   )
