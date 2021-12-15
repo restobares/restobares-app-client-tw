@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
-
+import FilterBar from "../../ChildrenComponents/FilterBar"
 //componente platillo
 import OrderCard from '../../AuxiliarComponents/OrderCard';
 import OrderBar from '../../ChildrenComponents/OrderBar';
@@ -111,6 +111,7 @@ export default function OrderBoard (/* props: {name, description, price, img} */
 	 			<h1>{'Ver Cuenta -->'}</h1>
 	 		</Link> */}
        <OrderBar/>
+
         {menu.map((platillo) =>(
         <OrderCard
           product_id={platillo.product_id}
