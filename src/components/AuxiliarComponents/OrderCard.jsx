@@ -51,7 +51,7 @@ const OrderCard = ({ platillo }) => {
         </div>
       <div className="">
         <div className="float-left w-full bg-pink-600 text-md h-5  ">
-        <h1 className="inline-block text-left "> Cantidad:   </h1><h1 className=" inline-block ml-4 "> {cart[product_id] ? cart[product_id].quantity : 0}</h1><h1 className=" inline-block ml-4 pr-2 "> $ {cart[product_id] ? cart[product_id].quantity*price : '---'} </h1>
+        <h1 className="inline-block text-left "> Cantidad:   </h1><h1 className=" inline-block ml-4 "> {cart[product_id] ? cart[product_id].quantity : 0}</h1><h1 className=" inline-block ml-4 pr-2 "> $ {!cart[product_id] ? '---' : !cart[product_id].quantity ? '---' : cart[product_id].quantity*price} </h1>
         </div>
       </div>
       </div>
