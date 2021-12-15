@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { getLabels, getCategories, getMenu } from '../../../redux/actions';
+import FilterBar from "../../ChildrenComponents/FilterBar"
 
 //componente platillo
 import OrderCard from '../../AuxiliarComponents/OrderCard';
@@ -34,6 +35,7 @@ export default function OrderBoard (/* props: {name, description, price, img} */
 	 			<h1>{'Ver Cuenta -->'}</h1>
 	 		</Link> */}
        <OrderBar/>
+
         {menu.map((platillo) =>(
         <OrderCard
           product_id={platillo.product_id}

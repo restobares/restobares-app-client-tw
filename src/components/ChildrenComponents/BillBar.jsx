@@ -28,16 +28,18 @@ const BillBar = ({pedido, currentOrder,menu}) => {
 
 
 	return (
-		<div className='nav-bar flex'>
-			<div className='pill ml-8 text-2xl mr-8 '>
-				{'Consumo actual: $'}
-				{ totalPrice}
+		<div className='nav-bar'>
+			<div className='h-12'>
+
+			<div className='float-left pill w-7/12'>
+				{'Consumo actual: $'}{totalPrice}
 			</div>
 			<Link to={`/resto/${idResto}/table/${idTable}/menu`}>
-				<button className='button ml-80'>
-				<img src="https://img.icons8.com/ios/50/aa0020/restaurant-menu.png" width="40" className='ml-1'/>
+				<button className='float-right button mr-2'>
+				<img src="https://img.icons8.com/ios/50/aa0020/restaurant-menu.png" width="24" className='ml-1'/>
 				</button>
 			</Link>
+			</div>
 		</div>
 	)
 }

@@ -36,13 +36,13 @@
 }
 
 .nav-bar{
-  @apply bg-pink-800 h-16
+  @apply bg-pink-800 h-12 left-0 right-0  
 }
 
 .pill{
-  @apply bg-pink-100 h-12 mt-2  rounded-full w-80
+  @apply bg-pink-100 mt-2 h-8 rounded-full  ml-4  align-middle text-center text-xl
 }
 
 .button {
-  @apply  bg-pink-100 h-12 mt-2  rounded-full w-12
+  @apply  bg-pink-100 h-8 mt-2 w-8  rounded-full 
 }

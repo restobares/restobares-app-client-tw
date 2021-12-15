@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { addOrderToCart } from '../../redux/actions';
+
+const idTable = 1;
+const idResto = 1;
 
 const PayBar = ({menu}) => {
 	const {cart}= useSelector((state)=>state);
@@ -26,12 +30,12 @@ const PayBar = ({menu}) => {
 	  totalPrice = totalPrice + (product_quantity * elementFound.price );}
 	}
 	return (
-		<div className='h-16 bg-pink-700 w-screen flex '>
-			<div className='inline-block text-4xl  h-12 mt-4 '>
-			<h1 className='inline-block ml-4 text-white '>Nuevo consumo ${totalPrice} </h1>
-			</div>
-			<button className='button ml-80 overflow-auto' onClick={pedir}> Pedir</button>
-			<button className='button ml-12'> Pagar</button>
+		<div className='nav-bar text-2xl'>
+			<h1 className='float-left text-white text-left mt-2 ml-2 '>Nuevo consumo ${totalPrice} </h1>
+			<button className='float-right bg-pink-300 mt-2 w-12 rounded-xl mr-4'> Pagar</button>
+			<Link to={`/resto/${idResto}/table/${idTable}/bill`}>
+			<button className='float-right bg-pink-100 mt-2 w-12 rounded-xl mr-4' onClick={pedir}> Pedir</button>
+			</Link>
 
 		</div>
 	)
