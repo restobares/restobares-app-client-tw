@@ -2,12 +2,12 @@ import { ActionTypes } from "../constants";
 
 const initialState = [];
 
-function categories(state = initialState, action) {
+function discounts(state = initialState, action) {
 
-  if (action.type === ActionTypes.GET_LABELS) {
+  if (action.type === ActionTypes.GET_DISCOUNTS) {
     return [...action.payload];
   }
   return state;
 }
 
-export default categories;
+export default discounts;
