@@ -16,17 +16,13 @@ const PayBoard = () => {
 
   return (
     <div>
-      <div className='nav-bar flex'>
-      <div className='ml-4'>
-      <Link to={`/resto/${idResto}/table/${idTable}/order`}>
-				<button className='button mr-60'>
-        <img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/aa0020/external-food-app-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" width="40" className='ml-1' alt=""/>
-				</button>
+      <div className='nav-bar pb-2'>
+      <button className='float-right mr-2 button'>
+			<Link to={`/resto/${idResto}/table/${idTable}/order`}>
+				<img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/aa0020/external-food-app-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" width="24" className='ml-1'/>
 			</Link>
+			</button>
       </div>
-      </div>
-
-      {/*en pagina*/}
 
       <div className="p-4 inline-flex">
 			 <div className="w-full bg-pink-700 px-4 py-2 rounded-3xl text-2xl text-white font-semibold each-in-out inline-flex">
