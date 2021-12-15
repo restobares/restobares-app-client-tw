@@ -11,7 +11,6 @@ export default function LandingPage () {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
-    // dispatch(getCategories())
     dispatch(getUser())
   },[dispatch])
 
@@ -26,7 +25,8 @@ export default function LandingPage () {
       </div>
             
       <div className="relative place-self-center">
-            <h2 className="titulo mb-10 pt-10 text-center text-white ">¡Bienvenidos! {user.title}</h2>
+            <h2 className="titulo mb-10 pt-10 text-center text-white ">¡Bienvenidos!</h2>
+            <h2 className="titulo mb-10 pt-10 text-center text-white ">{user.title}</h2>
 
             <div className="flex items-center justify-center mb-10  mx-auto rounded-full ">
               <img className="mx-auto rounded-full sm:w-80 h-80 md:w-96 h-96" src={logo} alt="logo"/>

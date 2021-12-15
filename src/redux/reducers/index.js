@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
 import categories from "./categories";
 import labels from "./labels";
-import menu from "./menu";
+import menus from "./menu";
+import discounts from "./discounts";
 import tables from "./tables";
 import user from "./user";
 import addOrder from "./addOrder";
@@ -11,7 +12,8 @@ import cart from "./cart";
 export default combineReducers({
   categories,
   labels,
-  menu,
+  menus,
+  discounts,
   tables,
   user,
   addOrder,
