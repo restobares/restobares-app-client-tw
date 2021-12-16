@@ -2,7 +2,8 @@ import { ActionTypes } from "../constants";
 
 const initialState = {
   count: 0,
-  billedCart:{}
+  billedCart:{},
+  comment: ''
 };
 
 
