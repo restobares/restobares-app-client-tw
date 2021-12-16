@@ -6,7 +6,7 @@ function SideBar() {
 
 
     return (
-        <div className={`sideMenu ${inactive ? 'inactive' : "" }`} >
+        <div className={`si deMenu ${inactive? 'inactive' : "" }`} >
          <div className="inactive">
           <button onClick={() => setInactive(!inactive)} className="float-left button ml-1">
             <img src="https://img.icons8.com/material-outlined/24/aa0020/menu--v1.png"  width="24" className='ml-1' alt="" />

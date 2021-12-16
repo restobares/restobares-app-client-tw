@@ -60,6 +60,8 @@ const Login = () => {
                         >
                             Login
                         </button>
+
+                        <a href="#">Forgot your Password?</a>
                         
                     </div>
                 </form>
