@@ -15,7 +15,7 @@ const OrderCard = ({ platillo }) => {
 
   const add = () => {
     
-    dispatch(addProduct(product_id, idTable))
+    dispatch(addProduct(product_id, idTable, product_name, price))
   }
   
   const minus = () => {

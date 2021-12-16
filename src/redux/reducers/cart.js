@@ -2,7 +2,10 @@ import { ActionTypes } from "../constants";
 
 const initialState = {
   count: 0,
-  billedCart:{}
+  billedCart:{},
+  billedCartArr: [],
+  ordersConfirmed: [],
+  comments: ""
 };
 
 
@@ -22,7 +25,8 @@ function cart(state = initialState, action) {
         count: state.count + 1,
         [action.payload.idProduct]: {
           product_id: action.payload.idProduct,
-          table_id: action.payload.idTable,
+          product_name: action.payload.product_name,
+          price: action.payload.price,
           quantity: state.count + 1
         }
       }
@@ -34,8 +38,9 @@ function cart(state = initialState, action) {
       return {
         ...state,
         [action.payload.idProduct]: {
-          product_id: action.payload.idProduct,
-          table_id: action.payload.idTable,
+          // product_id: action.payload.idProduct,
+          // table_id: action.payload.idTable,
+          ...state[action.payload.idProduct],
           quantity: state[action.payload.idProduct].quantity + 1
         }
       }
@@ -49,8 +54,10 @@ function cart(state = initialState, action) {
       state = {
         ...state,
         [action.payload.idProduct]: {
-          product_id: action.payload.idProduct,
-          table_id: action.payload.idTable,
+          // product_id: action.payload.idProduct,
+          // table_id: action.payload.idTable,
+          // quantity: state[action.payload.idProduct].quantity - 1
+          ...state[action.payload.idProduct],
           quantity: state[action.payload.idProduct].quantity - 1
         }
       }
@@ -78,8 +85,10 @@ function cart(state = initialState, action) {
       ...state.billedCart
     }
 
+    var newBilledCartArr = []
+
     for (var i in state) {
-      if(i==="count" || i === "billedCart") continue;
+      if(i==="count" || i === "billedCart" || i === "billedCartArr" || i === "ordersConfirmed" || i === "comments") continue;
       newBilledCart[i] = {}
       if (state.billedCart.hasOwnProperty(i)) {
         
@@ -87,17 +96,30 @@ function cart(state = initialState, action) {
 
         newBilledCart[i].quantity = state.billedCart[i].quantity + state[i].quantity;
         newBilledCart[i].product_id = state.billedCart[i].product_id;
+        newBilledCart[i].product_name = state[i].product_name;
+        newBilledCart[i].price = state[i].price;
 
       } else {
 
         newBilledCart[i].quantity = state[i].quantity;
-        newBilledCart[i].product_id = state[i].product_id
+        newBilledCart[i].product_id = state[i].product_id;
+        newBilledCart[i].product_name = state[i].product_name;
+        newBilledCart[i].price = state[i].price;
       }
     }
+    
+    for (var i in newBilledCart) {
+
+      newBilledCartArr.push(newBilledCart[i]);
+    }
+
+
+
     return {
       
       count: 0,
-      billedCart: newBilledCart
+      billedCart: newBilledCart,
+      billedCartArr: newBilledCartArr 
     }
   }
   return state;
