@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300&family=Cookie&family=Lobster&family=Press+Start+2P&display=swap%27');
 
 .global {
-  @apply font-cookie
+  @apply font-sans text-sm
   bg-gray-50
   text-center
 }
