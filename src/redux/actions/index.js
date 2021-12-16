@@ -4,6 +4,7 @@ import { getUser } from "./getUser";
 import { getMenu } from "./getMenu";
 import { getDiscounts } from "./getDiscounts";
 import { getCart } from "./getCart";
+import { getProductsByName } from "./getProductsByName";
 import { filterMenuByCategory } from "./filterMenuByCategories";
 import { filterMenuByLabels } from "./filterMenuByLabels";
 import { addOrder } from "./addOrder";
@@ -18,6 +19,7 @@ export {
   getMenu,
   getDiscounts,
   getCart,
+  getProductsByName,
   filterMenuByCategory,
   filterMenuByLabels,
   addOrder,
