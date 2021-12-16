@@ -28,7 +28,7 @@ function Payment() {
 
 
   return (
-    <div>
+    <div className='py-12'>
             
      <div className='nav-bar flex'>
       <div className='ml-4'>
