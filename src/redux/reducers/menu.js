@@ -187,6 +187,15 @@ function menu(state = initialState, action) {
 
   if (action.type === ActionTypes.GET_PRODUCTS_BY_NAME) {
 
+    // si la searchBar se vacia vuelve a mostrar todos los productos
+    if (action.payload.lenght === 0) {
+
+      return {
+        ...state,
+        menu: backupMenu
+      }
+    }
+
     const filteredMenu = backupMenu.filter((product) => product.product_name.toLowerCase().includes(action.payload.toLowerCase()))
 
     return {
