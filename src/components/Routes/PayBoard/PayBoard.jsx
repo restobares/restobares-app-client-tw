@@ -15,7 +15,7 @@ const PayBoard = () => {
   }
 
   return (
-    <div>
+    <div className='py-12'>
       <div className='nav-bar pb-2'>
       <button className='float-right mr-2 button'>
 			<Link to={`/resto/${idResto}/table/${idTable}/order`}>

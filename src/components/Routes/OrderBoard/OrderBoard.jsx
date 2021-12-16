@@ -5,6 +5,7 @@ import FilterBar from "../../ChildrenComponents/FilterBar"
 //componente platillo
 import OrderCard from '../../AuxiliarComponents/OrderCard';
 import OrderBar from '../../ChildrenComponents/OrderBar';
+import SideBar from '../../ChildrenComponents/SideBar';
 
 const idTable = 1;
 const idResto = 1;
@@ -89,39 +90,23 @@ export default function OrderBoard (/* props: {name, description, price, img} */
 
   const { idTable } = useParams();
   
-
-
-
-	// return (
-	// 	<div>
-	// 		<h1>Menu Principal</h1>
-			
-	// 		<Link to={`/resto/${idResto}/table/${idTable}/order`}>
-	// 			<h1>{'Ver Cuenta -->'}</h1>
-	// 		</Link>
-	// 		{menu.map((platillo) =>(
-  //        <OrderCard
-  //         key={menu.id}
-
     return (
-      <Fragment>
-	 		{/* <h1>Menu Principal</h1>
-			
-	 		<Link to={`/resto/${idResto}/table/${idTable}/order`}>
-	 			<h1>{'Ver Cuenta -->'}</h1>
-	 		</Link> */}
-       <OrderBar/>
-
-        {menu.map((platillo) =>(
-        <OrderCard
-          product_id={platillo.product_id}
-          key={platillo.product_id}
-          platillo={platillo}
-          platillos={menu}
-          
-        />
-        ))}
-      </Fragment>
+      <div className='pt-12'>
+        <OrderBar/>
+        <div className='fixed min-h-screen right-0 left-0 flex  '>
+            <SideBar/>
+            <div className='w-full '>
+            {menu.map((platillo) =>(
+            <OrderCard
+              product_id={platillo.product_id}
+              key={platillo.product_id}
+              platillo={platillo}
+              platillos={menu}  
+            />
+            ))}
+            </div>
+        </div>
+      </div>
 	)
 
 }
