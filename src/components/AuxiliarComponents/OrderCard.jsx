@@ -26,7 +26,7 @@ const OrderCard = ({ platillo }) => {
   /* Order Card -----> Ruta menu */
 
   return ( 
-  <div className=" mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto"> 
+  <div className=" flex-shrink-0 mt-4"> 
     <div className="flex w-full h-40  rounded-br-xl ">
       <div className="h-40 flex-grow bg-yellow-100 float-right">
         <img className="object-cover min-w-full min-h-full max-h-full max-w-full"
@@ -42,7 +42,7 @@ const OrderCard = ({ platillo }) => {
           <div className="flex h-10 w-full mt-2   text-white">
             <div className="flex-grow-1 h-10 w-full mx-2 ">
               <div className=" mt-1 bg-pink-800 h-8 rounded-xl bg-opacity-80 w-full flex-grow-1">
-                <p className="fixed mt-1 ml-2"> Cant</p> <p className="fixed mt-1 ml-10"> {cart[product_id] ? cart[product_id].quantity : 0}</p>  <p className="float-right mt-1 mr-2">{!cart[product_id] ? '---' : !cart[product_id].quantity ? '---' : cart[product_id].quantity*price}$</p>
+                <p className="inline-block mt-1 ml-2 float-left"> Cant</p> <p className="inline-block float-left mt-1 ml-10"> {cart[product_id] ? cart[product_id].quantity : 0}</p>  <p className="float-right mt-1 mr-2">{!cart[product_id] ? '---' : !cart[product_id].quantity ? '---' : cart[product_id].quantity*price}$</p>
               </div>
             </div>
           </div>
@@ -64,4 +64,3 @@ const OrderCard = ({ platillo }) => {
 };
 
 export default OrderCard;
-

@@ -95,7 +95,7 @@ export default function OrderBoard (/* props: {name, description, price, img} */
         <OrderBar/>
         <div className='fixed min-h-screen right-0 left-0 flex  '>
             <SideBar/>
-            <div className='w-full '>
+            <div className='w-full  mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto '>
             {menu.map((platillo) =>(
             <OrderCard
               product_id={platillo.product_id}
