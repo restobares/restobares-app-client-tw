@@ -47,6 +47,7 @@ const OrderCard = ({ platillo }) => {
             </div>
           </div>
           </div>
+
         </div>
       </div> 
       <div className="h-40 w-10 bg-pink-800 float-right rounded-br-xl">
