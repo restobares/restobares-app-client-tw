@@ -25,38 +25,33 @@ const OrderCard = ({ platillo }) => {
   
   /* Order Card -----> Ruta menu */
 
-  return ( <div>
-    <div className="  float-right bg-pink-300 w-24 h-6 rounded-t-xl mt-3 mr-2 text-gray-200 text-pink-800">
-        <p className="inline-block text-left text-xl  ml-2"> ${price}</p> 
-        <p className="inline-block text-sm ml-2 mr-2"> C/U</p>
-        </div>
-    <div className="flex  mr-2  h-40 float-right  bg-pink-400 text-white rounded-br-3xl w-11/12 ">   
-      <div className="float-left w-80">
-        <img className="object-cover min-w-full min-h-full"
+  return ( 
+  <div className=" mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto"> 
+    <div className="flex w-full h-40  rounded-br-xl ">
+      <div className="h-40 flex-grow bg-yellow-100 float-right">
+        <img className="object-cover min-w-full min-h-full max-h-full max-w-full"
           src={img}
-          style={{ width: 100, height: 100, borderRadius: 5 }}
-          alt=""
-          />
+          alt="asd"
+        />
       </div>
-      <div className="bg-pink-500 h-40 w-80 float-right">
-        <div className="bg-pink-600 h-8">
-        <p className="float-left ml-1  text-2xl "> {product_name} </p>
+      <div className="h-40 min-w-min bg-pink-900 float-right ">
+        <div className="h-40 bg-pink-400 w-40 flex bg-opacity-50">
+          <div className="h-8 w-full bg-pink-600 bg-opacity-80">
+          <p className="mt-1 text-xl text-white">{product_name}</p>
+          <div className=" bg-black h-16 mr-2 mx-2 mt-4 rounded-md bg-opacity-20 text-white">{details}</div>
+          <div className="flex h-10 w-full mt-2   text-white">
+            <div className="flex-grow-1 h-10 w-full mx-2 ">
+              <div className=" mt-1 bg-pink-800 h-8 rounded-xl bg-opacity-80 w-full flex-grow-1">
+                <p className="fixed mt-1 ml-2"> Cant</p> <p className="fixed mt-1 ml-10"> {cart[product_id] ? cart[product_id].quantity : 0}</p>  <p className="float-right mt-1 mr-2">{!cart[product_id] ? '---' : !cart[product_id].quantity ? '---' : cart[product_id].quantity*price}$</p>
+              </div>
+            </div>
+          </div>
+          </div>
+
         </div>
-        {/* <div className="overflow float-right bg-pink-800 w-22 h-8 rounded-bl-xl ">
-        <p className="inline-block text-left text-xl mt-1 ml-2"> ${price}</p> 
-        <p className="inline-block text-sm ml-2 mr-1"> C/U</p>
-        </div> */}
-        <div className="h-24 mt-1 mx-1 text-xl mb-1">
-        <p className="float-left "> {details} </p>
-        </div>
-      <div className="">
-        <div className="float-left w-full bg-pink-600 text-md h-5  ">
-        <h1 className="inline-block text-left "> Cantidad:   </h1><h1 className=" inline-block ml-4 "> {cart[product_id] ? cart[product_id].quantity : 0}</h1><h1 className=" inline-block ml-4 pr-2 "> $ {!cart[product_id] ? '---' : !cart[product_id].quantity ? '---' : cart[product_id].quantity*price} </h1>
-        </div>
-      </div>
-      </div>
-      <div className="bg-pink-700 w-16 float-right rounded-br-3xl px-1 ">
-        <button className="mt-12 text-center text-xl" onClick={add}>
+      </div> 
+      <div className="h-40 w-10 bg-pink-800 float-right rounded-br-xl">
+      <button className="mt-12 text-center text-xl" onClick={add}>
           ➕
         </button>
         <div className=" flex item-center">
@@ -65,9 +60,9 @@ const OrderCard = ({ platillo }) => {
         </div>
       </div>
     </div>
-          </div>
-    
+  </div>
   )
 };
 
 export default OrderCard;
+
