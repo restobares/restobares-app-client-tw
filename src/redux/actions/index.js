@@ -2,6 +2,7 @@ import { getCategories } from "./getCategories";
 import { getLabels } from "./getLabels";
 import { getUser } from "./getUser";
 import { getMenu } from "./getMenu";
+import { getDiscounts } from "./getDiscounts";
 import { getCart } from "./getCart";
 import { filterMenuByCategory } from "./filterMenuByCategories";
 import { filterMenuByLabels } from "./filterMenuByLabels";
@@ -15,6 +16,7 @@ export {
   getLabels,
   getUser,
   getMenu,
+  getDiscounts,
   getCart,
   filterMenuByCategory,
   filterMenuByLabels,

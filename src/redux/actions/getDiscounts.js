@@ -1,14 +1,14 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function getLabels() {
+export function getDiscounts() {
 
   return async function(dispatch) {
 
-    var json = await axios.get('http://localhost:3001/labels');
+    var json = await axios.get('http://localhost:3001/discounts');
 
     return dispatch({
-      type: ActionTypes.GET_LABELS,
+      type: ActionTypes.GET_DISCOUNTS,
       payload: json.data
     })
   }
