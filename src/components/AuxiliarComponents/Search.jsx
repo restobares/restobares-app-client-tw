@@ -8,12 +8,6 @@ const Search = () => {
 
 
   return <Fragment>
-    <input
-        className=''
-        type="search" 
-        onChange={(e) => dispatch(getProductsByName(e.target.value))}
-        
-      />
       <button className='float-left ml-2 button' type='submit'>
         <img src="https://img.icons8.com/ios/24/aa0020/search--v1.png" alt='search-icon' width="24" className='ml-1'/>
 
@@ -23,7 +17,6 @@ const Search = () => {
         type="search" 
         onChange={(e) => dispatch(getProductsByName(e.target.value))}   
         />
-      </div>
-  </div>  
+  </Fragment>  
 }
 export default Search
