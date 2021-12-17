@@ -26,7 +26,7 @@ const OrderCard = ({ product }) => {
   /* Order Card -----> Ruta menu */
 
   return ( 
-  <div className=" flex-shrink-0 mt-4"> 
+<div className=" flex-shrink-0 mt-4"> 
     <div className="flex w-full h-40  rounded-br-xl ">
       <div className="h-40 flex-grow bg-yellow-100 float-right">
         <img className="object-cover min-w-full min-h-full max-h-full max-w-full"
@@ -47,7 +47,6 @@ const OrderCard = ({ product }) => {
             </div>
           </div>
           </div>
-
         </div>
       </div> 
       <div className="h-40 w-10 bg-pink-800 float-right rounded-br-xl">
