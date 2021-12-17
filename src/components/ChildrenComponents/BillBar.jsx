@@ -7,9 +7,6 @@ const BillBar = () => {
 	const { cart }= useSelector((state) => state);
 
   const { idTable, idResto } = useParams();
-  console.log(idTable, idResto);
-
-
 
 	var totalPrice = 0
 	// esto calcula el precio de las ordenes confirmadas
