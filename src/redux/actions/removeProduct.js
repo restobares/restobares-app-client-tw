@@ -1,12 +1,11 @@
 import { ActionTypes } from "../constants";
 
-export function removeProduct(idProduct, idTable) {
+export function removeProduct(productId) {
 
   return {
     type: ActionTypes.REMOVE_PRODUCT,
     payload: {
-      idProduct,
-      idTable
+      productId
     }
   }
 }

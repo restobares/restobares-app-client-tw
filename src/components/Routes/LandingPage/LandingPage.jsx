@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCategories, getUser } from '../../../redux/actions'
+import { getUser } from '../../../redux/actions'
 
 
 
@@ -11,6 +11,7 @@ export default function LandingPage () {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
+    // dispatch(getUser())
     dispatch(getUser())
   },[dispatch])
 
