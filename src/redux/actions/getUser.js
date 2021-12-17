@@ -7,23 +7,11 @@ export function getUser() {
 
     var json = await axios.get('http://localhost:3001/resto/12317d8a-2a39-433f-bab5-306b9caafb32/user');
 
-    console.log(json.data);
-    // var json = { data: { name: "Bob"}}
 
       return dispatch({
         type: ActionTypes.GET_USER,
         payload: json.data
       });
-    // try {
-    //   var json = await axios.get(`http://localhost:3001/resto/12317d8a-2a39-433f-bab5-306b9caafb32/user`);
-
-    //   return dispatch({
-    //     type: ActionTypes.GET_USER,
-    //     payload: json.data
-    //   })
-    // } catch(err) {
-    //   console.log(err);
-    // }
   }
 }
 

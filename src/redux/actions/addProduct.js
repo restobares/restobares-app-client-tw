@@ -1,11 +1,13 @@
 import { ActionTypes } from "../constants";
 
-export function addProduct(idProduct, idTable) {
+export function addProduct(productId, productName, image, price) {
   return {
     type: ActionTypes.ADD_PRODUCT,
     payload: {
-      idProduct,
-      idTable,
+      productId,
+      productName,
+      image,
+      price
     }
   };
 }

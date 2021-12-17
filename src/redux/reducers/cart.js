@@ -3,11 +3,21 @@ import { ActionTypes } from "../constants";
 const initialState = {
   count: 0,
   billedCart:{},
+  preOrderCart: [],
+  ordersConfirmed: [],
   comment: ''
 };
 
 
 function cart(state = initialState, action) {
+
+  var propsIgnored = {
+    count: "count",
+    billedCart: "billedCart",
+    preOrderCart: "preOrderCart",
+    ordersConfirmed: "ordersConfirmed",
+    comment: "comment"
+  }
 
   if(action.type === ActionTypes.GET_CART) {
     return {
@@ -17,28 +27,46 @@ function cart(state = initialState, action) {
 
   if (action.type === ActionTypes.ADD_PRODUCT) {
 
-    if (!state[action.payload.idProduct] || Object.keys(state[action.payload.idProduct]).length === 0) {
+    if (!state[action.payload.productId] || Object.keys(state[action.payload.productId]).length === 0) {
       state = {
         ...state,
-        count: state.count + 1,
-        [action.payload.idProduct]: {
-          product_id: action.payload.idProduct,
-          table_id: action.payload.idTable,
+        [action.payload.productId]: {
+          productId: action.payload.productId,
           quantity: state.count + 1
         }
       }
+      var newPreOrderCart = [];
+      for (var i in state) {
+
+        if (propsIgnored[i]) continue;
+
+        newPreOrderCart.push(state[i]);
+      }
+
       return {
         ...state,
-        count: 0
+        preOrderCart: newPreOrderCart
       }
     } else {
+      state = {
+        ...state,
+        [action.payload.productId]: {
+          productId: action.payload.productId,
+          table_id: action.payload.idTable,
+          quantity: state[action.payload.productId].quantity + 1
+        }
+      }
+      var newPreOrderCart = [];
+      for (var i in state) {
+
+        if (propsIgnored[i]) continue;
+
+        newPreOrderCart.push(state[i]);
+      }
+
       return {
         ...state,
-        [action.payload.idProduct]: {
-          product_id: action.payload.idProduct,
-          table_id: action.payload.idTable,
-          quantity: state[action.payload.idProduct].quantity + 1
-        }
+        preOrderCart: newPreOrderCart
       }
     }
     
@@ -46,23 +74,32 @@ function cart(state = initialState, action) {
   if (action.type === ActionTypes.REMOVE_PRODUCT) {
 
     // esto actualiza la cantidad a la baja
-    if (state[action.payload.idProduct]) {
+    if (state[action.payload.productId]) {
       state = {
         ...state,
-        [action.payload.idProduct]: {
-          product_id: action.payload.idProduct,
-          table_id: action.payload.idTable,
-          quantity: state[action.payload.idProduct].quantity - 1
+        [action.payload.productId]: {
+          ...state[action.payload.productId],
+          quantity: state[action.payload.productId].quantity - 1
         }
       }
       // si la cantidad de ese producto llega a cero elimina el producto del carrito
-      if (state[action.payload.idProduct].quantity === 0) {
+      if (state[action.payload.productId].quantity === 0) {
         return {
           ...state,
-          [action.payload.idProduct]: {}
+          [action.payload.productId]: {}
         }
       }
-      return state;
+      var newPreOrderCart = [];
+      for (var i in state) {
+
+        if (propsIgnored[i]) continue;
+
+        newPreOrderCart.push(state[i]);
+      }
+      return {
+        ...state,
+        preOrderCart: newPreOrderCart
+      };
     }    
   }
 
@@ -80,19 +117,17 @@ function cart(state = initialState, action) {
     }
 
     for (var i in state) {
-      if(i==="count" || i === "billedCart") continue;
-      newBilledCart[i] = {}
+      if(propsIgnored[i]) continue;
       if (state.billedCart.hasOwnProperty(i)) {
         
-        newBilledCart[i] = {}
-
-        newBilledCart[i].quantity = state.billedCart[i].quantity + state[i].quantity;
-        newBilledCart[i].product_id = state.billedCart[i].product_id;
+        newBilledCart[i] = {
+          ...newBilledCart[i],
+          quantity: state.billedCart[i].quantity + state[i].quantity
+        }
 
       } else {
 
-        newBilledCart[i].quantity = state[i].quantity;
-        newBilledCart[i].product_id = state[i].product_id
+        newBilledCart[i] = state[i];
       }
     }
     return {
