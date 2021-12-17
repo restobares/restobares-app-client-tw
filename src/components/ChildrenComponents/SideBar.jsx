@@ -9,7 +9,7 @@ function SideBar() {
          <div className={`w-40 h-screen bg-pink-900 flex-col overflow-auto ${hidden}`}>
           <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white'>Ordernar por:
           <div className=' min-h-min mx-1'>
-            <select name="" id="" className='text-xs truncate bg-pink-400 rounded-sm '>
+            <select name="" id="" className='text-xs truncate bg-pink-400 rounded-sm  w-24'>
               <option value="Mayor Precio">Mayor Precio</option>
               <option value="Mayor Precio">Menor Precio</option>
               <option value="Recomendados">Recomendados</option>

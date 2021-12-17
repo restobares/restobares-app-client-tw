@@ -43,7 +43,7 @@ const CommentModal = ({ showModal, setShowModal }) => {
         <h1 className='my-4 text-white'>Desea añadir un comentario?</h1>
       <div className="mx-4">
         <label>
-          <textarea onChange={(e)=>handleChange(e)} className="bg-pink-900 w-full h-40 rounded-xl text-white text-xl"></textarea>
+          <textarea onChange={(e)=>handleChange(e)} className="bg-pink-900 w-full h-32 rounded-xl text-white text-xl"></textarea>
         </label>
         <button onClick={changeModal} className="float-left bg-pink-900 text-white rounded-xl ml-2 px-4 mt-3">
           Enviar
