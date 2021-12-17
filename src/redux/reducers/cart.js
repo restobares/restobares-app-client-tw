@@ -32,7 +32,11 @@ function cart(state = initialState, action) {
         ...state,
         [action.payload.productId]: {
           productId: action.payload.productId,
-          quantity: state.count + 1
+          quantity: state.count + 1,
+          productName: action.payload.productName,
+          price: action.payload.price,
+          image: action.payload.image,
+          detail: action.payload.detail
         }
       }
       var newPreOrderCart = [];
@@ -51,13 +55,12 @@ function cart(state = initialState, action) {
       state = {
         ...state,
         [action.payload.productId]: {
-          productId: action.payload.productId,
-          table_id: action.payload.idTable,
+          ...state[action.payload.productId],
           quantity: state[action.payload.productId].quantity + 1
         }
       }
-      var newPreOrderCart = [];
-      for (var i in state) {
+      let newPreOrderCart = [];
+      for (let i in state) {
 
         if (propsIgnored[i]) continue;
 
@@ -84,13 +87,24 @@ function cart(state = initialState, action) {
       }
       // si la cantidad de ese producto llega a cero elimina el producto del carrito
       if (state[action.payload.productId].quantity === 0) {
-        return {
+        state = {
           ...state,
           [action.payload.productId]: {}
         }
+        let newPreOrderCart = [];
+        for (let i in state) {
+
+          if (propsIgnored[i] || !state[i].quantity) continue;
+
+          newPreOrderCart.push(state[i]);
+        }
+        return {
+          ...state,
+          preOrderCart: newPreOrderCart
+        }
       }
-      var newPreOrderCart = [];
-      for (var i in state) {
+      let newPreOrderCart = [];
+      for (let i in state) {
 
         if (propsIgnored[i]) continue;
 
@@ -116,7 +130,7 @@ function cart(state = initialState, action) {
       ...state.billedCart
     }
 
-    for (var i in state) {
+    for (let i in state) {
       if(propsIgnored[i]) continue;
       if (state.billedCart.hasOwnProperty(i)) {
         
@@ -130,10 +144,18 @@ function cart(state = initialState, action) {
         newBilledCart[i] = state[i];
       }
     }
+
+    var newOrdersConfirmed = [];
+    for (let i in newBilledCart) {
+      newOrdersConfirmed.push(newBilledCart[i]);
+    }
+
     return {
-      
       count: 0,
-      billedCart: newBilledCart
+      billedCart: newBilledCart,
+      ordersConfirmed: newOrdersConfirmed,
+      preOrderCart: [],
+      comment: ''
     }
   }
   return state;

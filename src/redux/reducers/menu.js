@@ -52,7 +52,7 @@ function menu(state = initialState, action) {
       }
     }
 
-    const filteredMenu = backupMenu.filter((product) => product.product_name.toLowerCase().includes(action.payload.toLowerCase()))
+    const filteredMenu = backupMenu.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()))
 
     return {
       ...state,

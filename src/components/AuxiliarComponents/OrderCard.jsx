@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+// import { useParams } from "react-router-dom";
 import { removeProduct, addProduct } from "../../redux/actions";
 
 
-const OrderCard = ({ platillo }) => {
-  const {name, detail, price, image, id} = platillo
+const OrderCard = ({ product }) => {
+  const {name, detail, price, image, id} = product
   
-  const { idTable } = useParams();
+  // const { idTable } = useParams();
   
   const dispatch = useDispatch();  
   
@@ -15,7 +15,7 @@ const OrderCard = ({ platillo }) => {
 
   const add = () => {
     
-    dispatch(addProduct(id, name, price, image, detail))
+    dispatch(addProduct(id, name, image, price, detail))
   }
   
   const minus = () => {
@@ -42,7 +42,7 @@ const OrderCard = ({ platillo }) => {
           <div className="flex h-10 w-full mt-2   text-white">
             <div className="flex-grow-1 h-10 w-full mx-2 ">
               <div className=" mt-1 bg-pink-800 h-8 rounded-xl bg-opacity-80 w-full flex-grow-1">
-                <p className="inline-block mt-1 ml-2 float-left"> Cant</p> <p className="inline-block float-left mt-1 ml-10"> {cart[id] ? cart[id].quantity : 0}</p>  <p className="float-right mt-1 mr-2">{!cart[id] ? '---' : !cart[id].quantity ? '---' : cart[id].quantity*price}$</p>
+                <p className="inline-block mt-1 ml-2 float-left"> Cant</p> <p className="inline-block float-left mt-1 ml-10"> {cart[id] && cart[id].quantity ? cart[id].quantity : 0}</p>  <p className="float-right mt-1 mr-2">{!cart[id] ? '---' : !cart[id].quantity ? '---' : cart[id].quantity*price}$</p>
               </div>
             </div>
           </div>
