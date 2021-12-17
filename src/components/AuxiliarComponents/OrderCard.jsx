@@ -26,7 +26,7 @@ const OrderCard = ({ platillo }) => {
   /* Order Card -----> Ruta menu */
 
   return ( 
-  <div className=" flex-shrink-0 mt-4"> 
+<div className=" flex-shrink-0 mt-4"> 
     <div className="flex w-full h-40  rounded-br-xl ">
       <div className="h-40 flex-grow bg-yellow-100 float-right">
         <img className="object-cover min-w-full min-h-full max-h-full max-w-full"
@@ -38,16 +38,18 @@ const OrderCard = ({ platillo }) => {
         <div className="h-40 bg-pink-400 w-40 flex bg-opacity-50">
           <div className="h-8 w-full bg-pink-600 bg-opacity-80">
           <p className="mt-1 text-xl text-white">{product_name}</p>
-          <div className=" bg-black h-16 mr-2 mx-2 mt-4 rounded-md bg-opacity-20 text-white">{details}</div>
-          <div className="flex h-10 w-full mt-2   text-white">
+          <div className="w-full h-8 text-white  border-b-2 border-pink-900  ">
+          <p className="float-left inline-block ml-4 text-xl">Precio</p> <p className="float-right text-xl inline-block mr-4"> {price}$ c/u </p>
+          </div>
+          <div className=" bg-black h-12 mr-2 mx-2  mt-2 rounded-md bg-opacity-20 text-white">{details}</div>
+          <div className="flex h-10 w-full mt-1  text-white">
             <div className="flex-grow-1 h-10 w-full mx-2 ">
-              <div className=" mt-1 bg-pink-800 h-8 rounded-xl bg-opacity-80 w-full flex-grow-1">
+              <div className=" bg-pink-800 h-8 rounded-xl bg-opacity-80 w-full flex-grow-1">
                 <p className="inline-block mt-1 ml-2 float-left"> Cant</p> <p className="inline-block float-left mt-1 ml-10"> {cart[product_id] ? cart[product_id].quantity : 0}</p>  <p className="float-right mt-1 mr-2">{!cart[product_id] ? '---' : !cart[product_id].quantity ? '---' : cart[product_id].quantity*price}$</p>
               </div>
             </div>
           </div>
           </div>
-
         </div>
       </div> 
       <div className="h-40 w-10 bg-pink-800 float-right rounded-br-xl">

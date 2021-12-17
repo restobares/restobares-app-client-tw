@@ -7,6 +7,7 @@ import tables from "./tables";
 import user from "./user";
 import addOrder from "./addOrder";
 import cart from "./cart";
+import sideBar from "./sideBar"
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
@@ -17,5 +18,6 @@ export default combineReducers({
   tables,
   user,
   addOrder,
-  cart
+  cart,
+  sideBar
 });
