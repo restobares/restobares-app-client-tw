@@ -32,7 +32,7 @@ const CommentModal = ({ showModal, setShowModal }) => {
         	[e.target.name]: e.target.value
     	})
     }
-
+  
     
 
   return (
