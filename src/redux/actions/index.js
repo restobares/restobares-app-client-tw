@@ -9,8 +9,11 @@ import { addOrder } from "./addOrder";
 import { addProduct } from "./addProduct";
 import { removeProduct } from "./removeProduct";
 import { addOrderToCart } from "./addOrderToCart";
+import { addComment } from "./addComment";
 import { getProductsByName} from "./getProductsByName";
 import { hideSideBar } from "./hideSideBar";
+import { postOrder } from "./postOrder";
+import { getOrders } from "./getOrders";
 
 export {  
   getCategories,
@@ -24,6 +27,9 @@ export {
   addProduct,
   removeProduct,
   addOrderToCart,
+  addComment,
   getProductsByName,
-  hideSideBar
+  hideSideBar,
+  postOrder,
+  getOrders
 };

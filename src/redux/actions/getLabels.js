@@ -5,7 +5,7 @@ export function getLabels() {
 
   return async function(dispatch) {
 
-    var json = await axios.get('http://localhost:3001/labels');
+    var json = await axios.get('http://restobares-app-api.herokuapp.com/labels');
 
     return dispatch({
       type: ActionTypes.GET_LABELS,
