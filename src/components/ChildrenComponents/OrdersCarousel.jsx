@@ -106,7 +106,10 @@ const OrdersCarousel = () => {
 };
 
 function mapStateToProps(state) {
-  return state;
+  return {
+    currentOrder: state.cart.currentOrder,
+    ordered: state.cart.ordered
+  };
 }
 
 export default connect(mapStateToProps)(OrdersCarousel);

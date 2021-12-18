@@ -20,18 +20,18 @@ const CommentModal = ({ showModal, setShowModal }) => {
     dispatch(getOrders(idResto, idTable));
   }, [dispatch]);
   
-  const changeModal = (e) => {
+  const changeModal = async (e) => {
     e.preventDefault();
     setShowModal((prev) => !prev);
     var orderToPost = {
       products: cart.preOrderCart,
       comments: comment 
     }
-    dispatch(postOrder(orderToPost, idResto, idTable));
+    await dispatch(postOrder(orderToPost, idResto, idTable));
     // navigate(`resto/${idResto}/table/${idTable}/order`)
     // navigate(-1)
     // window.location.reload(false);
-    // dispatch(getOrders(idResto, idTable));
+    dispatch(getOrders(idResto, idTable));
   };
   const handleSubmit = (e) => {
       e.preventDefault();
