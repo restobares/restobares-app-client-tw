@@ -35,7 +35,7 @@ const Login = () => {
                         <label htmlFor='email'>Email</label>
                         <input
                             type='email'
-                            className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
+                            className='w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'
                             id='email'
                             placeholder='Your Email'
                         />
@@ -44,7 +44,7 @@ const Login = () => {
                         <label htmlFor='password'>Password</label>
                         <input
                             type='password'
-                            className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
+                            className='w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'
                             id='password'
                             placeholder='Your Password'
                         />
@@ -53,7 +53,7 @@ const Login = () => {
                     <div className='flex justify-center items-center mt-6'>
                         
                         <button
-                            className={`bg-green py-2 px-4 text-sm text-black rounded border border-green focus:outline-none focus:border-green-dark`}
+                            className='bg-green py-2 px-4 text-sm text-black rounded border border-green focus:outline-none focus:border-green-dark'
                             onClick={
                                 () => navigate (`/resto/${idResto}/admin`)
                             }
@@ -61,7 +61,7 @@ const Login = () => {
                             Login
                         </button>
 
-                        <a href="#">Forgot your Password?</a>
+                        <a className="py-2 px-4 text-blue-500" href="#">Forgot your Password?</a>
                         
                     </div>
                 </form>

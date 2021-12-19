@@ -30,7 +30,7 @@ const PayBar = ({menu}) => {
 	  totalPrice = totalPrice + (product_quantity * elementFound.price );}
 	}
 	return (
-		<div className='nav-bar text-2xl'>
+		<div className='h-12 w-full bg-pink-800  text-2xl fixed bottom-0 '>
 			<h1 className='float-left text-white text-left mt-2 ml-2 '>Nuevo consumo ${totalPrice} </h1>
 			<button className='float-right bg-pink-300 mt-2 w-12 rounded-xl mr-4'> Pagar</button>
 			<Link to={`/resto/${idResto}/table/${idTable}/bill`}>

@@ -7,8 +7,8 @@ import BillBoard from './components/Routes/BillBoard/BillBoard.jsx';
 import OrderBoard from './components/Routes/OrderBoard/OrderBoard.jsx';
 import PayBoard from './components/Routes/PayBoard/PayBoard.jsx';
 import Payment from './components/Routes/PayBoard/Payment.jsx';
-import Login from './components/Admin-Side/Login';
-import LandingPageAdmin from './components/Admin-Side/LandingPageAdmin';
+import LandingLogin from './components/Admin-Side/Login';
+import NavbarAdmin from './components/Admin-Side/Navbar/NavbarAdmin';
 
 
 function App() {
@@ -24,8 +24,8 @@ function App() {
 
 
           {/* Admin */}
-          <Route path="resto/:idResto/login" element={<Login />}></Route>
-          <Route path="resto/:idResto/admin" element={<LandingPageAdmin />}></Route>
+          <Route path="resto/:idResto/login" element={<LandingLogin />}></Route>
+          <Route path="resto/:idResto/admin" element={<NavbarAdmin />}></Route>
 
 
         </Routes>

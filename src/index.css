@@ -36,7 +36,7 @@
 }
 
 .nav-bar{
-  @apply bg-pink-800 h-12 left-0 right-0  
+  @apply h-12 bg-pink-800 fixed inset-x-0 top-0
 }
 
 .pill{

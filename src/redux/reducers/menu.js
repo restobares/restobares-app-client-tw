@@ -184,6 +184,16 @@ function menu(state = initialState, action) {
       menu: filteredMenu
     }
   }
+
+  if (action.type === ActionTypes.GET_PRODUCTS_BY_NAME) {
+
+    const filteredMenu = backupMenu.filter((product) => product.product_name.toLowerCase().includes(action.payload.toLowerCase()))
+
+    return {
+      ...state,
+      menu: filteredMenu
+    }
+  }
   return state;
 }
 
