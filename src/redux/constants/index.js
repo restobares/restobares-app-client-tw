@@ -19,6 +19,6 @@ export const ActionTypes = {
 }
 
 export const params = {
-  idResto: "2e374527-9d41-4d20-a645-09109415ffcd",
+  idResto: "cc7fb1eb-4ca7-48a2-b6b8-d08b2bfca99b",
   idTable: 1
 } 

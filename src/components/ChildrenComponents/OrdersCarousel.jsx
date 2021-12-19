@@ -1,16 +1,9 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch, connect } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getOrders } from "../../redux/actions";
+import React from "react";
+import { useSelector, connect } from "react-redux";
 
 const OrdersCarousel = () => {
-  const dispatch = useDispatch();
-  const { idResto, idTable } = useParams();
-  const {cart}= useSelector((state) => state);
 
-  // useEffect(() => {
-  //   dispatch(getOrders(idResto, idTable));
-  // }, [dispatch]);
+  const {cart}= useSelector((state) => state);
   
   return (
     <div className="mb-auto">

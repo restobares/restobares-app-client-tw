@@ -16,9 +16,9 @@ const CommentModal = ({ showModal, setShowModal }) => {
 
   // const dispatch = useDispatch();
   // const { idResto, idTable } = useParams();
-  useEffect(() => {
-    dispatch(getOrders(idResto, idTable));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getOrders(idResto, idTable));
+  // }, [dispatch]);
   
   const changeModal = async (e) => {
     e.preventDefault();
@@ -28,14 +28,11 @@ const CommentModal = ({ showModal, setShowModal }) => {
       comments: comment 
     }
     await dispatch(postOrder(orderToPost, idResto, idTable));
-    // navigate(`resto/${idResto}/table/${idTable}/order`)
-    // navigate(-1)
-    // window.location.reload(false);
     dispatch(getOrders(idResto, idTable));
   };
-  const handleSubmit = (e) => {
-      e.preventDefault();
-      };  
+  // const handleSubmit = (e) => {
+  //     e.preventDefault();
+  //     };  
 
   return (
     <>
