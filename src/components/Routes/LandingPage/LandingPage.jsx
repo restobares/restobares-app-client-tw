@@ -30,7 +30,7 @@ export default function LandingPage () {
       </div>
             
       <div className="relative place-self-center">
-            <h2 className="titulo mb-10 pt-10 text-center text-white text-3xl ">¡Bienvenidos!</h2>
+            <h2 className=" pt-20 text-center text-white text-4xl ">¡Bienvenidos!</h2>
             <h2 className="titulo mb-10 pt-10 text-center text-white ">{user.title}</h2>
 
             <div className="flex items-center justify-center mb-10  mx-auto rounded-full ">
