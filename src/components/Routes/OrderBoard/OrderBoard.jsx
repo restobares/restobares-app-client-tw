@@ -18,6 +18,8 @@ export default function OrderBoard () {
   const menu = useSelector((state) => state.menus.menu)
 
   useEffect(() => {
+      dispatch(getLabels())
+    dispatch(getCategories())
     dispatch(getMenu(idResto, idTable))
   }, [dispatch])
 
