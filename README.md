@@ -44,7 +44,7 @@ restobar.com/:idResto/personal/ordenes
 
 No crear css de componentes solo clases globales y las clases de elementos HTML del mismo TW.
 
-
+asdasdasdas
 # Componentes
 
  ----------------- <RUTAS> ----------------- 
