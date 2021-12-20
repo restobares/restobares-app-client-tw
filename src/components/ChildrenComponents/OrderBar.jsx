@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Search from "../AuxiliarComponents/Search";
 import { useState} from 'react';
 import { useDispatch } from "react-redux";
@@ -7,9 +7,8 @@ import { useDispatch } from "react-redux";
 const OrderBar = () => {
   const dispatch = useDispatch();
   const [hideBar,SetHideBar] = useState(true);
+  const { idResto, idTable } = useParams();
 
-  let idTable = 5;
-  let idResto = 5;
 
   function handleSideBar(event){
     event.preventDefault();
