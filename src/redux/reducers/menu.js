@@ -33,7 +33,7 @@ function menu(state = initialState, action) {
 
     // const filteredMenu = backupMenu.filter((product) => action.payload.every((label) => product.labels.includes(label)));
 
-    const filteredMenu = backupMenu.filter((product) => product.labels.include(action.payload));
+    const filteredMenu = backupMenu.filter((product) => product.labels.includes(action.payload));
 
     return {
       ...state,

@@ -10,7 +10,7 @@ const BillBar = () => {
 
 	var totalPrice = 0
 	// esto calcula el precio de las ordenes confirmadas
-  for (var i = 0; i < cart.ordersConfirmed.length; i++) {
+  for (var i = 0; i < cart.ordered.length; i++) {
 
     var order = cart.ordersConfirmed[i];
 

@@ -2,10 +2,10 @@ import { ActionTypes } from "../constants";
 
 const initialState = {
   count: 0,
-  billedCart:{},
   preOrderCart: [],
-  ordersConfirmed: [],
-  comment: ''
+  currentOrder: [],
+  ordered: [],
+  comments: ''
 };
 
 
@@ -16,7 +16,9 @@ function cart(state = initialState, action) {
     billedCart: "billedCart",
     preOrderCart: "preOrderCart",
     ordersConfirmed: "ordersConfirmed",
-    comment: "comment"
+    comments: "comments",
+    currentOrder: "currentOrder",
+    ordered: "ordered"
   }
 
   if(action.type === ActionTypes.GET_CART) {
@@ -27,7 +29,7 @@ function cart(state = initialState, action) {
 
   if (action.type === ActionTypes.ADD_PRODUCT) {
 
-    if (!state[action.payload.productId] || Object.keys(state[action.payload.productId]).length === 0) {
+    if (!state[action.payload.productId]) {
       state = {
         ...state,
         [action.payload.productId]: {
@@ -42,7 +44,7 @@ function cart(state = initialState, action) {
       var newPreOrderCart = [];
       for (var i in state) {
 
-        if (propsIgnored[i]) continue;
+        if (propsIgnored[i] || !state[i]) continue;
 
         newPreOrderCart.push(state[i]);
       }
@@ -62,7 +64,7 @@ function cart(state = initialState, action) {
       let newPreOrderCart = [];
       for (let i in state) {
 
-        if (propsIgnored[i]) continue;
+        if (propsIgnored[i] || !state[i]) continue;
 
         newPreOrderCart.push(state[i]);
       }
@@ -89,12 +91,12 @@ function cart(state = initialState, action) {
       if (state[action.payload.productId].quantity === 0) {
         state = {
           ...state,
-          [action.payload.productId]: {}
+          [action.payload.productId]: null
         }
         let newPreOrderCart = [];
         for (let i in state) {
 
-          if (propsIgnored[i] || !state[i].quantity) continue;
+          if (propsIgnored[i] || !state[i]) continue;
 
           newPreOrderCart.push(state[i]);
         }
@@ -106,7 +108,7 @@ function cart(state = initialState, action) {
       let newPreOrderCart = [];
       for (let i in state) {
 
-        if (propsIgnored[i]) continue;
+        if (propsIgnored[i] || !state[i]) continue;
 
         newPreOrderCart.push(state[i]);
       }
@@ -119,13 +121,6 @@ function cart(state = initialState, action) {
 
   if (action.type === ActionTypes.ADD_ORDER_TO_CART) {
 
-    // return {
-    //   count: 0,
-    //   billedCart: {
-    //     ...state.billedCart,
-    //     ...state,
-    //   }
-    // }
     var newBilledCart = {
       ...state.billedCart
     }
@@ -154,8 +149,33 @@ function cart(state = initialState, action) {
       count: 0,
       billedCart: newBilledCart,
       ordersConfirmed: newOrdersConfirmed,
+      preOrderCart: []
+    }
+  }
+  if (action.type === ActionTypes.ADD_COMMENT) {
+
+    return {
+      ...state,
+      comments: action.payload
+    }
+  }
+
+  if (action.type === ActionTypes.POST_ORDER) {
+    return {
+      count: 0,
       preOrderCart: [],
-      comment: ''
+      currentOrder: [],
+      ordered: []
+    };
+  }
+
+  if (action.type === ActionTypes.GET_ORDERS) {
+
+    return {
+      ...state,
+      currentOrder: action.payload.currentOrder.products,
+      ordered: action.payload.ordered,
+      comments: action.payload.currentOrder.comments
     }
   }
   return state;

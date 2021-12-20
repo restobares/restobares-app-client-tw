@@ -1,12 +1,12 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function getMenu() {
+export function getMenu(idResto, idTable) {
 
   return async function(dispatch) {
 
     try {
-      var json = await axios.get(`http://localhost:3001/resto/12317d8a-2a39-433f-bab5-306b9caafb32/table/1/menu`);
+      var json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/table/${idTable}/menu`);
 
       return dispatch({
         type: ActionTypes.GET_MENU,

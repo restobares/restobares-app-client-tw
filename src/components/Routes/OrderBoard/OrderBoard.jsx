@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getLabels, getCategories, getMenu } from '../../../redux/actions';
+import { useParams } from 'react-router-dom';
+import { getMenu } from '../../../redux/actions';
 
 //componente platillo
 import OrderCard from '../../AuxiliarComponents/OrderCard';
@@ -11,15 +12,13 @@ import SideBar from '../../ChildrenComponents/SideBar';
 
 export default function OrderBoard () {
 
-  // const { idTable } = useParams();
+  const { idResto, idTable } = useParams();
 
   const dispatch = useDispatch();
   const menu = useSelector((state) => state.menus.menu)
 
   useEffect(() => {
-    dispatch(getLabels())
-    dispatch(getCategories())
-    dispatch(getMenu())
+    dispatch(getMenu(idResto, idTable))
   }, [dispatch])
 
     return (
