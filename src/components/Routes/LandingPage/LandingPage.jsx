@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCategories, getUser } from '../../../redux/actions'
+import { getUser } from '../../../redux/actions'
 
 
 
@@ -11,6 +11,7 @@ export default function LandingPage () {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
+    // dispatch(getUser())
     dispatch(getUser())
   },[dispatch])
 
@@ -25,11 +26,11 @@ export default function LandingPage () {
       </div>
             
       <div className="relative place-self-center">
-            <h2 className="titulo mb-10 pt-10 text-center text-white ">¡Bienvenidos!</h2>
+            <h2 className="titulo mb-10 pt-10 text-center text-white text-3xl ">¡Bienvenidos!</h2>
             <h2 className="titulo mb-10 pt-10 text-center text-white ">{user.title}</h2>
 
             <div className="flex items-center justify-center mb-10  mx-auto rounded-full ">
-              <img className="mx-auto rounded-full sm:w-40 h-40 md:w-56 h-56" src={logo} alt="logo"/>
+              <img className="mx-auto rounded-full sm:w-40 h-40 " src={logo} alt="logo"/>
             </div>
           
 
