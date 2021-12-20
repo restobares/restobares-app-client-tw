@@ -27,7 +27,7 @@ export default function OrderBoard () {
         <div className='fixed min-h-screen right-0 left-0 flex  '>
             <SideBar/>
             <div className='w-full pb-16 mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto '>
-            {menu.map((product) =>(
+            {menu && menu.map((product) =>(
             <OrderCard
               product_id={product.id}
               key={product.id}

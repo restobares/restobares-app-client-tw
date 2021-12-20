@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CommentModal from "../Routes/BillBoard/CommentModal";
-
-const idTable = 1;
-const idResto = 1;
 
 const PayBar = () => {
   const { cart } = useSelector((state) => state);
-  
+  const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {

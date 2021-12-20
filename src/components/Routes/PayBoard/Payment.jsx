@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import Cards from 'react-credit-cards';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import 'react-credit-cards/es/styles-compiled.css';
 import Swal from 'sweetalert2';
 
-const idTable = 5;
-const idResto = 5;
 
 function Payment() {
-
+  const { idResto, idTable } = useParams();
     const [number, setNumber] = useState('');
     const [name, setName] = useState('');    
     const [expiry, setExpiry] = useState('');
