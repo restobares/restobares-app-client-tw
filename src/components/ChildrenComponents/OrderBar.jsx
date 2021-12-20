@@ -7,7 +7,7 @@ import { hideSideBar } from '../../redux/actions/index';
 
 const OrderBar = () => {
   const dispatch = useDispatch();
-  const [hideBar,SetHideBar] = useState(false);
+  const [hideBar,SetHideBar] = useState(true);
 
 
   let idTable = 5;

@@ -11,7 +11,7 @@ import { removeProduct } from "./removeProduct";
 import { addOrderToCart } from "./addOrderToCart";
 import { getProductsByName} from "./getProductsByName";
 import { hideSideBar } from "./hideSideBar";
-
+import { setOrder} from "./setOrder";
 export {  
   getCategories,
   getLabels,
@@ -25,5 +25,6 @@ export {
   removeProduct,
   addOrderToCart,
   getProductsByName,
-  hideSideBar
+  hideSideBar,
+  setOrder
 };
