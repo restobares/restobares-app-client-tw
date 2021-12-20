@@ -6,20 +6,18 @@ import { getUser, getLabels, getCategories } from '../../../redux/actions'
 
 export default function LandingPage () {
   // const { idResto, idTable } = useParams();
-  // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants  
+  // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants like below
+  const idResto = 'ANzbx5Pa3dPizabR';
+  const idTable = 1;  
   
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
-    // dispatch(getUser(idResto))
-    dispatch(getUser())
+    dispatch(getUser(idResto))
     dispatch(getLabels())
     dispatch(getCategories())
-  },[dispatch]);
-
-  const idResto = user.id;
-  const idTable = 1;
+  },[dispatch]);  
 
   const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
   const logo = "https://mir-s3-cdn-cf.behance.net/project_modules/disp/3eb3045266535.562d05b41c50a.png";
