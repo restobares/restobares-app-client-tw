@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getOrders, postOrder } from "../../../redux/actions";
 
 const CommentModal = ({ showModal, setShowModal }) => {
 
 
 	const {cart}= useSelector((state)=>state);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [comment, setComment] = useState ('');
 
   const { idResto, idTable } = useParams();
-
-  // const dispatch = useDispatch();
-  // const { idResto, idTable } = useParams();
-  // useEffect(() => {
-  //   dispatch(getOrders(idResto, idTable));
-  // }, [dispatch]);
   
   const changeModal = async (e) => {
     e.preventDefault();
@@ -30,9 +23,6 @@ const CommentModal = ({ showModal, setShowModal }) => {
     await dispatch(postOrder(orderToPost, idResto, idTable));
     dispatch(getOrders(idResto, idTable));
   };
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     };  
 
   return (
     <>

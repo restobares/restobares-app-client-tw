@@ -2,22 +2,24 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
 import { getUser, getLabels, getCategories } from '../../../redux/actions'
-import { params } from "../../../redux/constants";
 
 
 export default function LandingPage () {
   // const { idResto, idTable } = useParams();
-  // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants
-  const { idResto, idTable } = params;
+  // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants  
   
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
-    dispatch(getUser(idResto))
+    // dispatch(getUser(idResto))
+    dispatch(getUser())
     dispatch(getLabels())
     dispatch(getCategories())
-  },[dispatch])
+  },[dispatch]);
+
+  const idResto = user.id;
+  const idTable = 1;
 
   const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
   const logo = "https://mir-s3-cdn-cf.behance.net/project_modules/disp/3eb3045266535.562d05b41c50a.png";

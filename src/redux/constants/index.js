@@ -17,8 +17,3 @@ export const ActionTypes = {
   HIDE_SIDEBAR: "HIDE_SIDEBAR",
   POST_ORDER: "POST_ORDER"
 }
-
-export const params = {
-  idResto: "cc7fb1eb-4ca7-48a2-b6b8-d08b2bfca99b",
-  idTable: 1
-} 

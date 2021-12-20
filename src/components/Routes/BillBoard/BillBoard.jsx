@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getOrders } from '../../../redux/actions';
 import BillBar from '../../ChildrenComponents/BillBar.jsx';
 import OrdersCarousel from '../../ChildrenComponents/OrdersCarousel.jsx';
@@ -12,7 +12,7 @@ const BillBoard = () => {
   const { idResto, idTable } = useParams();
   useEffect(() => {
     dispatch(getOrders(idResto, idTable));
-  }, [dispatch]);
+  }, [dispatch, idResto, idTable]);
   
   return (
     <div className='py-12 flex flex-col h-screen justify-between'>

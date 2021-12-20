@@ -4,7 +4,8 @@ const initialState = {
   count: 0,
   preOrderCart: [],
   currentOrder: [],
-  ordered: []
+  ordered: [],
+  comments: ''
 };
 
 
@@ -15,7 +16,7 @@ function cart(state = initialState, action) {
     billedCart: "billedCart",
     preOrderCart: "preOrderCart",
     ordersConfirmed: "ordersConfirmed",
-    comment: "comment",
+    comments: "comments",
     currentOrder: "currentOrder",
     ordered: "ordered"
   }
@@ -148,15 +149,14 @@ function cart(state = initialState, action) {
       count: 0,
       billedCart: newBilledCart,
       ordersConfirmed: newOrdersConfirmed,
-      preOrderCart: [],
-      comment: ''
+      preOrderCart: []
     }
   }
   if (action.type === ActionTypes.ADD_COMMENT) {
 
     return {
       ...state,
-      comment: action.payload
+      comments: action.payload
     }
   }
 
@@ -174,7 +174,8 @@ function cart(state = initialState, action) {
     return {
       ...state,
       currentOrder: action.payload.currentOrder.products,
-      ordered: action.payload.ordered
+      ordered: action.payload.ordered,
+      comments: action.payload.currentOrder.comments
     }
   }
   return state;
