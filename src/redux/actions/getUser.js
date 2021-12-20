@@ -1,29 +1,21 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function getUser() {
+export function getUser(idResto) {
 
   return async function(dispatch) {
 
-    var json = await axios.get('http://localhost:3001/resto/12317d8a-2a39-433f-bab5-306b9caafb32/user');
+    // this is how it should be, we are using /dev/users route temporarily
+    // var json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/user`);
 
-    console.log(json.data);
-    // var json = { data: { name: "Bob"}}
+    // this route is temporary
+    var json = await axios.get('http://restobares-app-api.herokuapp.com/dev/users')
+
 
       return dispatch({
         type: ActionTypes.GET_USER,
         payload: json.data
       });
-    // try {
-    //   var json = await axios.get(`http://localhost:3001/resto/12317d8a-2a39-433f-bab5-306b9caafb32/user`);
-
-    //   return dispatch({
-    //     type: ActionTypes.GET_USER,
-    //     payload: json.data
-    //   })
-    // } catch(err) {
-    //   console.log(err);
-    // }
   }
 }
 

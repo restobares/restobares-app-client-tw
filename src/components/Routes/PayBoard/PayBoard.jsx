@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Modal from './Modal'
 
@@ -8,10 +9,21 @@ const idResto = 5;
 
 const PayBoard = () => {
 
+  const { cart }= useSelector((state) => state);
+
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
     setShowModal(prev => !prev);
+  }
+
+  var totalPrice = 0
+	// esto calcula el precio de las ordenes confirmadas
+  for (var i = 0; i < cart.ordersConfirmed.length; i++) {
+
+    var order = cart.ordersConfirmed[i];
+
+    totalPrice = totalPrice + (order.quantity * order.price);
   }
 
   return (
@@ -26,22 +38,21 @@ const PayBoard = () => {
 
       <div className="p-4 inline-flex">
 			 <div className="w-full bg-pink-700 px-4 py-2 rounded-3xl text-2xl text-white font-semibold each-in-out inline-flex">
-          Total a Pagar:
-        <h1 className="items-end md:p-4 ml-20">
-          152.60 $
-        </h1>
+       {'Total a Pagar: $'}{totalPrice}
        </div>
       </div>
-
-      <button onClick={openModal} className="bg-pink-700 text-xl font-semibold text-white p-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+     
+      <div className="p-4 inline-flex">
+      <button onClick={openModal} className="bg-pink-700 text-lg font-semibold text-white px-2 py-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pagar en Mesa
       </button>
 
     <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
-      <button className="bg-pink-700 text-xl font-semibold text-white p-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+      <button className="bg-pink-700 text-lg font-semibold text-white px-2 py-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pagar con Tarjeta
       </button>
     </Link>
+    </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal} />
 

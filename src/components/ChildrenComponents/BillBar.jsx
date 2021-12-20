@@ -1,31 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-//Traer del Store el ID de la mesa actual y el restaurante actual
+const BillBar = () => {
 
-const idTable = 1;
-const idResto = 1;
+	const { cart }= useSelector((state) => state);
 
-
-const BillBar = ({pedido, currentOrder,menu}) => {
-	const {cart}= useSelector((state)=>state);
-
-
+  const { idTable, idResto } = useParams();
 
 	var totalPrice = 0
-	for (var i in cart) {
-	 if(i==="count" || i === "billedCart")continue;
-	  var product_id = cart[i].product_id;
-	  var product_quantity = cart[i].quantity;
-	
-	  var elementFound = menu.find((element) => element.product_id === product_id);
-	
-	  if(product_quantity>0){
-		totalPrice = totalPrice + (product_quantity * elementFound.price );}
-	}
+	// esto calcula el precio de las ordenes confirmadas
+  for (var i = 0; i < cart.ordered.length; i++) {
 
+    var order = cart.ordersConfirmed[i];
 
+    totalPrice = totalPrice + (order.quantity * order.price);
+  }
 
 	return (
 		<div className='nav-bar'>
@@ -36,7 +26,7 @@ const BillBar = ({pedido, currentOrder,menu}) => {
 			</div>
 			<Link to={`/resto/${idResto}/table/${idTable}/menu`}>
 				<button className='float-right button mr-2'>
-				<img src="https://img.icons8.com/ios/50/aa0020/restaurant-menu.png" width="24" className='ml-1'/>
+				<img src="https://img.icons8.com/ios/50/aa0020/restaurant-menu.png" alt='menu-icon' width="24" className='ml-1'/>
 				</button>
 			</Link>
 			</div>

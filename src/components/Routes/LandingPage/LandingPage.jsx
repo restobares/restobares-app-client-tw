@@ -1,18 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getCategories, getUser } from '../../../redux/actions'
-
+import { getUser, getLabels, getCategories } from '../../../redux/actions'
 
 
 export default function LandingPage () {
-  const { idResto, idTable } = useParams();
+  // const { idResto, idTable } = useParams();
+  // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants  
+  
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
+    // dispatch(getUser(idResto))
     dispatch(getUser())
-  },[dispatch])
+    dispatch(getLabels())
+    dispatch(getCategories())
+  },[dispatch]);
+
+  const idResto = user.id;
+  const idTable = 1;
 
   const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
   const logo = "https://mir-s3-cdn-cf.behance.net/project_modules/disp/3eb3045266535.562d05b41c50a.png";
@@ -34,7 +41,7 @@ export default function LandingPage () {
           
 
             <button className="btn text-button text-white" onClick={
-                () => navigate (`/resto/${idTable}/table/${idTable}/menu`)
+                () => navigate (`/resto/${idResto}/table/${idTable}/menu`)
             }>Entrar</button>
 
         </div>
