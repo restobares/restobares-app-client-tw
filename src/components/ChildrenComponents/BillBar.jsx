@@ -27,8 +27,8 @@ const BillBar = () => {
 		<div className='nav-bar'>
 			<div className='h-12 ml-2'>
 
-			<div className='float-left pill w-7/12'>
-				{'Consumo actual: $'}{totalPrice}
+			<div className='float-left pill w-9/12'>
+				<p className='text-left text-sm mt-1 ml-4'>{'Consumo actual: $'}{totalPrice}</p>
 			</div>
 			<Link to={`/resto/${idResto}/table/${idTable}/menu`}>
 				<button className='float-right button mr-2'>

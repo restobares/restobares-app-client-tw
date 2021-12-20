@@ -16,9 +16,9 @@ const Modal = ({showModal, setShowModal}) => {
         <div>
 
 
-        <div className="max-w-screen-xl m-auto">
-          <div className="w-full relative select-none ml-16">
-            <img src={featuredImages[0]} alt="" width="320" className='rounded-3xl' />
+        <div className="max-w-screen-xl m-auto flex">
+          <div className="flex-grow-1 h-screen mx-2 select-none bg-black">
+            <img src={featuredImages[0]} alt="" width="w-4/12" className='rounded-3xl' />
 
             <div className="absolute flex px-3 w-full top-1/2 right-8"> {/* absolute w-full top-1/2 transform -translate-y-1/2 flex justify-between items-start px-3 */}
               <button>

@@ -23,7 +23,7 @@ function menu(state = initialState, action) {
   
     console.log("action payload by category",action.payload)
     let labelNumber = Number(action.payload)
-    const filteredMenu = backupMenu.filter((product) => product.category_id  === labelNumber);
+    const filteredMenu = backupMenu.filter((product) => product.CategoryId  === labelNumber);
       return {
         ...state,
         menu: filteredMenu
@@ -47,7 +47,7 @@ function menu(state = initialState, action) {
       console.log("filtered menu => ",filteredMenu)
     } else {
       let labelNumber = Number(action.payload)
-      filteredMenu = backupMenu.filter((product) => product.labels.includes(labelNumber));
+      filteredMenu = backupMenu.filter((product) => product.Labels.includes(labelNumber));
     }
 
     // const filteredMenu = backupMenu.filter((product) => action.payload.every((label) => product.labels.includes(label)));
