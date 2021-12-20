@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Modal from './Modal'
 
-const idTable = 5;
-const idResto = 5;
 
 
 const PayBoard = () => {
 
   const { cart }= useSelector((state) => state);
-
+  const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -19,9 +17,9 @@ const PayBoard = () => {
 
   var totalPrice = 0
 	// esto calcula el precio de las ordenes confirmadas
-  for (var i = 0; i < cart.ordersConfirmed.length; i++) {
+  for (var i = 0; i < cart.currentOrder.length; i++) {
 
-    var order = cart.ordersConfirmed[i];
+    var order = cart.currentOrder[i];
 
     totalPrice = totalPrice + (order.quantity * order.price);
   }

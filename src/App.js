@@ -19,8 +19,8 @@ function App() {
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
           <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
-          <Route path="resto/:idResto/table/:idMesa/bill" element={<PayBoard />} ></Route>
-          <Route path="resto/:idResto/table/:idMesa/payment" element={<Payment />} ></Route>
+          <Route path="resto/:idResto/table/:idTable/bill" element={<PayBoard />} ></Route>
+          <Route path="resto/:idResto/table/:idTable/payment" element={<Payment />} ></Route>
 
 
           {/* Admin */}
