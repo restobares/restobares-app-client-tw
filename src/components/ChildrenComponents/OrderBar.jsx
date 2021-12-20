@@ -11,7 +11,7 @@ const OrderBar = () => {
   const { idResto, idTable } = useParams();
 
   const dispatch = useDispatch();
-  const [hideBar,SetHideBar] = useState(false);
+  const [hideBar,SetHideBar] = useState(true);
 
 
   function handleSideBar(event){

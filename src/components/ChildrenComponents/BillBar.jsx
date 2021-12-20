@@ -19,7 +19,7 @@ const BillBar = () => {
 
 	return (
 		<div className='nav-bar'>
-			<div className='h-12'>
+			<div className='h-12 ml-2'>
 
 			<div className='float-left pill w-7/12'>
 				{'Consumo actual: $'}{totalPrice}
