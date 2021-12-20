@@ -23,6 +23,12 @@ const PayBoard = () => {
 
     totalPrice = totalPrice + (order.quantity * order.price);
   }
+  for (var i = 0; i < cart.ordered.length; i++) {
+
+    var order = cart.ordered[i];
+
+    totalPrice = totalPrice + (order.quantity * order.price);
+  }
 
   return (
     <div className='py-12'>
