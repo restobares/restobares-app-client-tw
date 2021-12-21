@@ -28,16 +28,16 @@ const CommentModal = ({ showModal, setShowModal }) => {
     <>
       {showModal ? (
       <div className="fixed inset-0 bg-black bg-opacity-40 pt-60">
-      <div className="w-8/12 mx-auto h-64 bg-pink-800  border-2 border-pink-900 rounded-3xl">
+      <div className="w-8/12 mx-auto h-72 bg-pink-800  border-2 border-pink-900 rounded-3xl">
         <h1 className='my-4 text-white'>Desea añadir un comentario?</h1>
       <div className="mx-4">
         <label>
-          <textarea onChange={(e)=> setComment(e.target.value)} className="bg-pink-900 w-full h-32 rounded-xl text-white text-xl"></textarea>
+          <textarea onChange={(e)=> setComment(e.target.value)} className="bg-pink-900 w-full h-36 rounded-xl text-white text-xl"></textarea>
         </label>
-        <button onClick={(e) => changeModal(e)}className="float-left bg-pink-900 text-white rounded-xl ml-2 px-4 mt-3">
+        <button onClick={(e) => changeModal(e)}className="float-left bg-pink-900 text-white rounded-xl ml-2 px-4 mt-2 ">
           Enviar
         </button>
-        <button onClick={(e) => changeModal(e)} className="float-right bg-pink-900 text-white rounded-xl mr-2 px-4 mt-3">
+        <button onClick={(e) => changeModal(e)} className="float-right bg-pink-900 text-white rounded-xl mr-2 px-4 mt-2 ">
           No
         </button>
       </div>

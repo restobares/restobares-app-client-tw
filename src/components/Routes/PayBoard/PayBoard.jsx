@@ -33,7 +33,7 @@ const PayBoard = () => {
   return (
     <div className='py-12'>
       <div className='nav-bar pb-2'>
-      <button className='float-right mr-2 button'>
+      <button className='float-left ml-2 button'>
 			<Link to={`/resto/${idResto}/table/${idTable}/order`}>
 				<img src="https://img.icons8.com/external-photo3ideastudio-lineal-photo3ideastudio/64/aa0020/external-food-app-food-delivery-photo3ideastudio-lineal-photo3ideastudio.png" width="24" className='ml-1' alt=""/>
 			</Link>
@@ -41,19 +41,20 @@ const PayBoard = () => {
       </div>
 
       <div className="p-4 inline-flex">
-			 <div className="w-full bg-pink-700 px-4 py-2 rounded-3xl text-2xl text-white font-semibold each-in-out inline-flex">
-       {'Total a Pagar: $'}{totalPrice}
+			 <div className=" bg-pink-700 w-48 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+          <p className='inline-block text-left'> {'Total Price: '}</p>
+          <p className='inline-block float-right ml-14'>$ {totalPrice}</p>
        </div>
       </div>
      
       <div className="p-4 inline-flex">
-      <button onClick={openModal} className="bg-pink-700 text-lg font-semibold text-white px-2 py-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
-        Pagar en Mesa
+      <button onClick={openModal} className="bg-pink-700 text-md font-semibold text-white py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+        Pay at Table
       </button>
 
     <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
-      <button className="bg-pink-700 text-lg font-semibold text-white px-2 py-2 w-40 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
-        Pagar con Tarjeta
+      <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+        Pay with Card
       </button>
     </Link>
     </div>
