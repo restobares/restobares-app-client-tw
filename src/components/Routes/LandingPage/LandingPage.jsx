@@ -14,9 +14,7 @@ export default function LandingPage () {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
-    dispatch(getUser(idResto))
-    dispatch(getLabels())
-    dispatch(getCategories())
+    dispatch(getUser(idResto))  
   },[dispatch]);  
 
   const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
