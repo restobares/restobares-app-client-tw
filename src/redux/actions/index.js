@@ -15,6 +15,7 @@ import { hideSideBar } from "./hideSideBar";
 import { sortMenuByPrice } from "./sortMenuByPrice";
 import { postOrder } from "./postOrder";
 import { getOrders } from "./getOrders";
+import { postOrderToMP } from "./postOrderMP";
 
 
 export {  
@@ -35,4 +36,5 @@ export {
   sortMenuByPrice,
   postOrder,
   getOrders,
+  postOrderToMP
 };
