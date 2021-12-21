@@ -2,7 +2,7 @@ import { Event } from '@material-ui/icons';
 import React,{ Fragment, useState } from 'react'
 import { filterMenuByLabels } from '../../redux/actions';
 import { filterMenuByCategory } from '../../redux/actions';
-import { setOrder } from '../../redux/actions';
+import { sortMenuByPrice } from '../../redux/actions';
 import { useSelector,useDispatch } from 'react-redux'
 function SideBar() {
     //////////////// IMPORTS ////////////////    
@@ -39,10 +39,10 @@ function SideBar() {
       dispatch( filterMenuByLabels(event.target.value))
     }
 
-    const handleOrder = (event) => {
+    const handleSort = (event) => {
       event.preventDefault();
       console.log("event.target.value => ", event.target.value)
-      dispatch( setOrder(event.target.value))
+      dispatch(sortMenuByPrice(event.target.value))
     }
     const handleOnClick = e => {
       e.preventDefault();
@@ -57,10 +57,10 @@ function SideBar() {
          <div className={`w-40 h-screen bg-pink-900 flex-col overflow-auto ${hidden}`}>
           <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white'>Sort by:
           <div className=' min-h-min mx-1'>
-            <select name="" id="" className='text-xs truncate bg-pink-400 rounded-xl  w-20'  onChange={event => handleOrder(event)}>
+            <select name="" id="" className='text-xs truncate bg-pink-400 rounded-xl  w-20'  onChange={event => handleSort(event)}>
               <option value="default">Default</option>
-              <option value="mayor">Price Ascendant</option>
-              <option value="menor">Price Descendant</option>
+              <option value="priceDescendant">Price Descendant</option>
+              <option value="priceAscendant">Price Ascendant</option>
             </select>
             </div>
           </div>
