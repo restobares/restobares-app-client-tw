@@ -2,57 +2,61 @@ import { ActionTypes } from "../constants";
 
 const initialState = {
   menu: [],
-  backupMenu: []
+  backupMenu: [],
+  categoriesSelected: ''
 };
 
 function menu(state = initialState, action) {
 
   const backupMenu = state.backupMenu;
-  console.log("backup menu ",backupMenu)
 
   if (action.type === ActionTypes.GET_MENU) {
 
     return {
       menu: action.payload,
-      backupMenu: action.payload
+      backupMenu: action.payload,
+      categoriesSelected: ''
     };
   }
   console.log("state", state)
   
   if(action.type === ActionTypes.FILTER_MENU_BY_CATEGORY) {
-  
-    console.log("action payload by category",action.payload)
-    let labelNumber = Number(action.payload)
-    const filteredMenu = backupMenu.filter((product) => product.CategoryId  === labelNumber);
+
+    if (action.payload === 'All') {
+
       return {
         ...state,
-        menu: filteredMenu
+        menu: backupMenu,
+        categoriesSelected: ''
       }
     }
-    // const filteredMenu = backupMenu.filter((product) => product.category === action.payload);
-    // console.log("menu filtrado por categoria => ",filteredMenu)
-    // return {
-    //   ...state,
-    //   menu: filteredMenu
-    // }
+  
+    let categoryId = Number(action.payload)
+    const filteredMenu = backupMenu.filter((product) => product.CategoryId  === categoryId);
+      return {
+        ...state,
+        menu: filteredMenu,
+        categoriesSelected: action.payload
+      }
+    }
 
   if (action.type === ActionTypes.FILTER_MENU_BY_LABELS) {
     // tener en cuanta que el payload es un array con las labels
 
-    // const filteredMenu = backupMenu.filter((product) => action.payload.every((label) => product.labels.includes(label)));    
     let filteredMenu;
     console.log(action.payload)
     if (action.payload === "All"){
       filteredMenu = backupMenu;
-      console.log("filtered menu => ",filteredMenu)
     } else {
-      let labelNumber = Number(action.payload)
-      filteredMenu = backupMenu.filter((product) => product.Labels.includes(labelNumber));
+      let labelId = Number(action.payload)
+      if (state.categoriesSelected !== '') {
+        filteredMenu = state.menu.filter((product) => product.Labels.includes(labelId));
+      } else {
+        filteredMenu = backupMenu.filter((product) => product.Labels.includes(labelId));
+      }
+      
     }
 
-    // const filteredMenu = backupMenu.filter((product) => action.payload.every((label) => product.labels.includes(label)));
-
-    // const filteredMenu = backupMenu.filter((product) => product.labels.includes(action.payload));
 
     return {
       ...state,
@@ -76,6 +80,42 @@ function menu(state = initialState, action) {
     return {
       ...state,
       menu: filteredMenu
+    }
+  }
+
+  if (action.type === ActionTypes.SET_ORDER) {
+
+    if (action.payload === "default") {
+
+      return {
+        ...state,
+        menu: backupMenu
+      }
+    }
+
+    const sortedMenuByPrice =  [...state.menu].sort(function(a, b) {
+        if (action.payload === "mayor"){
+          if(a.price < b.price){
+            return 1;
+          }
+          if(b.price < a.price){
+            return -1;
+          }
+          return 0
+        } 
+        if (action.payload === "menor") {
+          if(a.price > b.price){
+              return 1;
+          }
+          if(b.price > a.price){
+              return -1;
+          }
+          return 0
+        } 
+      });
+    return {
+      ...state,
+      menu: sortedMenuByPrice
     }
   }
   return state;

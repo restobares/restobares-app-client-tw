@@ -55,17 +55,17 @@ function SideBar() {
 
     return <Fragment>
          <div className={`w-40 h-screen bg-pink-900 flex-col overflow-auto ${hidden}`}>
-          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white'>Ordernar por:
+          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white'>Sort by:
           <div className=' min-h-min mx-1'>
             <select name="" id="" className='text-xs truncate bg-pink-400 rounded-xl  w-20'  onChange={event => handleOrder(event)}>
-              <option value="default">Mas pedidos</option>
-              <option value="mayor">Mayor Precio</option>
-              <option value="menor">Menor Precio</option>
+              <option value="default">Default</option>
+              <option value="mayor">Price Ascendant</option>
+              <option value="menor">Price Descendant</option>
             </select>
             </div>
           </div>
           <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white mb-2'>
-            <p>Por Tipo:</p> 
+            <p>By Tags:</p> 
             <div className=' min-h-min mx-1'>
               <select name="" id="" onChange={event => handleOnChange(event)} className=' text-xs bg-pink-400 rounded-xl  text-center w-20 '>
                 <option value="All">Todas</option>
