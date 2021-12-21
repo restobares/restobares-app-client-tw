@@ -1,10 +1,11 @@
 import React from "react";
-import { useSelector, connect } from "react-redux";
+import { useSelector, connect, } from "react-redux";
+
 
 const OrdersCarousel = () => {
 
   const {cart}= useSelector((state) => state);
-  
+
   return (
     <div className="mb-auto">
       {cart.ordered.length > 0 && cart.ordered.map((order) => {
@@ -90,7 +91,7 @@ const OrdersCarousel = () => {
       </div>
       </div>
 
-        </div>
+      </div>
         );
       })}
       
