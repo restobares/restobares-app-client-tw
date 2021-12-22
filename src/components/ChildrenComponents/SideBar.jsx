@@ -14,22 +14,18 @@ function SideBar() {
     const sidebar = useSelector((state) => state.sideBar);
     const categories = useSelector((state)=> state.categories)
     const labels = useSelector((state)=> state.labels)
-
-
+    
     //////////////// ESTADOS LOCALES ////////////////    
 
-    const [activeCategory, setActiveCategory] = useState("default");
-    const [activeButton, setActiveButton] = useState({
-      
-    });
+    const [activeButton, setActiveButton] = useState("All");
 
     //////////////// VARIABLES LOCALES ////////////////    
 
     let hidden;
     sidebar.sideBar ? hidden = "" : hidden = "hidden"
 
-    let style = `flex-shrink-0 mx-1 border-2 rounded-xl border-pink-500 mb-2 mt-2`
-    let active = `bg-white opacity-50`
+    let style = `flex-shrink-0 mx-1 border-2 rounded-xl border-pink-500 mb-2 mt-2 `
+    let active = `bg-white h-full w-full`
 
     //////////////// HANDLERS ////////////////    
 
@@ -46,11 +42,14 @@ function SideBar() {
     }
     const handleOnClick = e => {
       e.preventDefault();
-      console.log("target id",e.target.name)
-      setActiveCategory(e.target.name)
-      
-      setActiveButton(active)
-      dispatch( filterMenuByCategory(e.target.name))
+      if (activeButton === (Number(e.target.name))) {
+        dispatch( filterMenuByCategory("All"))
+        setActiveButton("All")
+      } else {
+        setActiveButton(Number(e.target.name))
+        console.log("active : => ",activeButton)      
+        dispatch( filterMenuByCategory(e.target.name))
+      }
     }
 
     return <Fragment>
@@ -74,9 +73,11 @@ function SideBar() {
             </div>
           </div>
         {categories.map((cat,i) => (
-          <div className={style }> 
-                      <button className='bg-white bg-opacity-20 h-8 w-20 rounded-3xl  mx-1  mt-2' name={i+1} onClick={e => handleOnClick(e)}>
-                    <div className=''></div>
+          <div className={[ 
+                      activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 "]]}> 
+                      <button className='bg-white bg-opacity-20 h-8 w-20 rounded-3xl  mx-1  mt-2 '
+                        name={i+1} onClick={e => handleOnClick(e)}>
+          <div className=''></div>
                     </button>
                     <p className=' text-white'>{cat.name}</p>
                   </div>

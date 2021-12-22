@@ -27,7 +27,7 @@ function menu(state = initialState, action) {
       return {
         ...state,
         menu: backupMenu,
-        categoriesSelected: ''
+        categoriesSelected: action.payload
       }
     }
   
