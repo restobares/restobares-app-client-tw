@@ -8,7 +8,7 @@ import user from "./user";
 import addOrder from "./addOrder";
 import cart from "./cart";
 import sideBar from "./sideBar";
-import cartOrder from "./cartOrder"
+import cartOrder from "./cartOrder";
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
