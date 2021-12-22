@@ -27,7 +27,7 @@ function menu(state = initialState, action) {
       return {
         ...state,
         menu: backupMenu,
-        categoriesSelected: ''
+        categoriesSelected: action.payload
       }
     }
   
@@ -83,7 +83,7 @@ function menu(state = initialState, action) {
     }
   }
 
-  if (action.type === ActionTypes.SET_ORDER) {
+  if (action.type === ActionTypes.SORT_MENU_BY_PRICE) {
 
     if (action.payload === "default") {
 
@@ -94,7 +94,7 @@ function menu(state = initialState, action) {
     }
 
     const sortedMenuByPrice =  [...state.menu].sort(function(a, b) {
-        if (action.payload === "mayor"){
+        if (action.payload === "priceDescendant"){
           if(a.price < b.price){
             return 1;
           }
@@ -103,7 +103,7 @@ function menu(state = initialState, action) {
           }
           return 0
         } 
-        if (action.payload === "menor") {
+        if (action.payload === "priceAscendant") {
           if(a.price > b.price){
               return 1;
           }
