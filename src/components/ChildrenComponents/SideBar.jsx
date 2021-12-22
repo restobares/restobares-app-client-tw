@@ -2,7 +2,7 @@ import { Event } from '@material-ui/icons';
 import React,{ Fragment, useState } from 'react'
 import { filterMenuByLabels } from '../../redux/actions';
 import { filterMenuByCategory } from '../../redux/actions';
-import { setOrder } from '../../redux/actions';
+import { sortMenuByPrice } from '../../redux/actions';
 import { useSelector,useDispatch } from 'react-redux'
 function SideBar() {
     //////////////// IMPORTS ////////////////    
@@ -14,22 +14,18 @@ function SideBar() {
     const sidebar = useSelector((state) => state.sideBar);
     const categories = useSelector((state)=> state.categories)
     const labels = useSelector((state)=> state.labels)
-
-
+    
     //////////////// ESTADOS LOCALES ////////////////    
 
-    const [activeCategory, setActiveCategory] = useState("default");
-    const [activeButton, setActiveButton] = useState({
-      
-    });
+    const [activeButton, setActiveButton] = useState("All");
 
     //////////////// VARIABLES LOCALES ////////////////    
 
     let hidden;
     sidebar.sideBar ? hidden = "" : hidden = "hidden"
 
-    let style = `flex-shrink-0 mx-1 border-2 rounded-xl border-pink-500 mb-2 mt-2`
-    let active = `bg-white opacity-50`
+    let style = `flex-shrink-0 mx-1 border-2 rounded-xl border-pink-500 mb-2 mt-2 `
+    let active = `bg-white h-full w-full`
 
     //////////////// HANDLERS ////////////////    
 
@@ -39,33 +35,36 @@ function SideBar() {
       dispatch( filterMenuByLabels(event.target.value))
     }
 
-    const handleOrder = (event) => {
+    const handleSort = (event) => {
       event.preventDefault();
       console.log("event.target.value => ", event.target.value)
-      dispatch( setOrder(event.target.value))
+      dispatch(sortMenuByPrice(event.target.value))
     }
     const handleOnClick = e => {
       e.preventDefault();
-      console.log("target id",e.target.name)
-      setActiveCategory(e.target.name)
-      
-      setActiveButton(active)
-      dispatch( filterMenuByCategory(e.target.name))
+      if (activeButton === (Number(e.target.name))) {
+        dispatch( filterMenuByCategory("All"))
+        setActiveButton("All")
+      } else {
+        setActiveButton(Number(e.target.name))
+        console.log("active : => ",activeButton)      
+        dispatch( filterMenuByCategory(e.target.name))
+      }
     }
 
     return <Fragment>
          <div className={`w-40 h-screen bg-pink-900 flex-col overflow-auto ${hidden}`}>
-          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white'>Ordernar por:
+          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white'>Sort by:
           <div className=' min-h-min mx-1'>
-            <select name="" id="" className='text-xs truncate bg-pink-400 rounded-xl  w-20'  onChange={event => handleOrder(event)}>
-              <option value="default">Mas pedidos</option>
-              <option value="mayor">Mayor Precio</option>
-              <option value="menor">Menor Precio</option>
+            <select name="" id="" className='text-xs truncate bg-pink-400 rounded-xl  w-20'  onChange={event => handleSort(event)}>
+              <option value="default">Default</option>
+              <option value="priceDescendant">Price Descendant</option>
+              <option value="priceAscendant">Price Ascendant</option>
             </select>
             </div>
           </div>
           <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white mb-2'>
-            <p>Por Tipo:</p> 
+            <p>By Tags:</p> 
             <div className=' min-h-min mx-1'>
               <select name="" id="" onChange={event => handleOnChange(event)} className=' text-xs bg-pink-400 rounded-xl  text-center w-20 '>
                 <option value="All">Todas</option>
@@ -74,9 +73,11 @@ function SideBar() {
             </div>
           </div>
         {categories.map((cat,i) => (
-          <div className={style }> 
-                      <button className='bg-white bg-opacity-20 h-8 w-20 rounded-3xl  mx-1  mt-2' name={i+1} onClick={e => handleOnClick(e)}>
-                    <div className=''></div>
+          <div className={[ 
+                      activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 "]]}> 
+                      <button className='bg-white bg-opacity-20 h-8 w-20 rounded-3xl  mx-1  mt-2 '
+                        name={i+1} onClick={e => handleOnClick(e)}>
+          <div className=''></div>
                     </button>
                     <p className=' text-white'>{cat.name}</p>
                   </div>

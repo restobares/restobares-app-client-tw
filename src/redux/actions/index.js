@@ -12,9 +12,10 @@ import { addOrderToCart } from "./addOrderToCart";
 import { addComment } from "./addComment";
 import { getProductsByName} from "./getProductsByName";
 import { hideSideBar } from "./hideSideBar";
-import { setOrder} from "./setOrder";
+import { sortMenuByPrice } from "./sortMenuByPrice";
 import { postOrder } from "./postOrder";
 import { getOrders } from "./getOrders";
+import { postOrderToMP } from "./postOrderMP";
 
 
 export {  
@@ -32,7 +33,8 @@ export {
   addComment,
   getProductsByName,
   hideSideBar,
-  setOrder,
+  sortMenuByPrice,
   postOrder,
   getOrders,
+  postOrderToMP
 };

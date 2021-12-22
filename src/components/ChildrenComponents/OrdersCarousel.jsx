@@ -1,8 +1,10 @@
 import React from "react";
-import { useSelector, connect } from "react-redux";
+import { useSelector, connect, } from "react-redux";
+
 
 const OrdersCarousel = () => {
   const { cart } = useSelector((state) => state);
+
 
 
 
@@ -136,7 +138,10 @@ const OrdersCarousel = () => {
           ➖</button>
         </div>
       </div>
-          </div>
+
+
+      </div>
+
         );
       })}
     </div>
