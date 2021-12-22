@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { getMenu, getLabels, getCategories } from '../../../redux/actions';
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getMenu, getLabels, getCategories } from "../../../redux/actions";
 
 //componente platillo
-import OrderCard from '../../AuxiliarComponents/OrderCard';
-import OrderBar from '../../ChildrenComponents/OrderBar';
-import SideBar from '../../ChildrenComponents/SideBar';
+import OrderCard from "../../AuxiliarComponents/OrderCard";
+import MenuPayBar from "../../ChildrenComponents/MenuPayBar";
+import OrderBar from "../../ChildrenComponents/OrderBar";
+import PayBar from "../../ChildrenComponents/PayBar";
+import SideBar from "../../ChildrenComponents/SideBar";
 
-
-export default function OrderBoard () {
-
+export default function OrderBoard() {
   const { idResto, idTable } = useParams();
 
   const dispatch = useDispatch();
+
   const menu = useSelector((state) => state.menus.menu)
   const hidden = useSelector((state) => state.sideBar)
 
@@ -44,11 +45,11 @@ export default function OrderBoard () {
               key={product.id}
               product={product}
             />
+
             ))}
-            </div>
         </div>
+        <MenuPayBar/>
       </div>
-	)
-
+    </div>
+  );
 }
-
