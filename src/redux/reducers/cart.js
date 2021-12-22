@@ -22,9 +22,7 @@ function cart(state = initialState, action) {
   }
 
   if(action.type === ActionTypes.GET_CART) {
-    return {
-      ...state
-    }
+    return state
   }
 
   if (action.type === ActionTypes.ADD_PRODUCT) {
