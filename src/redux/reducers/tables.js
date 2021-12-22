@@ -5,7 +5,10 @@ const initialState = [];
 function tables(state = initialState, action) {
 
   if (action.type === ActionTypes.GET_TABLES) {
-    return [...state, action.payload];
+    
+    let busyTables = action.payload.filter((table) => table.state !== 'free');
+
+    return busyTables;
   }
   return state;
 }
