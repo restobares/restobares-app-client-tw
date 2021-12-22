@@ -1,12 +1,22 @@
-import React from "react";
-import { useSelector, connect, } from "react-redux";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, connect, useDispatch } from "react-redux";
+import { getOrders, addProduct, removeProduct } from "../../redux/actions";
 
 
 const OrdersCarousel = () => {
   const { cart } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const { idResto, idTable } = useParams();
+  useEffect(() => {
+    dispatch(getOrders(idResto, idTable));
+  }, [dispatch]);
 
-
-
+  // const add = () => {
+    
+  //   dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))
+  // }
+  
 
   return (
     <div className="mb-auto">
@@ -130,11 +140,11 @@ const OrdersCarousel = () => {
               </div>
             </div>
             <div className="h-40 w-10 bg-pink-800 float-right rounded-br-xl">
-      <button className="mt-12 text-center text-xl">
+      <button className="mt-12 text-center text-xl" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
           ➕
         </button>
         <div className=" flex item-center">
-        <button className="mt-6 mx-auto">
+        <button className="mt-6 mx-auto" onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
           ➖</button>
         </div>
       </div>
@@ -151,7 +161,7 @@ const OrdersCarousel = () => {
 function mapStateToProps(state) {
   return {
     currentOrder: state.cart.currentOrder,
-    ordered: state.cart.ordered,
+    ordered: state.cart.ordered
   };
 }
 
