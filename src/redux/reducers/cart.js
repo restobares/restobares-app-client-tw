@@ -176,6 +176,12 @@ function cart(state = initialState, action) {
       comments: action.payload.currentOrder.comments
     }
   }
+
+  if (action.type === ActionTypes.PUT_TABLE_EATING) {
+    return {
+      ...state
+    }
+  }
   return state;
 }
 

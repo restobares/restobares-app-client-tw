@@ -9,6 +9,7 @@ import PayBoard from './components/Routes/PayBoard/PayBoard.jsx';
 import Payment from './components/Routes/PayBoard/Payment.jsx';
 import LandingLogin from './components/Admin-Side/Login';
 import NavbarAdmin from './components/Admin-Side/Navbar/NavbarAdmin';
+import PutTesting from './components/Admin-Side/PutTesting.jsx';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           {/* Admin */}
           <Route path="resto/:idResto/login" element={<LandingLogin />}></Route>
           <Route path="resto/:idResto/admin" element={<NavbarAdmin />}></Route>
+          <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
 
 
         </Routes>

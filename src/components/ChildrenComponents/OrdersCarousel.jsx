@@ -8,9 +8,9 @@ const OrdersCarousel = () => {
   const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { idResto, idTable } = useParams();
-  useEffect(() => {
-    dispatch(getOrders(idResto, idTable));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getOrders(idResto, idTable));
+  // }, [dispatch]);
 
   // const add = () => {
     

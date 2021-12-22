@@ -17,6 +17,7 @@ import { sortMenuByPrice } from "./sortMenuByPrice";
 import { postOrder } from "./postOrder";
 import { getOrders } from "./getOrders";
 import { postOrderToMP } from "./postOrderMP";
+import { putTableEating } from "./putTableEating";
 
 
 export {  
@@ -38,5 +39,6 @@ export {
   sortMenuByPrice,
   postOrder,
   getOrders,
-  postOrderToMP
+  postOrderToMP,
+  putTableEating
 };
