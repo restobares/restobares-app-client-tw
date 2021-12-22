@@ -24,7 +24,7 @@ const BillBar = () => {
   }
 
 	return (
-		<div className='nav-bar'>
+		<div className='nav-bar z-10'>
 			<div className='h-12 ml-2'>
 
 			<div className='float-left pill w-9/12'>
