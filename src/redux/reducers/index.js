@@ -9,6 +9,8 @@ import addOrder from "./addOrder";
 import cart from "./cart";
 import sideBar from "./sideBar";
 import cartOrder from "./cartOrder";
+import mercadoPago from "./mercadoPago";
+
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
@@ -21,5 +23,6 @@ export default combineReducers({
   addOrder,
   cart,
   sideBar,
-  cartOrder
+  cartOrder,
+  mercadoPago
 });
