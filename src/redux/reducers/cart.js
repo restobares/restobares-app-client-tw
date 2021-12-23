@@ -178,9 +178,7 @@ function cart(state = initialState, action) {
   }
 
   if (action.type === ActionTypes.PUT_TABLE_EATING) {
-    return {
-      ...state
-    }
+    return state;
   }
   return state;
 }
