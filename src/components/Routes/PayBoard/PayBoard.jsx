@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import Modal from './Modal'
+import Modal from './Modal';
+import Payment from './Payment';
 
 
 
@@ -10,9 +11,14 @@ const PayBoard = () => {
   const { cart }= useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
+  const [showModalPay, setShowModalPay] = useState(false);
 
   const openModal = () => {
     setShowModal(prev => !prev);
+  }
+
+  const openModalPay = () => {
+    setShowModalPay(prev => !prev);
   }
 
   var totalPrice = 0
@@ -52,14 +58,16 @@ const PayBoard = () => {
         Pay at Table
       </button>
 
-    <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
-      <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+    {/* <Link to={`/resto/${idResto}/table/${idTable}/payment`}> */}
+      <button onClick={openModalPay} className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pay with Card
       </button>
-    </Link>
+    {/* </Link> */}
     </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal} />
+
+      <Payment showModalPay={showModalPay} setShowModalPay={setShowModalPay} />
 
     </div>
   )
