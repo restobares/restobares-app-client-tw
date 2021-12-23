@@ -3,7 +3,8 @@ import { ActionTypes } from "../constants";
 const initialState = {
   menu: [],
   backupMenu: [],
-  categoriesSelected: ''
+  categoriesSelected: '',
+  menuAdmin: []
 };
 
 function menu(state = initialState, action) {
@@ -13,10 +14,23 @@ function menu(state = initialState, action) {
   if (action.type === ActionTypes.GET_MENU) {
 
     return {
+      ...state,
       menu: action.payload,
       backupMenu: action.payload,
       categoriesSelected: ''
     };
+  }
+
+  if (action.type === ActionTypes.GET_MENU_ADMIN) {
+
+    return {
+      ...state,
+      menuAdmin: action.payload
+    };
+  }
+
+  if (action.type === ActionTypes.POST_MENU) {
+    return state;
   }
   console.log("state", state)
   
@@ -101,7 +115,7 @@ function menu(state = initialState, action) {
           if(b.price < a.price){
             return -1;
           }
-          return 0
+          return 0;
         } 
         if (action.payload === "priceAscendant") {
           if(a.price > b.price){
@@ -110,8 +124,9 @@ function menu(state = initialState, action) {
           if(b.price > a.price){
               return -1;
           }
-          return 0
-        } 
+          return 0;
+        }
+        return 0;
       });
     return {
       ...state,
