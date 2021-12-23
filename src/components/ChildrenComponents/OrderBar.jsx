@@ -1,21 +1,20 @@
 import React from 'react'
 import { Link, useParams } from "react-router-dom";
 import Search from "../AuxiliarComponents/Search";
-import { useState} from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 
 const OrderBar = () => {
   const dispatch = useDispatch();
-  const [hideBar,SetHideBar] = useState(true);
+  const hidden = useSelector((state) => state.sideBar.sideBar)
   const { idResto, idTable } = useParams();
 
 
   function handleSideBar(event){
     event.preventDefault();
-    hideBar ? SetHideBar(false) : SetHideBar(true)
     dispatch({
       type: "HIDE_SIDEBAR",
-      payload: hideBar
+      payload: !hidden
     });
 }
   return (

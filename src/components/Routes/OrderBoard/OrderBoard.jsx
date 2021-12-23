@@ -17,7 +17,7 @@ export default function OrderBoard() {
   const dispatch = useDispatch();
 
   const menu = useSelector((state) => state.menus.menu)
-  const hidden = useSelector((state) => state.sideBar)
+  const hidden = useSelector((state) => state.sideBar.sideBar)
 
   useEffect(() => {
       dispatch(getLabels())
@@ -28,10 +28,10 @@ export default function OrderBoard() {
 
     const handleHidden = e => {
       e.preventDefault();
-      if (hidden)  dispatch({
+      dispatch({
         type: "HIDE_SIDEBAR",
-        payload: false
-      });
+        payload: !hidden
+      })
     }
     return (
       <div className='pt-12 '>
