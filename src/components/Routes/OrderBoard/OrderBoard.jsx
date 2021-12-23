@@ -34,11 +34,11 @@ export default function OrderBoard() {
       });
     }
     return (
-      <div className='pt-12 '>
+      <div className='pt-12 flex flex-col'>
         <OrderBar/>
         <div className='fixed min-h-screen right-0 left-0 flex '>
             <SideBar/>
-            <div className='w-full pb-16 mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto '  onClick={e => handleHidden(e)}>
+            <div className='w-full pb-28 mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto '  onClick={e => handleHidden(e)}>
             {menu && menu.map((product) =>(
             <OrderCard
               product_id={product.id}
