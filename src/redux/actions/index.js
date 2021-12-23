@@ -18,6 +18,7 @@ import { postOrder } from "./postOrder";
 import { getOrders } from "./getOrders";
 import { postOrderToMP } from "./postOrderMP";
 import { putTableEating } from "./putTableEating";
+import { getMenuAdmin } from "./getMenuAdmin";
 
 
 export {  
@@ -40,5 +41,6 @@ export {
   postOrder,
   getOrders,
   postOrderToMP,
-  putTableEating
+  putTableEating,
+  getMenuAdmin
 };

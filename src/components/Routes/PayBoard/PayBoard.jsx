@@ -17,15 +17,15 @@ const PayBoard = () => {
 
   var totalPrice = 0
 	// esto calcula el precio de las ordenes confirmadas
-  for (var i = 0; i < cart.currentOrder.length; i++) {
+  for (let i = 0; i < cart.currentOrder.length; i++) {
 
-    var order = cart.currentOrder[i];
+    let order = cart.currentOrder[i];
 
     totalPrice = totalPrice + (order.quantity * order.price);
   }
-  for (var i = 0; i < cart.ordered.length; i++) {
+  for (let i = 0; i < cart.ordered.length; i++) {
 
-    var order = cart.ordered[i];
+    let order = cart.ordered[i];
 
     totalPrice = totalPrice + (order.quantity * order.price);
   }
