@@ -1,22 +1,11 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, connect, useDispatch } from "react-redux";
-import { getOrders, addProduct, removeProduct } from "../../redux/actions";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addProduct, removeProduct } from "../../redux/actions";
 
 
 const OrdersCarousel = () => {
   const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const { idResto, idTable } = useParams();
-  useEffect(() => {
-    dispatch(getOrders(idResto, idTable));
-  }, [dispatch]);
-
-  // const add = () => {
-    
-  //   dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))
-  // }
-  
 
   return (
     <div className="mb-auto">
@@ -158,11 +147,4 @@ const OrdersCarousel = () => {
   );
 };
 
-function mapStateToProps(state) {
-  return {
-    currentOrder: state.cart.currentOrder,
-    ordered: state.cart.ordered
-  };
-}
-
-export default connect(mapStateToProps)(OrdersCarousel);
+export default OrdersCarousel;
