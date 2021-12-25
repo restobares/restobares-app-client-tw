@@ -9,86 +9,26 @@ const OrdersCarousel = () => {
 
   return (
     <div className="mb-auto">
-      {cart.ordered.length > 0 &&
-        cart.ordered.map((order) => {
-          return (
-            <div
-              key={order.productId}
-              className="flex  h-40 float-right  bg-gray-400 text-white rounded-br-3xl w-full mt-2"
-            >
-              <div className="float-left w-80">
-                <div className="absolute bg-gray-800 w-20 h-7 rounded-full ml-10 mt-1 bg-opacity-80">
-                  <p className="mt-1">Pedido</p>
-                </div>
-                <img
-                  className="object-cover min-w-full min-h-full "
-                  src={order.image}
-                  style={{ width: 100, height: 100, borderRadius: 5 }}
-                  alt=""
-                />
-              </div>
-              <div className="bg-gray-500 h-40 w-80 float-right">
-                <div className="bg-gray-600 h-8">
-                  <p className="float-left ml-1 mt-1 text-2xl ">
-                    {" "}
-                    {order.productName}{" "}
-                  </p>
-                </div>
-                <div className="h-24 mt-1 mx-1 text-xl mb-1">
-                  <p className="float-left ml-4"> {order.detail} </p>
-                </div>
-                <div className="">
-                  <div className="float-left w-full bg-gray-800 text-md h-6   ">
-                    <h1 className="inline-block text-left "> Cantidad: </h1>
-                    <h1 className=" inline-block ml-2 "> {order.quantity}</h1>
-                    <h1 className=" inline-block ml-4 pr-2 ">
-                      {" "}
-                      $ {order.price}{" "}
-                    </h1>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
       {cart.currentOrder.length > 0 &&
         cart.currentOrder.map((order) => {
           return (
             <div
               key={order.productId}
-              className="flex  h-40 float-right  bg-gray-400 text-white rounded-br-3xl w-full mt-2"
+              className="flex  h-14 w-full mt-2  border-b-2 border-pink-700"
             >
-              <div className="float-left w-80">
-                <div className="absolute bg-gray-800 w-20 h-7 rounded-full ml-10 mt-1 bg-opacity-80">
-                  <p className="mt-1">En Camino</p>
-                </div>
-                <img
-                  className="object-cover min-w-full min-h-full "
-                  src={order.image}
-                  style={{ width: 100, height: 100, borderRadius: 5 }}
-                  alt=""
-                />
+              <div className="w-10 mt-1 ml-1 h-10 flex-shrink-0 "> 
+                <img className=" max-h-full max-w-full min-h-full min-w-full object-cover rounded-full " src={order.image} alt=""/>
               </div>
-              <div className="bg-gray-500 h-40 w-80 float-right">
-                <div className="bg-gray-600 h-8">
-                  <p className="float-left ml-1 mt-1 text-2xl ">
-                    {" "}
-                    {order.productName}{" "}
-                  </p>
-                </div>
-                <div className="h-24 mt-1 mx-1 text-xl mb-1">
-                  <p className="float-left ml-4"> {order.detail} </p>
-                </div>
-                <div className="">
-                  <div className="float-left w-full bg-gray-800 text-md h-6   ">
-                    <h1 className="inline-block text-left "> Cantidad: </h1>
-                    <h1 className=" inline-block ml-2 "> {order.quantity}</h1>
-                    <h1 className=" inline-block ml-4 pr-2 ">
-                      {" "}
-                      $ {order.price}{" "}
-                    </h1>
-                  </div>
-                </div>
+              <div className="float-left  align-baseline text-left inline-block h-4 w-full ">
+                <div className=" inline-block w-full align-bottom">
+                  <p className="inline-block ml-2 text-black font-semibold text-sm">{order.productName}</p>
+                  <p className=" align-bottom inline-block  font-semibold float-right mr-2 text-sm">{" "}$ {order.price * order.quantity}{" "}</p>
+                  <p className=" font-semibold inline-block float-right mr-6 text-sm"> {order.quantity}</p>
+                  <p className=" font-semiboldinline-block float-right text-left mr-1 text-sm "> x </p>
+                </div> 
+                <hr className=" border-pink-500 border-1  mx-2" />
+
+                <p className=" w-9/12  ml-2 text-truncate text-black text- text-xs">{order.detail}</p>
               </div>
             </div>
           );
@@ -96,51 +36,31 @@ const OrdersCarousel = () => {
       {cart.preOrderCart.map((order) => {
         return (
           <div
-            key={order.productId}
-            className="flex  h-40 float-right  bg-pink-400 text-white rounded-br-3xl w-full mt-2"
-          >
-            <div className="float-left w-80">
-              <img
-                className="object-cover min-w-full min-h-full"
-                src={order.image}
-                style={{ width: 100, height: 100, borderRadius: 5 }}
-                alt=""
-              />
+          key={order.productId}
+          className="flex  bg-pink-200 h-14 w-full mt-1  border-b-2 border-t-2 border-pink-300"
+        >
+          <div className="w-10 mt-1 ml-1 h-10 flex-shrink-0 "> 
+            <img className=" min-h-full max-h-full max-w-full min-w-full object-cover rounded-full " src={order.image} alt=""/>
+          </div>
+          <div className="float-left  align-baseline text-left inline-block h-4 w-full ">
+            <div className=" inline-block w-full align-bottom">
+              <p className="inline-block ml-2 text-black font-semibold text-sm">{order.productName}</p>
+              <p className=" align-bottom inline-block  font-semibold float-right mr-2 text-sm">{" "}$ {order.price * order.quantity}{" "}</p>
+              <p className=" font-semibold inline-block float-right mr-6 text-sm"> {order.quantity}</p>
+              <p className=" font-semiboldinline-block float-right text-left mr-1 text-sm "> x </p>
+            </div> 
+            <hr className=" border-pink-500 border-1  mx-2" />
+            <div className="float-right h-6 w-3/12  mr-1 bg-pink-500 rounded-full mt-1"> 
+                <button className="mt-1 inline-block text-left ml-3 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
+              ➕
+                </button>
+      
+                <button className="mt-1 inline-block text-left ml-4 align-middle mx-auto" onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
+              ➖</button>
             </div>
-            <div className="bg-pink-500 h-40 w-80 float-right">
-              <div className="bg-pink-600 h-8">
-                <p className="float-left ml-1 mt-1 text-2xl ">
-                  {" "}
-                  {order.productName}{" "}
-                </p>
-              </div>
-              <div className="h-24 mt-1 mx-1 text-xl mb-1">
-                <p className="float-left ml-4"> {order.detail} </p>
-              </div>
-              <div className="">
-                <div className="float-left w-full bg-pink-600 text-md h-6  ">
-                  <h1 className="inline-block text-left "> Cantidad: </h1>
-                  <h1 className=" inline-block ml-2 "> {order.quantity}</h1>
-                  <h1 className=" inline-block ml-4 pr-2 ">
-                    {" "}
-                    $ {order.price}{" "}
-                  </h1>
-                </div>
-              </div>
-            </div>
-            <div className="h-40 w-10 bg-pink-800 float-right rounded-br-xl">
-      <button className="mt-12 text-center text-xl" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
-          ➕
-        </button>
-        <div className=" flex item-center">
-        <button className="mt-6 mx-auto" onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
-          ➖</button>
+            <p className=" w-9/12  ml-2 text-truncate text-black text- text-xs">{order.detail}</p>
+          </div>
         </div>
-      </div>
-
-
-      </div>
-
         );
       })}
     </div>
