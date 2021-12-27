@@ -28,6 +28,7 @@ export default function OrderBoard() {
 
     const handleHidden = e => {
       e.preventDefault();
+      hidden &&
       dispatch({
         type: "HIDE_SIDEBAR",
         payload: !hidden
