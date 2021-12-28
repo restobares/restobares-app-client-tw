@@ -6,15 +6,15 @@ import navigationData from "./Navigation";
 import Navbar from "./Navbar";
 import TabbarAdmin from "./TabbarAdmin";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getTables } from "../../../redux/actions";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
+// import { useParams } from "react-router-dom";
+// import { getTables } from "../../../redux/actions";
 import Cookies from "js-cookie";
 
 const NavbarAdmin = () => {
-  const dispatch = useDispatch();
-  const { idResto } = useParams();
+  // const dispatch = useDispatch();
+  // const { idResto } = useParams();
   const { currentRoute, setCurrentRoute } = useNavigation();
   const token = useSelector((state) => state.token);
   let tokenAdmin;
@@ -27,10 +27,10 @@ const NavbarAdmin = () => {
     tokenStaff = Cookies.set('token-staff', `${token.staff}`, { expires: 0.35, secure: true });
   }
 
-  console.log(Cookies.get('token-staff'));
-  useEffect(() => {
-    dispatch(getTables(idResto, Cookies.get('token-staff')));
-  }, []);
+  // console.log(Cookies.get('token-staff'));
+  // useEffect(() => {
+  //   dispatch(getTables(idResto, Cookies.get('token-staff')));
+  // }, []);
 
 
   return (
