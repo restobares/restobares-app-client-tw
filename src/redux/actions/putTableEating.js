@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function putTableEating(idResto) {
+export function putTableEating(idResto, token) {
 
   return async function(dispatch) {
     
@@ -11,6 +11,10 @@ export function putTableEating(idResto) {
         idTable: 4,
         state: "eating",
         idStaff: "39672174"
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
       // console.log(json.data.comments);
 

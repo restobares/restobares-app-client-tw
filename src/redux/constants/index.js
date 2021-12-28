@@ -24,6 +24,7 @@ export const ActionTypes = {
   POST_MENU: "POST_MENU",
   PUT_MENU: "PUT_MENU",
   DELETE_PRODUCT: "DELETE_PRODUCT",
-  LOG_IN: "LOG_IN"
+  LOG_IN: "LOG_IN",
+  GET_ORDERS_FEED: "GET_ORDERS_FEED"
 }
 

@@ -23,6 +23,7 @@ import { login } from "./login";
 import { getQrCode } from "./getQRCode";
 import { deleteProduct } from "./deleteProduct";
 import { postMenu } from "./postMenu";
+import { getOrdersFeed } from "./getOrdersFeed";
 
 export {  
   getCategories,
@@ -51,5 +52,6 @@ export {
   // this delete menu items
   deleteProduct,
   // this add menu items
-  postMenu
+  postMenu,
+  getOrdersFeed
 };

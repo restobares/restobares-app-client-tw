@@ -5,9 +5,33 @@ import navigationData from "./Navigation";
 
 import Navbar from "./Navbar";
 import TabbarAdmin from "./TabbarAdmin";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getTables } from "../../../redux/actions";
+import Cookies from "js-cookie";
 
 const NavbarAdmin = () => {
+  const dispatch = useDispatch();
+  const { idResto } = useParams();
   const { currentRoute, setCurrentRoute } = useNavigation();
+  const token = useSelector((state) => state.token);
+  let tokenAdmin;
+  let tokenStaff;
+
+  if (token.admin.lenght > 0 && token.admin !== "") {
+    tokenAdmin = Cookies.set('token-admin', `${token.admin}`, { expires: 0.35, secure: true });
+  }
+  if (token.staff.length > 0 && token.staff !== "") {
+    tokenStaff = Cookies.set('token-staff', `${token.staff}`, { expires: 0.35, secure: true });
+  }
+
+  console.log(Cookies.get('token-staff'));
+  useEffect(() => {
+    dispatch(getTables(idResto, Cookies.get('token-staff')));
+  }, []);
+
 
   return (
     <div className="bg-gray-200 h-screen">
