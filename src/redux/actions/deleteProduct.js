@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function postMenu(idResto, idProduct) {
+export function deleteProduct(idResto, idProduct) {
 
   return async function(dispatch) {
 

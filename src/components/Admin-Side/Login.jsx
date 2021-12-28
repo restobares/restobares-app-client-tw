@@ -1,24 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { login } from '../../redux/actions';
 
 const Login = () => {
 
-    
-    let idResto = 1;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // let idResto = 1;
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const token = useSelector((state) => state.token)
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
 
-    const handleFormSubmit = (e) => {
+    function validEmail(email) {
+      return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    }    
+
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        let email = e.target.elements.email?.value;
-        let password = e.target.elements.password?.value;
+        if (validEmail(email)){
+          
+          let json = await dispatch(login(email, password));        
 
-        console.log(email, password);
+          if (!json.payload.error) {
+            navigate(`../resto/${json.payload.id}/admin`)
+          } else {
+            // this is where the credentials are invalid
+            console.log('invalid credentials')
+          }
+        } else {
+          console.log('invalid email');
+        }
     };
-
-    const navigate = useNavigate();
 
     return (
         <div className='h-screen flex bg-gray-bg1' style={{ 
@@ -30,7 +48,7 @@ const Login = () => {
                     Log in to your account 🔐
                 </h1>
 
-                <form onSubmit={handleFormSubmit}>
+                <form onSubmit={(e) => handleFormSubmit(e)}>
                     <div>
                         <label htmlFor='email'>Email</label>
                         <input
@@ -38,6 +56,7 @@ const Login = () => {
                             className='w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'
                             id='email'
                             placeholder='Your Email'
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                     </div>
                     <div>
@@ -47,6 +66,7 @@ const Login = () => {
                             className='w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'
                             id='password'
                             placeholder='Your Password'
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
@@ -54,9 +74,10 @@ const Login = () => {
                         
                         <button
                             className='bg-green py-2 px-4 text-sm text-black rounded border border-green focus:outline-none focus:border-green-dark'
-                            onClick={
-                                () => navigate (`/resto/${idResto}/admin`)
-                            }
+                            // onClick={
+                            //     () => navigate (`/resto/${idResto}/admin`)
+                            // }
+                            type='submit'
                         >
                             Login
                         </button>
