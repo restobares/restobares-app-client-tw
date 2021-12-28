@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function postOrderToMP(idResto, idTable) {
+export function postOrderToMP(idResto, idTable, tip) {
 
   return async function(dispatch) {
 
@@ -9,7 +9,7 @@ export function postOrderToMP(idResto, idTable) {
 
       var json = await axios.post(`http://restobares-app-api.herokuapp.com/resto/${idResto}/table/${idTable}/payment`, {
         state: "pay_online",
-        tip: 0
+        tip
       });
 
       return dispatch({

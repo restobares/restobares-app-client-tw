@@ -3,6 +3,7 @@ import { getLabels } from "./getLabels";
 import { getUser } from "./getUser";
 import { getMenu } from "./getMenu";
 import { getCart } from "./getCart";
+import { getTables } from "./getTables";
 import { filterMenuByCategory } from "./filterMenuByCategories";
 import { filterMenuByLabels } from "./filterMenuByLabels";
 import { addOrder } from "./addOrder";
@@ -16,6 +17,8 @@ import { sortMenuByPrice } from "./sortMenuByPrice";
 import { postOrder } from "./postOrder";
 import { getOrders } from "./getOrders";
 import { postOrderToMP } from "./postOrderMP";
+import { putTableEating } from "./putTableEating";
+import { getMenuAdmin } from "./getMenuAdmin";
 
 
 export {  
@@ -24,6 +27,7 @@ export {
   getUser,
   getMenu,
   getCart,
+  getTables,
   filterMenuByCategory,
   filterMenuByLabels,
   addOrder,
@@ -36,5 +40,7 @@ export {
   sortMenuByPrice,
   postOrder,
   getOrders,
-  postOrderToMP
+  postOrderToMP,
+  putTableEating,
+  getMenuAdmin
 };

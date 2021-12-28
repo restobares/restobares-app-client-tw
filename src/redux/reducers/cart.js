@@ -22,9 +22,7 @@ function cart(state = initialState, action) {
   }
 
   if(action.type === ActionTypes.GET_CART) {
-    return {
-      ...state
-    }
+    return state
   }
 
   if (action.type === ActionTypes.ADD_PRODUCT) {
@@ -177,6 +175,10 @@ function cart(state = initialState, action) {
       ordered: action.payload.ordered,
       comments: action.payload.currentOrder.comments
     }
+  }
+
+  if (action.type === ActionTypes.PUT_TABLE_EATING) {
+    return state;
   }
   return state;
 }

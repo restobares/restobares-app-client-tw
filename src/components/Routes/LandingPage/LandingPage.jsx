@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getUser, getLabels, getCategories } from '../../../redux/actions'
+import { getUser } from '../../../redux/actions'
 
 
 export default function LandingPage () {
-  // const { idResto, idTable } = useParams();
+  const { idTable } = useParams();
   // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants like below
   const idResto = 'ANzbx5Pa3dPizabR';
-  const idTable = 1;  
   
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user)
