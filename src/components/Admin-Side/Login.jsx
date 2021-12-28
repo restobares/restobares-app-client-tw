@@ -6,7 +6,8 @@ import { login } from '../../redux/actions';
 const Login = () => {
 
     const dispatch = useDispatch();
-    let idResto = 1;
+    const navigate = useNavigate();
+    // let idResto = 1;
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,32 +18,25 @@ const Login = () => {
 
     function validEmail(email) {
       return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-    }
+    }    
 
-    // useEffect(async () => {
-    //   await dispatch(login())
-    // }, [email, password])
-    
-
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
 
         if (validEmail(email)){
-          // console.log(email, password);
+          
+          let json = await dispatch(login(email, password));        
 
-          dispatch(login(email, password));        
-          
-          
-          if (token.error === "") {
-            // console.log(token.error);
-            console.log('if test');
+          if (!json.payload.error) {
+            navigate(`../resto/${json.payload.id}/admin`)
+          } else {
+            // this is where the credentials are invalid
+            console.log('invalid credentials')
           }
         } else {
-          console.log('nope');
+          console.log('invalid email');
         }
     };
-
-    const navigate = useNavigate();
 
     return (
         <div className='h-screen flex bg-gray-bg1' style={{ 

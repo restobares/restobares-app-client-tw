@@ -7,12 +7,6 @@ export function login(email, password) {
 
   return async function(dispatch) {
 
-  //   if (!email && !password) {
-  //   return dispatch({
-  //     type: "INIT_LOG_IN"
-  //   })
-  // }
-
     try {
       var json = await axios.post("http://restobares-app-api.herokuapp.com/login", {
         email,

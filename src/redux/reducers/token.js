@@ -3,6 +3,7 @@ import { ActionTypes } from "../constants";
 const initialState = {
   admin: "",
   staff: "",
+  idResto: "",
   error: ""
 }
 
@@ -16,6 +17,7 @@ function token(state = initialState, action) {
       return {
         admin: "",
         staff: "",
+        idResto: "",
         error: action.payload.error
       } 
     }
@@ -25,6 +27,7 @@ function token(state = initialState, action) {
       return {
         ...state,
         admin: action.payload.token,
+        idResto: action.payload.id,
         error: ""
       }
     }
@@ -32,15 +35,12 @@ function token(state = initialState, action) {
       return {
         ...state,
         staff: action.payload.token,
+        idResto: action.payload.id,
         error: ""
       }
     }
     return state;
   }
-
-  // if (action.type === "GET_TOKEN") {
-  //   return state;
-  // }
   return state;
 }
 
