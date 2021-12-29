@@ -12,11 +12,13 @@ function menu(state = initialState, action) {
   const backupMenu = state.backupMenu;
 
   if (action.type === ActionTypes.GET_MENU) {
-
+    
+    let availableMenu = action.payload.filter((product) => product.available);
+    
     return {
       ...state,
-      menu: action.payload,
-      backupMenu: action.payload,
+      menu: availableMenu,
+      backupMenu: availableMenu,
       categoriesSelected: ''
     };
   }
