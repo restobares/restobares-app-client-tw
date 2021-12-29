@@ -19,7 +19,7 @@ function Payment({showModalPay, setShowModalPay}) {
           <div>
             <button onClick={() => setShowModalPay(prev => !prev)} className='bg-red-500 rounded-xl w-6 text-red-50 text-lg' >X</button>
           </div>
-         <main className="mt-4 p-4">
+        {/*  <main className="mt-4 p-4">
           <h1 className="text-xl font-semibold text-black text-center">Card Payment</h1>
             <div className="my-3">
             <input 
@@ -72,7 +72,68 @@ function Payment({showModalPay, setShowModalPay}) {
                 </div>
               </div>
             </div>
-         </main> 
+         </main>  */}
+
+{/*         <form id="form-checkout" >
+          <input type="tel"
+                 name="cardNumber"
+                 placeholder='CARD NUMBER'
+                 id="form-checkout__cardNumber"
+                 className='block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none' />
+          <input type="text"
+                 name="cardholderName"
+                 placeholder='XXXX - XXXX - XXXX - XXXX'
+                 id="form-checkout__cardholderName"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <input type="email"
+                 name="cardholderEmail"
+                 placeholder='email@example.com'
+                 id="form-checkout__cardholderEmail"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/>
+          <input type="text"
+                 name="cardExpirationMonth"
+                 placeholder='MM'
+                 id="form-checkout__cardExpirationMonth"
+                 className=" text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <input type="text"
+                 name="cardExpirationYear"
+                 placeholder='YY'
+                 id="form-checkout__cardExpirationYear"
+                 className=" text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <input type="text"
+                 name="securityCode"
+                 placeholder='CVV'
+                 id="form-checkout__securityCode"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <select name="issuer"
+                  id="form-checkout__issuer"
+                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+          </select>
+          <select name="identificationType" 
+                  id="form-checkout__identificationType"
+                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+          </select>
+          <input type="text" 
+                 name="identificationNumber" 
+                 placeholder='DNI'
+                 id="form-checkout__identificationNumber"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/>
+          <select name="installments" 
+                  id="form-checkout__installments"
+                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+          </select>
+          <button type="submit" 
+                  id="form-checkout__submit"
+                  className="block w-full px-5 py-2 border rounded-lg bg-pink-700 shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+                    Pay
+          </button>
+
+          <progress value="0" class="progress-bar">loading...</progress>
+        </form> */}
+
+
+
+
             <PayMp />   
         </div>
 
