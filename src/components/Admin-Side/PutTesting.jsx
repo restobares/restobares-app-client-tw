@@ -6,10 +6,11 @@ import { putTableEating } from '../../redux/actions';
 const PutTesting = () => {
   const { idResto } = useParams();
   const dispatch = useDispatch();
-
+  const testToken = "AdminSupremeTest";
+  const testTable = 4;
 
   const putAction = async () => {
-    dispatch(putTableEating(idResto))
+    dispatch(putTableEating(idResto, testTable, testToken))
   }
   return (
     <div>
