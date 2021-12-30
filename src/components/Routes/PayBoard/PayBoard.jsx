@@ -1,14 +1,16 @@
 import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link, useParams, useNavigate } from 'react-router-dom';
-import Modal from './Modal';
-//import Payment from './Payment';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { postOrderToMP } from '../../../redux/actions';
+import Modal from './Modal'
 
 
 
 
 const PayBoard = () => {
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cart }= useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
@@ -37,7 +39,12 @@ const PayBoard = () => {
     totalPrice = totalPrice + (order.quantity * order.price);
   }
 
-  const navigate = useNavigate();
+
+  const handlePayWithCard = async () => {
+    let json = await dispatch(postOrderToMP(idResto, idTable, 10))
+    window.location.href = `${json.payload.response.init_point}`
+  }
+
 
   return (
     <div className='py-12'>
@@ -60,13 +67,17 @@ const PayBoard = () => {
       <button onClick={openModal} className="bg-pink-700 text-md font-semibold text-white py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pay at Table
       </button>
-
-    {/* <Link to={`/resto/${idResto}/table/${idTable}/payment`}> */}
-      <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2"
-      onClick={() => navigate (`/resto/${idResto}/table/${idTable}/payment`)}>
+      <button onClick={handlePayWithCard} className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pay with Card
       </button>
-    {/* </Link> */}
+      
+
+    {/* <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
+      <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+        Pay with Card
+      </button>
+    </Link> */}
+
     </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal} />
