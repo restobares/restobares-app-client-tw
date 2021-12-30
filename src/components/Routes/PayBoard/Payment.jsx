@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PayMp from './SDK-MP';
 
 
-const toInputUppercase = e => {
-  e.target.value = ("" + e.target.value).toUpperCase();
-};
+// const toInputUppercase = e => {
+//   e.target.value = ("" + e.target.value).toUpperCase();
+// };
 
 function Payment({showModalPay, setShowModalPay}) {
 
-  const [name, setName] = useState('');
+  // const [name, setName] = useState('');
 
 
     return (
