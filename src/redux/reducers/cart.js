@@ -169,10 +169,11 @@ function cart(state = initialState, action) {
 
   if (action.type === ActionTypes.GET_ORDERS) {
 
+    let cartOrderedSorted = action.payload.ordered.sort((a, b) => a.productId - b.productId);
     return {
       ...state,
       currentOrder: action.payload.currentOrder.products,
-      ordered: action.payload.ordered,
+      ordered: cartOrderedSorted,
       comments: action.payload.currentOrder.comments
     }
   }
