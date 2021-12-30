@@ -24,6 +24,7 @@ import { getQrCode } from "./getQRCode";
 import { deleteProduct } from "./deleteProduct";
 import { postMenu } from "./postMenu";
 import { getOrdersFeed } from "./getOrdersFeed";
+import { deleteProductFromTable } from "./deleteProductFromTable";
 
 export {  
   getCategories,
@@ -53,5 +54,7 @@ export {
   deleteProduct,
   // this add menu items
   postMenu,
-  getOrdersFeed
+  getOrdersFeed,
+  // this delete items from the table
+  deleteProductFromTable
 };

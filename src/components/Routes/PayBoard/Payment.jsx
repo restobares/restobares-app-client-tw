@@ -1,125 +1,165 @@
-import React, { useState } from 'react'
-import Cards from 'react-credit-cards';
-import { Link, useParams } from 'react-router-dom';
-import 'react-credit-cards/es/styles-compiled.css';
-import Swal from 'sweetalert2';
+import React, { useState } from 'react';
+import PayMp from './SDK-MP';
+
 
 const toInputUppercase = e => {
   e.target.value = ("" + e.target.value).toUpperCase();
 };
 
+function Payment({showModalPay, setShowModalPay}) {
 
-function Payment() {
-  const { idResto, idTable } = useParams();
-    const [number, setNumber] = useState('');
-    const [name, setName] = useState('');    
-    const [expiry, setExpiry] = useState('');
-    const [cvv, setCvv] = useState('');
-    const [focus, setFocus] = useState('');
-
-    const mostrarAlerta = () => {
-        Swal.fire({
-          title: 'Payment Successfull!',
-          text: 'Thank You!',
-          icon: 'success',
-          button: "Ok",
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-        });
-    }
+  const [name, setName] = useState('');
 
 
-  return (
-    <div className='py-12'>
-            
-     <div className='nav-bar flex'>
-      <div className='ml-4'>
-       <Link to={`/resto/${idResto}/table/${idTable}/bill`}>
-			<button className='button mr-60'>
-              <img src="https://img.icons8.com/ios/50/aa0020/cash-receipt.png" width="40" className='ml-1' alt=""/>
-			</button>
-		</Link>
-      </div>
-     </div>
-    
+    return (
+      <>
+      {showModalPay ?
+      
+        <div className='fixed inset-0 bg-pink-900 bg-opacity-75 pt-28'>
+          <div>
+            <button onClick={() => setShowModalPay(prev => !prev)} className='bg-red-500 rounded-xl w-16 text-red-50 text-lg' >Cerrar</button>
+          </div>
+        {/*  <main className="mt-4 p-4">
+          <h1 className="text-xl font-semibold text-black text-center">Card Payment</h1>
+            <div className="my-3">
+            <input 
+              type="tel" 
+              pattern="[0-9]{10}"
+              maxlength="16"
+              className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+              name="number" 
+              placeholder='XXXX - XXXX - XXXX - XXXX'
+            />
+            </div>
+            <div className="my-3">
+            <input 
+              type="text" 
+              maxlength="100"
+              className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+              name="name" 
+              placeholder='Card Holder' 
+              onChange={e => setName(e.target.value)}
+              onInput={toInputUppercase}
+            />
+            </div>
+            <div className="">
+              <div className="my-3 flex flex-col">
+                <div className="mb-2">
+                  <label for="" className="text-black font-bold">Expired</label>
+                </div>
+                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+                  <input 
+                    type="tel"
+                    maxlength="2"
+                    className="text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                    name="expiry" 
+                    placeholder='MM'
+                  />
+                  <input 
+                    type="tel"
+                    maxlength="2"
+                    className="text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                    name="expiry" 
+                    placeholder='YY'
+                  />
+                  <input 
+                    type="password" 
+                    maxlength="3"
+                    className="text-center block w-full col-span-1 px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+                    name="cvv" 
+                    placeholder='CVV'
+                  />
+                </div>
+              </div>
+            </div>
+         </main>  */}
 
-    <form className='m-4 pt-4'>
-    <div className="credit-card w-full sm:w-auto shadow-lg mx-auto rounded-xl bg-white" x-data="creditCard">
-        <Cards 
-          number={number}
-          name={name}
-          expiry={expiry}
-          cvv={cvv}
-          focused={focus}
-        />
-    <main className="mt-4 p-4">
-      <h1 className="text-xl font-semibold text-gray-700 text-center">Card Payment</h1>
-        <div className="my-3">
-        <input 
-          type="tel" 
-          pattern="[0-9]{10}"
-          maxlength="16"
-          className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-          name="number" 
-          placeholder='XXXX - XXXX - XXXX - XXXX'
-          value={number} 
-          onChange={e => setNumber(e.target.value)}
-          onFocus={e => setFocus(e.target.name)}
-        />
+{/*         <form id="form-checkout" >
+          <input type="tel"
+                 name="cardNumber"
+                 placeholder='CARD NUMBER'
+                 id="form-checkout__cardNumber"
+                 className='block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none' />
+          <input type="text"
+                 name="cardholderName"
+                 placeholder='XXXX - XXXX - XXXX - XXXX'
+                 id="form-checkout__cardholderName"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <input type="email"
+                 name="cardholderEmail"
+                 placeholder='email@example.com'
+                 id="form-checkout__cardholderEmail"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/>
+          <input type="text"
+                 name="cardExpirationMonth"
+                 placeholder='MM'
+                 id="form-checkout__cardExpirationMonth"
+                 className=" text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <input type="text"
+                 name="cardExpirationYear"
+                 placeholder='YY'
+                 id="form-checkout__cardExpirationYear"
+                 className=" text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <input type="text"
+                 name="securityCode"
+                 placeholder='CVV'
+                 id="form-checkout__securityCode"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+          <select name="issuer"
+                  id="form-checkout__issuer"
+                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+          </select>
+          <select name="identificationType" 
+                  id="form-checkout__identificationType"
+                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+          </select>
+          <input type="text" 
+                 name="identificationNumber" 
+                 placeholder='DNI'
+                 id="form-checkout__identificationNumber"
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/>
+          <select name="installments" 
+                  id="form-checkout__installments"
+                  className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+          </select>
+          <button type="submit" 
+                  id="form-checkout__submit"
+                  className="block w-full px-5 py-2 border rounded-lg bg-pink-700 shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+                    Pay
+          </button>
+
+          <progress value="0" class="progress-bar">loading...</progress>
+        </form> */}
+
+
+
+
+            <PayMp />   
         </div>
-        <div className="my-3">
-        <input 
-          type="text" 
-          maxlength="100"
-          className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-          name="name" 
-          placeholder='Card Holder'
-          value={name} 
-          onChange={e => setName(e.target.value)}
-          onInput={toInputUppercase}
-          onFocus={e => setFocus(e.target.name)}
-        />
-        </div>
-        <div className="">
-        <div className="my-3 flex flex-col">
-        <div className="mb-2">
-          <label for="" className="text-gray-700">Expired</label>
-        </div>
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 ml-20">
-        <input 
-          type="tel"
-          maxlength="4"
-          className="form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-          name="expiry" 
-          placeholder='MM/YY'
-          value={expiry} 
-          onChange={e => setExpiry(e.target.value)}
-          onFocus={e => setFocus(e.target.name)}
-        />
-        <input 
-          type="password" 
-          maxlength="3"
-          className="block w-full col-span-1 px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none text-center"
-          name="cvv" 
-          placeholder='CVV'
-          value={cvv} 
-          onChange={e => setCvv(e.target.value)}
-          onFocus={e => setFocus(e.target.name)}
-        />
-        </div>
-        </div>
-       </div>
-     </main>    
-    </div> 
-    </form>
-    <footer className="bg-pink-700 rounded-2xl p-2 text-3xl text-white">
-      <button onClick={() => mostrarAlerta()} >
-        Pay now
-       </button>
-    </footer>
 
-   </div>
-  )
+        : null}
+         
+      </>
+        
+    )
 }
 
-export default Payment
+export default Payment;
+
+//https://www.npmjs.com/package/react-sdk-mercadopago
+//https://www.mercadopago.com.co/developers/es/guides/online-payments/checkout-api/receiving-payment-by-card
+//https://github.com/s4mukka/react-sdk-mercadopago#readme
+
+
+/*
+
+posibles reducers -->
+
+Reducers :
+
+enviar pago
+obtener pago
+resetear pago
+resetear enlace de pago
+
+*/ 
