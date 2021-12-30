@@ -7,16 +7,22 @@ import Modal from './Modal'
 
 
 
+
 const PayBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cart }= useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
+  //const [showModalPay, setShowModalPay] = useState(false);
 
   const openModal = () => {
     setShowModal(prev => !prev);
   }
+
+  /* const openModalPay = () => {
+    setShowModalPay(prev => !prev);
+  } */
 
   var totalPrice = 0
 	// esto calcula el precio de las ordenes confirmadas
@@ -33,10 +39,12 @@ const PayBoard = () => {
     totalPrice = totalPrice + (order.quantity * order.price);
   }
 
+
   const handlePayWithCard = async () => {
     let json = await dispatch(postOrderToMP(idResto, idTable, 10))
     window.location.href = `${json.payload.response.init_point}`
   }
+
 
   return (
     <div className='py-12'>
@@ -62,15 +70,19 @@ const PayBoard = () => {
       <button onClick={handlePayWithCard} className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pay with Card
       </button>
+      
 
     {/* <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
       <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pay with Card
       </button>
     </Link> */}
+
     </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal} />
+
+      {/* <Payment showModalPay={showModalPay} setShowModalPay={setShowModalPay}/> */} 
 
     </div>
   )
