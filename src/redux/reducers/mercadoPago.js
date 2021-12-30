@@ -1,8 +1,7 @@
 import { ActionTypes } from '../constants';
 
 const initialState = {
-  url: "",
-  items: []
+  url: ""
 }
 
 function mercadoPago(state = initialState, action) {
@@ -10,8 +9,7 @@ function mercadoPago(state = initialState, action) {
   if (action.type === ActionTypes.POST_ORDER_TO_MP) {
 
     return {
-      url: action.payload.init_point,
-      items: [...action.payload.items]
+      url: action.payload.response.init_point
     }
   }
   return state;
