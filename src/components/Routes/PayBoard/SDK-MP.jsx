@@ -6,6 +6,19 @@ import { postOrderToMP } from "../../../redux/actions/postOrderMP";
 
 function PayMp () {
 
+    /* keys
+    test: TEST-e78cc78d-295d-40e6-adf1-266199ed95e7
+    producción: APP_USR-2ce69282-4e43-4836-840c-b4f90e24d79f 
+
+    token
+    TEST-8597162101756929-120903-244e52b38faa5e385b1394e5fec0f351-186091864
+
+
+    client id: 8597162101756929
+
+
+     */
+
 const mercadopago = useMercadopago.v2('TEST-e78cc78d-295d-40e6-adf1-266199ed95e7', {
         locale: 'es-AR'
     });
@@ -21,15 +34,17 @@ const mercadopago = useMercadopago.v2('TEST-e78cc78d-295d-40e6-adf1-266199ed95e7
         if (mercadopago) {
             mercadopago.checkout({
                 preference: {
-                    items: [{
+                    id: '123456', //YOUR_PREFERENCE_ID?
+                    /* items: [{
                         "title":"Hamburguesa",
                         "unit_price":10,
                         "quantity":1,
-                    }]
+                    }] */
                 },
+                /* autoOpen: true, */ //Pop up boton MP
                 render: {
                     container: '.cho-container',
-                    label: 'Pay',
+                    label: 'Pay with card',
                 },
 
                
@@ -229,7 +244,7 @@ return (
           {/* <progress value="0" class="progress-bar">loading...</progress> */}
         </form>
 
-        {/* sdk (btn Pay) */}
+        {/* sdk (btn Pay with card) */}
       <div className="cho-container" />
     </div>
  )
