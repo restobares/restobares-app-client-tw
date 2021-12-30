@@ -13,7 +13,7 @@ const Navbar = ({ navigationData, currentRoute, setCurrentRoute }) => {
           <li
             className={classNames([
               "w-24 text-white hover:text-white cursor-pointer font-medium tracking-wide text-2xl flex items-start justify-center mx-3",
-              currentRoute === item && "border-pink-700 text-white border-b-3 bg-gradient-to-b from-pink-800 to-pink-800 rounded-full pt-1 mb-1",
+              currentRoute === item && "md: border-pink-700 text-white border-b-3 bg-gradient-to-b from-pink-800 to-pink-800 rounded-full pt-1 mb-1 sm: hidden",
             ])}
             key={index}
             onClick={() => setCurrentRoute(item)}
