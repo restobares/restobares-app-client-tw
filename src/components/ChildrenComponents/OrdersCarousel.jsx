@@ -21,14 +21,14 @@ const OrdersCarousel = () => {
               </div>
               <div className="float-left  align-baseline text-left inline-block h-4 w-full ">
                 <div className=" inline-block w-full align-bottom">
-                  <p className="inline-block ml-2 text-black font-semibold text-sm">{order.productName}</p>
-                  <p className=" align-bottom inline-block  font-semibold float-right mr-2 text-sm">{" "}$ {order.price * order.quantity}{" "}</p>
-                  <p className=" font-semibold inline-block float-right mr-6 text-sm"> {order.quantity}</p>
+                  <p className="inline-block ml-2 text-gray-500 font-semibold text-sm">{order.productName}</p>
+                  <p className=" align-bottom inline-block text-gray-500 font-semibold float-right mr-2 text-sm">{" "}$ {order.price * order.quantity}{" "}</p>
+                  <p className="text-gray-500 font-semibold inline-block float-right mr-6 text-sm"> {order.quantity}</p>
                   <p className=" font-semiboldinline-block float-right text-left mr-1 text-sm "> x </p>
                 </div> 
                 <hr className=" border-pink-500 border-1  mx-2" />
 
-                <p className=" w-9/12  ml-2 text-truncate text-black text- text-xs">{order.detail}</p>
+                <p className=" w-9/12  ml-2 text-truncate text-gray-500 text- text-xs">{order.detail}</p>
               </div>
             </div>
           );
