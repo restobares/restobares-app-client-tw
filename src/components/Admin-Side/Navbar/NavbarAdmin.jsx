@@ -1,22 +1,20 @@
 import React from "react";
-
 import useNavigation from "./Hook";
 import navigationData from "./Navigation";
-
 import Navbar from "./Navbar";
 import TabbarAdmin from "./TabbarAdmin";
-import { useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { useDispatch } from "react-redux";
-// import { useParams } from "react-router-dom";
-// import { getTables } from "../../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getTables } from "../../../redux/actions";
 import Cookies from "js-cookie";
 
 const NavbarAdmin = () => {
-  // const dispatch = useDispatch();
-  // const { idResto } = useParams();
+  const dispatch = useDispatch();
+  const { idResto } = useParams();
   const { currentRoute, setCurrentRoute } = useNavigation();
   const token = useSelector((state) => state.token);
+  const tables = useSelector((state) => state.tables);
   let tokenAdmin;
   let tokenStaff;
 
@@ -27,11 +25,12 @@ const NavbarAdmin = () => {
     tokenStaff = Cookies.set('token-staff', `${token.staff}`, { expires: 0.35, secure: true });
   }
 
-  // console.log(Cookies.get('token-staff'));
-  // useEffect(() => {
-  //   dispatch(getTables(idResto, Cookies.get('token-staff')));
-  // }, []);
-
+  useEffect(() => {
+    dispatch(getTables(idResto, Cookies.get('token-staff')));
+  }, []);
+  
+  console.log("token staff",Cookies.get('token-staff'));
+  console.log("tables",tables)
 
   return (
     <div className="bg-gray-200 h-screen">
@@ -46,7 +45,7 @@ const NavbarAdmin = () => {
         setCurrentRoute={setCurrentRoute}
       />
       <div className="flex items-center justify-center text-5xl text-gray-300 h-5/6">
-      
+        
       </div>
     </div>
   );
