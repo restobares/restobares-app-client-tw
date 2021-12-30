@@ -18,7 +18,7 @@ const BillBoard = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [time]);
+  }, [time, dispatch, idTable, idResto]);
 
   return (
     <div className='py-12 flex flex-col h-screen justify-between'>

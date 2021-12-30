@@ -8,7 +8,6 @@ import { getMenu, getLabels, getCategories } from "../../../redux/actions";
 import OrderCard from "../../AuxiliarComponents/OrderCard";
 import MenuPayBar from "../../ChildrenComponents/MenuPayBar";
 import OrderBar from "../../ChildrenComponents/OrderBar";
-import PayBar from "../../ChildrenComponents/PayBar";
 import SideBar from "../../ChildrenComponents/SideBar";
 
 export default function OrderBoard() {
@@ -23,7 +22,7 @@ export default function OrderBoard() {
       dispatch(getLabels())
     dispatch(getCategories())
     dispatch(getMenu(idResto, idTable))
-  }, [dispatch])
+  }, [dispatch, idResto, idTable])
 
 
     const handleHidden = e => {

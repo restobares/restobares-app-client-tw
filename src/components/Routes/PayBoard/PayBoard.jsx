@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { postOrderToMP } from '../../../redux/actions';
 import Modal from './Modal'
 
@@ -10,7 +10,6 @@ import Modal from './Modal'
 
 const PayBoard = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { cart }= useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
