@@ -25,7 +25,7 @@ function App() {
 
 
           {/* Admin */}
-          <Route path="resto/:idResto/login" element={<LandingLogin />}></Route>
+          <Route path="resto/login" element={<LandingLogin />}></Route>
           <Route path="resto/:idResto/admin" element={<NavbarAdmin />}></Route>
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
 

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from "react-redux";
 import { useMercadopago } from 'react-sdk-mercadopago';
+import { postOrderToMP } from "../../../redux/actions/postOrderMP";
 
 
 function PayMp () {
@@ -7,6 +9,13 @@ function PayMp () {
 const mercadopago = useMercadopago.v2('TEST-e78cc78d-295d-40e6-adf1-266199ed95e7', {
         locale: 'es-AR'
     });
+
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+      dispatch(postOrderToMP())
+    }, [dispatch])
 
     useEffect(() => {
         if (mercadopago) {
@@ -165,57 +174,62 @@ return (
                  name="cardNumber"
                  placeholder='CARD NUMBER'
                  id="form-checkout__cardNumber"
-                 className='block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none' />
+                 className='text-center block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none' />
           <input type="text"
                  name="cardholderName"
                  placeholder='XXXX - XXXX - XXXX - XXXX'
                  id="form-checkout__cardholderName"
-                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+                 className="text-center block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
           <input type="email"
                  name="cardholderEmail"
                  placeholder='email@example.com'
                  id="form-checkout__cardholderEmail"
-                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/>
+                 className="text-center block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/>
+          
+          <div className='grid grid-cols-3 sm:grid-cols-4'>
           <input type="text"
                  name="cardExpirationMonth"
                  placeholder='MM'
                  id="form-checkout__cardExpirationMonth"
-                 className=" text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+                 className="text-center form-select appearance-none block px-1 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
           <input type="text"
                  name="cardExpirationYear"
                  placeholder='YY'
                  id="form-checkout__cardExpirationYear"
-                 className=" text-center form-select appearance-none block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+                 className=" text-center form-select appearance-none block px-1 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
           <input type="password"
                  name="securityCode"
                  placeholder='CVV'
                  id="form-checkout__securityCode"
-                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
-          <select name="issuer"
+                 className="text-center block px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" />
+           </div>
+          {/* <select name="issuer"
                   id="form-checkout__issuer"
                   className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
           </select>
           <select name="identificationType" 
                   id="form-checkout__identificationType"
                   className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
-          </select>
-          <input type="text" 
+          </select> */}
+         {/*  <input type="text" 
                  name="identificationNumber" 
                  placeholder='DNI'
                  id="form-checkout__identificationNumber"
-                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/>
-          <select name="installments" 
+                 className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"/> */}
+          {/* <select name="installments" 
                   id="form-checkout__installments"
                   className="block w-full px-5 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
-          </select>
+          </select> */}
           <button type="submit" 
                   id="form-checkout__submit"
-                  className="block w-full px-5 py-2 border rounded-lg bg-pink-700 shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none">
+                  className="block w-full px-5 py-2 rounded-lg bg-pink-700 shadow-lg placeholder-gray-400 text-white focus:ring focus:outline-none">
                     Pay
           </button>
 
-          <progress value="0" class="progress-bar">loading...</progress>
+          {/* <progress value="0" class="progress-bar">loading...</progress> */}
         </form>
+
+        {/* sdk (btn Pay) */}
       <div className="cho-container" />
     </div>
  )
