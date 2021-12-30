@@ -10,6 +10,9 @@ function tables(state = initialState, action) {
 
     return busyTables;
   }
+  if (action.type === ActionTypes.DELETE_PRODUCT_FROM_TABLE) {
+    return state;
+  }
   return state;
 }
 
