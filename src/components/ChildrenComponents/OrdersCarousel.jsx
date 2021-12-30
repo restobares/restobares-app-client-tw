@@ -50,8 +50,8 @@ const OrdersCarousel = () => {
               <p className=" font-semiboldinline-block float-right text-left mr-1 text-sm "> x </p>
             </div> 
             <hr className=" border-pink-500 border-1  mx-2" />
-            <div className="float-right h-6 w-3/12  mr-1 bg-pink-500 rounded-full mt-1"> 
-                <button className="mt-1 inline-block text-left ml-3 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
+            <div className="float-right h-6  mr-1 w-16 bg-pink-500 rounded-full mt-1"> 
+                <button className="mt-1 inline-block text-left ml-2 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
               ➕
                 </button>
       
