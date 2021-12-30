@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import Modal from './Modal'
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import Modal from './Modal';
+//import Payment from './Payment';
+
 
 
 
@@ -10,10 +12,15 @@ const PayBoard = () => {
   const { cart }= useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
+  //const [showModalPay, setShowModalPay] = useState(false);
 
   const openModal = () => {
     setShowModal(prev => !prev);
   }
+
+  /* const openModalPay = () => {
+    setShowModalPay(prev => !prev);
+  } */
 
   var totalPrice = 0
 	// esto calcula el precio de las ordenes confirmadas
@@ -29,6 +36,8 @@ const PayBoard = () => {
 
     totalPrice = totalPrice + (order.quantity * order.price);
   }
+
+  const navigate = useNavigate();
 
   return (
     <div className='py-12'>
@@ -52,14 +61,17 @@ const PayBoard = () => {
         Pay at Table
       </button>
 
-    <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
-      <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
+    {/* <Link to={`/resto/${idResto}/table/${idTable}/payment`}> */}
+      <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2"
+      onClick={() => navigate (`/resto/${idResto}/table/${idTable}/payment`)}>
         Pay with Card
       </button>
-    </Link>
+    {/* </Link> */}
     </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal} />
+
+      {/* <Payment showModalPay={showModalPay} setShowModalPay={setShowModalPay}/> */} 
 
     </div>
   )

@@ -19,6 +19,7 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
+    "react-sdk-mercadopago": "^1.1.1",
     "sweetalert2": "^11.3.0"
   },
   "scripts": {
