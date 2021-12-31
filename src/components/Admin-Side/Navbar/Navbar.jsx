@@ -32,7 +32,7 @@ const Navbar = () => {
     };
   }, [])
 
-  console.log("width =>",width) 
+  
   return (
     <nav className="flex flex:row items-center justify-between px-8 h18  bg-pink-700 h-12">
       <span className="text-5xl text-gray-800 mb-1 mt-1">

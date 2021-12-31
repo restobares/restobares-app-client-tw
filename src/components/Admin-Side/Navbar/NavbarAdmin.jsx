@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getTables } from "../../../redux/actions";
 import Cookies from "js-cookie";
+import Tables from "../Tables/Tables";
 
 const NavbarAdmin = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const NavbarAdmin = () => {
   return (
     <div className="bg-gray-200 h-screen">
       <Navbar/>
+      <Tables/>
       
       <div className="flex items-center justify-center text-5xl text-gray-300 h-5/6">
       </div>
