@@ -8,7 +8,7 @@ import OrderBoard from './components/Routes/OrderBoard/OrderBoard.jsx';
 import PayBoard from './components/Routes/PayBoard/PayBoard.jsx';
 import Payment from './components/Routes/PayBoard/Payment.jsx';
 import LandingLogin from './components/Admin-Side/Login';
-import NavbarAdmin from './components/Admin-Side/Navbar/NavbarAdmin';
+import HomeAdmin from './components/Admin-Side/Navbar/HomeAdmin';
 import PutTesting from './components/Admin-Side/PutTesting.jsx';
 import ActiveOrders from './components/ActiveOrders/ActiveOrders.jsx';
 import Tables from './components/Admin-Side/Tables/Tables.jsx';
@@ -28,7 +28,7 @@ function App() {
 
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
-          <Route path="resto/:idResto/admin" element={<NavbarAdmin />}></Route>
+          <Route path="resto/:idResto/admin" element={<HomeAdmin />}></Route>
           
           <Route path="resto/:idResto/admin/tables" element={<Tables/>}></Route>
           <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>

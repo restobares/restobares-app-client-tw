@@ -1,8 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setActiveComponent } from "../../../redux/actions";
 
 
 const Navbar = () => {
+
+  const dispatch = useDispatch()
 
   // Vars
 
@@ -19,6 +23,7 @@ const Navbar = () => {
     e.preventDefault()
     setActive(Number(e.target.id))
     console.log(active)
+    dispatch(setActiveComponent(e.target.name))
   }
 
   // RESIZE WINDOW LOGIC
@@ -40,7 +45,7 @@ const Navbar = () => {
       </span>
       <ul className="flex flex-row  mx-auto h-12"> { 
             navItems.map((el,i) => (             
-               <button id={i} onClick={(e) => handlerActive(e)} className= {
+               <button id={i} name={el.name} onClick={(e) => handlerActive(e)} className= {
                  i === active 
                  ? " text-white text-2xl mx-4 w-24 bg-pink-100 bg-opacity-20 h-12   rounded-md"
                  : " text-black text-2xl mx-4 w-24 h-8  mt-2" 
