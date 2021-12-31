@@ -1,8 +1,5 @@
 import React from "react";
-import useNavigation from "./Hook";
-import navigationData from "./Navigation";
 import Navbar from "./Navbar";
-import TabbarAdmin from "./TabbarAdmin";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -12,7 +9,6 @@ import Cookies from "js-cookie";
 const NavbarAdmin = () => {
   const dispatch = useDispatch();
   const { idResto } = useParams();
-  const { currentRoute, setCurrentRoute } = useNavigation();
   const token = useSelector((state) => state.token);
   const tables = useSelector((state) => state.tables);
   let tokenAdmin;
@@ -34,18 +30,9 @@ const NavbarAdmin = () => {
 
   return (
     <div className="bg-gray-200 h-screen">
-      <Navbar
-        navigationData={navigationData}
-        currentRoute={currentRoute}
-        setCurrentRoute={setCurrentRoute}
-      />
-      <TabbarAdmin
-        navigationData={navigationData}
-        currentRoute={currentRoute}
-        setCurrentRoute={setCurrentRoute}
-      />
+      <Navbar/>
+      
       <div className="flex items-center justify-center text-5xl text-gray-300 h-5/6">
-        
       </div>
     </div>
   );
