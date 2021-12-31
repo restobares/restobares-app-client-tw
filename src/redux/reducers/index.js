@@ -12,7 +12,7 @@ import cartOrder from "./cartOrder";
 import mercadoPago from "./mercadoPago";
 import token from "./token";
 import ordersFeed from "./ordersFeed";
-
+import activeComponent from "./activeComponent";
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
@@ -28,5 +28,6 @@ export default combineReducers({
   cartOrder,
   mercadoPago,
   token,
-  ordersFeed
+  ordersFeed,
+  activeComponent
 });

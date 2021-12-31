@@ -25,7 +25,7 @@ import { deleteProduct } from "./deleteProduct";
 import { postMenu } from "./postMenu";
 import { getOrdersFeed } from "./getOrdersFeed";
 import { deleteProductFromTable } from "./deleteProductFromTable";
-
+import { setActiveComponent} from "./setActiveComponent";
 export {  
   getCategories,
   getLabels,
@@ -56,5 +56,7 @@ export {
   postMenu,
   getOrdersFeed,
   // this delete items from the table
-  deleteProductFromTable
+  deleteProductFromTable,
+  // set Active component for conditional rendering in admin side
+  setActiveComponent
 };
