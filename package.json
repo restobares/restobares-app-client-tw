@@ -14,6 +14,7 @@
     "classnames": "^2.3.1",
     "firebase-tools": "^10.0.1",
     "js-cookie": "^3.0.1",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-credit-cards": "^0.8.3",
     "react-dom": "^17.0.2",
