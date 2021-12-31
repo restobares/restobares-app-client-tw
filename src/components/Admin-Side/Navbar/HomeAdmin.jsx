@@ -6,38 +6,51 @@ import { useParams } from "react-router-dom";
 import { getTables } from "../../../redux/actions";
 import Cookies from "js-cookie";
 import Tables from "../Tables/Tables";
+import ActiveOrders from "../../ActiveOrders/ActiveOrders";
 
-const NavbarAdmin = () => {
+const HomeAdmin = () => {
   const dispatch = useDispatch();
   const { idResto } = useParams();
   const token = useSelector((state) => state.token);
   const tables = useSelector((state) => state.tables);
+  const active = useSelector((state) => state.activeComponent.activeComponent);
   let tokenAdmin;
   let tokenStaff;
 
   if (token.admin.lenght > 0 && token.admin !== "") {
-    tokenAdmin = Cookies.set('token-admin', `${token.admin}`, { expires: 0.35, secure: true });
+    tokenAdmin = Cookies.set("token-admin", `${token.admin}`, {
+      expires: 0.35,
+      secure: true,
+    });
   }
   if (token.staff.length > 0 && token.staff !== "") {
-    tokenStaff = Cookies.set('token-staff', `${token.staff}`, { expires: 0.35, secure: true });
+    tokenStaff = Cookies.set("token-staff", `${token.staff}`, {
+      expires: 0.35,
+      secure: true,
+    });
   }
 
   useEffect(() => {
-    dispatch(getTables(idResto, Cookies.get('token-staff')));
+    dispatch(getTables(idResto, Cookies.get("token-staff")));
   }, []);
-  
-  console.log("token staff",Cookies.get('token-staff'));
-  console.log("tables",tables)
+
+  console.log("token staff", Cookies.get("token-staff"));
+  console.log("tables", tables);
 
   return (
     <div className="bg-gray-200 h-screen">
-      <Navbar/>
-      <Tables/>
-      
+      <Navbar />
       <div className="flex items-center justify-center text-5xl text-gray-300 h-5/6">
+        {active === "Tables" ? (
+          <Tables tables={tables}/>
+        ) : active === "Orders" ? (
+          <ActiveOrders />
+        ) : (
+          <laberl>uwu</laberl>
+        )}
       </div>
     </div>
   );
 };
 
-export default NavbarAdmin;
+export default HomeAdmin;
