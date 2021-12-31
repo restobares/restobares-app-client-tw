@@ -6,9 +6,9 @@ function tables(state = initialState, action) {
 
   if (action.type === ActionTypes.GET_TABLES) {
     
-    let busyTables = action.payload?.filter((table) => table.state !== 'free');
+    // let busyTables = action.payload?.filter((table) => table.state !== 'free');
 
-    return busyTables;
+    return action.payload;
   }
   if (action.type === ActionTypes.DELETE_PRODUCT_FROM_TABLE) {
     return state;
