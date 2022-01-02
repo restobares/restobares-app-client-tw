@@ -39,7 +39,7 @@ const PayBoard = () => {
 
   const handlePayWithCard = async () => {
     let json = await dispatch(postOrderToMP(idResto, idTable, tip));
-    // console.log(json)
+    console.log(json)
     window.location.href = `${json.payload.response.init_point}`
   } 
 
