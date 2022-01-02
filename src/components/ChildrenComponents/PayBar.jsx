@@ -30,7 +30,7 @@ const PayBar = () => {
       <Link to={`/resto/${idResto}/table/${idTable}/bill`}>
         <button className="float-right text-pink-900 border-2 border-pink-900 bg-pink-300 mt-2 w-16 rounded-xl mr-2">
           {" "}
-          Pagar
+          Pay
         </button>
       </Link>
       <button
@@ -38,7 +38,7 @@ const PayBar = () => {
         onClick={openModal}
       >
         {" "}
-        Pedir
+        Order
       </button>
 
       <CommentModal showModal={showModal} setShowModal={setShowModal} />

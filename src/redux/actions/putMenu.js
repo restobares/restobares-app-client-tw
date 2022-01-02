@@ -1,20 +1,16 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function putMenu(idResto, idProduct, menuItem) {
+export function putMenu(idResto, idProduct, menuItem, token) {
 
   return async function(dispatch) {
 
     try {
 
-      var json = await axios.put(`http://restobares-app-api.herokuapp.com/resto/${idResto}/admin/menu/${idProduct}`, {
-        name: menuItem.name,
-        price: menuItem.price,
-        detail: menuItem.detail,
-        image: menuItem.image,
-        CategoryId: menuItem.categoryId,
-        id_label: menuItem.id_label,
-        DiscountId: menuItem.discountId
+      var json = await axios.put(`http://restobares-app-api.herokuapp.com/resto/${idResto}/admin/menu/${idProduct}`, menuItem, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       return dispatch({
