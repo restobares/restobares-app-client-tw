@@ -39,24 +39,24 @@ const Navbar = () => {
 
   
   return (
-    <nav className="flex flex:row items-center justify-between px-8 h18  bg-pink-700 h-12">
-      <span className="text-5xl text-gray-800 mb-1 mt-1">
-      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="40" alt="" />
+    <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+      <span className="text-5xl text-gray-800 mb-1 mt-1 ml-2">
+      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="36" alt="" />
       </span>
-      <ul className="flex flex-row  mx-auto h-12"> { 
+      <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (             
                <button id={i} name={el.name} onClick={(e) => handlerActive(e)} className= {
                  i === active 
-                 ? " text-white text-2xl mx-4 w-24 bg-pink-100 bg-opacity-20 h-12   rounded-md"
-                 : " text-black text-2xl mx-4 w-24 h-8  mt-2" 
+                 ? " text-white text-2xl mx-4 w-20 bg-pink-100 bg-opacity-20 h-12  rounded-md md:w-32"
+                 : " text-black text-2xl mx-4 w-20 h-8  mt-2  md:w-32" 
                 } >
                {width > WidthMedium  
                 ? el.name 
-                : <img  className="mx-8 " src={el.img} id={i} width="32" alt=""/>}
+                : <img  className="mx-auto " src={el.img} id={i} width="32" alt=""/>}
                 </button>      
             ))}
-      </ul>
-      <button className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+      </div>
+      <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
         Logout
       </button>
     </nav>

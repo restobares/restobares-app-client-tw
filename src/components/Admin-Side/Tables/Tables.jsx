@@ -96,15 +96,15 @@ export default function Tables({tables}) {
 // ]
 
 
-  return (
-    <React.Fragment>
-      <div className="container justify-center flex flex-col w-screen">
+  return <div className=" h-full bg-white  flex flex-col w-screen">
+
+      
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           {/* <button onClick={() => dispatch(getTables(idResto,token))}>
             uwu
           </button> */}
           <table>
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 ">
               <tr>
                 <th
                   scope="col"
@@ -120,7 +120,7 @@ export default function Tables({tables}) {
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs text-gray-500 uppercase "
+                  className="px-6 py-3 text-center w-full text-xs text-gray-500 uppercase "
                 >
                   Estado
                 </th>
@@ -150,7 +150,7 @@ export default function Tables({tables}) {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {Ctables.state === "waiting" ? (
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800">
+                      <span className="text-left px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800">
                         {Ctables.state}
                       </span>
                     ) : (
@@ -165,6 +165,5 @@ export default function Tables({tables}) {
           </table>
         </div>
       </div>
-    </React.Fragment>
-  );
+
 }
