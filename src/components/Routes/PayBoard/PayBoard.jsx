@@ -39,7 +39,7 @@ const PayBoard = () => {
 
   const handlePayWithCard = async () => {
     let json = await dispatch(postOrderToMP(idResto, idTable, tip));
-    // console.log(json)
+    console.log(json)
     window.location.href = `${json.payload.response.init_point}`
   } 
 
@@ -55,7 +55,7 @@ const PayBoard = () => {
       </div>
 
       <div className="p-4 inline-flex">
-			 <div className=" bg-pink-700 w-48 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+			 <div className=" bg-pink-700 w-52 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
           <p className='inline-block text-left'> {'Total Price: '}</p>
           <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice)}</p>
        </div>
@@ -70,7 +70,7 @@ const PayBoard = () => {
           onChange={(e) => {
             const selected = Number(e.target.value);
             setTipPercentage(selected);
-            setTip(totalPrice * (selected / 100));
+            setTip(Number((totalPrice * (selected / 100)).toFixed(2)));
           }}
           className="font-bold px-2 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
         >
@@ -89,7 +89,7 @@ const PayBoard = () => {
       </div>
 
       <div className="p-4 inline-flex">
-			 <div className=" bg-pink-700 w-48 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+			 <div className=" bg-pink-700 w-52 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
           <p className='inline-block text-left'> {'Total Price: '}</p>
           <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice) + tip}</p>
        </div>

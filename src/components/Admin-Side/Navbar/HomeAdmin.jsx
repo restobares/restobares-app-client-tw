@@ -17,7 +17,7 @@ const HomeAdmin = () => {
   let tokenAdmin;
   let tokenStaff;
 
-  if (token.admin.lenght > 0 && token.admin !== "") {
+  if (token.admin.length > 0 && token.admin !== "") {
     tokenAdmin = Cookies.set("token-admin", `${token.admin}`, {
       expires: 0.35,
       secure: true,

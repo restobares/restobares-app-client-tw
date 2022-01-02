@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../redux/actions';
+import Cookies from "js-cookie";
 
 const Login = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     // let idResto = 1;
+    Cookies.remove('token-admin');
+    Cookies.remove('token-staff');
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,9 +29,9 @@ const Login = () => {
         if (validEmail(email)){
           
           let json = await dispatch(login(email, password));        
-
+          // console.log(json);
           if (!json.payload.error) {
-            navigate(`../resto/${json.payload.id}/admin`)
+            navigate(`../resto/${json.payload.id}/resto-home`)
           } else {
             // this is where the credentials are invalid
             console.log('invalid credentials')
