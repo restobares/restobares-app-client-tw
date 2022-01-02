@@ -28,7 +28,7 @@ function App() {
 
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
-          <Route path="resto/:idResto/admin" element={<HomeAdmin />}></Route>
+          <Route path="resto/:idResto/resto-home" element={<HomeAdmin />}></Route>
           
           <Route path="resto/:idResto/admin/tables" element={<Tables/>}></Route>
           <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>
