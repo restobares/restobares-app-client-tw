@@ -38,9 +38,9 @@ const HomeAdmin = () => {
   console.log("tables", tables);
 
   return (
-    <div className="bg-gray-200 h-screen">
+    <div className="bg-gray-200 h-screen w-screen flex flex-col">
       <Navbar />
-      <div className="flex items-center justify-center text-5xl text-gray-300 h-5/6">
+      <div className=" w-full h-full my-4">
         {active === "Tables" ? (
           <Tables tables={tables}/>
         ) : active === "Orders" ? (
