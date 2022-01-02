@@ -1,9 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
 import Moment from 'moment';
-import { getTables } from "../../../redux/actions";
+import { Link } from "react-router-dom";
 
 
 
@@ -96,65 +93,71 @@ export default function Tables({tables}) {
 // ]
 
 
-  return <div className=" h-full bg-white  flex flex-col w-screen">
+  return (
+    <React.Fragment>
+      <div>
+        <div className="align-middle inline-block w-full">
+          <table className="w-screen">
+            <thead className="bg-gray-50">
 
-      
-        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-          {/* <button onClick={() => dispatch(getTables(idResto,token))}>
-            uwu
-          </button> */}
-          <table>
-            <thead className="bg-gray-50 ">
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs text-gray-500 uppercase "
+                  className="py-3 text-xs text-gray-500 uppercase "
                 >
                   Número
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs text-gray-500 uppercase "
+                  className="py-3 text-xs text-gray-500 uppercase "
                 >
                   Hora
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-center w-full text-xs text-gray-500 uppercase "
+                  className="py-3 text-xs text-gray-500 uppercase "
+
                 >
                   Estado
                 </th>
-                <th scope="col" className="relative px-6 py-3">
-                  <span className="sr-only">Edit</span>
+
+                <th
+                  scope="col"
+                  className="py-3 text-xs text-gray-500 uppercase "
+                >
+                  -
                 </th>
+                
               </tr>
             </thead>
             <tbody>
               {tables.map((Ctables) => (
                 <tr key={Ctables.id}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {/* <Link to={`./${tables.tableId}`} className="link"> */}
-                      <div className="text-sm text-gray-900">{Ctables.tableId}</div>
-                    {/* </Link> */}
+                  <td className="py-4 whitespace-nowrap">
+                    <Link to={`./${Ctables.tableId}`} className="link">
+                      <div className="text-base text-gray-900">{Ctables.tableId}</div>
+                    </Link>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
                     {Ctables.currentOrder.time ? (
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">                        
+                      <span className="px-2 inline-flex text-sm leading-5 font-semibold rounded-full">                        
                         {Moment(Ctables.currentOrder.time).format("HH:mm:ss")}
                       </span>
                     ) : (
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
+                      <span className="inline-flex text-sm leading-5 font-semibold rounded-full">
                       </span>
                     )}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="py-4 whitespace-nowrap">
                     {Ctables.state === "waiting" ? (
-                      <span className="text-left px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-green-800">
+
+                      <span className="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-green-800">
+
                         {Ctables.state}
                       </span>
                     ) : (
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      <span className="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                         {Ctables.state}
                       </span>
                     )}
