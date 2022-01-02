@@ -44,12 +44,12 @@ const Modal = ({showModal, setShowModal}) => {
 
             <div className="absolute flex px-3 w-full top-48 right-0 "> {/* absolute w-full top-1/2 transform -translate-y-1/2 flex justify-between items-start px-3 */}
               <button onClick={handleOnPrevClick} > {/* prev */}
-                <img src="https://img.icons8.com/external-those-icons-fill-those-icons/24/aa0020/external-left-arrows-those-icons-fill-those-icons-3.png" width="35" />
+                <img src="https://img.icons8.com/external-those-icons-fill-those-icons/24/aa0020/external-left-arrows-those-icons-fill-those-icons-3.png" alt='' width="35" />
               </button>
             </div>  
             <div className="absolute flex px-3 w-full top-48 left-80">
               <button onClick={handleOnNextClick} > {/* next */}
-                <img src="https://img.icons8.com/external-those-icons-fill-those-icons/24/aa0020/external-right-arrows-those-icons-fill-those-icons-5.png" width="35" />
+                <img src="https://img.icons8.com/external-those-icons-fill-those-icons/24/aa0020/external-right-arrows-those-icons-fill-those-icons-5.png" alt='' width="35" />
               </button>
             </div>
           </div>
