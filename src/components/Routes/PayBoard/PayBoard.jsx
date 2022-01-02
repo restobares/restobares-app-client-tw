@@ -13,19 +13,13 @@ const PayBoard = () => {
   const { cart }= useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
-  //const [showModalPay, setShowModalPay] = useState(false);
-  const [percentage, setPercentage] = useState("0");
-  const [tip, setTip] = useState("tip");
-  const [result, setResult] = useState(0);
+  const [tipPercentage, setTipPercentage] = useState(0);
+  const [tip, setTip] = useState(0);
   
 
   const openModal = () => {
     setShowModal(prev => !prev);
   }
-
-  /* const openModalPay = () => {
-    setShowModalPay(prev => !prev);
-  } */
 
   var totalPrice = 0
 	// esto calcula el precio de las ordenes confirmadas
@@ -44,23 +38,10 @@ const PayBoard = () => {
 
 
   const handlePayWithCard = async () => {
-    let json = await dispatch(postOrderToMP(idResto, idTable, 10))
+    let json = await dispatch(postOrderToMP(idResto, idTable, tip));
+    // console.log(json)
     window.location.href = `${json.payload.response.init_point}`
-  }
-
-
-  const handleBill = (selected) => {
-    if (percentage === '') {
-      alert("Invalid input");
-    }
-
-    const total = (totalPrice * percentage) / 100;
-
-    setResult(total.toFixed(2));
-  
-    setPercentage("");
-    setTip(tip);
-  };
+  } 
 
 
   return (
@@ -76,7 +57,7 @@ const PayBoard = () => {
       <div className="p-4 inline-flex">
 			 <div className=" bg-pink-700 w-48 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
           <p className='inline-block text-left'> {'Total Price: '}</p>
-          <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice) + parseInt(result)}</p>
+          <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice)}</p>
        </div>
       </div>
 
@@ -85,31 +66,33 @@ const PayBoard = () => {
         <div className='mt-2 mb-2'>
           
         <select
-          value={percentage}
+          value={tipPercentage}
           onChange={(e) => {
             const selected = Number(e.target.value);
-            setPercentage(selected);
+            setTipPercentage(selected);
+            setTip(totalPrice * (selected / 100));
           }}
           className="font-bold px-2 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
         >
           <option selected value="0">
             -- Tip percentage --
           </option>
-          <option onClick={() => handleBill()} value="20"> 20% - Excellent!</option>
-          <option onClick={() => handleBill()} value="15"> 15% - Good!</option>
-          <option onClick={() => handleBill()} value="10"> 10% - Nice!</option>
-          <option onClick={() => handleBill()} value="5"> 5% - OK!</option>
-          <option onClick={() => handleBill()} value="0"> 0% - 🐀</option>
+          <option value="20"> 20% - Excellent!</option>
+          <option value="15"> 15% - Good!</option>
+          <option value="10"> 10% - Nice!</option>
+          <option value="5"> 5% - OK!</option>
+          <option value="0"> 0% - 🐀</option>
         </select>
 
-        {/* <div>
-          <button onClick={() => handleBill()}
-          className="bg-pink-700 text-md font-semibold text-white  py-2 w-20 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2"
-          >Add Tip</button>
-        </div> */}
-
         </div>
-        <p className='inline-block font-bold mb-2'>Tips: {result}</p>
+        <p className='inline-block font-bold mb-2'>Tips: {tip}</p>
+      </div>
+
+      <div className="p-4 inline-flex">
+			 <div className=" bg-pink-700 w-48 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+          <p className='inline-block text-left'> {'Total Price: '}</p>
+          <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice) + tip}</p>
+       </div>
       </div>
      
       <div className="p-4 inline-flex">
