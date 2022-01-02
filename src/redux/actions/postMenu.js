@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function postMenu(idResto, menuItem) {
+export function postMenu(idResto, menuItem, token) {
 
   return async function(dispatch) {
 
@@ -15,6 +15,10 @@ export function postMenu(idResto, menuItem) {
         CategoryId: menuItem.categoryId,
         id_label: menuItem.id_label,
         DiscountId: menuItem.discountId
+      }, {
+        headers: {
+          'Authorization': `Bearer, ${token}`
+        }
       });
 
       return dispatch({

@@ -99,6 +99,7 @@ export default function Tables({tables}) {
         <div className="align-middle inline-block w-full">
           <table className="w-screen">
             <thead className="bg-gray-50">
+
               <tr>
                 <th
                   scope="col"
@@ -115,6 +116,7 @@ export default function Tables({tables}) {
                 <th
                   scope="col"
                   className="py-3 text-xs text-gray-500 uppercase "
+
                 >
                   Estado
                 </th>
@@ -149,7 +151,9 @@ export default function Tables({tables}) {
                   </td>
                   <td className="py-4 whitespace-nowrap">
                     {Ctables.state === "waiting" ? (
+
                       <span className="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-red-100 text-green-800">
+
                         {Ctables.state}
                       </span>
                     ) : (
@@ -164,6 +168,5 @@ export default function Tables({tables}) {
           </table>
         </div>
       </div>
-    </React.Fragment>
-  );
+
 }
