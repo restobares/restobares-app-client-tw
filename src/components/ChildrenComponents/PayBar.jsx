@@ -24,7 +24,7 @@ const PayBar = () => {
   return (
     <div className="h-12 w-full bg-pink-800  text-xl fixed bottom-0  ">
       <h1 className="float-left text-white text-left  ml-2 text-sm mt-4">
-        Nuevo consumo ${totalPrice}{" "}
+        New Consumption ${totalPrice}{" "}
 
       </h1>
       <Link to={`/resto/${idResto}/table/${idTable}/bill`}>

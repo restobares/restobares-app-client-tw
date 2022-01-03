@@ -7,6 +7,7 @@ import { getTables } from "../../../redux/actions";
 import Cookies from "js-cookie";
 import Tables from "../Tables/Tables";
 import ActiveOrders from "../../ActiveOrders/ActiveOrders";
+import Settings from "../../Settings/Settings";
 
 const HomeAdmin = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const HomeAdmin = () => {
   let tokenAdmin;
   let tokenStaff;
 
-  if (token.admin.lenght > 0 && token.admin !== "") {
+  if (token.admin.length > 0 && token.admin !== "") {
     tokenAdmin = Cookies.set("token-admin", `${token.admin}`, {
       expires: 0.35,
       secure: true,

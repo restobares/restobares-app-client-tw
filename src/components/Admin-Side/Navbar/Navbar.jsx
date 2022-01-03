@@ -39,9 +39,9 @@ const Navbar = () => {
 
   
   return (
-    <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
-      <span className="text-5xl text-gray-800 mb-1 mt-1 ml-2">
-      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="36" alt="" />
+    <nav className="flex flex:row items-center justify-between px-8 h18  bg-pink-700 h-12 mb-3">
+      <span className="text-5xl text-gray-800 mb-1 mt-1">
+      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="40" alt="" />
       </span>
       <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (  
@@ -64,10 +64,9 @@ const Navbar = () => {
                     /> 
                   </div>
         
-               
             ))}
-      </div>
-      <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+      </ul>
+      <button className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
         Logout
       </button>
     </nav>
@@ -75,3 +74,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+  

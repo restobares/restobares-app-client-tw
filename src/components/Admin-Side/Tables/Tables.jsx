@@ -1,9 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
 import Moment from 'moment';
-import { getTables } from "../../../redux/actions";
+import { Link } from "react-router-dom";
 
 
 
