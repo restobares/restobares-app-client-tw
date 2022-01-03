@@ -32,6 +32,7 @@ const Search = () => {
             src="https://img.icons8.com/ios-filled/50/000000/delete-sign.png"
             width="24"
             className="ml-1"
+            alt=""
           />
         </button> 
           }
@@ -40,6 +41,7 @@ const Search = () => {
             type="text"
             onChange={onChangeD}
             value={search}
+            alt=""
           />
       </div>
     </div>

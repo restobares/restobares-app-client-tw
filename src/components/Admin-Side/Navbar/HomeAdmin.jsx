@@ -39,17 +39,26 @@ const HomeAdmin = () => {
   console.log("tables", tables);
 
   return (
-    <div className="bg-gray-200 h-screen w-screen flex flex-col">
-      <Navbar />
-      <div className=" w-full h-full my-4">
-        {active === "Tables" ? (
-          <Tables tables={tables}/>
-        ) : active === "Orders" ? (
-          <ActiveOrders />
-        ) : (
-          <Settings />
-        )}
-      </div>
+    <div className="bg-gray-200 h-full">
+          <div className="bg-gray-200 h-screen">
+            <Navbar />
+            <div className="flex items-center justify-center text-5xl text-gray-300">
+              {active === "Tables" ? (
+                <div className="bg-gray-200 w-full">
+                  <Tables tables={tables} />
+                </div>
+              ) : //Puse estos div para que al scrollear el bg siga siendo gris y no blanco
+              active === "Orders" ? (
+                <div className="bg-gray-200 w-full">
+                  <ActiveOrders />
+                </div>
+              ) : (
+                <div className="w-full h-full text-black text-lg font-bold">
+                <Settings />
+                </div>
+              )}
+            </div>
+    </div>
     </div>
   );
 };

@@ -12,6 +12,7 @@ import HomeAdmin from './components/Admin-Side/Navbar/HomeAdmin';
 import PutTesting from './components/Admin-Side/PutTesting.jsx';
 import ActiveOrders from './components/ActiveOrders/ActiveOrders.jsx';
 import Tables from './components/Admin-Side/Tables/Tables.jsx';
+import TableDetail from './components/Admin-Side/Tables/TableDetail.jsx';
 import AdminMenu from './components/Admin-Side/AdminMenu/AdminMenu.jsx';
 
 
@@ -33,6 +34,7 @@ function App() {
           
           <Route path="resto/:idResto/admin/tables" element={<Tables/>}></Route>
           <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>
+          <Route path="resto/:idResto/resto-home/:id" element={<TableDetail/>}></Route>
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
           <Route path="resto/:idResto/admin/menu" element={<AdminMenu />}></Route>
 

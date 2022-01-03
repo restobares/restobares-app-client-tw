@@ -21,13 +21,13 @@ const OrderBar = () => {
     <div className='nav-bar'>
         <div className=''>
         <button className="inline-block float-left button ml-2 " onClick={event =>  handleSideBar(event)}>
-        <img src="https://img.icons8.com/material-outlined/24/aa0020/menu--v1.png"  width="24" className='ml-1'/>
+        <img src="https://img.icons8.com/material-outlined/24/aa0020/menu--v1.png"  width="24" alt='' className='ml-1'/>
         </button>
         <Search/>
         <Link  to={`/resto/${idResto}/table/${idTable}/order`}> 
         <button className="inline-block float-right mr-2 button">
         
-        <img src="https://img.icons8.com/material-outlined/24/aa0020/fast-cart.png" width="24" className='ml-1'/>
+        <img src="https://img.icons8.com/material-outlined/24/aa0020/fast-cart.png" width="24" alt='' className='ml-1'/>
           </button> </Link>
        
         </div>
