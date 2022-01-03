@@ -53,7 +53,7 @@ const HomeAdmin = () => {
                   <ActiveOrders />
                 </div>
               ) : (
-                <div className="w-full h-full text-black text-lg font-bold">
+                <div className="w-5/6 h-full text-black text-lg font-bold mt-4">
                 <Settings />
                 </div>
               )}

@@ -66,21 +66,21 @@ const AdminMenu = () => {
        <input
            type="text"
            name="titulo"
-           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
+           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
            placeholder="Enter Name"
        />
     
        <input
            type="number"
            name="descripcion"
-           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Price"
        />
        
        <input
            type="text"
            name="descripcion"
-           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Details"
        />
        
@@ -92,32 +92,59 @@ const AdminMenu = () => {
        <select
            type="text"
            name="descripcion"
-           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
        >
        
         <option selected value="0">
             -- Choose your categories --
         </option>
 
-       <option value="1">1</option>
-       <option value="2">2</option>
-       <option value="3">3</option>
+       <option value="Breakfast & Snacks">Breakfast & Snacks</option>
+       <option value="Starter">Starter</option>
+       <option value="Saladas">Saladas</option>
+       <option value="Pastas">Pastas</option>
+       <option value="Pizzas">Pizzas</option>
+       <option value="Meats">Meats</option>
+       <option value="Sandwiches">Sandwiches</option>
+       <option value="Traditional">Traditional</option>
+       <option value="For Kids">For Kids</option>
 
        </select>
        
        <select
            type="text"
            name="descripcion"
-           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
        >
 
         <option selected value="0">
             -- Choose your labels --
         </option>
 
-       <option value="1">1</option>
-       <option value="2">2</option>
-       <option value="3">3</option>
+       <option value="Bakery">Bakery</option>
+       <option value="Beers">Beers</option>
+       <option value="Bovine">Bovine</option>
+       <option value="Cafeteria">Cafeteria</option>
+       <option value="Champagnes">Champagnes</option>
+       <option value="Chicken">Chicken</option>
+       <option value="Cocktails">Cocktails</option>
+       <option value="Crafted">Crafted</option>
+       <option value="Fish">Fish</option>
+       <option value="Gluten Free">Gluten Free</option>
+       <option value="Hamburger">Hamburger</option>
+       <option value="Ice Creams">Ice Creams</option>
+       <option value="Light">Light</option>
+       <option value="Lomo">Lomo</option>
+       <option value="No Alcohol">No Alcohol</option>
+       <option value="Pork">Pork</option>
+       <option value="Seafood">Seafood</option>
+       <option value="Smoothies">Smoothies</option>
+       <option value="Sodas">Sodas</option>
+       <option value="Sodium Low">Sodium Low</option>
+       <option value="Spicy">Spicy</option>
+       <option value="Vegan">Vegan</option>
+       <option value="Vegetarian">Vegetarian</option>
+       <option value="Wines & Sparkling wines">Wines & Sparkling wines</option>
 
        </select>
     
