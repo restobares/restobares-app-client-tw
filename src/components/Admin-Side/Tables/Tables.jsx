@@ -168,5 +168,5 @@ export default function Tables({tables}) {
           </table>
         </div>
       </div>
-
+    </React.Fragment>)
 }

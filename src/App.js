@@ -33,7 +33,7 @@ function App() {
           
           <Route path="resto/:idResto/admin/tables" element={<Tables/>}></Route>
           <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>
-          <Route path="resto/:idResto/admin/:id" element={<TableDetail/>}></Route>
+          <Route path="resto/:idResto/resto-home/:id" element={<TableDetail/>}></Route>
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
 
 
