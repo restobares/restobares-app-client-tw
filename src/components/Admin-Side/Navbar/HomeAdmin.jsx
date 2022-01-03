@@ -39,7 +39,7 @@ const HomeAdmin = () => {
           ) : active === "Orders" ? (
             <ActiveOrders />
           ) : (
-            <laberl>uwu</laberl>
+            <Settings />
           )}
 
         </div>
