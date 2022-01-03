@@ -7,6 +7,7 @@ import { getTables } from "../../../redux/actions";
 import Cookies from "js-cookie";
 import Tables from "../Tables/Tables";
 import ActiveOrders from "../../ActiveOrders/ActiveOrders";
+import Settings from "../../Settings/Settings";
 
 const HomeAdmin = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const HomeAdmin = () => {
         ) : active === "Orders" ? (
           <ActiveOrders />
         ) : (
-          <laberl>uwu</laberl>
+          <Settings />
         )}
       </div>
     </div>
