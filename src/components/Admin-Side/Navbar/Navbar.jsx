@@ -43,17 +43,27 @@ const Navbar = () => {
       <span className="text-5xl text-gray-800 mb-1 mt-1">
       <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="40" alt="" />
       </span>
-      <ul className="flex flex-row  mx-auto h-12"> { 
-            navItems.map((el,i) => (             
-               <button id={i} name={el.name} onClick={(e) => handlerActive(e)} className= {
-                 i === active 
-                 ? " text-white text-2xl mx-4 w-24 bg-pink-100 bg-opacity-20 h-12   rounded-md"
-                 : " text-black text-2xl mx-4 w-24 h-8  mt-2" 
-                } >
-               {width > WidthMedium  
-                ? el.name 
-                : <img  className="mx-8 " src={el.img} id={i} width="32" alt=""/>}
-                </button>      
+      <div className="flex flex-row h-12 justify-center"> { 
+            navItems.map((el,i) => (  
+              width > WidthMedium 
+                ? <button  id={i} name={el.name} onClick={(e) => handlerActive(e)}
+                className= {
+                  i === active 
+                  ? " text-white text-2xl mx-4 w-20 bg-pink-100 bg-opacity-20 h-12  rounded-md md:w-32"
+                  : " text-black text-2xl mx-4 w-20 h-8  mt-2  md:w-32" 
+                 }>
+                   {el.name}
+                 </button>
+                : <div  className= {
+                  i === active 
+                  ? " text-white text-2xl mx-4 px-4  bg-pink-100 bg-opacity-20  rounded-md "
+                  : " text-black text-2xl mx-4 px-4 " 
+                  }>
+                    <input 
+                    type="image" id={i} name={el.name}  src={el.img} width="42" alt="el.name" onClick={(e) => handlerActive(e)} 
+                    /> 
+                  </div>
+        
             ))}
       </ul>
       <button className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
