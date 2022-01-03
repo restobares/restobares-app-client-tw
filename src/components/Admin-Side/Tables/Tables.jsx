@@ -1,18 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Moment from 'moment';
 import { Link } from "react-router-dom";
+import { getTables } from "../../../redux/actions";
 
 
 
-export default function Tables({tables}) {
-  // const dispatch = useDispatch()
-  // const currentTables = useSelector((state) => state.tables)
-  // const token = useSelector((state) => state.token)
-  // const idResto = 'ANzbx5Pa3dPizabR'
+export default function Tables() {
 
-  // useEffect(() => {
-  //   dispatch(getTables(idResto, Cookies.get('token-staff')));
-  // }, []);
+  const dispatch = useDispatch();
+  const { idResto } = useParams();
+  const [time, setTime] = useState(Date.now());
+  let tokenStaff = Cookies.get("token-staff");
+  let tokenAdmin = Cookies.get("token-admin");
+  const tables = useSelector((state) => state.tables);
+  
+  useEffect(() => {
+    const interval = setInterval(() => setTime(Date.now()), 120000);
+    if (tokenStaff) {
+      dispatch(getTables(idResto, tokenStaff));
+    }
+    if (!tokenStaff && tokenAdmin) {
+      dispatch(getTables(idResto, tokenAdmin));
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [dispatch, time, idResto]);
+
 
   const [detailTable,setDetailTable] = useState (null);
 
@@ -31,7 +48,8 @@ export default function Tables({tables}) {
               <p className="w-7/12  mt-1 mr-5">Estado</p>
             </div>
               {tables.map( el => (
-                <div 
+                <div
+                  key={el.tableId}
                   className="w-full border-2 border-gray-400 rounded-xl flex flex-col mt-2  text-sm  font-semibold  ">
                   <div className="h-8 w-full  flex flex-row  ">
                     <p className="w-2/12 mt-1 font-semibold" > {Number(el.tableId)} </p>
