@@ -65,7 +65,7 @@ const Navbar = () => {
                   </div>
         
             ))}
-      </ul>
+            </div>
       <button className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
         Logout
       </button>
