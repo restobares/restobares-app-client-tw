@@ -32,22 +32,25 @@ const HomeAdmin = () => {
 
   useEffect(() => {
     dispatch(getTables(idResto, Cookies.get("token-staff")));
-  }, []);
+  }, [dispatch]);
 
-  console.log("token staff", Cookies.get("token-staff"));
-  console.log("tables", tables);
+  // console.log("token staff", Cookies.get("token-staff"));
+  // console.log("tables", tables);
 
   return (
-    <div className="bg-gray-200 h-screen w-screen flex flex-col">
+    <div className="bg-gray-200 h-screen w-screen flex flex-col ">
       <Navbar />
-      <div className=" w-full h-full my-4">
-        {active === "Tables" ? (
-          <Tables tables={tables}/>
-        ) : active === "Orders" ? (
-          <ActiveOrders />
-        ) : (
-          <laberl>uwu</laberl>
-        )}
+      <div className=" w-full h-full  overflow-scroll">
+        <div className=" mx-2">
+          {active === "Tables" ? (
+            <Tables tables={tables}/>
+          ) : active === "Orders" ? (
+            <ActiveOrders />
+          ) : (
+            <laberl>uwu</laberl>
+          )}
+
+        </div>
       </div>
     </div>
   );
