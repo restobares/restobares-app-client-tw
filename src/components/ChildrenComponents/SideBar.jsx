@@ -58,8 +58,8 @@ function SideBar() {
           <div className=' min-h-min mx-1'>
             <select name="" id="" className='text-xs truncate bg-pink-400 rounded-xl  w-20'  onChange={event => handleSort(event)}>
               <option value="default">Default</option>
-              <option value="priceDescendant">Price Descendant</option>
-              <option value="priceAscendant">Price Ascendant</option>
+              <option value="priceDescendant">Higher Price</option>
+              <option value="priceAscendant">Lower Price</option>
             </select>
             </div>
           </div>
