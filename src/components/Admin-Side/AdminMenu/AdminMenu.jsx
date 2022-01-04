@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setActiveComponent } from "../../../redux/actions";
+import Swal from 'sweetalert2';
 
 
 const AdminMenu = () => {
@@ -33,6 +34,17 @@ const AdminMenu = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [])
+
+
+  const alerta = () => {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your menu has been sent',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
 
 
     return (
@@ -148,7 +160,7 @@ const AdminMenu = () => {
 
        </select>
     
-       <button type="submit" className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+       <button onClick={alerta} type="button" className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
        Send Menu
        </button>
     </form>
