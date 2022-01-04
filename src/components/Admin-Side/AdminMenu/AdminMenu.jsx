@@ -88,6 +88,10 @@ const AdminMenu = () => {
           title: 'Oops...',
           text: 'This file is not allowed, please upload a valid file.',
         })
+        setInput({
+            ...input,
+            image: ""
+          })
         return false;
       } else {
           imageSizeValidate(e.target);
@@ -104,7 +108,11 @@ const AdminMenu = () => {
           icon: 'error',
           title: 'Oops...',
           text: `Maximum file size is ${maxSizeImage}KB, This file size is: ${fsize.toFixed(0)}KB`,
-        })
+          })
+          setInput({
+            ...input,
+            image: ""
+          })
           return false;
         } else {
             encodeImageBase64(eTarget);
@@ -237,6 +245,7 @@ const AdminMenu = () => {
        <input
            type="file"
            name='image'
+           value={input.image}
            className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            accept='image/*'
            onChange={(e) => handleImageSelection(e)}
