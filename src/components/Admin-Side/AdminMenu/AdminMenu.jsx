@@ -1,7 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveComponent, getLabels, getCategories } from "../../../redux/actions";
+
+
+import BackButton from '../BackButton';
+
 
 
 const AdminMenu = () => {
@@ -62,9 +67,7 @@ const AdminMenu = () => {
     <div>
 
     <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
-      <span className="text-5xl text-gray-800 mb-1 mt-1 ml-2">
-      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="36" alt="" />
-      </span>
+      <BackButton/>
       <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (             
                <button id={i} name={el.name} onClick={(e) => handlerActive(e)} className= {
@@ -153,7 +156,7 @@ const AdminMenu = () => {
         })}
        </select>
     
-       <button type="submit" className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+       <button type="submit" onClick={(e) => {e.preventDefault()}} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
        Send Menu
        </button>
     </form>

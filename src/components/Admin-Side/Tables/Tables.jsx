@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Moment from 'moment';
-import { Link } from "react-router-dom";
 import { getTables } from "../../../redux/actions";
 
 

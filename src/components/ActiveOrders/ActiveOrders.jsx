@@ -33,24 +33,23 @@ const ActiveOrders = () => {
       {ordersFeed.length > 0 && ordersFeed.map((order) => {
         return (
           <div>
-            <div className="px-6 py-4 bg-pink-700 text-white rounded-lg mb-5 capitalize">
+            <div className=" lg:px-6 py-4 bg-pink-700 text-white rounded-lg mb-5 capitalize">
               <h1 className="text-lg">Table: {order.idTable}</h1>
 
-              <h1 className="text-left pl-4 text-3xl">Order:</h1>
+              <h1 className="text-left pl-4 text-xl md:text-3xl">Order:</h1>
               {order.currentOrder.products.map((item) => {
                 return (
-                    <div className="bg-pink-500 mx-20 my-2 rounded-full grid grid-flow-col text-2xl">
-                      <h1 className="text-left pl-5">{item.productName}:</h1>
-                      <h1 className="text-right px-5">{item.quantity}</h1>
+                    <div className="w-fit bg-pink-500 mx-20 my-2 rounded-lg md:rounded-full grid grid-flow-col text-base lg:text-2xl">
+                      <h1 className="text-left px-2 md:pl-5">{item.productName}:</h1>
+                      <h1 className="text-right px-2 md:px-5">{item.quantity}</h1>
                     </div>
                 );
               })}
               <div></div>
-
               {order.currentOrder.comments !== "" && (
                 <div>
-                  <h4 className="text-left pl-4 text-3xl mt-5">Comments:</h4>
-                  <div className="text-2xl">
+                  <h4 className="text-left pl-4 text-xl md:text-3xl mt-5">Comments:</h4>
+                  <div className="text-xl md:text-2xl">
                     <h4 className="text-center">{order.currentOrder.comments.split("<br>").join('')}</h4>
                   </div>
                 </div>
