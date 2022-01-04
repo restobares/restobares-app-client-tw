@@ -1,12 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveComponent, getLabels, getCategories } from "../../../redux/actions";
-
-
 import BackButton from '../BackButton';
-/* import Swal from 'sweetalert2'; */
+import Swal from 'sweetalert2';
 
 
 
@@ -64,7 +61,8 @@ const AdminMenu = () => {
   }, [])
 
 
-  /* const alerta = () => {
+  const alerta = (e) => {
+    e.preventDefault()
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -72,7 +70,7 @@ const AdminMenu = () => {
       showConfirmButton: false,
       timer: 1500
     })
-  } */
+  }
 
 
     return (
@@ -168,7 +166,7 @@ const AdminMenu = () => {
         })}
        </select>
     
-       <button type="submit" onClick={(e) => {e.preventDefault()}} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+       <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
        Send Menu
        </button>
     </form>
