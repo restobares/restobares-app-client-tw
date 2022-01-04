@@ -2,9 +2,10 @@ import React from 'react';
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveComponent, getLabels, getCategories } from "../../../redux/actions";
+import Select from 'react-select'
 import BackButton from '../BackButton';
 import Swal from 'sweetalert2';
-
+import { inputValidator } from '../../../redux/actions';
 
 
 const AdminMenu = () => {
@@ -21,11 +22,121 @@ const AdminMenu = () => {
       Labels: []
     });
 
+    const [errors, setErrors] = useState({});
+
+    let options = [];
+    let optionsCategories = [];
+
+    for (var i = 0; i < labels.length; i++) {
+
+      let eachOption = {
+        value: labels[i].id,
+        label: labels[i].name
+      }
+      options.push(eachOption);
+    }
+    for (var i = 0; i < categories.length; i++) {
+
+      let eachOption = {
+        value: categories[i].id,
+        label: categories[i].name
+      }
+      optionsCategories.push(eachOption);
+    }
+    
     function handleInputChanges(e) {
       setInput({
         ...input,
         [e.target.name]: e.target.value
+      });
+      setErrors(inputValidator({
+        ...input,
+        [e.target.name]: e.target.value
+      }))
+    }
+
+    function handleLabelSelection(e) {
+      
+      let labelsSelected = e.map((label) => label.value)
+      setInput({
+          ...input,
+          Labels: labelsSelected
+        })
+    }
+
+    function handleCategorySelection(e) {
+      
+      setInput({
+          ...input,
+          CategoryId: e.value
       })
+      setErrors(inputValidator({
+          ...input,
+          CategoryId: e.value
+      }))
+    }
+
+    var validExt = ".png, .jpeg, .jpg";
+    function handleImageSelection(e) {
+      var filePath = e.target.value;
+      var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+      var pos = validExt.indexOf(getFileExt);
+      if(pos < 0) {
+        // alert("This file is not allowed, please upload a valid file.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'This file is not allowed, please upload a valid file.',
+        })
+        setInput({
+            ...input,
+            image: ""
+          })
+        return false;
+      } else {
+          imageSizeValidate(e.target);
+          return true;
+      }
+    }
+    var maxSizeImage = '950';
+    function imageSizeValidate(eTarget) {
+      if (eTarget.files && eTarget.files[0]) {
+        var fsize = eTarget.files[0].size/1000;
+        if(fsize > maxSizeImage) {
+          // alert('Maximum file size is ' + maxSizeImage + 'KB, This file size is: ' + fsize + "KB");
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `Maximum file size is ${maxSizeImage}KB, This file size is: ${fsize.toFixed(0)}KB`,
+          })
+          setInput({
+            ...input,
+            image: ""
+          })
+          return false;
+        } else {
+            encodeImageBase64(eTarget);
+            return true;
+        }
+      }
+    }
+
+    function encodeImageBase64(element) {
+      var file = element.files[0];
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        // console.log('RESULT', reader.result)
+        setInput({
+          ...input,
+          image: reader.result
+        })
+        setErrors(inputValidator({
+          ...input,
+          image: reader.result
+        }))
+      }
+      
+      reader.readAsDataURL(file);
     }
 
     const WidthMedium = 768;
@@ -102,6 +213,7 @@ const AdminMenu = () => {
        <input
            type="text"
            name="name"
+           maxLength="50"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
            placeholder="Enter Name"
            onChange={(e) => handleInputChanges(e)}
@@ -111,6 +223,7 @@ const AdminMenu = () => {
            type="number"
            name="price"
            min="1"
+           maxLength="4"
           //  oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
           // pattern='^[0-9]+'
           //  onKeyUp={Number(input.price) < 0 ? Number(input.price) * -1 : input.price}
@@ -123,50 +236,24 @@ const AdminMenu = () => {
        <input
            type="text"
            name="detail"
+           maxLength="140"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Details"
+           onChange={(e) => handleInputChanges(e)}
        />
        
        <input
            type="file"
            name='image'
+           value={input.image}
            className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-       />
-       
-       <select
-           type="text"
-           name="CategoryId"
-           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-      >
-      
-        <option selected value="0">
-            -- Choose your categories --
-        </option>
-        {categories && categories.map((category) => {
-          return (
-            <option key={category.id} value={category.name}>{category.name}</option>
-          )
-        })}
+           accept='image/*'
+           onChange={(e) => handleImageSelection(e)}
+       />      
 
-      </select>
-      
-      <select
-          type="text"
-          name="Labels"
-          className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-      >
-
-        <option selected value="0">
-            -- Choose your labels --
-        </option>
-        {labels && labels.map((label) => {
-          return (
-            <option key={label.id} value={label.name}>{label.name}</option>
-          )
-        })}
-       </select>
-    
-       <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+        <Select options={optionsCategories} onChange={(e) => handleCategorySelection(e)} placeholder="Choose your category..." className="pb-3" />
+        <Select isMulti options={options} onChange={(e) => handleLabelSelection(e)} placeholder="Choose your labels..." />
+       <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.keys(errors).length > 0 || input.name === ""}>
        Send Menu
        </button>
     </form>
