@@ -27,6 +27,7 @@ import { getOrdersFeed } from "./getOrdersFeed";
 import { deleteProductFromTable } from "./deleteProductFromTable";
 import { setActiveComponent} from "./setActiveComponent";
 import { changeTableFilled } from "./tableFilled";
+import { inputValidator } from "./inputValidator";
 export {  
   getCategories,
   getLabels,
@@ -60,5 +61,6 @@ export {
   deleteProductFromTable,
   // set Active component for conditional rendering in admin side
   setActiveComponent,
-  changeTableFilled
+  changeTableFilled,
+  inputValidator
 };
