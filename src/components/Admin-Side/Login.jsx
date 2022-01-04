@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../redux/actions';
@@ -15,7 +15,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const token = useSelector((state) => state.token)
+    // const token = useSelector((state) => state.token)
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
 
