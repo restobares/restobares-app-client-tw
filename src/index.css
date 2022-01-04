@@ -40,7 +40,7 @@
 }
 
 .pill{
-  @apply bg-pink-100 mt-2 h-8 rounded-full mx-auto   align-middle text-center text-xl
+  @apply bg-gray-100 mt-2 h-8 rounded-full mx-auto   align-middle text-center text-xl
 }
 
 .button {
