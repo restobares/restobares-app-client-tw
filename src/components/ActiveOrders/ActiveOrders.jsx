@@ -14,7 +14,7 @@ const ActiveOrders = () => {
   console.log(ordersFeed);
   
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 20000);
+    const interval = setInterval(() => setTime(Date.now()), 30000);
     if (tokenStaff) {
       dispatch(getOrdersFeed(idResto, tokenStaff));
     }

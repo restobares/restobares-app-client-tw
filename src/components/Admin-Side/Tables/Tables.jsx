@@ -18,7 +18,7 @@ export default function Tables() {
   const tables = useSelector((state) => state.tables);
   
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 20000);
+    const interval = setInterval(() => setTime(Date.now()), 30000);
     if (tokenStaff) {
       dispatch(getTables(idResto, tokenStaff));
     }
