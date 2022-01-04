@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar/NavBar";
 
-
-
-export default function ShowRun () {
-  
-    return (<div>
-        <h1>Show Run DIngbell App</h1>
-      </div>
-    );
+export default function ShowRun() {
+  return (
+    <div>
+      <NavBar />
+    </div>
+  );
 }

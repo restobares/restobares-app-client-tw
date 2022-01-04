@@ -22,7 +22,11 @@
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "react-sdk-mercadopago": "^1.1.1",
+<<<<<<< HEAD
     "react-select": "^5.2.1",
+=======
+    "styled-components": "^5.3.3",
+>>>>>>> 8501a93a097e15f9884b8128522f25cdae7815b2
     "sweetalert2": "^11.3.0"
   },
   "scripts": {
