@@ -9,6 +9,7 @@ const Settings = () => {
     return (
     <div className='grid-rows-5 grid-flow-col gap-5'>
        
+       <Link to={`/resto/${idResto}/resto-home/qrmanager`}>
         <div className='col-span-1 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl'>
           <div className='float-left'>
             <img src="https://img.icons8.com/ios-filled/50/000000/qr-code--v1.png" width='38' alt="" />
@@ -19,6 +20,7 @@ const Settings = () => {
              </h1>
           </div>
         </div>
+        </Link>
  
         <Link to={`/resto/${idResto}/resto-home/menu`}>
         <div className='col-span-2 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl'>

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getProductsByName } from "../../redux/actions";
 
@@ -25,6 +25,7 @@ const Search = () => {
               src="https://img.icons8.com/ios/24/aa0020/search--v1.png"
               width="24"
               className="ml-1"
+              alt=""
             />
           </button> : 
           <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
