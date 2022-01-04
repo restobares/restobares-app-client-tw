@@ -13,6 +13,9 @@ function tables(state = initialState, action) {
   if (action.type === ActionTypes.DELETE_PRODUCT_FROM_TABLE) {
     return state;
   }
+  if (action.type === ActionTypes.TABLE_FILLED) {
+    return state;
+  }
   return state;
 }
 

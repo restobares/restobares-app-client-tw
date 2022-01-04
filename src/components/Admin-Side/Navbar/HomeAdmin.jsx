@@ -1,10 +1,10 @@
 import React from "react";
 import Navbar from "./Navbar";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import Tables from "../Tables/Tables";
 import ActiveOrders from "../../ActiveOrders/ActiveOrders";
-import Settings from "../../Settings/Settings";
+import Settings from "../Settings/Settings";
 
 const HomeAdmin = () => {
   const token = useSelector((state) => state.token);

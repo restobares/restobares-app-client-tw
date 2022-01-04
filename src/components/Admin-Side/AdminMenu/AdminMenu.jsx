@@ -1,18 +1,155 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setActiveComponent } from "../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveComponent, getLabels, getCategories } from "../../../redux/actions";
+import Select from 'react-select'
+import BackButton from '../BackButton';
+import Swal from 'sweetalert2';
+import { inputValidator } from '../../../redux/actions';
 
 
 const AdminMenu = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const labels = useSelector((state) => state.labels);
+    const categories = useSelector((state) => state.categories);
+    const [input, setInput] = useState({
+      name: "",
+      price: "",
+      detail: "",
+      image: "",
+      CategoryId: "",
+      Labels: []
+    });
+
+    const [errors, setErrors] = useState({});
+
+    let options = [];
+    let optionsCategories = [];
+
+    for (var i = 0; i < labels.length; i++) {
+
+      let eachOption = {
+        value: labels[i].id,
+        label: labels[i].name
+      }
+      options.push(eachOption);
+    }
+    for (var i = 0; i < categories.length; i++) {
+
+      let eachOption = {
+        value: categories[i].id,
+        label: categories[i].name
+      }
+      optionsCategories.push(eachOption);
+    }
     
+    function handleInputChanges(e) {
+      setInput({
+        ...input,
+        [e.target.name]: e.target.value
+      });
+      setErrors(inputValidator({
+        ...input,
+        [e.target.name]: e.target.value
+      }))
+    }
+
+    function handleLabelSelection(e) {
+      
+      let labelsSelected = e.map((label) => label.value)
+      setInput({
+          ...input,
+          Labels: labelsSelected
+        })
+    }
+
+    function handleCategorySelection(e) {
+      
+      setInput({
+          ...input,
+          CategoryId: e.value
+      })
+      setErrors(inputValidator({
+          ...input,
+          CategoryId: e.value
+      }))
+    }
+
+    var validExt = ".png, .jpeg, .jpg";
+    function handleImageSelection(e) {
+      var filePath = e.target.value;
+      var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+      var pos = validExt.indexOf(getFileExt);
+      if(pos < 0) {
+        // alert("This file is not allowed, please upload a valid file.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'This file is not allowed, please upload a valid file.',
+        })
+        setInput({
+            ...input,
+            image: ""
+          })
+        return false;
+      } else {
+          imageSizeValidate(e.target);
+          return true;
+      }
+    }
+    var maxSizeImage = '950';
+    function imageSizeValidate(eTarget) {
+      if (eTarget.files && eTarget.files[0]) {
+        var fsize = eTarget.files[0].size/1000;
+        if(fsize > maxSizeImage) {
+          // alert('Maximum file size is ' + maxSizeImage + 'KB, This file size is: ' + fsize + "KB");
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `Maximum file size is ${maxSizeImage}KB, This file size is: ${fsize.toFixed(0)}KB`,
+          })
+          setInput({
+            ...input,
+            image: ""
+          })
+          return false;
+        } else {
+            encodeImageBase64(eTarget);
+            return true;
+        }
+      }
+    }
+
+    function encodeImageBase64(element) {
+      var file = element.files[0];
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        // console.log('RESULT', reader.result)
+        setInput({
+          ...input,
+          image: reader.result
+        })
+        setErrors(inputValidator({
+          ...input,
+          image: reader.result
+        }))
+      }
+      
+      reader.readAsDataURL(file);
+    }
+
     const WidthMedium = 768;
 
     const navItems = [ 
         {name: "Settings", img: "https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-setting-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png"}
     ]
+  
+  // Getting labels and categories
+  useEffect(() => {
+    dispatch(getLabels())
+    dispatch(getCategories())
+  }, [dispatch]);
 
     // ACTIVE COMPONENT LOGIC
   const [active, setActive] = useState(null)
@@ -35,13 +172,23 @@ const AdminMenu = () => {
   }, [])
 
 
+  const alerta = (e) => {
+    e.preventDefault()
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Your menu has been sent',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
+
     return (
     <div>
 
     <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
-      <span className="text-5xl text-gray-800 mb-1 mt-1 ml-2">
-      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="36" alt="" />
-      </span>
+      <BackButton/>
       <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (             
                <button id={i} name={el.name} onClick={(e) => handlerActive(e)} className= {
@@ -65,90 +212,48 @@ const AdminMenu = () => {
     <form className='w-96 inline-block'>
        <input
            type="text"
-           name="titulo"
+           name="name"
+           maxLength="50"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
            placeholder="Enter Name"
+           onChange={(e) => handleInputChanges(e)}
        />
     
        <input
            type="number"
-           name="descripcion"
+           name="price"
+           min="1"
+           maxLength="4"
+          //  oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
+          // pattern='^[0-9]+'
+          //  onKeyUp={Number(input.price) < 0 ? Number(input.price) * -1 : input.price}
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Price"
+          //  value={Number(input.price)}
+           onChange={(e) => handleInputChanges(e)}
        />
        
        <input
            type="text"
-           name="descripcion"
+           name="detail"
+           maxLength="140"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Details"
+           onChange={(e) => handleInputChanges(e)}
        />
        
        <input
            type="file"
+           name='image'
+           value={input.image}
            className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-       />
-       
-       <select
-           type="text"
-           name="descripcion"
-           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-       >
-       
-        <option selected value="0">
-            -- Choose your categories --
-        </option>
+           accept='image/*'
+           onChange={(e) => handleImageSelection(e)}
+       />      
 
-       <option value="Breakfast & Snacks">Breakfast & Snacks</option>
-       <option value="Starter">Starter</option>
-       <option value="Saladas">Saladas</option>
-       <option value="Pastas">Pastas</option>
-       <option value="Pizzas">Pizzas</option>
-       <option value="Meats">Meats</option>
-       <option value="Sandwiches">Sandwiches</option>
-       <option value="Traditional">Traditional</option>
-       <option value="For Kids">For Kids</option>
-
-       </select>
-       
-       <select
-           type="text"
-           name="descripcion"
-           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-       >
-
-        <option selected value="0">
-            -- Choose your labels --
-        </option>
-
-       <option value="Bakery">Bakery</option>
-       <option value="Beers">Beers</option>
-       <option value="Bovine">Bovine</option>
-       <option value="Cafeteria">Cafeteria</option>
-       <option value="Champagnes">Champagnes</option>
-       <option value="Chicken">Chicken</option>
-       <option value="Cocktails">Cocktails</option>
-       <option value="Crafted">Crafted</option>
-       <option value="Fish">Fish</option>
-       <option value="Gluten Free">Gluten Free</option>
-       <option value="Hamburger">Hamburger</option>
-       <option value="Ice Creams">Ice Creams</option>
-       <option value="Light">Light</option>
-       <option value="Lomo">Lomo</option>
-       <option value="No Alcohol">No Alcohol</option>
-       <option value="Pork">Pork</option>
-       <option value="Seafood">Seafood</option>
-       <option value="Smoothies">Smoothies</option>
-       <option value="Sodas">Sodas</option>
-       <option value="Sodium Low">Sodium Low</option>
-       <option value="Spicy">Spicy</option>
-       <option value="Vegan">Vegan</option>
-       <option value="Vegetarian">Vegetarian</option>
-       <option value="Wines & Sparkling wines">Wines & Sparkling wines</option>
-
-       </select>
-    
-       <button type="submit" className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+        <Select options={optionsCategories} onChange={(e) => handleCategorySelection(e)} placeholder="Choose your category..." className="pb-3" />
+        <Select isMulti options={options} onChange={(e) => handleLabelSelection(e)} placeholder="Choose your labels..." />
+       <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.keys(errors).length > 0 || input.name === ""}>
        Send Menu
        </button>
     </form>

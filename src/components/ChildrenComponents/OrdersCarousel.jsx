@@ -75,12 +75,13 @@ const OrdersCarousel = () => {
             </div> 
             <hr className=" border-pink-500 border-1  mx-2" />
             <div className="float-right h-6  mr-1 w-16 bg-pink-500 rounded-full mt-1"> 
+            
+            <button className="mt-1 inline-block text-left ml-4 align-middle mx-auto" onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
+              ➖</button>
                 <button className="mt-1 inline-block text-left ml-2 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
               ➕
                 </button>
       
-                <button className="mt-1 inline-block text-left ml-4 align-middle mx-auto" onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
-              ➖</button>
             </div>
             <p className=" w-9/12  ml-2 text-truncate text-black text- text-xs">{order.detail}</p>
           </div>

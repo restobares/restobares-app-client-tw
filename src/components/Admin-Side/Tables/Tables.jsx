@@ -6,6 +6,7 @@ import Moment from 'moment';
 import { getMenu, getTables } from "../../../redux/actions";
 import AddOrder from "./AddOrder";
 import ChangeStatus from "./ChangeStatus";
+
 export default function Tables() {
   const { idResto } = useParams();
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function Tables() {
   useEffect(() => {
     dispatch(getMenu(idResto, detailTable))
     const interval = setInterval(() => setTime(Date.now()), 20000);
+
     if (tokenStaff) {
       dispatch(getTables(idResto, tokenStaff));
     }
