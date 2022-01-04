@@ -5,7 +5,7 @@ import { setActiveComponent, getLabels, getCategories } from "../../../redux/act
 import Select from 'react-select'
 import BackButton from '../BackButton';
 import Swal from 'sweetalert2';
-
+import { inputValidator } from '../../../redux/actions';
 
 
 const AdminMenu = () => {
@@ -21,6 +21,9 @@ const AdminMenu = () => {
       CategoryId: "",
       Labels: []
     });
+
+    const [errors, setErrors] = useState({});
+
     let options = [];
     let optionsCategories = [];
 
@@ -45,7 +48,11 @@ const AdminMenu = () => {
       setInput({
         ...input,
         [e.target.name]: e.target.value
-      })
+      });
+      setErrors(inputValidator({
+        ...input,
+        [e.target.name]: e.target.value
+      }))
     }
 
     function handleLabelSelection(e) {
@@ -62,35 +69,68 @@ const AdminMenu = () => {
       setInput({
           ...input,
           CategoryId: e.value
-        })
+      })
+      setErrors(inputValidator({
+          ...input,
+          CategoryId: e.value
+      }))
     }
 
-    var validExt = ".png, .gif, .jpeg, .jpg";
-function handleImageSelection(fdata) {
- var filePath = fdata.target.value;
- var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
- var pos = validExt.indexOf(getFileExt);
- if(pos < 0) {
-     alert("This file is not allowed, please upload a valid file.");
-     return false;
-  } else {
-      fileSizeValidate(fdata.target);
-      return true;
-  }
-}
-var maxSize = '124';
-function fileSizeValidate(fdata) {
-     if (fdata.files && fdata.files[0]) {
-                var fsize = fdata.files[0].size/124;
-                if(fsize > maxSize) {
-                     alert('Maximum file size exceed, This file size is: ' + fsize + "KB");
-                     return false;
-                } else {
-                  console.log('true its working')
-                    return true;
-                }
-     }
+    var validExt = ".png, .jpeg, .jpg";
+    function handleImageSelection(e) {
+      var filePath = e.target.value;
+      var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+      var pos = validExt.indexOf(getFileExt);
+      if(pos < 0) {
+        // alert("This file is not allowed, please upload a valid file.");
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'This file is not allowed, please upload a valid file.',
+        })
+        return false;
+      } else {
+          imageSizeValidate(e.target);
+          return true;
+      }
     }
+    var maxSizeImage = '950';
+    function imageSizeValidate(eTarget) {
+      if (eTarget.files && eTarget.files[0]) {
+        var fsize = eTarget.files[0].size/1000;
+        if(fsize > maxSizeImage) {
+          // alert('Maximum file size is ' + maxSizeImage + 'KB, This file size is: ' + fsize + "KB");
+          Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: `Maximum file size is ${maxSizeImage}KB, This file size is: ${fsize.toFixed(0)}KB`,
+        })
+          return false;
+        } else {
+            encodeImageBase64(eTarget);
+            return true;
+        }
+      }
+    }
+
+    function encodeImageBase64(element) {
+      var file = element.files[0];
+      var reader = new FileReader();
+      reader.onloadend = function() {
+        // console.log('RESULT', reader.result)
+        setInput({
+          ...input,
+          image: reader.result
+        })
+        setErrors(inputValidator({
+          ...input,
+          image: reader.result
+        }))
+      }
+      
+      reader.readAsDataURL(file);
+    }
+
     const WidthMedium = 768;
 
     const navItems = [ 
@@ -165,6 +205,7 @@ function fileSizeValidate(fdata) {
        <input
            type="text"
            name="name"
+           maxLength="50"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
            placeholder="Enter Name"
            onChange={(e) => handleInputChanges(e)}
@@ -174,6 +215,7 @@ function fileSizeValidate(fdata) {
            type="number"
            name="price"
            min="1"
+           maxLength="4"
           //  oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
           // pattern='^[0-9]+'
           //  onKeyUp={Number(input.price) < 0 ? Number(input.price) * -1 : input.price}
@@ -186,6 +228,7 @@ function fileSizeValidate(fdata) {
        <input
            type="text"
            name="detail"
+           maxLength="140"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Details"
            onChange={(e) => handleInputChanges(e)}
@@ -201,7 +244,7 @@ function fileSizeValidate(fdata) {
 
         <Select options={optionsCategories} onChange={(e) => handleCategorySelection(e)} placeholder="Choose your category..." className="pb-3" />
         <Select isMulti options={options} onChange={(e) => handleLabelSelection(e)} placeholder="Choose your labels..." />
-       <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+       <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.keys(errors).length > 0 || input.name === ""}>
        Send Menu
        </button>
     </form>
