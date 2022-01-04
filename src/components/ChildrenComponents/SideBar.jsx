@@ -1,4 +1,4 @@
-import { Event } from '@material-ui/icons';
+
 import React,{ Fragment, useState } from 'react'
 import { filterMenuByLabels } from '../../redux/actions';
 import { filterMenuByCategory } from '../../redux/actions';
@@ -25,7 +25,7 @@ function SideBar() {
     sidebar.sideBar ? hidden = "" : hidden = "hidden"
 
     let style = `flex-shrink-0 mx-1 border-2 rounded-xl border-pink-500 mb-2 mt-2 `
-    let active = `bg-white h-full w-full`
+    // let active = `bg-white h-full w-full`
 
     //////////////// HANDLERS ////////////////    
 
