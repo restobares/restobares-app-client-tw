@@ -15,6 +15,8 @@ import Tables from './components/Admin-Side/Tables/Tables.jsx';
 import TableDetail from './components/Admin-Side/Tables/TableDetail.jsx';
 import AdminMenu from './components/Admin-Side/AdminMenu/AdminMenu.jsx';
 import QrManager from './components/Admin-Side/Settings/QrManagement/QrManagement.jsx';
+import Analytics from './components/Settings/Analytics.jsx';
+import Themes from './components/Settings/Themes.jsx';
 
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
           <Route path="resto/:idResto/resto-home/menu" element={<AdminMenu />}></Route>
           <Route path="resto/:idResto/resto-home/qrmanager" element={<QrManager />}></Route>
+          <Route path="resto/:idResto/resto-home/analytics" element={<Analytics />}></Route>
+          <Route path="resto/:idResto/resto-home/themes" element={<Themes />}></Route>
 
 
         </Routes>
