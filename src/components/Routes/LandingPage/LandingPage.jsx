@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
-import { getUser } from '../../../redux/actions'
+import { getUser, changeTableFilled } from '../../../redux/actions'
 
 
 export default function LandingPage () {
@@ -13,8 +13,9 @@ export default function LandingPage () {
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
-    dispatch(getUser(idResto))  
-  },[dispatch]);  
+    dispatch(getUser(idResto))
+    dispatch(changeTableFilled(idResto, idTable))  
+  },[dispatch, idResto, idTable]);  
 
   const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
   const logo = "https://mir-s3-cdn-cf.behance.net/project_modules/disp/3eb3045266535.562d05b41c50a.png";
