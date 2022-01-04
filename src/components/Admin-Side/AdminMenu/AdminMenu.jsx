@@ -1,19 +1,46 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setActiveComponent } from "../../../redux/actions";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setActiveComponent, getLabels, getCategories } from "../../../redux/actions";
+
+
 import BackButton from '../BackButton';
+
 
 
 const AdminMenu = () => {
 
-    const dispatch = useDispatch()
-    
+    const dispatch = useDispatch();
+    const labels = useSelector((state) => state.labels);
+    const categories = useSelector((state) => state.categories);
+    const [input, setInput] = useState({
+      name: "",
+      price: "",
+      detail: "",
+      image: "",
+      CategoryId: "",
+      Labels: []
+    });
+
+    function handleInputChanges(e) {
+      setInput({
+        ...input,
+        [e.target.name]: e.target.value
+      })
+    }
+
     const WidthMedium = 768;
 
     const navItems = [ 
         {name: "Settings", img: "https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-setting-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png"}
     ]
+  
+  // Getting labels and categories
+  useEffect(() => {
+    dispatch(getLabels())
+    dispatch(getCategories())
+  }, [dispatch]);
 
     // ACTIVE COMPONENT LOGIC
   const [active, setActive] = useState(null)
@@ -64,87 +91,69 @@ const AdminMenu = () => {
     <form className='w-96 inline-block'>
        <input
            type="text"
-           name="titulo"
+           name="name"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
            placeholder="Enter Name"
+           onChange={(e) => handleInputChanges(e)}
        />
     
        <input
            type="number"
-           name="descripcion"
+           name="price"
+           min="1"
+          //  oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
+          // pattern='^[0-9]+'
+          //  onKeyUp={Number(input.price) < 0 ? Number(input.price) * -1 : input.price}
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Price"
+          //  value={Number(input.price)}
+           onChange={(e) => handleInputChanges(e)}
        />
        
        <input
            type="text"
-           name="descripcion"
+           name="detail"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Details"
        />
        
        <input
            type="file"
+           name='image'
            className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
        />
        
        <select
            type="text"
-           name="descripcion"
+           name="CategoryId"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-       >
-       
+      >
+      
         <option selected value="0">
             -- Choose your categories --
         </option>
+        {categories && categories.map((category) => {
+          return (
+            <option key={category.id} value={category.name}>{category.name}</option>
+          )
+        })}
 
-       <option value="Breakfast & Snacks">Breakfast & Snacks</option>
-       <option value="Starter">Starter</option>
-       <option value="Saladas">Saladas</option>
-       <option value="Pastas">Pastas</option>
-       <option value="Pizzas">Pizzas</option>
-       <option value="Meats">Meats</option>
-       <option value="Sandwiches">Sandwiches</option>
-       <option value="Traditional">Traditional</option>
-       <option value="For Kids">For Kids</option>
-
-       </select>
-       
-       <select
-           type="text"
-           name="descripcion"
-           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-       >
+      </select>
+      
+      <select
+          type="text"
+          name="Labels"
+          className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+      >
 
         <option selected value="0">
             -- Choose your labels --
         </option>
-
-       <option value="Bakery">Bakery</option>
-       <option value="Beers">Beers</option>
-       <option value="Bovine">Bovine</option>
-       <option value="Cafeteria">Cafeteria</option>
-       <option value="Champagnes">Champagnes</option>
-       <option value="Chicken">Chicken</option>
-       <option value="Cocktails">Cocktails</option>
-       <option value="Crafted">Crafted</option>
-       <option value="Fish">Fish</option>
-       <option value="Gluten Free">Gluten Free</option>
-       <option value="Hamburger">Hamburger</option>
-       <option value="Ice Creams">Ice Creams</option>
-       <option value="Light">Light</option>
-       <option value="Lomo">Lomo</option>
-       <option value="No Alcohol">No Alcohol</option>
-       <option value="Pork">Pork</option>
-       <option value="Seafood">Seafood</option>
-       <option value="Smoothies">Smoothies</option>
-       <option value="Sodas">Sodas</option>
-       <option value="Sodium Low">Sodium Low</option>
-       <option value="Spicy">Spicy</option>
-       <option value="Vegan">Vegan</option>
-       <option value="Vegetarian">Vegetarian</option>
-       <option value="Wines & Sparkling wines">Wines & Sparkling wines</option>
-
+        {labels && labels.map((label) => {
+          return (
+            <option key={label.id} value={label.name}>{label.name}</option>
+          )
+        })}
        </select>
     
        <button type="submit" onClick={(e) => {e.preventDefault()}} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
