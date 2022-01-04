@@ -49,6 +49,7 @@ const Settings = () => {
         </div>
       </div>
 
+      <Link to={`/resto/${idResto}/resto-home/themes`}>
       <div className="col-span-4 text-center px-2 py-2 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
         <div className="float-left">
           <img
@@ -61,7 +62,10 @@ const Settings = () => {
           <h1 className="text-lg font-bold float-left">Themes</h1>
         </div>
       </div>
+      </Link>
 
+
+      <Link to={`/resto/${idResto}/resto-home/analytics`}>
       <div className="col-span-5 text-center px-2 py-2 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
         <div className="float-left">
           <img
@@ -71,9 +75,10 @@ const Settings = () => {
           />
         </div>
         <div className="inline-flex items-center">
-          <h1 className="text-lg font-bold float-left">Charts</h1>
+          <h1 className="text-lg font-bold float-left">Analytics</h1>
         </div>
       </div>
+      </Link>
     </div>
   );
 };

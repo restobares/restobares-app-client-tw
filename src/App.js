@@ -15,8 +15,8 @@ import Tables from './components/Admin-Side/Tables/Tables.jsx';
 import TableDetail from './components/Admin-Side/Tables/TableDetail.jsx';
 import AdminMenu from './components/Admin-Side/AdminMenu/AdminMenu.jsx';
 import QrManager from './components/Admin-Side/Settings/QrManagement/QrManagement.jsx';
-import Analytics from './components/Settings/Analytics.jsx';
-import Themes from './components/Settings/Themes.jsx';
+import Analytics from './components/Admin-Side/Settings/Analytics.jsx';
+import Themes from './components/Admin-Side/Settings/Themes.jsx';
 
 
 function App() {
