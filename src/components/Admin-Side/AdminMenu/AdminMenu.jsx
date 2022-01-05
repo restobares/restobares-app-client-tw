@@ -13,8 +13,7 @@ const AdminMenu = () => {
 
     const dispatch = useDispatch();
     const { idResto } = useParams();
-    // let tokenAdmin = Cookies.get("token-admin");
-    let tokenAdmin = "dminSupremeTest"
+    let tokenAdmin = Cookies.get("token-admin");
     const labels = useSelector((state) => state.labels);
     const categories = useSelector((state) => state.categories);
     const [input, setInput] = useState({
