@@ -30,6 +30,8 @@ import { changeTableFilled } from "./tableFilled";
 import { inputValidator } from "./inputValidator";
 import { postPayCash } from "./postPayCash";
 import { putTableCashPayment } from "./putTableCashPayment";
+import { putAvailableProduct } from "./putAvailableProduct";
+import { putMenu } from "./putMenu";
 
 export {  
   getCategories,
@@ -67,5 +69,7 @@ export {
   changeTableFilled,
   inputValidator,
   postPayCash,
-  putTableCashPayment
+  putTableCashPayment,
+  putAvailableProduct,
+  putMenu
 };
