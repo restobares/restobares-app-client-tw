@@ -1,19 +1,17 @@
-import React, { Fragment } from 'react'
-import { useState, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveComponent, getLabels, getCategories } from "../../../redux/actions";
 import Select from 'react-select'
 import BackButton from '../BackButton';
 import Swal from 'sweetalert2';
-import { inputValidator, postMenu } from '../../../redux/actions';
-import { useParams } from 'react-router-dom';
+import { setActiveComponent, getLabels, getCategories, putMenu } from '../../../redux/actions';
+import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 
 function MenuFormEditable() {
-    /* console.log(body); */
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { idResto, idProduct } = useParams();
 
     const menu = useSelector((state) => state.menus.menuAdmin);
@@ -23,16 +21,18 @@ function MenuFormEditable() {
     let tokenAdmin = Cookies.get("token-admin");
     const labels = useSelector((state) => state.labels);
     const categories = useSelector((state) => state.categories);
-    const categorySelected = categories.find((category) => category.id === product.CategoryId).name;
+    let categorySelected;
+    categorySelected = categories.find((category) => category.id === product.CategoryId);
     
+
     let labelNamesPlaceholder = [];
+
     for (var i = 0; i < product.Labels.length; i++) {
-    let labelIdSelected = product.Labels[i];
-    let labelNameFound = labels.find(label => label.id === labelIdSelected).name;
-    labelNamesPlaceholder.push(labelNameFound);
-    }
-   
-    
+      let labelIdSelected = product.Labels[i];
+      let labelNameFound = labels.find(label => label.id === labelIdSelected);
+      labelNamesPlaceholder.push(labelNameFound ? labelNameFound.name : "");
+    }   
+  
     const [input, setInput] = useState({
       name: "",
       price: "",
@@ -47,7 +47,6 @@ function MenuFormEditable() {
       labelsSelector: ""
     })
 
-    const [errors, setErrors] = useState({});
 
     let options = [];
     let optionsCategories = [];
@@ -73,11 +72,7 @@ function MenuFormEditable() {
       setInput({
         ...input,
         [e.target.name]: e.target.value
-      });
-      setErrors(inputValidator({
-        ...input,
-        [e.target.name]: e.target.value
-      }))
+      });      
     }
 
     function handleLabelSelection(e) {
@@ -102,11 +97,7 @@ function MenuFormEditable() {
       setReactSelectInput({
         ...reactSelectInput,
         categorySelector: e
-      })
-      setErrors(inputValidator({
-          ...input,
-          CategoryId: e.value
-      }))
+      })      
     }
 
     var validExt = ".png, .jpeg, .jpg, .PNG, .JPEG, .JPG";
@@ -159,15 +150,10 @@ function MenuFormEditable() {
       var file = element.files[0];
       var reader = new FileReader();
       reader.onloadend = function() {
-        // console.log('RESULT', reader.result)
         setInput({
           ...input,
           image: reader.result
-        })
-        setErrors(inputValidator({
-          ...input,
-          image: reader.result
-        }))
+        })        
       }
       
       reader.readAsDataURL(file);
@@ -201,14 +187,13 @@ function MenuFormEditable() {
   }, [])
 
 
-  const alerta = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    let json = await dispatch(postMenu(idResto, input, tokenAdmin))
-    // console.log(json);
-    Swal.fire({
+    let json = dispatch(putMenu(idResto, idProduct, input, tokenAdmin))
+    await Swal.fire({
       position: 'center',
       icon: 'success',
-      title: 'Your menu has been sent',
+      title: 'Your menu has been edited',
       showConfirmButton: false,
       timer: 3000
     })
@@ -226,6 +211,7 @@ function MenuFormEditable() {
       labelsSelector: ""
     })
     document.getElementById('image').value = null;
+    navigate(-1);
   }
 
 
@@ -296,7 +282,7 @@ function MenuFormEditable() {
     <Select options={optionsCategories}
             value={reactSelectInput.categorySelector}
             onChange={(e) => handleCategorySelection(e)}
-            placeholder={categorySelected}
+            placeholder={categorySelected ? categorySelected.name : ""}
             className="pb-3"
     />
     
@@ -308,7 +294,7 @@ function MenuFormEditable() {
             placeholder={labelNamesPlaceholder.join(", ")}
     />
 
-   <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.keys(errors).length > 0 || input.name === ""}>
+   <button type="submit" onClick={handleSubmit} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
    Save Changes
    </button>
 </form>
