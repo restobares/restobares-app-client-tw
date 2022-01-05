@@ -1,9 +1,19 @@
 import React, { Fragment } from 'react';
+import BackButton from '../BackButton';
 
 const Themes = () => {
     return (
         <Fragment>
-            <div className="container w-full mx-auto pt-20 ">
+        <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+          <BackButton/>
+           <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
+             <h1>Themes</h1>
+           </div>
+           <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+             Logout
+           </button>
+        </nav>
+            <div className="container w-full mx-auto">
               <div className="w-full px-4 md:px-0 md:mt-8 mb-16 text-gray-800 leading-normal ">
     
                   {/* <!--themes--> */}
