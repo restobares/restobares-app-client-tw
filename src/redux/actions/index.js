@@ -31,6 +31,7 @@ import { inputValidator } from "./inputValidator";
 import { postPayCash } from "./postPayCash";
 import { putTableCashPayment } from "./putTableCashPayment";
 import { putAvailableProduct } from "./putAvailableProduct";
+import { putMenu } from "./putMenu";
 
 export {  
   getCategories,
@@ -69,5 +70,6 @@ export {
   inputValidator,
   postPayCash,
   putTableCashPayment,
-  putAvailableProduct
+  putAvailableProduct,
+  putMenu
 };
