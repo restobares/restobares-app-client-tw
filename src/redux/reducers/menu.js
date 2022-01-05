@@ -19,7 +19,8 @@ function menu(state = initialState, action) {
       ...state,
       menu: availableMenu,
       backupMenu: availableMenu,
-      categoriesSelected: ''
+      categoriesSelected: '',
+      menuAdmin: action.payload
     };
   }
 
@@ -137,6 +138,9 @@ function menu(state = initialState, action) {
       ...state,
       menu: sortedMenuByPrice
     }
+  }
+  if (action.type === ActionTypes.POST_MENU) {
+    return state;
   }
   return state;
 }

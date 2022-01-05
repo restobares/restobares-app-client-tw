@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { postOrderToMP } from '../../../redux/actions';
+import { postOrderToMP, postPayCash } from '../../../redux/actions';
 import Modal from './Modal'
 
 
@@ -18,6 +18,7 @@ const PayBoard = () => {
   
 
   const openModal = () => {
+    dispatch(postPayCash(idResto, idTable, tip))
     setShowModal(prev => !prev);
   }
 
