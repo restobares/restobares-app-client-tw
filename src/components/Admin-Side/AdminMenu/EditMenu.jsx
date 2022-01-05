@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import BackButton from '../BackButton';
 import { Switch } from '@headlessui/react'
 import { deleteProduct, getMenu, putAvailableProduct } from '../../../redux/actions';
@@ -8,6 +8,10 @@ import Cookies from 'js-cookie';
 
 
 const EditMenu = () => {
+
+    
+
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { idResto } = useParams();
     const tokenAdmin = Cookies.get("token-admin");
@@ -48,24 +52,29 @@ const EditMenu = () => {
           } else {
             productDetailShortened = product.detail
           }
+          
           return (
-            <div className="flex h-14 w-full mt-2 border-b-2 border-pink-700" key={product.id}>
-          <div className="w-10 mt-1 ml-1 h-10 flex-shrink-0 "> 
+          <div className="flex h-14 w-full mt-2 border-b-2 border-pink-700" key={product.id}>
+          <div className="w-10 mt-1 ml-1 h-10 flex-shrink-0"> 
             <img className=" max-h-full max-w-full min-h-full min-w-full object-cover rounded-full "
             src={product.image}
             alt=""/>
           </div>
           <div className="float-left align-baseline text-left inline-block h-4 w-full">
             <div className=" inline-block w-full align-bottom">
-              <p className="inline-block ml-2 text-black font-semibold text-truncate text-sm">{product.name}</p>
-              <button onClick={() => handleDeleteProduct(idResto, product.id, tokenAdmin)} className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-10 rounded-xl">Delete</button>
-              <button className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-10 rounded-xl">Edit</button>
+              <p className="inline-block ml-2 text-black text-truncate text-sm font-bold">{product.name}</p>
+              <button onClick={() => handleDeleteProduct(idResto, product.id, tokenAdmin)} className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-12 rounded-xl">Delete</button>
+        
+              <Link to={`/resto/${idResto}/resto-home/editmenu/${product.id}`} body={product}>
+                <button className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-10 rounded-xl">Edit</button>
+              </Link>
+
               <p className=" font-semibold inline-block float-right mr-6 text-sm">{product.price}</p>
               <p className=" font-semibold inline-block float-right text-left mr-1 text-sm "> $ </p>
             </div> 
               <hr className=" border-pink-500 border-1  mx-2" />
 
-            <div className="float-right h-6 mr-1 mt-1"> 
+            <div className="float-right h-6 mr-3 mt-1"> 
             {/* Boton switch - ui */}
               <Switch
                 checked={product.available}
@@ -74,7 +83,7 @@ const EditMenu = () => {
                 className={`${
                     product.available ? 'bg-pink-500' : 'bg-gray-200'
                   } relative inline-flex items-center h-6 rounded-full w-11`}> 
-              {/* <span className="sr-only"></span> */}
+              
               <span
                 className={`${
                   product.available ? 'translate-x-6' : 'translate-x-1'
@@ -84,11 +93,11 @@ const EditMenu = () => {
             {/* termina boton switch - ui */}             
             </div>
 
-            <div className="float-right h-6 mr-1 mt-1 text-black font-semibold text-sm"> 
+            <div className="float-right h-6 mr-4 mt-1 text-black font-semibold text-sm"> 
               <p>Available:</p>
             </div>
 
-              <p className=" w-9/12 ml-2 text-truncate text-black text-xl">{productDetailShortened}</p>
+              <p className=" w-9/12 ml-2 text-truncate text-black text-lg">{productDetailShortened}</p>
 
             <div className="float-right h-6 mr-1"> 
               <p className="inline-block text-left ml-4 align-middle mx-auto"> </p>
