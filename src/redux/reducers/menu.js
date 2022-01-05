@@ -142,6 +142,12 @@ function menu(state = initialState, action) {
   if (action.type === ActionTypes.POST_MENU) {
     return state;
   }
+  if (action.type === ActionTypes.PUT_MENU) {
+    return state;
+  }
+  if(action.type === ActionTypes.PUT_AVAILABLE_PRODUCT) {
+    return state;
+  }
   return state;
 }
 
