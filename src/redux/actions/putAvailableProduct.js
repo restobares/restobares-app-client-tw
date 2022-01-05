@@ -1,20 +1,22 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function deleteProduct(idResto, idProduct, token) {
+export function putAvailableProduct(idResto, idProduct, token) {
 
   return async function(dispatch) {
 
     try {
 
-      var json = await axios.delete(`http://restobares-app-api.herokuapp.com/resto/${idResto}/admin/menu/${idProduct}`, {
+      var json = await axios.put(`http://restobares-app-api.herokuapp.com/resto/${idResto}/staff/menu`, {
+        product_Id: idProduct
+      }, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
 
       return dispatch({
-        type: ActionTypes.DELETE_PRODUCT,
+        type: ActionTypes.PUT_MENU,
         payload: json.data
       })
     } catch(err) {
