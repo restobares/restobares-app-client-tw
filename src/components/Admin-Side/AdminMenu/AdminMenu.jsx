@@ -5,12 +5,16 @@ import { setActiveComponent, getLabels, getCategories } from "../../../redux/act
 import Select from 'react-select'
 import BackButton from '../BackButton';
 import Swal from 'sweetalert2';
-import { inputValidator } from '../../../redux/actions';
-
+import { inputValidator, postMenu } from '../../../redux/actions';
+import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const AdminMenu = () => {
 
     const dispatch = useDispatch();
+    const { idResto } = useParams();
+    // let tokenAdmin = Cookies.get("token-admin");
+    let tokenAdmin = "dminSupremeTest"
     const labels = useSelector((state) => state.labels);
     const categories = useSelector((state) => state.categories);
     const [input, setInput] = useState({
@@ -18,9 +22,14 @@ const AdminMenu = () => {
       price: "",
       detail: "",
       image: "",
-      CategoryId: "",
-      Labels: []
+      CategoryId: "",      
+      id_label: [],
+      DiscountId: null
     });
+    const [reactSelectInput, setReactSelectInput] = useState({
+      categorySelector: "",
+      labelsSelector: ""
+    })
 
     const [errors, setErrors] = useState({});
 
@@ -60,15 +69,23 @@ const AdminMenu = () => {
       let labelsSelected = e.map((label) => label.value)
       setInput({
           ...input,
-          Labels: labelsSelected
-        })
+          id_label: labelsSelected
+      })
+      setReactSelectInput({
+        ...reactSelectInput,
+        labelsSelector: e
+      })
     }
 
     function handleCategorySelection(e) {
       
       setInput({
           ...input,
-          CategoryId: e.value
+          CategoryId: e.value,
+      })
+      setReactSelectInput({
+        ...reactSelectInput,
+        categorySelector: e
       })
       setErrors(inputValidator({
           ...input,
@@ -113,6 +130,7 @@ const AdminMenu = () => {
             ...input,
             image: ""
           })
+          eTarget.value = null;
           return false;
         } else {
             encodeImageBase64(eTarget);
@@ -172,8 +190,10 @@ const AdminMenu = () => {
   }, [])
 
 
-  const alerta = (e) => {
+  const alerta = async (e) => {
     e.preventDefault()
+    let json = await dispatch(postMenu(idResto, input, tokenAdmin))
+    // console.log(json);
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -181,6 +201,20 @@ const AdminMenu = () => {
       showConfirmButton: false,
       timer: 1500
     })
+    setInput({
+      name: "",
+      price: "",
+      detail: "",
+      image: "",
+      CategoryId: "",
+      id_label: [],
+      DiscountId: null
+    })
+    setReactSelectInput({
+      categorySelector: "",
+      labelsSelector: ""
+    })
+    document.getElementById('image').value = null;
   }
 
 
@@ -216,6 +250,7 @@ const AdminMenu = () => {
            maxLength="50"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
            placeholder="Enter Name"
+           value={input.name}
            onChange={(e) => handleInputChanges(e)}
        />
     
@@ -224,6 +259,7 @@ const AdminMenu = () => {
            name="price"
            min="1"
            maxLength="4"
+           value={input.price}
           //  oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
           // pattern='^[0-9]+'
           //  onKeyUp={Number(input.price) < 0 ? Number(input.price) * -1 : input.price}
@@ -239,20 +275,21 @@ const AdminMenu = () => {
            maxLength="140"
            className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            placeholder="Enter Details"
+           value={input.detail}
            onChange={(e) => handleInputChanges(e)}
        />
        
        <input
            type="file"
+           id='image'
            name='image'
-           value={input.image}
            className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
            accept='image/*'
            onChange={(e) => handleImageSelection(e)}
        />      
 
-        <Select options={optionsCategories} onChange={(e) => handleCategorySelection(e)} placeholder="Choose your category..." className="pb-3" />
-        <Select isMulti options={options} onChange={(e) => handleLabelSelection(e)} placeholder="Choose your labels..." />
+        <Select options={optionsCategories} value={reactSelectInput.categorySelector} onChange={(e) => handleCategorySelection(e)} placeholder="Choose your category..." className="pb-3" />
+        <Select isMulti options={options} value={reactSelectInput.labelsSelector} onChange={(e) => handleLabelSelection(e)} placeholder="Choose your labels..." />
        <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.keys(errors).length > 0 || input.name === ""}>
        Send Menu
        </button>

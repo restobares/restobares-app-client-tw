@@ -28,6 +28,9 @@ import { deleteProductFromTable } from "./deleteProductFromTable";
 import { setActiveComponent} from "./setActiveComponent";
 import { changeTableFilled } from "./tableFilled";
 import { inputValidator } from "./inputValidator";
+import { postPayCash } from "./postPayCash";
+import { putTableCashPayment } from "./putTableCashPayment";
+
 export {  
   getCategories,
   getLabels,
@@ -62,5 +65,7 @@ export {
   // set Active component for conditional rendering in admin side
   setActiveComponent,
   changeTableFilled,
-  inputValidator
+  inputValidator,
+  postPayCash,
+  putTableCashPayment
 };
