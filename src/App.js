@@ -17,6 +17,8 @@ import AdminMenu from './components/Admin-Side/AdminMenu/AdminMenu.jsx';
 import QrManager from './components/Admin-Side/Settings/QrManagement/QrManagement.jsx';
 import Analytics from './components/Admin-Side/Settings/Analytics.jsx';
 import Themes from './components/Admin-Side/Settings/Themes.jsx';
+import QrGenerated from './components/Admin-Side/Settings/QrManagement/QrGenerated.jsx';
+import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 
 
 function App() {
@@ -39,10 +41,13 @@ function App() {
           <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>
           <Route path="resto/:idResto/resto-home/:id" element={<TableDetail/>}></Route>
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
-          <Route path="resto/:idResto/resto-home/menu" element={<AdminMenu />}></Route>
+          <Route path="resto/:idResto/resto-home/createmenu" element={<AdminMenu />}></Route>
           <Route path="resto/:idResto/resto-home/qrmanager" element={<QrManager />}></Route>
+          <Route path="resto/:idResto/resto-home/qrmanager/qrs" element={<QrGenerated />}></Route>
           <Route path="resto/:idResto/resto-home/analytics" element={<Analytics />}></Route>
           <Route path="resto/:idResto/resto-home/themes" element={<Themes />}></Route>
+          <Route path="resto/:idResto/resto-home/editmenu" element={<EditMenu />}></Route>
+          
 
 
         </Routes>
