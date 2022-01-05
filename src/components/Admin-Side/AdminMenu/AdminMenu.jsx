@@ -76,7 +76,7 @@ const AdminMenu = () => {
       }))
     }
 
-    var validExt = ".png, .jpeg, .jpg";
+    var validExt = ".png, .jpeg, .jpg, .PNG, .JPEG, .JPG";
     function handleImageSelection(e) {
       var filePath = e.target.value;
       var getFileExt = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
@@ -139,11 +139,6 @@ const AdminMenu = () => {
       reader.readAsDataURL(file);
     }
 
-    const WidthMedium = 768;
-
-    const navItems = [ 
-        {name: "Settings", img: "https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-setting-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png"}
-    ]
   
   // Getting labels and categories
   useEffect(() => {
@@ -189,18 +184,8 @@ const AdminMenu = () => {
 
     <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
       <BackButton/>
-      <div className="flex flex-row h-12 justify-center"> { 
-            navItems.map((el,i) => (             
-               <button id={i} name={el.name} onClick={(e) => handlerActive(e)} className= {
-                 i === active 
-                 ? " text-white text-2xl mx-4 w-20 bg-pink-100 bg-opacity-20 h-12  rounded-md md:w-32"
-                 : " text-black text-2xl mx-4 w-20 h-8  mt-2  md:w-32" 
-                } >
-               {width > WidthMedium  
-                ? el.name 
-                : <img  className="mx-auto " src={el.img} id={i} width="32" alt="" />}
-                </button>      
-            ))}
+      <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
+        <h1>Create&nbsp;Menus</h1>
       </div>
       <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
         Logout
