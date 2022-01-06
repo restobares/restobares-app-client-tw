@@ -8,7 +8,7 @@ import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
 import { deleteProductFromTable, putTableEating, postPayCash, putTableCashPayment } from '../../../redux/actions';
 
-export default function Tables() {
+export default function Tables({ joinResto, staffListen }) {
 
   const dispatch = useDispatch();
   const { idResto } = useParams();
@@ -18,16 +18,26 @@ export default function Tables() {
   const tables = useSelector((state) => state.tables);
   
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 30000);
+		joinResto(idResto);
+    //const interval = setInterval(() => setTime(Date.now()), 30000);
     if (tokenStaff) {
       dispatch(getTables(idResto, tokenStaff));
     }
     if (!tokenStaff && tokenAdmin) {
       dispatch(getTables(idResto, tokenAdmin));
     }
-    return () => {
-      clearInterval(interval);
-    };
+		// Get tables when some diner does something
+		staffListen(() => {
+    	if (tokenStaff) {
+    	  dispatch(getTables(idResto, tokenStaff));
+    	}
+    	if (!tokenStaff && tokenAdmin) {
+    	  dispatch(getTables(idResto, tokenAdmin));
+    	}
+    });
+    //return () => {
+    //	clearInterval(interval);
+    //};
   }, [dispatch, time, idResto]);
 
 

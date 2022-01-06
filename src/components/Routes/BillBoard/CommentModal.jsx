@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getOrders, postOrder } from "../../../redux/actions";
 
-const CommentModal = ({ showModal, setShowModal }) => {
+const CommentModal = ({ showModal, setShowModal, joinResto, tableSend}) => {
 
 
 	const {cart}= useSelector((state)=>state);
@@ -21,6 +21,8 @@ const CommentModal = ({ showModal, setShowModal }) => {
       comments: comment 
     }
     await dispatch(postOrder(orderToPost, idResto, idTable));
+    joinResto(idResto);
+    tableSend();
     dispatch(getOrders(idResto, idTable));
   };
 

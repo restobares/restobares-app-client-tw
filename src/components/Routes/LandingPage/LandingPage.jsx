@@ -3,19 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
 import { getUser, changeTableFilled } from '../../../redux/actions'
 
-
-export default function LandingPage () {
+// We add the socket property
+export default function LandingPage ({ joinResto, tableSend }) {
   const { idTable } = useParams();
   // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants like below
   const idResto = 'ANzbx5Pa3dPizabR';
-  
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user)
 
   useEffect(() => {
     dispatch(getUser(idResto))
     dispatch(changeTableFilled(idResto, idTable))  
+    // We tell the server we just arrived to the table
+    joinResto(idResto);
+		tableSend();
   },[dispatch, idResto, idTable]);  
+
+
 
   const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
   const logo = "https://mir-s3-cdn-cf.behance.net/project_modules/disp/3eb3045266535.562d05b41c50a.png";

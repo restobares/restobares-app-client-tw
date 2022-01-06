@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 
 
-const PayBoard = () => {
+const PayBoard = ({joinResto,tableSend}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cart }= useSelector((state) => state);

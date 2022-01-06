@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+// Socket.io
+import io from 'socket.io-client';
+
 //components
 import LandingPage from './components/Routes/LandingPage/LandingPage.jsx';
 import BillBoard from './components/Routes/BillBoard/BillBoard.jsx';
@@ -20,25 +23,41 @@ import QrGenerated from './components/Admin-Side/Settings/QrManagement/QrGenerat
 import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable.jsx';
 
+// Socket connection
+const socket = io('https://restobares-app-api.herokuapp.com'); 
+
 
 function App() {
+	// Socket events
+	//The diner just scanned the QR, we tell the server
+	function joinResto(idResto) {
+	  socket.emit('joinResto',idResto);
+	}
+	function tableSend() {
+		socket.emit('tableSend');
+	}
+	function staffListen(cb) {
+		socket.on('staffListen', (tables) => {
+			cb();
+		})
+	}
   return (
     <BrowserRouter>
       <div className="global">
         <Routes>
-          <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
+          <Route path="resto/:idResto/table/:idTable" element={<LandingPage joinResto={joinResto} tableSend={tableSend}/>}></Route>
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
-          <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
-          <Route path="resto/:idResto/table/:idTable/bill" element={<PayBoard />} ></Route>
+          <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard joinResto={joinResto} tableSend={tableSend}/>}></Route>
+          <Route path="resto/:idResto/table/:idTable/bill" element={<PayBoard joinResto={joinResto} tableSend={tableSend}/>} ></Route>
           <Route path="resto/:idResto/table/:idTable/payment" element={<Payment />} ></Route>
 
 
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
-          <Route path="resto/:idResto/resto-home" element={<HomeAdmin />}></Route>
+          <Route path="resto/:idResto/resto-home" element={<HomeAdmin joinResto={joinResto} staffListen={staffListen}/>}></Route>
           
-          <Route path="resto/:idResto/admin/tables" element={<Tables/>}></Route>
-          <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>
+          <Route path="resto/:idResto/admin/tables" element={<Tables joinResto={joinResto} staffListen={staffListen}/>}></Route>
+          <Route path="resto/:idResto/admin/orders" element={<ActiveOrders joinResto={joinResto} staffListen={staffListen}/>}></Route>
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
           <Route path="resto/:idResto/resto-home/createmenu" element={<AdminMenu />}></Route>
           <Route path="resto/:idResto/resto-home/qrmanager" element={<QrManager />}></Route>

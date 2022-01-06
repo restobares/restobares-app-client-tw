@@ -6,7 +6,7 @@ import Tables from "../Tables/Tables";
 import ActiveOrders from "../../ActiveOrders/ActiveOrders";
 import Settings from "../Settings/Settings";
 
-const HomeAdmin = () => {
+const HomeAdmin = ({ joinResto, staffListen }) => {
   const token = useSelector((state) => state.token);
   const active = useSelector((state) => state.activeComponent.activeComponent);
   // let tokenAdmin;
@@ -35,9 +35,9 @@ const HomeAdmin = () => {
       <div className=" w-full h-full  overflow-scroll">
         <div className=" mx-2">
           {active === "Tables" ? (
-            <Tables />
+            <Tables joinResto={joinResto} staffListen={staffListen}/>
           ) : active === "Orders" ? (
-            <ActiveOrders />
+            <ActiveOrders joinResto={joinResto} staffListen={staffListen}/>
           ) : (
             <Settings />
           )}

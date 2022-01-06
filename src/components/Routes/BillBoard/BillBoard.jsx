@@ -6,7 +6,7 @@ import BillBar from '../../ChildrenComponents/BillBar.jsx';
 import OrdersCarousel from '../../ChildrenComponents/OrdersCarousel.jsx';
 import PayBar from '../../ChildrenComponents/PayBar.jsx';
 
-const BillBoard = () => {
+const BillBoard = ({joinResto, tableSend}) => {
 
   const dispatch = useDispatch();
   const { idResto, idTable } = useParams();
@@ -24,7 +24,7 @@ const BillBoard = () => {
     <div className='py-12 flex flex-col h-screen justify-between'>
       <BillBar />
       <OrdersCarousel />
-      <PayBar />
+      <PayBar joinResto={joinResto} tableSend={tableSend}/>
     </div>
   );
 }
