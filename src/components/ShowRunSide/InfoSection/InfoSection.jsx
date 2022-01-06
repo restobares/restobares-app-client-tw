@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Button } from '../ButtonElements';
 import imgAbout from '../../../videosAndImages/specialEvent.svg';
 import {InfoContainer, 
@@ -13,10 +13,18 @@ import {InfoContainer,
         BtnWrap, 
         ImgWrap, 
         Img,
+        ArrowForward,
+        ArrowRigth,
 } from './InfoSectionElements.js';
 
 const InfoSection = ({LightBg, id, imgStart, topLine, LightText,
 headLine, darkText, description, buttonLabel, alt, dark, primary, dark2}) => {
+
+    const [hover, setHover] = useState(false);
+    const onHover = () => {
+        setHover(!hover);
+      };
+
     return (
         <>
             <InfoContainer LightBg={LightBg} id={id}>
@@ -28,7 +36,7 @@ headLine, darkText, description, buttonLabel, alt, dark, primary, dark2}) => {
                             <Heading LightText={LightText}>{headLine}</Heading>
                             <Subtitle darkText={darkText}>{description}</Subtitle>
                             <BtnWrap>
-                                <Button to='home' 
+                                {/* <Button to='home' 
                                 smooth={true}
                                 duration={500}
                                 spy={true}
@@ -37,7 +45,15 @@ headLine, darkText, description, buttonLabel, alt, dark, primary, dark2}) => {
                                 primary={primary?1:0}
                                 dark={dark?1:0}
                                 dark2={dark2?1:0}
-                                >{buttonLabel}</Button>
+                                >{buttonLabel}</Button> */}
+                                <Button to='/resto/register'
+                                onMouseEnter={onHover}
+                                onMouseLeave={onHover}
+                                primary="true"
+                                dark="true"
+                                >
+                                Get Started {hover ? <ArrowForward/>:<ArrowRigth/>}
+                                </Button>
                             </BtnWrap>
                         </TextWrapper>
                         </Column1>

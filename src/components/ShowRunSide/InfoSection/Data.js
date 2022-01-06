@@ -1,5 +1,5 @@
 export const homeObjOne = {
-    id: 'aboutus',
+    id: 'signup',
     LightBg: false,
     LightText: true,
     LightTextDesc: true,
@@ -14,37 +14,7 @@ export const homeObjOne = {
     darkText: false,
 }
 export const homeObjTwo = {
-    id: 'aboutus',
-    LightBg: false,
-    LightText: true,
-    LightTextDesc: true,
-    topLine: 'For Premium Restaurants',
-    headLine:'Keep your income in order with Digital Menus',
-    description: 'Dingbell helps you with the control of all processes in your restaurant, from client orders, until the interaction with your revenues',
-    buttonLabel: 'Get Started',
-    imgStart: false,
-    alt:'aboutUs',
-    dark: true,
-    primary: true,
-    darkText: false,
-}
-export const homeObjThree = {
-    id: 'aboutus',
-    LightBg: false,
-    LightText: true,
-    LightTextDesc: true,
-    topLine: 'For Premium Restaurants',
-    headLine:'Keep your income in order with Digital Menus',
-    description: 'Dingbell helps you with the control of all processes in your restaurant, from client orders, until the interaction with your revenues',
-    buttonLabel: 'Get Started',
-    imgStart: false,
-    alt:'aboutUs',
-    dark: true,
-    primary: true,
-    darkText: false,
-}
-export const homeObjFour = {
-    id: 'aboutus',
+    id: 'createdby',
     LightBg: false,
     LightText: true,
     LightTextDesc: true,

@@ -28,7 +28,7 @@ function App() {
       <div className="global">
         <Routes>
           {/* Show-Run */}
-          <Route path="resto/" element={<ShowRun/>}></Route>
+          <Route path="/" element={<ShowRun/>}></Route>
 
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
@@ -52,7 +52,7 @@ function App() {
           <Route path="resto/:idResto/resto-home/editmenu" element={<EditMenu />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu/:idProduct" element={<MenuFormEditable />}></Route>
 
-
+          <Route path='*' element={<ShowRun/>} ></Route>
         </Routes>
       </div>
     </BrowserRouter>

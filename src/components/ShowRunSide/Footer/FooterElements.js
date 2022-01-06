@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 
 export const FooterContainer = styled.footer`
   background-color: #101522;
+  height: 700px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const FooterWrap = styled.div`
@@ -26,6 +29,7 @@ export const FooterLinksContainer = styled.div`
 
 export const FooterLinksWrapper = styled.div`
   display: flex;
+  
   @media screen and (max-width: 820px) {
     flex-direction: column;
   } ;
@@ -53,8 +57,9 @@ export const FooterLinkTitle = styled.h1`
   margin-bottom: 16px;
 `;
 
-export const FooterLink = styled(Link)`
+export const FooterLink = styled.div`
   color: #fff;
+  cursor: pointer;
   text-decoration: none;
   margin-bottom: 0%.5rem;
   font-size: 14px;

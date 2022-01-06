@@ -11,6 +11,7 @@ import {
   homeObjTwo,
 } from "./InfoSection/Data";
 import Services from "./Services/Services";
+import CreatedBy from "./CreatedBy/CreatedBy";
 import Footer from "./Footer/Footer";
 export default function ShowRun() {
   const [isOpen, setisOpen] = useState(false);
@@ -25,12 +26,15 @@ export default function ShowRun() {
       ) : (
         <>
           <NavBar toggle={toggle} />
+          {/* video */}
           <HeroSection />
-          <InfoSection {...homeObjOne} />
+          {/* get started */}
+          <InfoSection {...homeObjOne} /> 
+          {/* services */}
           <Services />
-          <InfoSection {...homeObjTwo} />
-          <InfoSection {...homeObjThree} />
-          <InfoSection {...homeObjFour} />
+          {/* created by */}
+          <CreatedBy />
+          {/* about */}
           <Footer />
         </>
       )}

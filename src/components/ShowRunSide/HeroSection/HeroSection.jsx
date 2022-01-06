@@ -25,21 +25,11 @@ function HeroSection() {
             </HeroBg>
             <HeroContent>
                 <HeroH1>
-                    DingBell
+                    Welcome to your Digital Menus App
                 </HeroH1>
-                <HeroP>
+                {/* <HeroP>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, velit cum quam, voluptate error sequi odio repellendus vero ut incidunt temporibus autem pariatur corporis! Maxime sit assumenda excepturi modi et?
-                </HeroP>
-                <HeroBtnWrapper>
-                    <Button to='/resto/register'
-                    onMouseEnter={onHover}
-                    onMouseLeave={onHover}
-                    primary="true"
-                    dark="true"
-                    >
-                        Get Started {hover ? <ArrowForward/>:<ArrowRigth/>}
-                    </Button>
-                </HeroBtnWrapper>
+                </HeroP> */}
             </HeroContent>
         </HeroContainer>            
     )

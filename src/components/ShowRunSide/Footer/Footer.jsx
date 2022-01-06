@@ -20,38 +20,32 @@ import {
 const Footer = () => {
   return (
     <>
-      <FooterContainer>
+      <FooterContainer id='about' className="pt-0 md:pt-72">
         <FooterWrap>
           <FooterLinksContainer>
             <FooterLinksWrapper>
               <FoooterLinkItems>
-                <FooterLinkTitle>Social media</FooterLinkTitle>
-                <FooterLink to="/sing">linkedin</FooterLink>
-                <FooterLink to="/sing">gitHub</FooterLink>
-                <FooterLink to="/sing">instagram</FooterLink>
+                <FooterLinkTitle>Product</FooterLinkTitle>
+                <FooterLink>Features</FooterLink>
+                <FooterLink>Table Menu</FooterLink>
+                <FooterLink>Dine-in QR Menu</FooterLink>
               </FoooterLinkItems>
               <FoooterLinkItems>
-                <FooterLinkTitle>Social media</FooterLinkTitle>
-                <FooterLink to="/sing">linkedin</FooterLink>
-                <FooterLink to="/sing">gitHub</FooterLink>
-                <FooterLink to="/sing">instagram</FooterLink>
+                <FooterLinkTitle>Business Types</FooterLinkTitle>
+                <FooterLink to="/sing">Hotels</FooterLink>
+                <FooterLink to="/sing">Cafes & Bakery</FooterLink>
+                <FooterLink to="/sing">Coffee Shop</FooterLink>
               </FoooterLinkItems>
               <FoooterLinkItems>
-                <FooterLinkTitle>Social media</FooterLinkTitle>
-                <FooterLink to="/sing">linkedin</FooterLink>
-                <FooterLink to="/sing">gitHub</FooterLink>
-                <FooterLink to="/sing">instagram</FooterLink>
+                <FooterLinkTitle>Company</FooterLinkTitle>
+                <FooterLink to="/sing">Help Center</FooterLink>
+                <FooterLink to="/sing">Privacy & Terms</FooterLink>
+                <FooterLink to="/sing">Blog</FooterLink>
               </FoooterLinkItems>
               <FoooterLinkItems>
-                <FooterLinkTitle>Social media</FooterLinkTitle>
-                <FooterLink to="/sing">linkedin</FooterLink>
-                <FooterLink to="/sing">gitHub</FooterLink>
-                <FooterLink to="/sing">instagram</FooterLink>
-              </FoooterLinkItems>
-              <FoooterLinkItems>
-                <FooterLinkTitle>Social media</FooterLinkTitle>
-                <FooterLink to="/sing">linkedin</FooterLink>
-                <FooterLink to="/sing">gitHub</FooterLink>
+                <FooterLinkTitle>Contact Us</FooterLinkTitle>
+                <FooterLink to="/sing">restobaresapp@gmail.com</FooterLink>
+                <FooterLink to="/sing">+54 9 11 3408-4364</FooterLink>
                 <FooterLink to="/sing">instagram</FooterLink>
               </FoooterLinkItems>
             </FooterLinksWrapper>
