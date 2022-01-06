@@ -43,11 +43,11 @@ const AdminMenu = () => {
       }
       options.push(eachOption);
     }
-    for (var i = 0; i < categories.length; i++) {
+    for (var j = 0; j < categories.length; j++) {
 
       let eachOption = {
-        value: categories[i].id,
-        label: categories[i].name
+        value: categories[j].id,
+        label: categories[j].name
       }
       optionsCategories.push(eachOption);
     }
@@ -107,7 +107,8 @@ const AdminMenu = () => {
         setInput({
             ...input,
             image: ""
-          })
+        })
+        e.target.value = null;
         return false;
       } else {
           imageSizeValidate(e.target);
@@ -186,7 +187,7 @@ const AdminMenu = () => {
 
   const alerta = async (e) => {
     e.preventDefault()
-    let json = await dispatch(postMenu(idResto, input, tokenAdmin))
+    await dispatch(postMenu(idResto, input, tokenAdmin))
     // console.log(json);
     Swal.fire({
       position: 'center',

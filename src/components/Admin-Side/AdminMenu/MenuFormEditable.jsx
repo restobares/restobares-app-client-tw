@@ -51,19 +51,19 @@ function MenuFormEditable() {
     let options = [];
     let optionsCategories = [];
 
-    for (var i = 0; i < labels.length; i++) {
+    for (var j = 0; j < labels.length; j++) {
 
       let eachOption = {
-        value: labels[i].id,
-        label: labels[i].name
+        value: labels[j].id,
+        label: labels[j].name
       }
       options.push(eachOption);
     }
-    for (var i = 0; i < categories.length; i++) {
+    for (var k = 0; k < categories.length; k++) {
 
       let eachOption = {
-        value: categories[i].id,
-        label: categories[i].name
+        value: categories[k].id,
+        label: categories[k].name
       }
       optionsCategories.push(eachOption);
     }
@@ -115,7 +115,8 @@ function MenuFormEditable() {
         setInput({
             ...input,
             image: ""
-          })
+        });
+        e.target.value = null;
         return false;
       } else {
           imageSizeValidate(e.target);
