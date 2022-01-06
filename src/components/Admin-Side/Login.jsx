@@ -46,7 +46,9 @@ const Login = () => {
             backgroundImage: `url(${bgimg})`,
             backgroundSize: "cover", 
           }} >
-            <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
+            <div className='inline-block mx-auto my-auto justify-items-center '>
+
+            <div className=' mx-2 bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
                 <h1 className='text-2xl font-medium text-primary mt-4 mb-12 text-center'>
                     Log in to your account 🔐
                 </h1>
@@ -60,7 +62,7 @@ const Login = () => {
                             id='email'
                             placeholder='Your Email'
                             onChange={(e) => setEmail(e.target.value)}
-                        />
+                            />
                     </div>
                     <div>
                         <label htmlFor='password'>Password</label>
@@ -70,7 +72,7 @@ const Login = () => {
                             id='password'
                             placeholder='Your Password'
                             onChange={(e) => setPassword(e.target.value)}
-                        />
+                            />
                     </div>
 
                     <div className='flex justify-center items-center mt-6'>
@@ -78,10 +80,10 @@ const Login = () => {
                         <button
                             className='bg-green py-2 px-4 text-sm text-black rounded border border-green focus:outline-none focus:border-green-dark'
                             // onClick={
-                            //     () => navigate (`/resto/${idResto}/admin`)
-                            // }
-                            type='submit'
-                        >
+                                //     () => navigate (`/resto/${idResto}/admin`)
+                                // }
+                                type='submit'
+                                >
                             Login
                         </button>
 
@@ -89,6 +91,7 @@ const Login = () => {
                         
                     </div>
                 </form>
+            </div>
             </div>
         </div>
     );

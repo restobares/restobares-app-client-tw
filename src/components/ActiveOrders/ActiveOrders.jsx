@@ -49,9 +49,9 @@ const ActiveOrders = () => {
               {order.currentOrder.comments !== "" && (
                 <div>
                   <h4 className="text-left pl-4 text-xl md:text-3xl mt-5">Comments:</h4>
-                  <div className="text-xl md:text-2xl">
-                    <h4 className="text-center">{order.currentOrder.comments.split("<br>").join('')}</h4>
-                  </div>
+                    <div className="text-xl bg-gray-100 bg-opacity-20 mx-2 mt-2 rounded-xl md:text-2xl">
+                      <h4 className="text-center">{order.currentOrder.comments.split("<br>").join('')}</h4>
+                    </div>
                 </div>
               )}
             </div>
