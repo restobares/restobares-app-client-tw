@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Link as LinkScroll} from "react-scroll";
+import { Link as LinkScroll } from 'react-scroll'
 
 export const Nav = styled.nav`
-  background: #b83280;
+  background: ${({ scrollNav }) => (scrollNav ? "#b83280" : "transparent")};
   height: 80px;
-  /* margin-top: -80px; */
+  margin-top: -80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,7 +33,7 @@ export const NavbarContainer = styled.div`
   }
 `;
 
-export const NavLogo = styled(Link)`
+export const NavLogo = styled(LinkScroll)`
   color: #fff;
   justify-self: flex-start;
   cursor: pointer;
@@ -54,8 +54,8 @@ export const ImgLogo = styled.img`
 
 export const MobileIcon = styled.div`
   display: none;
-  @media screen and (max-width:768px) {
-    display:block;
+  @media screen and (max-width: 768px) {
+    display: block;
     position: absolute;
     top: 0;
     right: 0;
@@ -66,15 +66,15 @@ export const MobileIcon = styled.div`
   }
 `;
 export const NavMenu = styled.ul`
-display: flex;
-align-items: center;
-list-style: none;
-text-align: center;
-margin-right: -22px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+  margin-right: -22px;
 
-@media  screen and (max-width:768px) {
-  display:none;
-}
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const NavItem = styled.li`
@@ -82,22 +82,22 @@ export const NavItem = styled.li`
 `;
 
 export const NavLinks = styled(LinkScroll)`
- color: #fff;
- display: flex;
- align-items: center;
- text-decoration: none;
- padding: 0 1rem;
- height: 100%;
- cursor:pointer;
-&.active{
-  border-bottom: 3px solid #01bf71;
-}
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  &.active {
+    border-bottom: 3px solid #01bf71;
+  }
 `;
 
 export const NavBtn = styled.div`
   display: flex;
   align-items: center;
-  @media  screen and (max-width:768px){
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -114,12 +114,9 @@ export const NavBtnLink = styled(Link)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  &:hover{
+  &:hover {
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #010606;
   }
 `;
-
-
-
