@@ -20,6 +20,7 @@ import Themes from './components/Admin-Side/Settings/Themes.jsx';
 import QrGenerated from './components/Admin-Side/Settings/QrManagement/QrGenerated.jsx';
 import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable.jsx';
+import Logotypes from './components/Admin-Side/Settings/Logotypes/Logotypes.jsx';
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
           <Route path="resto/:idResto/resto-home/themes" element={<Themes />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu" element={<EditMenu />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu/:idProduct" element={<MenuFormEditable />}></Route>
+          <Route path="resto/:idResto/resto-home/logotypes" element={<Logotypes />}></Route>
 
 
         </Routes>
