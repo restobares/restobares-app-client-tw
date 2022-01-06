@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 import BackButton from '../BackButton';
 import { Switch } from '@headlessui/react'
 import { deleteProduct, getMenu, putAvailableProduct } from '../../../redux/actions';
@@ -11,7 +11,6 @@ const EditMenu = () => {
 
     
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { idResto } = useParams();
     const tokenAdmin = Cookies.get("token-admin");

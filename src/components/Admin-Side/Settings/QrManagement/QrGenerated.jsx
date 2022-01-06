@@ -5,9 +5,6 @@ import jsPDf from "jspdf";
 
 const QrGenerated = () => {
   const { qrCode } = useSelector((state) => state);
-  var options = {
-         pagesplit: true
-    };
 
 
   const generatePDF = () => {
@@ -32,6 +29,7 @@ const QrGenerated = () => {
               <div>
                 <h4 className="mb-2">Table&nbsp;{(qrCode, index)}</h4>
                 <img src={qr} alt="" />
+                
               </div>
             );
           })}

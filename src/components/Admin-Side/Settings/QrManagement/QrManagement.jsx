@@ -75,7 +75,8 @@ const QrManager = () => {
           Print Qr
         </button>
 
-        <h1 className="m-5 text-lg font-bold">Select your Tables</h1>
+        <h1 className="m-5 text-lg font-bold">Select your Tables
+        (max: 9 per time)</h1>
 
         <input
           type="number"

@@ -7,7 +7,7 @@ const PutTesting = () => {
   const { idResto } = useParams();
   const dispatch = useDispatch();
   const testToken = "AdminSupremeTest";
-  const testTable = 4;
+  const testTable = 5;
   const testProduct = 1;
   const testQuantity = 1;
   const testTip = 10;

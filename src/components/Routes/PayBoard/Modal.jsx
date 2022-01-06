@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { getPayCash } from '../../../redux/actions/getPayCash';
 
 const featuredProducts = ['https://res.cloudinary.com/pozters/image/upload/w_350/v1531312884/prod_uploads/qdK8393G69QVD6M',
                           'https://media-cdn.tripadvisor.com/media/photo-s/0f/0b/ff/92/2x1-de-lunes-a-miercoles.jpg',
@@ -6,12 +8,17 @@ const featuredProducts = ['https://res.cloudinary.com/pozters/image/upload/w_350
 
 let count = 0;
 
-const Modal = ({showModal, setShowModal}) => {
+const Modal = ({showModal, setShowModal, idResto, idTable}) => {
+
+  const dispatch = useDispatch();
 
   const [currentIndex, setCurrentIndex] = useState (0);
 
+
+
   
   useEffect(() => {
+    
     startSlider();
   }, []);
 
@@ -60,6 +67,8 @@ const Modal = ({showModal, setShowModal}) => {
           <img className="ml-10" src="https://media2.giphy.com/media/1gQwNktlzyKsje8hYT/giphy.gif?cid=790b7611eecec2c3c468a85a3d4879aebd1842028814a3b2&rid=giphy.gif&ct=s"  width="160" alt="" />
             <h1 className='modal-content text-xl text-red-50 font-bold -mt-4'>Wait at Table, please.</h1>
           <button onClick={() => setShowModal(prev => !prev)} className="bg-red-500 rounded-xl px-4 mt-12 w-20 h-6 text-red-50 text-lg">Cerrar</button>
+          <button onClick={() => dispatch(getPayCash(idResto, idTable))} className="bg-red-500 rounded-xl px-4 mt-12 w-20 h-6 text-red-50 text-lg">get</button>
+        
         </div>
       
       </div> : null}
