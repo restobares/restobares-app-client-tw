@@ -46,3 +46,9 @@
 .button {
   @apply  bg-pink-100 h-8 mt-2 w-8  rounded-full 
 }
+
+#printeable {
+  padding: 4px;
+  width: 587px;
+  height: 834px;
+} 

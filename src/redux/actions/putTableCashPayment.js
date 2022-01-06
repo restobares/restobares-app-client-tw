@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function putTableEating(idResto, idTable, token) {
+export function putTableCashPayment(idResto, idTable, token) {
 
   return async function(dispatch) {
     
@@ -9,20 +9,22 @@ export function putTableEating(idResto, idTable, token) {
       var json = await axios.put(`http://restobares-app-api.herokuapp.com/resto/${idResto}/staff/tables`, 
       {
         idTable: `${idTable}`,
-        state: "eating",
+        state: "pay_cash",
         idStaff: "39672174"
       }, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
       });
+      // console.log(json.data.comments);
 
       return dispatch({
-        type: ActionTypes.PUT_TABLE_EATING,
+        type: ActionTypes.PUT_TABLE_CASH_PAYMENT,
         payload: json.data
       });
     } catch(err) {
       console.log(err);
     }
+    
   }
 }
