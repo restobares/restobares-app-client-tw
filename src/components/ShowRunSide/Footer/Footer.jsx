@@ -30,6 +30,30 @@ const Footer = () => {
                 <FooterLink to="/sing">gitHub</FooterLink>
                 <FooterLink to="/sing">instagram</FooterLink>
               </FoooterLinkItems>
+              <FoooterLinkItems>
+                <FooterLinkTitle>Social media</FooterLinkTitle>
+                <FooterLink to="/sing">linkedin</FooterLink>
+                <FooterLink to="/sing">gitHub</FooterLink>
+                <FooterLink to="/sing">instagram</FooterLink>
+              </FoooterLinkItems>
+              <FoooterLinkItems>
+                <FooterLinkTitle>Social media</FooterLinkTitle>
+                <FooterLink to="/sing">linkedin</FooterLink>
+                <FooterLink to="/sing">gitHub</FooterLink>
+                <FooterLink to="/sing">instagram</FooterLink>
+              </FoooterLinkItems>
+              <FoooterLinkItems>
+                <FooterLinkTitle>Social media</FooterLinkTitle>
+                <FooterLink to="/sing">linkedin</FooterLink>
+                <FooterLink to="/sing">gitHub</FooterLink>
+                <FooterLink to="/sing">instagram</FooterLink>
+              </FoooterLinkItems>
+              <FoooterLinkItems>
+                <FooterLinkTitle>Social media</FooterLinkTitle>
+                <FooterLink to="/sing">linkedin</FooterLink>
+                <FooterLink to="/sing">gitHub</FooterLink>
+                <FooterLink to="/sing">instagram</FooterLink>
+              </FoooterLinkItems>
             </FooterLinksWrapper>
           </FooterLinksContainer>
           <SocialMedia>
