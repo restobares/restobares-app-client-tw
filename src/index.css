@@ -44,7 +44,7 @@
 }
 
 .button {
-  @apply  bg-pink-100 h-8 mt-2 w-8  rounded-full 
+  @apply  bg-pink-100 h-8 mt-2 w-8  rounded-full
 }
 
 #printeable {

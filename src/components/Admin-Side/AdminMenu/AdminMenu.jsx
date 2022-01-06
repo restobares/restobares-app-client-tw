@@ -113,6 +113,7 @@ const AdminMenu = () => {
         ...input,
         image: "",
       });
+      e.target.value = null;
       return false;
     } else {
       imageSizeValidate(e.target);
@@ -140,7 +141,7 @@ const AdminMenu = () => {
         return false;
       } else {
         encodeImageBase64(eTarget);
-        return true;a
+        return true;
       }
     }
   }
@@ -191,7 +192,7 @@ const AdminMenu = () => {
     };
   }, []);
 
-  const alerta = async (e) => {
+  const alert = async (e) => {
     e.preventDefault();
     await dispatch(postMenu(idResto, input, tokenAdmin));
     // console.log(json);
@@ -200,7 +201,7 @@ const AdminMenu = () => {
       icon: "success",
       title: "Your menu has been sent",
       showConfirmButton: false,
-      timer: 3000,
+      timer: 2000,
     });
     setInput({
       name: "",
@@ -218,6 +219,16 @@ const AdminMenu = () => {
     document.getElementById("image").value = null;
   };
 
+  const notAlert = (e) =>{
+    e.preventDefault();
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "All fields are required!",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  }
   return (
     <div>
       <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
@@ -292,14 +303,23 @@ const AdminMenu = () => {
           onChange={(e) => handleLabelSelection(e)}
           placeholder="Choose your labels..."
         />
+        {Object.keys(errors).length > 0 || input.name === "" ?
+        
         <button
           type="submit"
-          onClick={alerta}
-          className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
-          disabled={Object.keys(errors).length > 0 || input.name === ""}
+          onClick={notAlert}
+          className="text-white bg-gray-600 mt-4 mb-36 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
         >
           Send Menu
-        </button>
+        </button>:
+        <button
+          type="submit"
+          onClick={alert}
+          className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out "
+        >
+          Send Menu
+        </button> 
+        }
       </form>
     </div>
   );
