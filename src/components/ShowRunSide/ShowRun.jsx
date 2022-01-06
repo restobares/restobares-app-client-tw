@@ -4,27 +4,36 @@ import NavBar from "./NavBar/NavBar";
 import SideBar from "./SideBar/SideBar";
 import HeroSection from "./HeroSection/HeroSection";
 import InfoSection from "./InfoSection/InfoSection";
-import { homeObjFour, homeObjOne, homeObjThree, homeObjTwo } from "./InfoSection/Data";
+import {
+  homeObjFour,
+  homeObjOne,
+  homeObjThree,
+  homeObjTwo,
+} from "./InfoSection/Data";
 import Services from "./Services/Services";
+import Footer from "./Footer/Footer";
 export default function ShowRun() {
-    const [isOpen, setisOpen]=  useState(false)
-    const toggle= ()=>{
-        setisOpen(!isOpen);
-    }
+  const [isOpen, setisOpen] = useState(false);
+  const toggle = () => {
+    setisOpen(!isOpen);
+  };
 
   return (
     <div>
-      {isOpen?<SideBar isOpen={isOpen} toggle={toggle}/>:
-      <>
-      <NavBar toggle={toggle}/>
-      <HeroSection/>
-      <InfoSection {...homeObjOne}/>
-      <Services />
-      <InfoSection {...homeObjTwo}/>
-      <InfoSection {...homeObjThree}/>
-      <InfoSection {...homeObjFour}/>
-      </>
-      }
+      {isOpen ? (
+        <SideBar isOpen={isOpen} toggle={toggle} />
+      ) : (
+        <>
+          <NavBar toggle={toggle} />
+          <HeroSection />
+          <InfoSection {...homeObjOne} />
+          <Services />
+          <InfoSection {...homeObjTwo} />
+          <InfoSection {...homeObjThree} />
+          <InfoSection {...homeObjFour} />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
