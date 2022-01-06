@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
-import { animatedScrollTo as scroll } from "react-scroll";
+import {
+  Link,
+  Button,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller,
+} from "react-scroll";
 import {
   Nav,
   NavbarContainer,
@@ -32,6 +40,7 @@ const NavBar = ({ toggle }) => {
 
   const toogleHome = () => {
     scroll.scrollToTop();
+     console.log(scroll.scrollToTop());
   };
   return (
     <>
