@@ -13,7 +13,7 @@ const BillBoard = () => {
   const [time, setTime] = useState(Date.now());
   // this is what makes the cart self update from the put of the waiter
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 15000);
+    const interval = setInterval(() => setTime(Date.now()), 30000);
     dispatch(getOrders(idResto, idTable));
     return () => {
       clearInterval(interval);

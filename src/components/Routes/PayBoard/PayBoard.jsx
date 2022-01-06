@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { getOrders, postOrderToMP, postPayCash } from '../../../redux/actions';
-// import { getPayCash } from '../../../redux/actions/getPayCash';
-import Modal from './Modal'
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { postOrderToMP, postPayCash, getOrders } from '../../../redux/actions';
+import Modal from './Modal';
+
 import Swal from 'sweetalert2';
 
 
@@ -12,14 +13,14 @@ import Swal from 'sweetalert2';
 
 const PayBoard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { cart }= useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [tipPercentage, setTipPercentage] = useState(0);
   const [tip, setTip] = useState(0);
   const [time, setTime] = useState(Date.now());
-  
-  
+
   const openModal = () => {
     dispatch(postPayCash(idResto, idTable, tip))
     setShowModal(prev => !prev);
@@ -45,7 +46,32 @@ const PayBoard = () => {
     let json = await dispatch(postOrderToMP(idResto, idTable, tip));
     console.log(json)
     window.location.href = `${json.payload.response.init_point}`
-  } 
+  }
+  
+  useEffect(() => {
+    if (totalPrice > 0) {
+      const interval = setInterval(() => setTime(Date.now()), 15000);
+      dispatch(getOrders(idResto, idTable));
+      return () => {
+        clearInterval(interval);
+      };
+    } 
+    if (cart.currentOrder.length === 0) {
+      async function paymentAlert() {
+        await Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Payment Successful',
+          showConfirmButton: false,
+          timer: 3000
+        })
+        // aca usar navigate a ruta feedback
+        // navigate(`/resto/${idResto}/table/${idTable}`);
+      }
+      paymentAlert();  
+    }
+    
+  }, [time, dispatch, idTable, idResto, totalPrice, cart.currentOrder.length]);
 
   
   useEffect(() => {
