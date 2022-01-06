@@ -46,6 +46,7 @@ function MenuFormEditable() {
       categorySelector: "",
       labelsSelector: ""
     })
+    
 
 
     let options = [];
@@ -115,7 +116,8 @@ function MenuFormEditable() {
         setInput({
             ...input,
             image: ""
-          })
+        });
+        e.target.value = null;
         return false;
       } else {
           imageSizeValidate(e.target);
@@ -294,7 +296,7 @@ function MenuFormEditable() {
             placeholder={labelNamesPlaceholder.join(", ")}
     />
 
-   <button type="submit" onClick={handleSubmit} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+   <button type="submit" onClick={handleSubmit} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.values(input).join('').length === 0}>
    Save Changes
    </button>
 </form>
