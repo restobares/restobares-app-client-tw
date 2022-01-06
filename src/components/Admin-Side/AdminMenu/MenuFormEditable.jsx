@@ -115,7 +115,8 @@ function MenuFormEditable() {
         setInput({
             ...input,
             image: ""
-          })
+        });
+        e.target.value = null;
         return false;
       } else {
           imageSizeValidate(e.target);
