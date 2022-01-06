@@ -6,6 +6,7 @@ import Moment from 'moment';
 import { getTables } from "../../../redux/actions";
 import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
+import { deleteProductFromTable, putTableEating, postPayCash, putTableCashPayment } from '../../../redux/actions';
 
 export default function Tables() {
 
@@ -31,6 +32,20 @@ export default function Tables() {
 
 
   const [detailTable,setDetailTable] = useState (null);
+
+
+  const handlePutEating = e => {
+    e.preventDefault()
+    dispatch(putTableEating(idResto, detailTable, tokenStaff)) 
+  }
+
+  const handleCancel = e => {
+    e.preventDefault()
+    // esto funcionaria si yo tuviera un - para ir restando de a uno o tuviera un componente con la 
+    // logica de ir borrando la cantidad que ponga en un input
+    // implementamos lo demas.. y lo vemos despues
+    // dispatch(deleteProductFromTable(idResto, detailTable, testProduct, 1, tokenStaff))    
+  }
 
   const handleButton = (e) => {
     e.preventDefault()
@@ -62,42 +77,80 @@ export default function Tables() {
                       {el.state}
                       </p>                    
                       }
-                      {el.currentOrder.products.length 
-                      ? <input  type="image" name={el.tableId} 
-                                onClick={(e) => handleButton(e)}  className="inline-block float-right mt-3 mr-2"
-                                src={detailTable === el.tableId 
-                                    ? "https://img.icons8.com/ios/50/000000/collapse-arrow--v1.png"
-                                    : "https://img.icons8.com/ios/50/000000/expand-arrow--v1.png"
-                                    }
-                                alt=""
-                                width="12"
+                      <input  type="image" name={el.tableId} 
+                        onClick={(e) => handleButton(e)}  className="inline-block float-right mt-3 mr-2"
+                          src={detailTable === el.tableId 
+                            ? "https://img.icons8.com/ios/50/000000/collapse-arrow--v1.png"
+                            : "https://img.icons8.com/ios/50/000000/expand-arrow--v1.png"
+                            }
+                          alt=""
+                          width="12"
                         />                                
-                      : <p className="inline-block float-right mr-2 h-full w-3"></p>
-                      }
                     </div>
 
                   </div>
+                 { detailTable === el.tableId &&
                   <div className={detailTable === el.tableId 
                     ? [" bg-gray-300 rounded-md  mx-1 mb-1 py-2"]: ""}>
-                    {detailTable === el.tableId 
-                          &&  [<ChangeStatus/>,
-                              <ChangeOrder detailTable={el.tableId} />,   
-                              <div className="h-6 mt-1 mx-2 bg-pink-800 bg-opacity-10 rounded-md">
-                                  <p className="inline-block float-left text-left ml-2 w-3/12  font-semibold">Nombre</p>
-                                  <p className="inline-block text-center float-left ml-2 w-1/12  font-semibold truncate">Cant</p>
-                                  <p className="inline-block float-left ml-2 w-1/12  font-semibold truncate">Sub-Total</p>
-                                  <p className="inline-block float-left ml-2 w-2/12 font-semibold truncate">Hora</p>
-                              </div> ]}
-                    {detailTable === el.tableId 
-                          && el.currentOrder.products.map(el => (
-                          <div className="h-6 mx-2 bg-gray-100 rounded-md border-b-2 border-gray-300 mt-1  ">    
+                    {detailTable === el.tableId && el.state !== "free" 
+                      && <ChangeStatus/>
+                    }
+                    <ChangeOrder detailTable={el.tableId} />
+                    <div className="flex flex-col ">
+                          <div className="h-6 mt-1 mx-2 bg-pink-800 bg-opacity-10 rounded-md">
+                            <p className="inline-block float-left text-left ml-2 w-3/12  font-semibold">Nombre</p>
+                            <p className="inline-block text-center float-left ml-2 w-1/12  font-semibold truncate">Cant</p>
+                            <p className="inline-block float-left ml-2 w-1/12  font-semibold truncate">Sub-Total</p>
+                            <p className="inline-block float-left ml-2 w-2/12 font-semibold truncate">Hora</p>
+                          </div>
+                      {el.ordered.length && 
+                        <div>
+
+                          <div className="h-6 mx-2 bg-gray-500 bg-opacity-60 text-white rounded-md border-b-2 border-gray-300 mt-1">
+                                  Ordered
+                          </div>
+                      {el.ordered.map(el => (
+                        <div className="h-6 mx-2 bg-gray-100 rounded-md border-b-2 border-gray-300 mt-1  ">    
                           <p className="inline-block float-left ml-2 w-3/12 truncate text-left">{el.productName}</p>
                           <p className="inline-block float-left ml-2 w-1/12 truncate">{el.quantity}</p>
-                          <p className="inline-block float-left ml-2 w-1/12 truncate">{el.quantity * el.price} $</p>
+                          <p className="inline-block float-left ml-2 w-1/12 truncate">{el.totalPrice} $</p>
                           <p className="inline-block float-left ml-2 w-2/12 truncate">{Moment(el.time).format("HH:mm:ss")}</p>
                         </div>
-                    ))}
+                      ))}
+                      </div>
+                      }
+                      {el.currentOrder.products.length > 0 &&
+                        <div className="">  
+
+
+                          <div className="h-6 mx-2 bg-pink-700 bg-opacity-60 text-white rounded-md border-b-2 border-gray-300 mt-1">
+                                  Current Order
+                          </div>
+                          {el.currentOrder.products.map(el => (
+                            <div className="h-6 mx-2 bg-gray-100 rounded-md border-b-2 border-gray-300 mt-1  ">    
+                                  <p className="inline-block float-left ml-2 w-3/12 truncate text-left">{el.productName}</p>
+                                  <p className="inline-block float-left ml-2 w-1/12 truncate">{el.quantity}</p>
+                                  <p className="inline-block float-left ml-2 w-1/12 truncate">{el.quantity * el.price} $</p>
+                                  <p className="inline-block float-left ml-2 w-2/12 truncate">{Moment(el.time).format("HH:mm:ss")}</p>
+                            </div>
+                          ))}
+
+                          <button onClick={e => handlePutEating(e)}
+                            className="inline-block float-right w-12  mt-2  mb-2 mr-4 h-6 bg-pink-700 rounded-md text-white"
+                            >
+                              Put
+                          </button>
+                          <button onClick={e => handleCancel(e)}
+                            className="inline-block float-right w-12  mt-2  mb-2 mr-4 h-6 bg-pink-700 rounded-md text-white"
+                            >
+                              Cancel
+                            </button>
+                        </div>
+                      }
+
+                    </div>
                   </div>
+                  }
               </div>
               ))}
           </div>
