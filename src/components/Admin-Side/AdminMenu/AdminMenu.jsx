@@ -140,7 +140,7 @@ const AdminMenu = () => {
         return false;
       } else {
         encodeImageBase64(eTarget);
-        return true;
+        return true;a
       }
     }
   }
