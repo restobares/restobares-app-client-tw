@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { postOrderToMP, postPayCash, getOrders } from '../../../redux/actions';
 import Modal from './Modal';
+
 import Swal from 'sweetalert2';
 
 
@@ -18,7 +20,6 @@ const PayBoard = () => {
   const [tipPercentage, setTipPercentage] = useState(0);
   const [tip, setTip] = useState(0);
   const [time, setTime] = useState(Date.now());
-
 
   const openModal = () => {
     dispatch(postPayCash(idResto, idTable, tip))
@@ -71,6 +72,30 @@ const PayBoard = () => {
     }
     
   }, [time, dispatch, idTable, idResto, totalPrice, cart.currentOrder.length]);
+
+  
+  useEffect(() => {
+    if (totalPrice > 0){
+    
+    const interval = setInterval(() => setTime(Date.now()), 15000);
+    dispatch(getOrders(idResto, idTable));
+    return () => {
+      clearInterval(interval);
+    };
+  }
+  if(cart.currentOrder.length === 0){
+    async function paymentAlert(){
+    await Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Payment Successful',
+      showConfirmButton: false,
+      timer: 3000
+    })}
+    //Acá usar navigate
+  paymentAlert()
+}
+  }, [time, dispatch, idTable, idResto]);
 
 
   return (
