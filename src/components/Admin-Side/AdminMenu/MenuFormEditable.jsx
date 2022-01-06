@@ -46,24 +46,25 @@ function MenuFormEditable() {
       categorySelector: "",
       labelsSelector: ""
     })
+    
 
 
     let options = [];
     let optionsCategories = [];
 
-    for (var i = 0; i < labels.length; i++) {
+    for (var j = 0; j < labels.length; j++) {
 
       let eachOption = {
-        value: labels[i].id,
-        label: labels[i].name
+        value: labels[j].id,
+        label: labels[j].name
       }
       options.push(eachOption);
     }
-    for (var i = 0; i < categories.length; i++) {
+    for (var k = 0; k < categories.length; k++) {
 
       let eachOption = {
-        value: categories[i].id,
-        label: categories[i].name
+        value: categories[k].id,
+        label: categories[k].name
       }
       optionsCategories.push(eachOption);
     }
@@ -115,7 +116,8 @@ function MenuFormEditable() {
         setInput({
             ...input,
             image: ""
-          })
+        });
+        e.target.value = null;
         return false;
       } else {
           imageSizeValidate(e.target);
@@ -294,7 +296,7 @@ function MenuFormEditable() {
             placeholder={labelNamesPlaceholder.join(", ")}
     />
 
-   <button type="submit" onClick={handleSubmit} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+   <button type="submit" onClick={handleSubmit} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.values(input).join('').length === 0}>
    Save Changes
    </button>
 </form>

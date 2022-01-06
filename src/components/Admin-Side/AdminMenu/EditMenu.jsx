@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams} from 'react-router-dom';
 import BackButton from '../BackButton';
 import { Switch } from '@headlessui/react'
 import { deleteProduct, getMenu, putAvailableProduct } from '../../../redux/actions';
@@ -11,19 +11,27 @@ const EditMenu = () => {
 
     
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { idResto } = useParams();
     const tokenAdmin = Cookies.get("token-admin");
+    const tokenStaff = Cookies.get("token-staff");
     const menu = useSelector((state) => state.menus.menuAdmin)
 
-    const handlePutAvailableProduct = async (idResto, idProduct, token) => {
-      await dispatch(putAvailableProduct(idResto, idProduct, token));
+    const handlePutAvailableProduct = async (idProduct) => {
+      if (tokenAdmin) {
+        await dispatch(putAvailableProduct(idResto, idProduct, tokenAdmin));
+      }
+      if (!tokenAdmin && tokenStaff) {
+        await dispatch(putAvailableProduct(idResto, idProduct, tokenStaff));
+      }
       dispatch(getMenu(idResto, 1))
     }
 
-    const handleDeleteProduct = async (idResto, idProduct, token) => {
-      await dispatch(deleteProduct(idResto, idProduct, token));
+    const handleDeleteProduct = async (idProduct) => {
+      if (tokenAdmin) {
+        await dispatch(deleteProduct(idResto, idProduct, tokenAdmin));
+      }
+      
       dispatch(getMenu(idResto, 1));
     }
 
@@ -63,10 +71,10 @@ const EditMenu = () => {
           <div className="float-left align-baseline text-left inline-block h-4 w-full">
             <div className=" inline-block w-full align-bottom">
               <p className="inline-block ml-2 text-black text-truncate text-sm font-bold">{product.name}</p>
-              <button onClick={() => handleDeleteProduct(idResto, product.id, tokenAdmin)} className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-12 rounded-xl">Delete</button>
+              <button disabled={!tokenAdmin} onClick={() => handleDeleteProduct(product.id)} className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-12 rounded-xl">Delete</button>
         
               <Link to={`/resto/${idResto}/resto-home/editmenu/${product.id}`} body={product}>
-                <button className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-10 rounded-xl">Edit</button>
+                <button disabled={!tokenAdmin} className=" align-bottom inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-pink-500 w-10 rounded-xl">Edit</button>
               </Link>
 
               <p className=" font-semibold inline-block float-right mr-6 text-sm">{product.price}</p>
@@ -78,7 +86,7 @@ const EditMenu = () => {
             {/* Boton switch - ui */}
               <Switch
                 checked={product.available}
-                onChange={() => handlePutAvailableProduct(idResto, product.id, tokenAdmin)}
+                onChange={() => handlePutAvailableProduct(product.id)}
                 // onChange={handlePutAvailableProduct}
                 className={`${
                     product.available ? 'bg-pink-500' : 'bg-gray-200'
