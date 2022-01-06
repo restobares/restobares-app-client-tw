@@ -1,7 +1,9 @@
 import React from "react";
 
 export default function ChangeStatus() {
-    
+    // creo que el pay with cash no tiene sentido.. por que nos redirecciona al menu ahora y se puede hacer desde ahi
+    // o hago un div y le pongo barra de pago, en vez de change state -- y la barra de pago tendria -- paga en mesa y ya pago, pero paga en mesa no tiene tanto sentido creo para que lo setiemos desde staff, si lo tiene que sea un estado de la app
+    // si ya pago seria terminar la operacion -> osea pasamos de un selector a un solo boton para terminar operaciones y cerrar la mesa
     const handleState = e => {
         e.preventDefault()
         
