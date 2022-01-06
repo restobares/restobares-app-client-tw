@@ -16,6 +16,9 @@ function tables(state = initialState, action) {
   if (action.type === ActionTypes.TABLE_FILLED) {
     return state;
   }
+  if (action.type === ActionTypes.POST_PAY_CASH) {
+    return state;
+  }
   return state;
 }
 

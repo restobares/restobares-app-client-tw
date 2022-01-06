@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Moment from 'moment';
 import { getTables } from "../../../redux/actions";
-
-
+import ChangeStatus from "./ChangeStatus";
+import ChangeOrder from "./ChangeOrder";
 
 export default function Tables() {
 
@@ -80,12 +80,14 @@ export default function Tables() {
                   <div className={detailTable === el.tableId 
                     ? [" bg-gray-300 rounded-md  mx-1 mb-1 py-2"]: ""}>
                     {detailTable === el.tableId 
-                          &&  <div className="h-6 mt-1 mx-2 bg-pink-800 bg-opacity-10 rounded-md">
+                          &&  [<ChangeStatus/>,
+                              <ChangeOrder detailTable={el.tableId} />,   
+                              <div className="h-6 mt-1 mx-2 bg-pink-800 bg-opacity-10 rounded-md">
                                   <p className="inline-block float-left text-left ml-2 w-3/12  font-semibold">Nombre</p>
                                   <p className="inline-block text-center float-left ml-2 w-1/12  font-semibold truncate">Cant</p>
                                   <p className="inline-block float-left ml-2 w-1/12  font-semibold truncate">Sub-Total</p>
                                   <p className="inline-block float-left ml-2 w-2/12 font-semibold truncate">Hora</p>
-                              </div> }
+                              </div> ]}
                     {detailTable === el.tableId 
                           && el.currentOrder.products.map(el => (
                           <div className="h-6 mx-2 bg-gray-100 rounded-md border-b-2 border-gray-300 mt-1  ">    

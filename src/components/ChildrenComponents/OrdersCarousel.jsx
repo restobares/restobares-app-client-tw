@@ -14,7 +14,7 @@ const OrdersCarousel = () => {
           return (
             <div
               key={order.productId}
-              className="flex  h-14 w-full mt-2  border-b-2 border-pink-700"
+              className="flex  h-20 w-full mt-2  border-b-2 border-pink-700"
             >
               <div className="w-10 mt-1 ml-1 h-10 flex-shrink-0 "> 
                 <img className=" max-h-full max-w-full min-h-full min-w-full object-cover rounded-full " src={order.image} alt=""/>
@@ -38,7 +38,7 @@ const OrdersCarousel = () => {
           return (
             <div
               key={order.productId}
-              className="flex  h-14 w-full mt-2  border-b-2 border-pink-700"
+              className="flex  h-20 w-full mt-2  border-b-2 border-pink-700"
             >
               <div className="w-10 mt-1 ml-1 h-10 flex-shrink-0 "> 
                 <img className=" max-h-full max-w-full min-h-full min-w-full object-cover rounded-full " src={order.image} alt=""/>
@@ -52,7 +52,7 @@ const OrdersCarousel = () => {
                 </div> 
                 <hr className=" border-pink-500 border-1  mx-2" />
 
-                <p className=" w-9/12  ml-2 text-truncate text-black text- text-xs">{order.detail}</p>
+                <p className=" w-9/12 ml-2 text-truncate text-black text- text-xs">{order.detail}</p>
               </div>
             </div>
           );
@@ -61,7 +61,7 @@ const OrdersCarousel = () => {
         return (
           <div
           key={order.productId}
-          className="flex  bg-pink-200 h-14 w-full mt-1  border-b-2 border-t-2 border-pink-300"
+          className="flex  bg-pink-200 h-20 w-full mt-1  border-b-2 border-t-2 border-pink-300"
         >
           <div className="w-10 mt-1 ml-1 h-10 flex-shrink-0 "> 
             <img className=" min-h-full max-h-full max-w-full min-w-full object-cover rounded-full " src={order.image} alt=""/>
@@ -80,8 +80,7 @@ const OrdersCarousel = () => {
               ➖</button>
                 <button className="mt-1 inline-block text-left ml-2 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
               ➕
-                </button>
-      
+                </button>  
             </div>
             <p className=" w-9/12  ml-2 text-truncate text-black text- text-xs">{order.detail}</p>
           </div>

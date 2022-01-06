@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Link as LinkScroll} from "react-scroll";
 
 export const Nav = styled.nav`
-  background: #000;
-  /* height: 800px; */
+  background: #b83280;
+  height: 80px;
   /* margin-top: -80px; */
   display: flex;
   justify-content: center;
@@ -21,12 +21,16 @@ export const Nav = styled.nav`
 
 export const NavbarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 80px;
   z-index: 1;
   width: 100%;
   padding: 0 24px;
   max-width: 1100px;
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+    margin-right: 25px;
+  }
 `;
 
 export const NavLogo = styled(Link)`
@@ -39,6 +43,13 @@ export const NavLogo = styled(Link)`
   margin-left: 24px;
   font-weight: bold;
   text-decoration: none;
+`;
+
+export const ImgLogo = styled.img`
+  border-radius: 10px;
+  height: 60px;
+  width: 60px;
+  margin-left: 10px;
 `;
 
 export const MobileIcon = styled.div`
@@ -83,7 +94,7 @@ export const NavLinks = styled(LinkScroll)`
 }
 `;
 
-export const NavBtn = styled.nav`
+export const NavBtn = styled.div`
   display: flex;
   align-items: center;
   @media  screen and (max-width:768px){
@@ -91,7 +102,7 @@ export const NavBtn = styled.nav`
   }
 `;
 
-export const NavBtnLink = styled(LinkScroll)`
+export const NavBtnLink = styled(Link)`
   border-radius: 50px;
   background: #01bf71;
   white-space: nowrap;
@@ -103,7 +114,7 @@ export const NavBtnLink = styled(LinkScroll)`
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  &.hover{
+  &:hover{
     transition: all 0.2s ease-in-out;
     background: #fff;
     color: #010606;

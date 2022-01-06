@@ -1,21 +1,38 @@
-import React from 'react';
-import { useState, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { setActiveComponent, getLabels, getCategories } from "../../../redux/actions";
 import Select from 'react-select'
 import BackButton from '../BackButton';
 import Swal from 'sweetalert2';
-import { inputValidator, postMenu } from '../../../redux/actions';
-import { useParams } from 'react-router-dom';
+import { setActiveComponent, getLabels, getCategories, putMenu } from '../../../redux/actions';
+import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-const AdminMenu = () => {
+
+function MenuFormEditable() {
 
     const dispatch = useDispatch();
-    const { idResto } = useParams();
+    const navigate = useNavigate();
+    const { idResto, idProduct } = useParams();
+
+    const menu = useSelector((state) => state.menus.menuAdmin);
+    const product = menu.find((product) => product.id === Number(idProduct));
+
+
     let tokenAdmin = Cookies.get("token-admin");
     const labels = useSelector((state) => state.labels);
     const categories = useSelector((state) => state.categories);
+    let categorySelected;
+    categorySelected = categories.find((category) => category.id === product.CategoryId);
+    
+
+    let labelNamesPlaceholder = [];
+
+    for (var i = 0; i < product.Labels.length; i++) {
+      let labelIdSelected = product.Labels[i];
+      let labelNameFound = labels.find(label => label.id === labelIdSelected);
+      labelNamesPlaceholder.push(labelNameFound ? labelNameFound.name : "");
+    }   
+  
     const [input, setInput] = useState({
       name: "",
       price: "",
@@ -30,7 +47,6 @@ const AdminMenu = () => {
       labelsSelector: ""
     })
 
-    const [errors, setErrors] = useState({});
 
     let options = [];
     let optionsCategories = [];
@@ -56,11 +72,7 @@ const AdminMenu = () => {
       setInput({
         ...input,
         [e.target.name]: e.target.value
-      });
-      setErrors(inputValidator({
-        ...input,
-        [e.target.name]: e.target.value
-      }))
+      });      
     }
 
     function handleLabelSelection(e) {
@@ -85,11 +97,7 @@ const AdminMenu = () => {
       setReactSelectInput({
         ...reactSelectInput,
         categorySelector: e
-      })
-      setErrors(inputValidator({
-          ...input,
-          CategoryId: e.value
-      }))
+      })      
     }
 
     var validExt = ".png, .jpeg, .jpg, .PNG, .JPEG, .JPG";
@@ -142,15 +150,10 @@ const AdminMenu = () => {
       var file = element.files[0];
       var reader = new FileReader();
       reader.onloadend = function() {
-        // console.log('RESULT', reader.result)
         setInput({
           ...input,
           image: reader.result
-        })
-        setErrors(inputValidator({
-          ...input,
-          image: reader.result
-        }))
+        })        
       }
       
       reader.readAsDataURL(file);
@@ -184,14 +187,13 @@ const AdminMenu = () => {
   }, [])
 
 
-  const alerta = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    let json = await dispatch(postMenu(idResto, input, tokenAdmin))
-    // console.log(json);
-    Swal.fire({
+    let json = dispatch(putMenu(idResto, idProduct, input, tokenAdmin))
+    await Swal.fire({
       position: 'center',
       icon: 'success',
-      title: 'Your menu has been sent',
+      title: 'Your menu has been edited',
       showConfirmButton: false,
       timer: 3000
     })
@@ -209,78 +211,99 @@ const AdminMenu = () => {
       labelsSelector: ""
     })
     document.getElementById('image').value = null;
+    navigate(-1);
   }
 
 
     return (
-    <div>
+        <Fragment>
+            <div>
 
-    <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
-      <BackButton/>
-      <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
-        <h1>Create&nbsp;Menus</h1>
-      </div>
-      <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
-        Logout
-      </button>
-    </nav>
+<nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+  <BackButton/>
+  <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
+    <h1>Editable&nbsp;Form&nbsp;Menu</h1>
+  </div>
+  <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+    Logout
+  </button>
+</nav>
 
-    <h1 className='m-5 text-lg font-bold'>Add your Menu</h1>
+<h1 className='m-5 text-lg font-bold'>Edit your Menu</h1>
 
-    <form className='w-96 inline-block'>
-       <input
-           type="text"
-           name="name"
-           maxLength="50"
-           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
-           placeholder="Enter Name"
-           value={input.name}
-           onChange={(e) => handleInputChanges(e)}
-       />
+<form className='w-96 inline-block'>
+   <input
+       type="text"
+       name="name"
+       maxLength="50"
+       className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
+       placeholder={product.name}
+       value={input.name}
+       onChange={(e) => handleInputChanges(e)}
+   />
+
+   <input
+       type="number"
+       name="price"
+       min="1"
+       maxLength="4"
+       value={input.price}
+      //  oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
+      // pattern='^[0-9]+'
+      //  onKeyUp={Number(input.price) < 0 ? Number(input.price) * -1 : input.price}
+       className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+       placeholder={product.price}
+      //  value={Number(input.price)}
+       onChange={(e) => handleInputChanges(e)}
+   />
+   
+   <input
+       type="text"
+       name="detail"
+       maxLength="140"
+       className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+       placeholder={product.detail}
+       value={input.detail}
+       onChange={(e) => handleInputChanges(e)}
+   />
+   
+   <input
+       type="file"
+       id='image'
+       name='image'
+       className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+       accept='image/*'
+       onChange={(e) => handleImageSelection(e)}
+   />      
+  
+   <img src={product.image} alt="" className='px-5 py-3 rounded-lg' />
+   
+
+    <Select options={optionsCategories}
+            value={reactSelectInput.categorySelector}
+            onChange={(e) => handleCategorySelection(e)}
+            placeholder={categorySelected ? categorySelected.name : ""}
+            className="pb-3"
+    />
     
-       <input
-           type="number"
-           name="price"
-           min="1"
-           maxLength="4"
-           value={input.price}
-          //  oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
-          // pattern='^[0-9]+'
-          //  onKeyUp={Number(input.price) < 0 ? Number(input.price) * -1 : input.price}
-           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-           placeholder="Enter Price"
-          //  value={Number(input.price)}
-           onChange={(e) => handleInputChanges(e)}
-       />
-       
-       <input
-           type="text"
-           name="detail"
-           maxLength="140"
-           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-           placeholder="Enter Details"
-           value={input.detail}
-           onChange={(e) => handleInputChanges(e)}
-       />
-       
-       <input
-           type="file"
-           id='image'
-           name='image'
-           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-           accept='image/*'
-           onChange={(e) => handleImageSelection(e)}
-       />      
-
-        <Select options={optionsCategories} value={reactSelectInput.categorySelector} onChange={(e) => handleCategorySelection(e)} placeholder="Choose your category..." className="pb-3" />
-        <Select isMulti options={options} value={reactSelectInput.labelsSelector} onChange={(e) => handleLabelSelection(e)} placeholder="Choose your labels..." />
-       <button type="submit" onClick={alerta} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out" disabled={Object.keys(errors).length > 0 || input.name === ""}>
-       Send Menu
-       </button>
-    </form>
     
-    </div>
-    )
+    <Select isMulti
+            options={options}
+            value={reactSelectInput.labelsSelector}
+            onChange={(e) => handleLabelSelection(e)}
+            placeholder={labelNamesPlaceholder.join(", ")}
+    />
+
+   <button type="submit" onClick={handleSubmit} className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out">
+   Save Changes
+   </button>
+</form>
+
+</div>
+</Fragment>
+)
 }
 
-export default AdminMenu;
+export default MenuFormEditable
+
+
