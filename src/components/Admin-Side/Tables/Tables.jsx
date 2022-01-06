@@ -44,8 +44,11 @@ export default function Tables() {
     // esto funcionaria si yo tuviera un - para ir restando de a uno o tuviera un componente con la 
     // logica de ir borrando la cantidad que ponga en un input
     // implementamos lo demas.. y lo vemos despues
+    // por ahora para eliminar de a uno esta el boton change Order -> este boton deberia limpiar todos los pedidos que no se sirvieron
+    // va lo dejo como opinion nomas
     // dispatch(deleteProductFromTable(idResto, detailTable, testProduct, 1, tokenStaff))    
   }
+
 
   const handleButton = (e) => {
     e.preventDefault()
@@ -97,13 +100,15 @@ export default function Tables() {
                     }
                     <ChangeOrder detailTable={el.tableId} />
                     <div className="flex flex-col ">
+                    {el.ordered.length > 0 && el.currentOrder.products.length > 0 &&
                           <div className="h-6 mt-1 mx-2 bg-pink-800 bg-opacity-10 rounded-md">
                             <p className="inline-block float-left text-left ml-2 w-3/12  font-semibold">Nombre</p>
                             <p className="inline-block text-center float-left ml-2 w-1/12  font-semibold truncate">Cant</p>
                             <p className="inline-block float-left ml-2 w-1/12  font-semibold truncate">Sub-Total</p>
                             <p className="inline-block float-left ml-2 w-2/12 font-semibold truncate">Hora</p>
-                          </div>
-                      {el.ordered.length && 
+                          </div>                  
+                    }
+                      {el.ordered.length > 0 && 
                         <div>
 
                           <div className="h-6 mx-2 bg-gray-500 bg-opacity-60 text-white rounded-md border-b-2 border-gray-300 mt-1">
@@ -113,7 +118,7 @@ export default function Tables() {
                         <div className="h-6 mx-2 bg-gray-100 rounded-md border-b-2 border-gray-300 mt-1  ">    
                           <p className="inline-block float-left ml-2 w-3/12 truncate text-left">{el.productName}</p>
                           <p className="inline-block float-left ml-2 w-1/12 truncate">{el.quantity}</p>
-                          <p className="inline-block float-left ml-2 w-1/12 truncate">{el.totalPrice} $</p>
+                          <p className="inline-block float-left ml-2 w-1/12 truncate">{el.totalPrice}$</p>
                           <p className="inline-block float-left ml-2 w-2/12 truncate">{Moment(el.time).format("HH:mm:ss")}</p>
                         </div>
                       ))}
