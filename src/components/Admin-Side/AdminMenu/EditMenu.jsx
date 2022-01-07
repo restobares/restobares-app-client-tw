@@ -14,11 +14,14 @@ const EditMenu = () => {
   const dispatch = useDispatch();
   const { idResto } = useParams();
   const tokenAdmin = Cookies.get("token-admin");
+  const tokenStaff = Cookies.get("token-staff");
   const menu = useSelector((state) => state.menus.menuAdmin);
 
-  const handlePutAvailableProduct = async (idResto, idProduct, token) => {
-    await dispatch(putAvailableProduct(idResto, idProduct, token));
-    dispatch(getMenu(idResto, 1));
+  const handlePutAvailableProduct = async (idProduct) => {
+    if (tokenAdmin || tokenStaff) {
+      await dispatch(putAvailableProduct(idResto, idProduct, tokenAdmin || tokenStaff));
+      dispatch(getMenu(idResto, 1));
+    }    
   };
 
   const handleDeleteProduct = async (idResto, idProduct, token) => {
