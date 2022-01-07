@@ -46,7 +46,7 @@ const Footer = () => {
                 <FooterLinkTitle>Contact Us</FooterLinkTitle>
                 <FooterLink to="/sing">restobaresapp@gmail.com</FooterLink>
                 <FooterLink to="/sing">+54 9 11 3408-4364</FooterLink>
-                <FooterLink to="/sing">instagram</FooterLink>
+                <FooterLink to="/sing">Av.Santa Fe 4888 Buenos Aires-Argentina</FooterLink>
               </FoooterLinkItems>
             </FooterLinksWrapper>
           </FooterLinksContainer>
