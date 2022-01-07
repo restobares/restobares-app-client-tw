@@ -14,7 +14,7 @@ const ChangePass = () => {
            </button>
         </nav>
 
-        <div className="bg-gray-200 min-h-screen font-sans">
+        <div className="bg-gray-200 font-sans"> {/* min-h-screen */}
           <div className="max-w-sm mx-auto px-6">
             <div className="relative flex flex-wrap">
               <div className="w-full relative">
