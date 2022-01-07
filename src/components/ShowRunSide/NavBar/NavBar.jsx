@@ -62,6 +62,7 @@ const NavBar = ({ toggle }) => {
                 spy={true}
                 exact='true'
                 offset={40}
+                activeClass="active"
                 >Sign Up</NavLinks>
               </NavItem>
               <NavItem>
@@ -71,6 +72,7 @@ const NavBar = ({ toggle }) => {
                 spy={true}
                 exact='true'
                 offset={40}
+                activeClass="active"
                 >Services</NavLinks>
               </NavItem>
               <NavItem>
@@ -80,6 +82,7 @@ const NavBar = ({ toggle }) => {
                 spy={true}
                 exact='true'
                 offset={40}
+                activeClass="active"
                 >Created By</NavLinks>
               </NavItem>
               <NavItem>
@@ -89,6 +92,7 @@ const NavBar = ({ toggle }) => {
                 spy={true}
                 exact='true'
                 offset={40}
+                activeClass="active"
                 >About</NavLinks>
               </NavItem>
             </NavMenu>

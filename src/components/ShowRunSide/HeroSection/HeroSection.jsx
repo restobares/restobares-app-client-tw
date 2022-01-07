@@ -25,7 +25,7 @@ function HeroSection() {
             </HeroBg>
             <HeroContent>
                 <HeroH1>
-                    Welcome to your Digital Menus App
+                    Welcome to your <br/>Digital Menus App
                 </HeroH1>
                 {/* <HeroP>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, velit cum quam, voluptate error sequi odio repellendus vero ut incidunt temporibus autem pariatur corporis! Maxime sit assumenda excepturi modi et?

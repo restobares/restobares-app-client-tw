@@ -56,6 +56,7 @@ export const HeroH1 = styled.h1`
     text-align: center;
     margin-bottom: 24px;
     padding-top: 200px;
+    line-height: 2.7rem;
 `;
 
 export const HeroP = styled.p`
