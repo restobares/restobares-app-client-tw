@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login } from '../../redux/actions';
 import Cookies from "js-cookie";
 
@@ -85,7 +85,9 @@ const Login = () => {
                             Login
                         </button>
 
+                      <Link to={`/resto/login/forgotpassword`}>
                         <a className="py-2 px-4 text-blue-500" href="#">Forgot your Password?</a>
+                      </Link>
                         
                     </div>
                 </form>
