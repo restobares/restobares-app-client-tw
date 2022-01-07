@@ -8,6 +8,7 @@ const PayBar = ({joinResto, tableSend}) => {
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
 
+
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
@@ -26,13 +27,20 @@ const PayBar = ({joinResto, tableSend}) => {
       <h1 className="float-left text-white text-left  ml-2 text-sm mt-4">
         New Consumption ${totalPrice}{" "}
 
-      </h1>
+      </h1>{cart.ordered.length === 0 ?
+      
+      <div className="float-right bg-gray-500 text-white border-2 border-grey-900 mt-2 w-16 rounded-xl mr-2">
+      {" "}
+      Pay
+    </div>:
       <Link to={`/resto/${idResto}/table/${idTable}/bill`}>
         <button className="float-right text-pink-900 border-2 border-pink-900 bg-pink-300 mt-2 w-16 rounded-xl mr-2">
           {" "}
           Pay
         </button>
-      </Link>
+      </Link> 
+      
+      }
       <button
         className="float-right bg-pink-900 border-2 border-pink-500 text-white mt-2 w-16 rounded-xl mr-2"
         onClick={openModal}
