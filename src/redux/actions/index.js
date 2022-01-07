@@ -32,6 +32,9 @@ import { postPayCash } from "./postPayCash";
 import { putTableCashPayment } from "./putTableCashPayment";
 import { putAvailableProduct } from "./putAvailableProduct";
 import { putMenu } from "./putMenu";
+import { postFeedback } from "./postFeedback";
+import { register } from "./register";
+import { getPasswordRecover } from "./getPasswordRecover";
 
 export {  
   getCategories,
@@ -71,5 +74,8 @@ export {
   postPayCash,
   putTableCashPayment,
   putAvailableProduct,
-  putMenu
+  putMenu,
+  postFeedback,
+  register,
+  getPasswordRecover
 };
