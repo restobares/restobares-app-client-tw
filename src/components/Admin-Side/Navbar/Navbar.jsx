@@ -18,7 +18,7 @@ const Navbar = () => {
   ]
 
   // ACTIVE COMPONENT LOGIC
-  const [active, setActive] = useState(null)
+  const [active, setActive] = useState("Settings")
   const handlerActive = (e) => {
     e.preventDefault()
     setActive(Number(e.target.id))
@@ -31,11 +31,13 @@ const Navbar = () => {
   useEffect(() => {
   const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener("resize", handleResize);
+    
+    dispatch(setActiveComponent("Settings"))
     return () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, [])
+  }, [dispatch])
 
   
   return (
