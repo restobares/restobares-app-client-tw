@@ -16,6 +16,7 @@ import AdminMenu from './components/Admin-Side/AdminMenu/AdminMenu.jsx';
 import QrManager from './components/Admin-Side/Settings/QrManagement/QrManagement.jsx';
 import Analytics from './components/Admin-Side/Settings/Analytics.jsx';
 import Themes from './components/Admin-Side/Settings/Themes.jsx';
+import ShowRun from './components/ShowRunSide/ShowRun.jsx';
 import QrGenerated from './components/Admin-Side/Settings/QrManagement/QrGenerated.jsx';
 import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable.jsx';
@@ -30,6 +31,9 @@ function App() {
     <BrowserRouter>
       <div className="global">
         <Routes>
+          {/* Show-Run */}
+          <Route path="/" element={<ShowRun/>}></Route>
+
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
           <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
@@ -57,7 +61,7 @@ function App() {
           <Route path="resto/:idResto/resto-home/account/changepassword" element={<ChangePass />}></Route>
           
 
-
+          <Route path='*' element={<ShowRun/>} ></Route>
         </Routes>
       </div>
     </BrowserRouter>
