@@ -1,48 +1,40 @@
-import React, { Fragment, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams} from 'react-router-dom';
-import BackButton from '../BackButton';
-import { Switch } from '@headlessui/react'
-import { deleteProduct, getMenu, putAvailableProduct } from '../../../redux/actions';
-import Cookies from 'js-cookie';
-
+import React, { Fragment, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import BackButton from "../BackButton";
+import { Switch } from "@headlessui/react";
+import {
+  deleteProduct,
+  getMenu,
+  putAvailableProduct,
+} from "../../../redux/actions";
+import Cookies from "js-cookie";
 
 const EditMenu = () => {
+  const dispatch = useDispatch();
+  const { idResto } = useParams();
+  const tokenAdmin = Cookies.get("token-admin");
+  const menu = useSelector((state) => state.menus.menuAdmin);
 
-    
+  const handlePutAvailableProduct = async (idResto, idProduct, token) => {
+    await dispatch(putAvailableProduct(idResto, idProduct, token));
+    dispatch(getMenu(idResto, 1));
+  };
 
-    const dispatch = useDispatch();
-    const { idResto } = useParams();
-    const tokenAdmin = Cookies.get("token-admin");
-    const tokenStaff = Cookies.get("token-staff");
-    const menu = useSelector((state) => state.menus.menuAdmin)
+  const handleDeleteProduct = async (idResto, idProduct, token) => {
+    await dispatch(deleteProduct(idResto, idProduct, token));
+    dispatch(getMenu(idResto, 1));
+  };
 
-    const handlePutAvailableProduct = async (idProduct) => {
-      if (tokenAdmin) {
-        await dispatch(putAvailableProduct(idResto, idProduct, tokenAdmin));
-      }
-      if (!tokenAdmin && tokenStaff) {
-        await dispatch(putAvailableProduct(idResto, idProduct, tokenStaff));
-      }
-      dispatch(getMenu(idResto, 1))
-    }
+  useEffect(() => {
+    dispatch(getMenu(idResto, 1));
+  }, [dispatch, idResto]);
 
-    const handleDeleteProduct = async (idProduct) => {
-      if (tokenAdmin) {
-        await dispatch(deleteProduct(idResto, idProduct, tokenAdmin));
-      }
-      
-      dispatch(getMenu(idResto, 1));
-    }
-
-    useEffect(() => {
-      dispatch(getMenu(idResto, 1))
-    }, [dispatch, idResto])
-
-    return (
-        <Fragment>
-        <div>
+  return (
+    <Fragment>
+      <div>
         <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+
           <BackButton/>
            <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32"> 
              <h1>Edit&nbsp;Menus</h1>
@@ -50,18 +42,21 @@ const EditMenu = () => {
            <button className=" text-lg shadow-lg mr-2 bg-pink-800 hover:bg-pink-900 px-2 my-auto h-8  text-white rounded-lg font-medium tracking-wide leading-none  invisible md:visible">
              Logout
            </button>
-        </nav>
-        </div>
 
-        {menu.length > 0 && menu.map((product) => {
+        </nav>
+      </div>
+
+      {menu.length > 0 &&
+        menu.map((product) => {
           let productDetailShortened;
           if (product.detail.length > 60) {
-            productDetailShortened = product.detail.slice(0, 60) + "..."
+            productDetailShortened = product.detail.slice(0, 60) + "...";
           } else {
-            productDetailShortened = product.detail
+            productDetailShortened = product.detail;
           }
-          
+
           return (
+
           <div  key={product.id}
                 className=  {`flex py-2 mx-2  mt-2 border-2 rounded-md shadow-lg border-opacity-50
                             ${!product.available  ? "border-gray-700 bg-gray-200"
@@ -132,9 +127,10 @@ const EditMenu = () => {
          </div>
         </div>
           )
-        })}
-        </Fragment>
-    )
-}
 
-export default EditMenu
+        })}
+    </Fragment>
+  );
+};
+
+export default EditMenu;
