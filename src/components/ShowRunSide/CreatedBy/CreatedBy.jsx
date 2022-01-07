@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
-import juanC from '../../../videosAndImages/juanCanelon.jpg';
+import juanC from '../../../videosAndImages/juancanelon.jpg';
 import nahuelK from '../../../videosAndImages/nahuelKisser.jpg'
 import mateoL from '../../../videosAndImages/mateoLopez.jpg'
 import nicolasM from '../../../videosAndImages/nicolasMorel.jpg'
@@ -23,7 +23,7 @@ import {ServicesContainer,
 
 const CreatedBy = () => {
     return (
-            <ServicesContainer id={'createdby'||'createdbymobile'}>
+            <ServicesContainer id='createdby'>
                 <ServicesH1>Created By</ServicesH1>
                 <ServicesP2>This app is a project created by eight partners in a month for Henry Bootcamp. It consists 
                     in a interactive menu which can be scanned from QR code streamlining the ordering services in restaurants. 

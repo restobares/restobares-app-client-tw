@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getQrCode } from "../../../../redux/actions";
 import BackButton from "../../BackButton";
+import Swal from "sweetalert2";
 
 const QrManager = () => {
   const { qrCode } = useSelector((state) => state);
@@ -43,6 +44,28 @@ const QrManager = () => {
     };
   }, []);
 
+  const notAlert = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Insert a table first",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  };
+
+  const notAlert2 = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "Insert a range of tables",
+      showConfirmButton: false,
+      timer: 2000,
+    });
+  };
+
   return (
     <div>
       <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
@@ -64,19 +87,28 @@ const QrManager = () => {
           value={oneTable}
           onChange={(e) => setOneTable(e.target.value)}
           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
-          placeholder="Enter Number, print 1 Qr Table"
+          placeholder="Enter Number, print 1 Qr only"
         />
-
-        <button
-          type="submit"
-          onClick={(e) => generateOneQr(e)}
-          className="my-2 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
-        >
-          Print Qr
-        </button>
-
-        <h1 className="m-5 text-lg font-bold">Select your Tables
-        (max: 9 per time)</h1>
+        {oneTable.length === 0 ? (
+          <button
+            type="submit"
+            onClick={notAlert}
+            className="text-white bg-gray-600 mt-2 mb-10 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
+          >
+            Print Qr
+          </button>
+        ) : (
+          <button
+            type="submit"
+            onClick={(e) => generateOneQr(e)}
+            className="mt-2 mb-10 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
+          >
+            Print Qr
+          </button>
+        )}
+        <h1 className="m-5 text-lg font-bold">
+          Select your Tables (max: 9 per time)
+        </h1>
 
         <input
           type="number"
@@ -94,14 +126,23 @@ const QrManager = () => {
           className="text-center my-4 w-1/3 px-5 mx-2 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
           placeholder="Enter last Table"
         />
-
-        <button
-          type="submit"
-          onClick={(e) => generateVariousQr(e)}
-          className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
-        >
-          Print Qr's
-        </button>
+        {lastTable.length === 0 || firstTable.length === 0 ? (
+          <button
+            type="submit"
+            onClick={notAlert}
+            className="text-white bg-gray-600 mt-4 mb-36 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
+          >
+            Print Qr's
+          </button>
+        ) : (
+          <button
+            type="submit"
+            onClick={(e) => generateVariousQr(e)}
+            className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
+          >
+            Print Qr's
+          </button>
+        )}
 
         {/* <Link to={`/resto/${idResto}/resto-home/qrmanager/qrs`}>
           <div
@@ -115,27 +156,24 @@ const QrManager = () => {
           </div>
         </Link> */}
 
-        {qrCode.length ? 
-        <Link to={`/resto/${idResto}/resto-home/qrmanager/qrs`}>
-        <div className="col-span-1 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
-          <div className="float-left">
-            <img
-              src="https://img.icons8.com/ios-filled/50/000000/qr-code--v1.png"
-              width="38"
-              alt=""
-            />
-          </div>
-          <div className="inline-flex items-center">
-            <h1 className="text-lg font-bold float-left">Generated Qr's</h1>
-          </div>
-        </div>
-      </Link>
-      :
-      <div>
-      </div>
-      }
-      
-        
+        {qrCode.length ? (
+          <Link to={`/resto/${idResto}/resto-home/qrmanager/qrs`}>
+            <div className="col-span-1 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
+              <div className="float-left">
+                <img
+                  src="https://img.icons8.com/ios-filled/50/000000/qr-code--v1.png"
+                  width="38"
+                  alt=""
+                />
+              </div>
+              <div className="inline-flex items-center">
+                <h1 className="text-lg font-bold float-left">Generated Qr's</h1>
+              </div>
+            </div>
+          </Link>
+        ) : (
+          <div></div>
+        )}
       </form>
     </div>
   );

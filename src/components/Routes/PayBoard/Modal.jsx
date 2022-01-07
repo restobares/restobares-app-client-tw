@@ -67,8 +67,7 @@ const Modal = ({showModal, setShowModal, idResto, idTable}) => {
           <img className="ml-10" src="https://media2.giphy.com/media/1gQwNktlzyKsje8hYT/giphy.gif?cid=790b7611eecec2c3c468a85a3d4879aebd1842028814a3b2&rid=giphy.gif&ct=s"  width="160" alt="" />
             <h1 className='modal-content text-xl text-red-50 font-bold -mt-4'>Wait at Table, please.</h1>
           <button onClick={() => setShowModal(prev => !prev)} className="bg-red-500 rounded-xl px-4 mt-12 w-20 h-6 text-red-50 text-lg">Cerrar</button>
-          <button onClick={() => dispatch(getPayCash(idResto, idTable))} className="bg-red-500 rounded-xl px-4 mt-12 w-20 h-6 text-red-50 text-lg">get</button>
-        
+          
         </div>
       
       </div> : null}

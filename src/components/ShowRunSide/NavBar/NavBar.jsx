@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
-import {
-  Link,
-  Button,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller,
-} from "react-scroll";
+import { animateScroll as scroll } from "react-scroll";
 import {
   Nav,
   NavbarContainer,
@@ -40,7 +32,7 @@ const NavBar = ({ toggle }) => {
 
   const toogleHome = () => {
     scroll.scrollToTop();
-     console.log(scroll.scrollToTop());
+    console.log(scroll.scrollToTop());
   };
   return (
     <>
@@ -56,44 +48,56 @@ const NavBar = ({ toggle }) => {
             </MobileIcon>
             <NavMenu>
               <NavItem>
-                <NavLinks to="signup"
-                smooth={true}
-                duration={500}
-                spy={true}
-                exact='true'
-                offset={40}
-                activeClass="active"
-                >Sign Up</NavLinks>
+                <NavLinks
+                  to="signup"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={40}
+                  activeClass="active"
+                >
+                  Sign Up
+                </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to="services"
-                smooth={true}
-                duration={500}
-                spy={true}
-                exact='true'
-                offset={40}
-                activeClass="active"
-                >Services</NavLinks>
+                <NavLinks
+                  to="services"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={40}
+                  activeClass="active"
+                >
+                  Services
+                </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to="createdby"
-                smooth={true}
-                duration={500}
-                spy={true}
-                exact='true'
-                offset={40}
-                activeClass="active"
-                >Created By</NavLinks>
+                <NavLinks
+                  to="createdby"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={40}
+                  activeClass="active"
+                >
+                  Created By
+                </NavLinks>
               </NavItem>
               <NavItem>
-                <NavLinks to="about"
-                smooth={true}
-                duration={500}
-                spy={true}
-                exact='true'
-                offset={40}
-                activeClass="active"
-                >About</NavLinks>
+                <NavLinks
+                  to="about"
+                  smooth={true}
+                  duration={500}
+                  spy={true}
+                  exact="true"
+                  offset={40}
+                  activeClass="active"
+                >
+                  About
+                </NavLinks>
               </NavItem>
             </NavMenu>
             <NavBtn>

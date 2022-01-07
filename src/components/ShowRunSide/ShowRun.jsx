@@ -3,12 +3,7 @@ import NavBar from "./NavBar/NavBar";
 import SideBar from "./SideBar/SideBar";
 import HeroSection from "./HeroSection/HeroSection";
 import InfoSection from "./InfoSection/InfoSection";
-import {
-  homeObjFour,
-  homeObjOne,
-  homeObjThree,
-  homeObjTwo,
-} from "./InfoSection/Data";
+import { homeObjOne } from "./InfoSection/Data";
 import Services from "./Services/Services";
 import CreatedBy from "./CreatedBy/CreatedBy";
 import Footer from "./Footer/Footer";
@@ -20,23 +15,23 @@ export default function ShowRun() {
 
   return (
     <div>
-      {isOpen ? (
-        <SideBar isOpen={isOpen} toggle={toggle} />
-      ) : (
-        <>
-          <NavBar toggle={toggle} />
-          {/* video */}
-          <HeroSection />
-          {/* get started */}
-          <InfoSection {...homeObjOne} /> 
-          {/* services */}
-          <Services />
-          {/* created by */}
-          <CreatedBy />
-          {/* about */}
-          <Footer />
-        </>
-      )}
+      {/* {isOpen ? ( */}
+      <SideBar isOpen={isOpen} toggle={toggle} />
+      {/* ) : ( */}
+      <>
+        <NavBar toggle={toggle} />
+        {/* video */}
+        <HeroSection />
+        {/* get started */}
+        <InfoSection {...homeObjOne} />
+        {/* services */}
+        <Services />
+        {/* created by */}
+        <CreatedBy />
+        {/* about */}
+        <Footer />
+      </>
+      {/* )} */}
     </div>
   );
 }
