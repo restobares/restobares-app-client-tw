@@ -24,7 +24,7 @@ import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable.jsx';
 
 // Socket connection
-const socket = io('https://restobares-app-api.herokuapp.com'); 
+const socket = io('https://restobares-app-api.herokuapp.com' /*, { withCredentials: true }*/); 
 
 
 function App() {
