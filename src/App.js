@@ -34,18 +34,28 @@ const socket = io('https://restobares-app-api.herokuapp.com' /*, { withCredentia
 
 function App() {
 	// Socket events
-	//The diner just scanned the QR, we tell the server
 	function joinResto(idResto) {
 	  socket.emit('joinResto',idResto);
 	}
+	//The diner did something, we tell the server
 	function tableSend() {
 		socket.emit('tableSend');
 	}
 	function staffListen(cb) {
-		socket.on('staffListen', (tables) => {
+		socket.on('staffListen', () => {
 			cb();
 		})
 	}
+	//The staff did something, we tell the server
+	function staffSend() {
+		socket.emit('staffSend');
+	}
+	function tableListen(cb) {
+		socket.on('tableListen', () => {
+			cb();
+		})
+	}
+
   return (
     <BrowserRouter>
       <div className="global">
