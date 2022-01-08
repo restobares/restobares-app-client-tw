@@ -28,6 +28,7 @@ import { deleteProductFromTable } from "./deleteProductFromTable";
 import { setActiveComponent} from "./setActiveComponent";
 import { changeTableFilled } from "./tableFilled";
 import { inputValidator } from "./inputValidator";
+import { inputValidatorRegister } from "./inputValidatorRegister";
 import { postPayCash } from "./postPayCash";
 import { putTableCashPayment } from "./putTableCashPayment";
 import { putAvailableProduct } from "./putAvailableProduct";
@@ -35,6 +36,7 @@ import { putMenu } from "./putMenu";
 import { postFeedback } from "./postFeedback";
 import { register } from "./register";
 import { getPasswordRecover } from "./getPasswordRecover";
+import { logout } from "./logout";
 
 export {  
   getCategories,
@@ -71,11 +73,13 @@ export {
   setActiveComponent,
   changeTableFilled,
   inputValidator,
+  inputValidatorRegister,
   postPayCash,
   putTableCashPayment,
   putAvailableProduct,
   putMenu,
   postFeedback,
   register,
-  getPasswordRecover
+  getPasswordRecover,
+  logout
 };
