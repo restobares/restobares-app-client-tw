@@ -16,9 +16,17 @@ const HomeAdmin = () => {
       expires: 0.35,
       secure: true,
     });
+    Cookies.set("logout-code", `${token.logoutCode}`, {
+      expires: 0.35,
+      secure: true,
+    });
   }
   if (token.staff.length > 0 && token.staff !== "") {
     Cookies.set("token-staff", `${token.staff}`, {
+      expires: 0.35,
+      secure: true,
+    });
+    Cookies.set("logout-code", `${token.logoutCode}`, {
       expires: 0.35,
       secure: true,
     });

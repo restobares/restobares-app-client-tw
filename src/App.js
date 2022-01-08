@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+
 //components
 import LandingPage from './components/Routes/LandingPage/LandingPage.jsx';
 import BillBoard from './components/Routes/BillBoard/BillBoard.jsx';
@@ -8,14 +9,14 @@ import OrderBoard from './components/Routes/OrderBoard/OrderBoard.jsx';
 import PayBoard from './components/Routes/PayBoard/PayBoard.jsx';
 import Payment from './components/Routes/PayBoard/Payment.jsx';
 import LandingLogin from './components/Admin-Side/Login';
+import LandingRegister from './components/Admin-Side/Register';
 import HomeAdmin from './components/Admin-Side/Navbar/HomeAdmin';
 import PutTesting from './components/Admin-Side/PutTesting.jsx';
-import ActiveOrders from './components/ActiveOrders/ActiveOrders.jsx';
-import Tables from './components/Admin-Side/Tables/Tables.jsx';
 import AdminMenu from './components/Admin-Side/AdminMenu/AdminMenu.jsx';
 import QrManager from './components/Admin-Side/Settings/QrManagement/QrManagement.jsx';
 import Analytics from './components/Admin-Side/Settings/Analytics.jsx';
 import Themes from './components/Admin-Side/Settings/Themes.jsx';
+import ShowRun from './components/ShowRunSide/ShowRun.jsx';
 import QrGenerated from './components/Admin-Side/Settings/QrManagement/QrGenerated.jsx';
 import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable.jsx';
@@ -26,12 +27,14 @@ import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
 import ChangeEmail from './components/Admin-Side/Settings/ChangeEmail.jsx';
 
-
 function App() {
+
   return (
     <BrowserRouter>
       <div className="global">
         <Routes>
+          {/* Show-Run */}
+          <Route path="/" element={<ShowRun/>}></Route>
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
           <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
@@ -41,11 +44,10 @@ function App() {
 
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
+          <Route path="resto/register" element={<LandingRegister />}></Route>
           <Route path="resto/login/forgotpassword" element={<ForgotPassword />}></Route>
           <Route path="resto/:idResto/resto-home" element={<HomeAdmin />}></Route>
           
-          <Route path="resto/:idResto/admin/tables" element={<Tables/>}></Route>
-          <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
           <Route path="resto/:idResto/resto-home/createmenu" element={<AdminMenu />}></Route>
           <Route path="resto/:idResto/resto-home/qrmanager" element={<QrManager />}></Route>
@@ -61,7 +63,7 @@ function App() {
           <Route path="resto/:idResto/resto-home/account/accountsettings/changeemail" element={<ChangeEmail />}></Route>
           
 
-
+          <Route path='*' element={<ShowRun/>} ></Route>
         </Routes>
       </div>
     </BrowserRouter>

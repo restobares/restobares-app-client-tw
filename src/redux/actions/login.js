@@ -1,9 +1,7 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function login(email, password) {
-
-  
+export function login(email, password) {  
 
   return async function(dispatch) {
 
@@ -12,7 +10,7 @@ export function login(email, password) {
         email,
         password
       });
-
+      console.log(json.data);
       return dispatch({
         type: ActionTypes.LOG_IN,
         payload: json.data

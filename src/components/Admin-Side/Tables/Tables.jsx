@@ -6,82 +6,92 @@ import Moment from 'moment';
 import { getTables } from "../../../redux/actions";
 import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
-import { deleteProductFromTable, putTableEating, putTableCashPayment } from '../../../redux/actions';
+import { deleteProductFromTable, putTableEating, putTableCashPayment, sockets } from '../../../redux/actions';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 export default function Tables() {
 
   const dispatch = useDispatch();
   const { idResto } = useParams();
-  const [time, setTime] = useState(Date.now());
   let tokenStaff = Cookies.get("token-staff");
   let tokenAdmin = Cookies.get("token-admin");
   const tables = useSelector((state) => state.tables);
   
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 30000);
+		sockets.joinResto(idResto);
     if (tokenStaff) {
       dispatch(getTables(idResto, tokenStaff));
     }
     if (!tokenStaff && tokenAdmin) {
       dispatch(getTables(idResto, tokenAdmin));
     }
-    return () => {
-      clearInterval(interval);
-    };
-  }, [dispatch, time, idResto]);
+		// Get tables when some diner does something
+		sockets.staffListen(() => {
+    	if (tokenStaff) {
+    	  dispatch(getTables(idResto, tokenStaff));
+    	}
+    	if (!tokenStaff && tokenAdmin) {
+    	  dispatch(getTables(idResto, tokenAdmin));
+    	}
+    });
+  }, [dispatch, idResto]);
 
 
   const [detailTable,setDetailTable] = useState (null);
-  const [ deleteCounter, setDeleteCounter ] = useState(1);
 
 
   const handlePutEating = async (e) => {
     e.preventDefault()
-    
+    sockets.joinResto(idResto); 
     if (tokenStaff) {
       
       await dispatch(putTableEating(idResto, detailTable, tokenStaff))
       dispatch(getTables(idResto, tokenStaff));
+			sockets.staffSend();
     }
     if (!tokenStaff && tokenAdmin) {
       
       await dispatch(putTableEating(idResto, detailTable, tokenAdmin))
       dispatch(getTables(idResto, tokenAdmin));
+			sockets.staffSend();
     }    
   }
 
   const handleDelete = async (productId, quantity) => {
+    sockets.joinResto(idResto); 
     if (tokenStaff) {
       
       await dispatch(deleteProductFromTable(idResto, detailTable, productId, quantity, tokenStaff));
       dispatch(getTables(idResto, tokenStaff));
+			sockets.staffSend();
     }
     if (!tokenStaff && tokenAdmin) {
       
       await dispatch(deleteProductFromTable(idResto, detailTable, productId, quantity, tokenAdmin));
       dispatch(getTables(idResto, tokenAdmin));
+			sockets.staffSend();
     }
   }
   
   const handleCashPayment = async () => {
+    sockets.joinResto(idResto); 
     if (tokenStaff) {
       await dispatch(putTableCashPayment(idResto, detailTable, tokenStaff));
       dispatch(getTables(idResto, tokenStaff));
+			sockets.staffSend();
     }
     if (!tokenStaff && tokenAdmin) {
       await dispatch(putTableCashPayment(idResto, detailTable, tokenAdmin));
       dispatch(getTables(idResto, tokenAdmin));
+			sockets.staffSend();
     }
   }
 
   const handleButton = (e) => {
     e.preventDefault()
-    console.log("event ",e.target.name)
-    console.log("detail table ",detailTable)
     detailTable === Number(e.target.name) 
     ? setDetailTable(null)
     : setDetailTable(Number(e.target.name))
-    setDeleteCounter(1);
   }
   return  <div className=" h-full w-full  flex flex-col  overflow-scroll">
             <div className="h-8 bg-gray-300  text-sm flex flex-row mt-2 rounded-xl ">
@@ -158,17 +168,19 @@ export default function Tables() {
                               src="https://img.icons8.com/pastel-glyph/64/000000/trash.png"
                               className="mt-1 inline-block text-left ml-2 align-middle text-md h-4" 
                               onClick={() => handleDelete(el.productId, el.quantity)}
+                              alt=""
                             />
                               
                         </div>
                         </div>
                       ))}
+
                         <button 
                           onClick={handleCashPayment}
                           className="inline-block float-right  mt-2  mb-2 h-6 bg-pink-700 rounded-md text-white"
                           disabled={tables[detailTable - 1].state !== "pay_cash"}
                         >
-                          Confirm Cash Payment
+                          Confirm Pay
                         </button>
                       </div>
                       
@@ -188,12 +200,16 @@ export default function Tables() {
                                   <p className="inline-block float-left ml-2 w-2/12 truncate">{Moment(el.time).format("HH:mm:ss")}</p>
                             </div>
                           ))}
-
-                          <button onClick={e => handlePutEating(e)}
-                            className="inline-block float-right  mt-2  mb-2 mr-4 h-6 bg-pink-700 rounded-md text-white"
-                            >
-                              Put Table Eating
-                          </button>
+                          <div className="inline-block float-right mix-blend-multiply bg-pink-400 rounded-full px-1 ">
+                            <p className="inline-block  mt-2 mr-1  h-6">Food in table</p> 
+                            <input
+                              type="image"
+                              src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-serving-dish-hotel-services-flatart-icons-outline-flatarticons.png"
+                              className="inline-block float-right  mt-2  mb-2 w-4 h-4  rounded-full " 
+                              onClick={e => handlePutEating(e)}
+                              alt=""
+                            />
+                          </div>
                         </div>
                       }
 

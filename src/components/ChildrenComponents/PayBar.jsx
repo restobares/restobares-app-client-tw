@@ -4,8 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import CommentModal from "../Routes/BillBoard/CommentModal";
 
 const PayBar = () => {
-  const { cart } = useSelector((state) => state);  
-
+  const { cart } = useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
 

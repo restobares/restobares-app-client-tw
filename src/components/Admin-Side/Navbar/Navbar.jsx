@@ -1,14 +1,26 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setActiveComponent } from "../../../redux/actions";
+import { useNavigate } from "react-router-dom";
+import { setActiveComponent, logout } from "../../../redux/actions";
+import Cookies from "js-cookie";
 
 
 const Navbar = () => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   // Vars
+  const logoutCode = Cookies.get("logout-code");
+
+  const handleLogOut = async () => {
+    await dispatch(logout(logoutCode));
+    Cookies.remove('token-admin');
+    Cookies.remove('token-staff');
+    Cookies.remove('logout-code');
+    navigate('/resto/login');
+  }
 
   const WidthMedium = 768;
   const navItems = [
@@ -68,7 +80,7 @@ const Navbar = () => {
         
             ))}
             </div>
-      <button className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+      <button disabled={!logoutCode} onClick={handleLogOut} className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
         Logout
       </button>
     </nav>
