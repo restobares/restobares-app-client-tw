@@ -5,8 +5,9 @@ import { getOrders } from '../../../redux/actions';
 import BillBar from '../../ChildrenComponents/BillBar.jsx';
 import OrdersCarousel from '../../ChildrenComponents/OrdersCarousel.jsx';
 import PayBar from '../../ChildrenComponents/PayBar.jsx';
+import { sockets } from '../../../redux/actions';
 
-const BillBoard = ({sockets}) => {
+const BillBoard = () => {
 
   const dispatch = useDispatch();
   const { idResto, idTable } = useParams();

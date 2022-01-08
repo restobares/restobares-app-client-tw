@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import CommentModal from "../Routes/BillBoard/CommentModal";
 
-const PayBar = ({sockets}) => {
+const PayBar = () => {
   const { cart } = useSelector((state) => state);
   const { idResto, idTable } = useParams();
   const [showModal, setShowModal] = useState(false);
@@ -49,7 +49,7 @@ const PayBar = ({sockets}) => {
         Order
       </button>
 
-      <CommentModal showModal={showModal} setShowModal={setShowModal} sockets={sockets}/>
+      <CommentModal showModal={showModal} setShowModal={setShowModal} />
     </div>
   );
 };
