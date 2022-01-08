@@ -35,6 +35,7 @@ import { putMenu } from "./putMenu";
 import { postFeedback } from "./postFeedback";
 import { register } from "./register";
 import { getPasswordRecover } from "./getPasswordRecover";
+import { putAccount } from "./putAccount";
 
 export {  
   getCategories,
@@ -77,5 +78,7 @@ export {
   putMenu,
   postFeedback,
   register,
-  getPasswordRecover
+  getPasswordRecover,
+  //change password admin/staff
+  putAccount,
 };

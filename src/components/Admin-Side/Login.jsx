@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, /* useParams */ } from 'react-router-dom';
 import { login } from '../../redux/actions';
 import Cookies from "js-cookie";
 
 const Login = () => {
+
+   /* const { idResto } = useParams(); */
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -77,10 +79,10 @@ const Login = () => {
                         
                         <button
                             className='bg-green py-2 px-4 text-sm text-black rounded border border-green focus:outline-none focus:border-green-dark'
-                            // onClick={
-                                //     () => navigate (`/resto/${idResto}/admin`)
-                                // }
-                                type='submit'
+                             /* onClick={
+                                     () => navigate (`/resto/${idResto}/admin/tables`)
+                                 }
+                                type='submit' */
                                 >
                             Login
                         </button>

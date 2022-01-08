@@ -23,6 +23,8 @@ import Logotypes from './components/Admin-Side/Settings/Logotypes/Logotypes.jsx'
 import ForgotPassword from './components/Admin-Side/ForgotPassword.jsx';
 import Account from './components/Admin-Side/Settings/Account.jsx'
 import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
+import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
+import ChangeEmail from './components/Admin-Side/Settings/ChangeEmail.jsx';
 
 
 function App() {
@@ -54,7 +56,9 @@ function App() {
           <Route path="resto/:idResto/resto-home/editmenu/:idProduct" element={<MenuFormEditable />}></Route>
           <Route path="resto/:idResto/resto-home/account/logotype" element={<Logotypes />}></Route>
           <Route path="resto/:idResto/resto-home/account" element={<Account />}></Route>
-          <Route path="resto/:idResto/resto-home/account/changepassword" element={<ChangePass />}></Route>
+          <Route path="resto/:idResto/resto-home/account/accountsettings" element={<AccountSettings />}></Route>
+          <Route path="resto/:idResto/resto-home/account/accountsettings/changepassword" element={<ChangePass />}></Route>
+          <Route path="resto/:idResto/resto-home/account/accountsettings/changeemail" element={<ChangeEmail />}></Route>
           
 
 
