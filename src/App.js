@@ -8,6 +8,7 @@ import OrderBoard from './components/Routes/OrderBoard/OrderBoard.jsx';
 import PayBoard from './components/Routes/PayBoard/PayBoard.jsx';
 import Payment from './components/Routes/PayBoard/Payment.jsx';
 import LandingLogin from './components/Admin-Side/Login';
+import LandingRegister from './components/Admin-Side/Register';
 import HomeAdmin from './components/Admin-Side/Navbar/HomeAdmin';
 import PutTesting from './components/Admin-Side/PutTesting.jsx';
 import ActiveOrders from './components/ActiveOrders/ActiveOrders.jsx';
@@ -43,6 +44,7 @@ function App() {
 
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
+          <Route path="resto/register" element={<LandingRegister />}></Route>
           <Route path="resto/login/forgotpassword" element={<ForgotPassword />}></Route>
           <Route path="resto/:idResto/resto-home" element={<HomeAdmin />}></Route>
           
