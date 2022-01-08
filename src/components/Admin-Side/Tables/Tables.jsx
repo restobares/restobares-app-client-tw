@@ -7,6 +7,7 @@ import { getTables } from "../../../redux/actions";
 import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
 import { deleteProductFromTable, putTableEating, putTableCashPayment } from '../../../redux/actions';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 export default function Tables() {
 
@@ -158,17 +159,19 @@ export default function Tables() {
                               src="https://img.icons8.com/pastel-glyph/64/000000/trash.png"
                               className="mt-1 inline-block text-left ml-2 align-middle text-md h-4" 
                               onClick={() => handleDelete(el.productId, el.quantity)}
+                              alt=""
                             />
                               
                         </div>
                         </div>
                       ))}
+
                         <button 
                           onClick={handleCashPayment}
                           className="inline-block float-right  mt-2  mb-2 h-6 bg-pink-700 rounded-md text-white"
                           disabled={tables[detailTable - 1].state !== "pay_cash"}
                         >
-                          Confirm Cash Payment
+                          Confirm Pay
                         </button>
                       </div>
                       
@@ -188,12 +191,16 @@ export default function Tables() {
                                   <p className="inline-block float-left ml-2 w-2/12 truncate">{Moment(el.time).format("HH:mm:ss")}</p>
                             </div>
                           ))}
-
-                          <button onClick={e => handlePutEating(e)}
-                            className="inline-block float-right  mt-2  mb-2 mr-4 h-6 bg-pink-700 rounded-md text-white"
-                            >
-                              Put Table Eating
-                          </button>
+                          <div className="inline-block float-right mix-blend-multiply bg-pink-400 rounded-full px-1 ">
+                            <p className="inline-block  mt-2 mr-1  h-6">Food in table</p> 
+                            <input
+                              type="image"
+                              src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-serving-dish-hotel-services-flatart-icons-outline-flatarticons.png"
+                              className="inline-block float-right  mt-2  mb-2 w-4 h-4  rounded-full " 
+                              onClick={e => handlePutEating(e)}
+                              alt=""
+                            />
+                          </div>
                         </div>
                       }
 
