@@ -1,6 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+// Socket.io
+import io from 'socket.io-client';
+
 //components
 import LandingPage from './components/Routes/LandingPage/LandingPage.jsx';
 import BillBoard from './components/Routes/BillBoard/BillBoard.jsx';
@@ -25,29 +28,64 @@ import ForgotPassword from './components/Admin-Side/ForgotPassword.jsx';
 import Account from './components/Admin-Side/Settings/Account.jsx'
 import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
 
+// Socket connection
+const socket = io('https://restobares-app-api.herokuapp.com' /*, { withCredentials: true }*/); 
+
 
 function App() {
+	// Socket events
+	function joinResto(idResto) {
+	  socket.emit('joinResto',idResto);
+	}
+	//The diner did something, we tell the server
+	function tableSend() {
+		socket.emit('tableSend');
+	}
+	function staffListen(cb) {
+		socket.on('staffListen', () => {
+			cb();
+		})
+	}
+	//The staff did something, we tell the server
+	function staffSend() {
+		socket.emit('staffSend');
+	}
+	function tableListen(cb) {
+		socket.on('tableListen', () => {
+			cb();
+		})
+	}
+
+	// Packing the sockets in a single object.
+	// So it's easier to carry along the Components.
+	const sockets = {
+		joinResto,
+		tableSend,
+		tableListen,
+		staffSend,
+		staffListen,
+	}
+
   return (
     <BrowserRouter>
       <div className="global">
         <Routes>
           {/* Show-Run */}
           <Route path="/" element={<ShowRun/>}></Route>
-
-          <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
+          <Route path="resto/:idResto/table/:idTable" element={<LandingPage sockets={sockets} />}></Route>
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
-          <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
-          <Route path="resto/:idResto/table/:idTable/bill" element={<PayBoard />} ></Route>
+          <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard sockets={sockets}/>}></Route>
+          <Route path="resto/:idResto/table/:idTable/bill" element={<PayBoard sockets={sockets}/>} ></Route>
           <Route path="resto/:idResto/table/:idTable/payment" element={<Payment />} ></Route>
 
 
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
           <Route path="resto/login/forgotpassword" element={<ForgotPassword />}></Route>
-          <Route path="resto/:idResto/resto-home" element={<HomeAdmin />}></Route>
+          <Route path="resto/:idResto/resto-home" element={<HomeAdmin sockets={sockets}/>}></Route>
           
-          <Route path="resto/:idResto/admin/tables" element={<Tables/>}></Route>
-          <Route path="resto/:idResto/admin/orders" element={<ActiveOrders />}></Route>
+          <Route path="resto/:idResto/admin/tables" element={<Tables sockets={sockets}/>}></Route>
+          <Route path="resto/:idResto/admin/orders" element={<ActiveOrders sockets={sockets}/>}></Route>
           <Route path="resto/:idResto/put" element={<PutTesting />}></Route>
           <Route path="resto/:idResto/resto-home/createmenu" element={<AdminMenu />}></Route>
           <Route path="resto/:idResto/resto-home/qrmanager" element={<QrManager />}></Route>
