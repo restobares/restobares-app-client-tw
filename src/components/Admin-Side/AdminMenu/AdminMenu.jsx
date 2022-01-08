@@ -229,11 +229,11 @@ const AdminMenu = () => {
       timer: 2000,
     });
   }
-  return (
-    <div>
-      <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+return (
+  <div className="bg-gray-100 w-screen h-screen">
+      <nav className=" flex flex-row w-screen justify-between bg-pink-700 h-12">
         <BackButton />
-        <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
+        <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Create&nbsp;Menus</h1>
         </div>
         <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
@@ -252,7 +252,7 @@ const AdminMenu = () => {
           placeholder="Enter Name"
           value={input.name}
           onChange={(e) => handleInputChanges(e)}
-        />
+          />
 
         <input
           id="price"
@@ -268,7 +268,7 @@ const AdminMenu = () => {
           placeholder="Enter Price"
           //  value={Number(input.price)}
           onChange={(e) => handleInputChanges(e)}
-        />
+          />
 
         <input
           type="text"
@@ -278,7 +278,7 @@ const AdminMenu = () => {
           placeholder="Enter Details"
           value={input.detail}
           onChange={(e) => handleInputChanges(e)}
-        />
+          />
 
         <input
           type="file"
@@ -287,7 +287,7 @@ const AdminMenu = () => {
           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
           accept="image/*"
           onChange={(e) => handleImageSelection(e)}
-        />
+          />
 
         <Select
           options={optionsCategories}
@@ -295,20 +295,20 @@ const AdminMenu = () => {
           onChange={(e) => handleCategorySelection(e)}
           placeholder="Choose your category..."
           className="pb-3"
-        />
+          />
         <Select
           isMulti
           options={options}
           value={reactSelectInput.labelsSelector}
           onChange={(e) => handleLabelSelection(e)}
           placeholder="Choose your labels..."
-        />
+          />
         {Object.keys(errors).length > 0 || input.name === "" ?
         
         <button
-          type="submit"
-          onClick={notAlert}
-          className="text-white bg-gray-600 mt-4 mb-36 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
+        type="submit"
+        onClick={notAlert}
+        className="text-white bg-gray-600 mt-4  w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
         >
           Send Menu
         </button>:
@@ -323,6 +323,7 @@ const AdminMenu = () => {
       </form>
       </div>
     </div>
+  </div>
   );
 };
 
