@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import { Button } from '../ButtonElements';
 import imgAbout from '../../../videosAndImages/specialEvent.svg';
 import {InfoContainer, 
         InfoRow, 
@@ -15,7 +14,9 @@ import {InfoContainer,
         Img,
         ArrowForward,
         ArrowRigth,
+        NavBtnLink,
 } from './InfoSectionElements.js';
+import { NavLink } from 'react-router-dom';
 
 const InfoSection = ({LightBg, id, imgStart, topLine, LightText,
 headLine, darkText, description, buttonLabel, alt, dark, primary, dark2}) => {
@@ -46,14 +47,14 @@ headLine, darkText, description, buttonLabel, alt, dark, primary, dark2}) => {
                                 dark={dark?1:0}
                                 dark2={dark2?1:0}
                                 >{buttonLabel}</Button> */}
-                                <Button to='/resto/register'
+                                <NavBtnLink to='/resto/register'
                                 onMouseEnter={onHover}
                                 onMouseLeave={onHover}
                                 primary="true"
                                 dark="true"
                                 >
                                 Get Started {hover ? <ArrowForward/>:<ArrowRigth/>}
-                                </Button>
+                                </NavBtnLink>
                             </BtnWrap>
                         </TextWrapper>
                         </Column1>
