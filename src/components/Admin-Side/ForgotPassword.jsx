@@ -1,7 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getPasswordRecover } from '../../redux/actions';
 
 const ForgotPassword = ()  => {
+    
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState("");
+
+    const handleSubmitPasswordRecover = async (e) => {
+      e.preventDefault();
+
+      let json = await dispatch(getPasswordRecover(email));
+      // console.log(json.payload.msg);
+    }
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
 
@@ -35,7 +47,7 @@ const ForgotPassword = ()  => {
                             className='mt-2 w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-2'
                             id='email'
                             placeholder='name@dingbell.com'
-                            
+                            onChange={(e) => setEmail(e.target.value)}
                             />
                     </div>
 
@@ -44,6 +56,7 @@ const ForgotPassword = ()  => {
                         <button
                             className='bg-green py-2 px-4 mb-4 text-sm text-white rounded bg-blue-500 border border-blue-500 focus:outline-none focus:border-blue-800 '
                                 type='submit'
+                                onClick={(e) => handleSubmitPasswordRecover(e)}
                                 >
                             Send password
                         </button>

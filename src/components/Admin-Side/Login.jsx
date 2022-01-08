@@ -8,9 +8,9 @@ const Login = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // let idResto = 1;
     Cookies.remove('token-admin');
     Cookies.remove('token-staff');
+    Cookies.remove('logout-code');
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { getOrdersFeed } from '../../redux/actions';
+import { getOrdersFeed, sockets } from '../../redux/actions';
 
-const ActiveOrders = ({sockets}) => {
+const ActiveOrders = () => {
   const dispatch = useDispatch();
   const { idResto } = useParams();
-  const [time, setTime] = useState(Date.now());
   let tokenStaff = Cookies.get("token-staff");
   let tokenAdmin = Cookies.get("token-admin");
   const ordersFeed = useSelector((state) => state.ordersFeed);
@@ -15,7 +14,6 @@ const ActiveOrders = ({sockets}) => {
   
   useEffect(() => {
 		sockets.joinResto(idResto);
-    //const interval = setInterval(() => setTime(Date.now()), 30000);
     if (tokenStaff) {
       dispatch(getOrdersFeed(idResto, tokenStaff));
     }
@@ -31,10 +29,7 @@ const ActiveOrders = ({sockets}) => {
     	  dispatch(getOrdersFeed(idResto, tokenAdmin));
     	}
     });
-    //return () => {
-    //	clearInterval(interval);
-    //};
-  }, [dispatch, time, idResto]);
+  }, [dispatch, idResto]);
 
   
 
