@@ -8,7 +8,7 @@ import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
 import { deleteProductFromTable, putTableEating, putTableCashPayment } from '../../../redux/actions';
 
-export default function Tables() {
+export default function Tables({sockets}) {
 
   const dispatch = useDispatch();
   const { idResto } = useParams();
@@ -18,16 +18,26 @@ export default function Tables() {
   const tables = useSelector((state) => state.tables);
   
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 30000);
+		sockets.joinResto(idResto);
+    //const interval = setInterval(() => setTime(Date.now()), 30000);
     if (tokenStaff) {
       dispatch(getTables(idResto, tokenStaff));
     }
     if (!tokenStaff && tokenAdmin) {
       dispatch(getTables(idResto, tokenAdmin));
     }
-    return () => {
-      clearInterval(interval);
-    };
+		// Get tables when some diner does something
+		sockets.staffListen(() => {
+    	if (tokenStaff) {
+    	  dispatch(getTables(idResto, tokenStaff));
+    	}
+    	if (!tokenStaff && tokenAdmin) {
+    	  dispatch(getTables(idResto, tokenAdmin));
+    	}
+    });
+    //return () => {
+    //	clearInterval(interval);
+    //};
   }, [dispatch, time, idResto]);
 
 
@@ -37,40 +47,66 @@ export default function Tables() {
 
   const handlePutEating = async (e) => {
     e.preventDefault()
-    
+    // *** Elias agrega
+    sockets.joinResto(idResto); 
+    // ***
     if (tokenStaff) {
       
       await dispatch(putTableEating(idResto, detailTable, tokenStaff))
       dispatch(getTables(idResto, tokenStaff));
+			// *** Elias agrega
+			sockets.staffSend();
+			// ***
     }
     if (!tokenStaff && tokenAdmin) {
       
       await dispatch(putTableEating(idResto, detailTable, tokenAdmin))
       dispatch(getTables(idResto, tokenAdmin));
+			// *** Elias agrega
+			sockets.staffSend();
+			// ***
     }    
   }
 
   const handleDelete = async (productId, quantity) => {
+    // *** Elias agrega
+    sockets.joinResto(idResto); 
+    // ***
     if (tokenStaff) {
       
       await dispatch(deleteProductFromTable(idResto, detailTable, productId, quantity, tokenStaff));
       dispatch(getTables(idResto, tokenStaff));
+			// *** Elias agrega
+			sockets.staffSend();
+			// ***
     }
     if (!tokenStaff && tokenAdmin) {
       
       await dispatch(deleteProductFromTable(idResto, detailTable, productId, quantity, tokenAdmin));
       dispatch(getTables(idResto, tokenAdmin));
+			// *** Elias agrega
+			sockets.staffSend();
+			// ***
     }
   }
   
   const handleCashPayment = async () => {
+    // *** Elias agrega
+    sockets.joinResto(idResto); 
+    // ***
     if (tokenStaff) {
       await dispatch(putTableCashPayment(idResto, detailTable, tokenStaff));
       dispatch(getTables(idResto, tokenStaff));
+			// *** Elias agrega
+			sockets.staffSend();
+			// ***
     }
     if (!tokenStaff && tokenAdmin) {
       await dispatch(putTableCashPayment(idResto, detailTable, tokenAdmin));
       dispatch(getTables(idResto, tokenAdmin));
+			// *** Elias agrega
+			sockets.staffSend();
+			// ***
     }
   }
 
