@@ -240,11 +240,10 @@ return (
           Logout
         </button>
       </nav>
+      <div className="my-2">
+      <h1 className="m-2 text-lg font-bold">Add your Menu</h1>
 
-      {/* cuerpo */}
-    <div className=" mx-auto w-96">
-      <h1 className="m-5 text-lg font-bold">Add your Menu</h1>
-      <form className="">
+      <form className="w-96 mx-auto h-auto">
         <input
           type="text"
           name="name"
@@ -314,14 +313,15 @@ return (
           Send Menu
         </button>:
         <button
-        type="submit"
-        onClick={alert}
-        className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out "
+          type="submit"
+          onClick={alert}
+          className="mt-4 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out "
         >
           Send Menu
         </button> 
         }
       </form>
+      </div>
     </div>
   </div>
   );

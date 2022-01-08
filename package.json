@@ -33,6 +33,7 @@
     "react-scroll": "^1.8.4",
     "react-sdk-mercadopago": "^1.1.1",
     "react-select": "^5.2.1",
+    "socket.io-client": "^4.4.1",
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.3.0"
   },
