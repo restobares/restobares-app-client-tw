@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 
 
-const PayBoard = ({joinResto,tableSend}) => {
+const PayBoard = ({sockets}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cart }= useSelector((state) => state);
@@ -22,8 +22,12 @@ const PayBoard = ({joinResto,tableSend}) => {
   const [time, setTime] = useState(Date.now());
 
   const openModal = () => {
+  	// *** Elias agrega
+  	sockets.joinResto(idResto);
     dispatch(postPayCash(idResto, idTable, tip))
+    sockets.tableSend();
     setShowModal(prev => !prev);
+    // ***
   }
 
   var totalPrice = 0
@@ -44,17 +48,22 @@ const PayBoard = ({joinResto,tableSend}) => {
 
   const handlePayWithCard = async () => {
     let json = await dispatch(postOrderToMP(idResto, idTable, tip));
-    console.log(json)
+    // console.log(json)
     window.location.href = `${json.payload.response.init_point}`
   }
   
   useEffect(() => {
     if (totalPrice > 0) {
-      const interval = setInterval(() => setTime(Date.now()), 15000);
-      dispatch(getOrders(idResto, idTable));
-      return () => {
-        clearInterval(interval);
-      };
+      // *** Elias agrega
+      // const interval = setInterval(() => setTime(Date.now()), 15000);
+      sockets.joinResto(idResto);
+      sockets.tableListen( ()=> {
+      	dispatch(getOrders(idResto, idTable));
+      });
+      //return () => {
+      //  clearInterval(interval);
+      //};
+      // *** 
     } 
     if (cart.currentOrder.length === 0) {
       async function paymentAlert() {
@@ -74,28 +83,31 @@ const PayBoard = ({joinResto,tableSend}) => {
   }, [time, dispatch, idTable, idResto, totalPrice, cart.currentOrder.length]);
 
   
-  useEffect(() => {
-    if (totalPrice > 0){
-    
-    const interval = setInterval(() => setTime(Date.now()), 15000);
-    dispatch(getOrders(idResto, idTable));
-    return () => {
-      clearInterval(interval);
-    };
-  }
-  if(cart.currentOrder.length === 0){
-    async function paymentAlert(){
-    await Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Payment Successful',
-      showConfirmButton: false,
-      timer: 3000
-    })}
-    //Acá usar navigate
-  paymentAlert()
-}
-  }, [time, dispatch, idTable, idResto]);
+  // *** Elias comenta esto porque ya está hecho arriba ¬_¬
+  //useEffect(() => {
+  //  if (totalPrice > 0){
+  //  
+  //  const interval = setInterval(() => setTime(Date.now()), 15000);
+  //  dispatch(getOrders(idResto, idTable));
+  //  return () => {
+  //    clearInterval(interval);
+  //  };
+  //}
+	//
+	//  if(cart.currentOrder.length === 0){
+	//    async function paymentAlert(){
+	//    await Swal.fire({
+	//      position: 'center',
+	//      icon: 'success',
+	//      title: 'Payment Successful',
+	//      showConfirmButton: false,
+	//      timer: 3000
+	//    })}
+	//    //Acá usar navigate
+	//  paymentAlert()
+	//  }
+	//  }, [time, dispatch, idTable, idResto]);
+  // *** fin comentario
 
 
   return (

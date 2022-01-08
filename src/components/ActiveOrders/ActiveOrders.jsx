@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { getOrdersFeed } from '../../redux/actions';
 
-const ActiveOrders = ({joinResto, staffListen}) => {
+const ActiveOrders = ({sockets}) => {
   const dispatch = useDispatch();
   const { idResto } = useParams();
   const [time, setTime] = useState(Date.now());
@@ -14,7 +14,7 @@ const ActiveOrders = ({joinResto, staffListen}) => {
   console.log(ordersFeed);
   
   useEffect(() => {
-		joinResto(idResto);
+		sockets.joinResto(idResto);
     //const interval = setInterval(() => setTime(Date.now()), 30000);
     if (tokenStaff) {
       dispatch(getOrdersFeed(idResto, tokenStaff));
@@ -23,7 +23,7 @@ const ActiveOrders = ({joinResto, staffListen}) => {
       dispatch(getOrdersFeed(idResto, tokenAdmin));
     }
 		// Get tables when some diner does something
-		staffListen(() => {
+		sockets.staffListen(() => {
     	if (tokenStaff) {
     	  dispatch(getOrdersFeed(idResto, tokenStaff));
     	}
