@@ -1,32 +1,25 @@
 import React from 'react'
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+// import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-// import {
-//   setActiveComponent,
-//   getLabels,
-//   getCategories,
-// } from "../../../redux/actions";
-// import Select from "react-select";
-// import BackButton from "../BackButton";
 import Swal from "sweetalert2";
-// import { inputValidator, postMenu } from "../../../redux/actions";
+import { inputValidatorRegister, register } from '../../redux/actions';
 // import { useParams } from "react-router-dom";
 
 const Register = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
     const [errors, setErrors] = useState({});
     
     const [input, setInput] = useState({
-        name: "",
-        price: "",
-        detail: "",
-        image: "",
-        CategoryId: "",
-        id_label: [],
-        DiscountId: null,
+        title: "",
+        email: "",
+        passAdmin: "",
+        passStaff: "",
+        logo: "",
+        tables: "",
+        payment_mp: "",
       });
 
       function handleInputChanges(e) {
@@ -34,12 +27,12 @@ const Register = () => {
           ...input,
           [e.target.name]: e.target.value,
         });
-        // setErrors(
-        //   inputValidator({
-        //     ...input,
-        //     [e.target.name]: e.target.value,
-        //   })
-        // );
+        setErrors(
+            inputValidatorRegister({
+            ...input,
+            [e.target.name]: e.target.value,
+          })
+        );
       }
 
       var validExt = ".png, .jpeg, .jpg, .PNG, .JPEG, .JPG";
@@ -50,7 +43,6 @@ const Register = () => {
       .toLowerCase();
     var pos = validExt.indexOf(getFileExt);
     if (pos < 0) {
-      // alert("This file is not allowed, please upload a valid file.");
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -58,7 +50,7 @@ const Register = () => {
       });
       setInput({
         ...input,
-        image: "",
+        logo: "",
       });
       e.target.value = null;
       return false;
@@ -73,7 +65,6 @@ const Register = () => {
     if (eTarget.files && eTarget.files[0]) {
       var fsize = eTarget.files[0].size / 1000;
       if (fsize > maxSizeImage) {
-        // alert('Maximum file size is ' + maxSizeImage + 'KB, This file size is: ' + fsize + "KB");
         Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -83,7 +74,7 @@ const Register = () => {
         });
         setInput({
           ...input,
-          image: "",
+          logo: "",
         });
         eTarget.value = null;
         return false;
@@ -101,14 +92,14 @@ const Register = () => {
       // console.log('RESULT', reader.result)
       setInput({
         ...input,
-        image: reader.result,
+        logo: reader.result,
       });
-    //   setErrors(
-    //     inputValidator({
-    //       ...input,
-    //       image: reader.result,
-    //     })
-    //   );
+      setErrors(
+        inputValidatorRegister({
+          ...input,
+          logo: reader.result,
+        })
+      );
     };
 
     reader.readAsDataURL(file);
@@ -116,8 +107,7 @@ const Register = () => {
 
   const alert = async (e) => {
     e.preventDefault();
-    // await dispatch(postMenu(idResto, input, tokenAdmin));
-    // console.log(json);
+    await dispatch(register(input));
     Swal.fire({
       position: "center",
       icon: "success",
@@ -128,14 +118,14 @@ const Register = () => {
     setInput({
       title: "",
       email: "",
-      detail: "",
-      image: "",
-      CategoryId: "",
-      id_label: [],
-      DiscountId: null,
+      passAdmin: "",
+      passStaff: "",
+      logo: "",
+      payment_mp: "",
+      tables: "",
     });
     
-    document.getElementById("image").value = null;
+    document.getElementById("logo").value = null;
   };
 
   const notAlert = (e) =>{
@@ -213,8 +203,8 @@ const Register = () => {
   />
   <input
     type="file"
-    id="image"
-    name="image"
+    id="logo"
+    name="logo"
     className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
     accept="image/*"
     onChange={(e) => handleImageSelection(e)}
@@ -233,7 +223,7 @@ const Register = () => {
   <button
     type="submit"
     onClick={notAlert}
-    className="text-white bg-gray-600 mt-4 mb-36 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
+    className="text-white bg-gray-600 mt-4  w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
   >
     Check In
   </button>:

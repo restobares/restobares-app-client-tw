@@ -28,6 +28,7 @@ import { deleteProductFromTable } from "./deleteProductFromTable";
 import { setActiveComponent} from "./setActiveComponent";
 import { changeTableFilled } from "./tableFilled";
 import { inputValidator } from "./inputValidator";
+import { inputValidatorRegister } from "./inputValidatorRegister";
 import { postPayCash } from "./postPayCash";
 import { putTableCashPayment } from "./putTableCashPayment";
 import { putAvailableProduct } from "./putAvailableProduct";
@@ -71,6 +72,7 @@ export {
   setActiveComponent,
   changeTableFilled,
   inputValidator,
+  inputValidatorRegister,
   postPayCash,
   putTableCashPayment,
   putAvailableProduct,
