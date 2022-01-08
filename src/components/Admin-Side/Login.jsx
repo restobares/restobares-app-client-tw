@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, Link, /* useParams */ } from 'react-router-dom';
 import { login } from '../../redux/actions';
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
@@ -33,8 +34,11 @@ const Login = () => {
           if (!json.payload.error) {
             navigate(`../resto/${json.payload.id}/resto-home`)
           } else {
-            // this is where the credentials are invalid
-            console.log('invalid credentials')
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Email or Password are incorrect",
+            });
           }
         } else {
           console.log('invalid email');

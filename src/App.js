@@ -15,17 +15,15 @@ import PutTesting from './components/Admin-Side/PutTesting.jsx';
 import AdminMenu from './components/Admin-Side/AdminMenu/AdminMenu.jsx';
 import QrManager from './components/Admin-Side/Settings/QrManagement/QrManagement.jsx';
 import Analytics from './components/Admin-Side/Settings/Analytics.jsx';
-import Themes from './components/Admin-Side/Settings/Themes.jsx';
 import ShowRun from './components/ShowRunSide/ShowRun.jsx';
 import QrGenerated from './components/Admin-Side/Settings/QrManagement/QrGenerated.jsx';
 import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable.jsx';
-import Logotypes from './components/Admin-Side/Settings/Logotypes/Logotypes.jsx';
 import ForgotPassword from './components/Admin-Side/ForgotPassword.jsx';
 import Account from './components/Admin-Side/Settings/Account.jsx'
 import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
-import ChangeEmail from './components/Admin-Side/Settings/ChangeEmail.jsx';
+import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
 
 function App() {
 
@@ -53,14 +51,12 @@ function App() {
           <Route path="resto/:idResto/resto-home/qrmanager" element={<QrManager />}></Route>
           <Route path="resto/:idResto/resto-home/qrmanager/qrs" element={<QrGenerated />}></Route>
           <Route path="resto/:idResto/resto-home/analytics" element={<Analytics />}></Route>
-          <Route path="resto/:idResto/resto-home/account/themes" element={<Themes />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu" element={<EditMenu />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu/:idProduct" element={<MenuFormEditable />}></Route>
-          <Route path="resto/:idResto/resto-home/account/logotype" element={<Logotypes />}></Route>
           <Route path="resto/:idResto/resto-home/account" element={<Account />}></Route>
           <Route path="resto/:idResto/resto-home/account/accountsettings" element={<AccountSettings />}></Route>
           <Route path="resto/:idResto/resto-home/account/accountsettings/changepassword" element={<ChangePass />}></Route>
-          <Route path="resto/:idResto/resto-home/account/accountsettings/changeemail" element={<ChangeEmail />}></Route>
+          <Route path="resto/:idResto/resto-home/account/accountsettings/changeaccount" element={<ChangeAccount />}></Route>
           
 
           <Route path='*' element={<ShowRun/>} ></Route>

@@ -39,6 +39,7 @@ import { getPasswordRecover } from "./getPasswordRecover";
 import { putAccount } from "./putAccount";
 import { logout } from "./logout";
 import { sockets } from "./sockets";
+import { getAccount } from "./getAccount";
 
 
 export {  
@@ -87,5 +88,6 @@ export {
   //change password admin/staff
   putAccount,
   logout,
-  sockets
+  sockets,
+  getAccount
 };
