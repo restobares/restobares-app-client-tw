@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
 import { getUser, changeTableFilled } from '../../../redux/actions'
+import { sockets } from "../../../redux/actions";
 
 // We add the socket property
-export default function LandingPage ({sockets}) {
+export default function LandingPage () {
   const { idResto, idTable } = useParams();
   // these two variables are temporarily commented out  because the QR codes are going to provide that through params like above. Right now the userId id are on constants like below
   // const idResto = 'ANzbx5Pa3dPizabR';

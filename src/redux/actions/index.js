@@ -37,6 +37,7 @@ import { postFeedback } from "./postFeedback";
 import { register } from "./register";
 import { getPasswordRecover } from "./getPasswordRecover";
 import { logout } from "./logout";
+import { sockets } from "./sockets";
 
 export {  
   getCategories,
@@ -81,5 +82,6 @@ export {
   postFeedback,
   register,
   getPasswordRecover,
-  logout
+  logout,
+  sockets
 };

@@ -8,10 +8,11 @@ const ForgotPassword = ()  => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
 
-    function handleSubmitPasswordRecover(e) {
+    const handleSubmitPasswordRecover = async (e) => {
       e.preventDefault();
 
-      dispatch(getPasswordRecover(email));
+      let json = await dispatch(getPasswordRecover(email));
+      // console.log(json.payload.msg);
     }
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
