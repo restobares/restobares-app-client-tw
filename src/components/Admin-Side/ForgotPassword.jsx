@@ -12,7 +12,9 @@ const ForgotPassword = ()  => {
       e.preventDefault();
 
       let json = await dispatch(getPasswordRecover(email));
-      // console.log(json.payload.msg);
+      // json undefined es cuando el email no existe
+      // json.payload.msg para la alerta
+      console.log(json);
     }
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
