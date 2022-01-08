@@ -3,13 +3,12 @@ import BackButton from '../BackButton';
 import Select from "react-select";
 import { useDispatch } from 'react-redux';
 import { putAccount }from '../../../redux/actions';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-
-
+import Swal from "sweetalert2";
 
 const ChangePass = () => {
 
@@ -19,7 +18,7 @@ const ChangePass = () => {
 
   const { idResto } = useParams();
   let tokenAdmin = Cookies.get("token-admin");
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   
   const [input, setInput] = useState({
@@ -46,11 +45,34 @@ const ChangePass = () => {
 
 
   //checar la action de putAccount
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (input.newPass === input.currentPass) {
-      dispatch(putAccount(idResto, input, tokenAdmin))
+    if (input.newPass === input.repeatPass) {
+
+      if (input.passType === "Password Admin") {
+        dispatch(putAccount(idResto, {
+          passAdmin: input.newPass
+        }, tokenAdmin))
+      }
+      if (input.passType === "Password Staff") {
+        dispatch(putAccount(idResto, {
+          passStaff: input.newPass
+        }, tokenAdmin))
+      }
+      await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: `Your ${input.passType} has been updated`,
+      showConfirmButton: false,
+      timer: 3000,
+      });
+      return navigate(-1);
     }
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "New Password and Repeat Password must be equal",
+    });
   }
 
   //hideShow
@@ -102,23 +124,6 @@ const ChangePass = () => {
                     <div className="mx-auto max-w-lg">
 
                       <div className="py-2">
-                        <span className="px-1 text-sm text-gray-600">Current Password</span>
-
-                        <div className="flex">
-                          <input placeholder="Current Password"
-                            name="currentPass"
-                            onChange={(e) => handleChange(e)}
-                            type={passwordCurrShown ? "text" : "password"}
-                            className="text-md block px-3 py-2  rounded-lg w-full 
-                            bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md focus:placeholder-gray-500 focus:bg-white focus:border-gray-600 focus:outline-none"
-                            />
-                            <IconButton onClick={(e) => toggleCurrPassword(e)}>
-                            {passwordCurrShown ? <Visibility /> : <VisibilityOff />}
-                          </IconButton>
-                        </div>
-                      </div>
-
-                      <div className="py-2">
                         <span className="px-1 text-sm text-gray-600">New Password</span>
 
                         <div className="flex">
@@ -160,8 +165,8 @@ const ChangePass = () => {
                       <button className="mt-3 text-lg font-semibold 
                         bg-blue-500 inline-block text-white rounded-lg
                         px-2 py-2 shadow-xl hover:text-white hover:bg-blue-700 mb-2"
-                        onSubmit={(e) => handleSubmit(e)}
-                        disabled={input.newPass !== input.repeatPass}
+                        onClick={(e) => handleSubmit(e)}
+                        // disabled={input.newPass !== input.repeatPass}
                         >
                         Change Password
                       </button>

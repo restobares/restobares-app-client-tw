@@ -38,5 +38,6 @@ export const ActionTypes = {
   POST_REGISTER: "POST_REGISTER",
   PUT_ACCOUNT: "PUT_ACCOUNT",
   LOG_OUT: "LOG_OUT",
+  GET_ACCOUNT: "GET_ACCOUNT"
 }
 
