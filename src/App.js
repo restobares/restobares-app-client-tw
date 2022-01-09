@@ -22,8 +22,8 @@ import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable
 import ForgotPassword from './components/Admin-Side/ForgotPassword.jsx';
 import Account from './components/Admin-Side/Settings/Account.jsx'
 import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
-import FeedbackModal from './components/Routes/ClientFeedback/FeedbackModal.jsx';
 import ClientFeedback from './components/Routes/ClientFeedback/ClientFeedback.jsx';
+
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
 import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
 
