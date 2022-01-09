@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link, /* useParams */ } from 'react-router-dom';
-import { login } from '../../redux/actions';
+import { login, logout } from '../../redux/actions';
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 
 const Login = () => {
-
-   /* const { idResto } = useParams(); */
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -29,10 +27,11 @@ const Login = () => {
 
         if (validEmail(email)){
           
-          let json = await dispatch(login(email, password));        
-          // console.log(json);
+          let json = await dispatch(login(email, password));
+          
           if (!json.payload.error) {
             navigate(`../resto/${json.payload.id}/resto-home`)
+            
           } else {
             Swal.fire({
               icon: "error",
@@ -78,6 +77,17 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             />
                     </div>
+                    {/* <div>
+                        <label htmlFor=''>idStaff</label>
+                        <input
+                            type='number'
+                            className='w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'
+                            id='idStaff'
+                            placeholder='Your ID'
+                            min="0"
+                            onChange={(e) => setIdStaffInput(e.target.value)}
+                            />
+                    </div> */}
 
                     <div className='flex justify-center items-center mt-6'>
                         

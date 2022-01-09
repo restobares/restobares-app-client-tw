@@ -8,6 +8,7 @@ import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
 import { deleteProductFromTable, putTableEating, putTableCashPayment, sockets } from '../../../redux/actions';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
+import Swal from "sweetalert2";
 
 export default function Tables() {
 
@@ -16,6 +17,7 @@ export default function Tables() {
   let tokenStaff = Cookies.get("token-staff");
   let tokenAdmin = Cookies.get("token-admin");
   const tables = useSelector((state) => state.tables);
+  const [idStaffInput, setIdStaffInput] = useState('');
   
   useEffect(() => {
 		sockets.joinResto(idResto);
@@ -40,18 +42,25 @@ export default function Tables() {
   const [detailTable,setDetailTable] = useState (null);
 
 
-  const handlePutEating = async (e) => {
-    e.preventDefault()
+  const handlePutEating = async (e, idStaff) => {
+    e.preventDefault();
+    if (!idStaff && !tokenAdmin) {
+      return Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Check your credentials",
+            });
+    }
     sockets.joinResto(idResto); 
     if (tokenStaff) {
       
-      await dispatch(putTableEating(idResto, detailTable, tokenStaff))
+      await dispatch(putTableEating(idResto, detailTable, tokenStaff, idStaff))
       dispatch(getTables(idResto, tokenStaff));
 			sockets.staffSend();
     }
     if (!tokenStaff && tokenAdmin) {
       
-      await dispatch(putTableEating(idResto, detailTable, tokenAdmin))
+      await dispatch(putTableEating(idResto, detailTable, tokenAdmin, idStaff))
       dispatch(getTables(idResto, tokenAdmin));
 			sockets.staffSend();
     }    
@@ -73,15 +82,15 @@ export default function Tables() {
     }
   }
   
-  const handleCashPayment = async () => {
-    sockets.joinResto(idResto); 
+  const handleCashPayment = async (idStaff) => {
+    sockets.joinResto(idResto);
     if (tokenStaff) {
-      await dispatch(putTableCashPayment(idResto, detailTable, tokenStaff));
+      await dispatch(putTableCashPayment(idResto, detailTable, tokenStaff, idStaff));
       dispatch(getTables(idResto, tokenStaff));
 			sockets.staffSend();
     }
     if (!tokenStaff && tokenAdmin) {
-      await dispatch(putTableCashPayment(idResto, detailTable, tokenAdmin));
+      await dispatch(putTableCashPayment(idResto, detailTable, tokenAdmin, idStaff));
       dispatch(getTables(idResto, tokenAdmin));
 			sockets.staffSend();
     }
@@ -95,9 +104,10 @@ export default function Tables() {
   }
   return  <div className=" h-full w-full  flex flex-col  overflow-scroll">
             <div className="h-8 bg-gray-300  text-sm flex flex-row mt-2 rounded-xl ">
-              <p className="w-2/12 ml-2 mt-1" >Numero</p>
-              <p className="w-3/12 ml-4  mt-1">Hora</p>
-              <p className="w-7/12  mt-1 mr-5">Estado</p>
+              <p className="w-2/12 ml-2 mt-1" >Number</p>
+              <p className="w-3/12 ml-4  mt-1">Time</p>
+              <p className="w-5/12 ml-4  mt-1">StaffID</p>
+              <p className="w-7/12  mt-1 mr-5">Status</p>
             </div>
               {tables.map( el => (
                 <div
@@ -106,6 +116,7 @@ export default function Tables() {
                   <div className="h-8 w-full  flex flex-row  ">
                     <p className="w-2/12 mt-1 font-semibold" > {Number(el.tableId)} </p>
                     <p className="w-3/12 mt-1 ml-4 truncate"> {el.currentOrder.time || "----"}  </p>
+                    <p className="w-5/12 mt-1 ml-4 truncate">{el.idStaff}</p>
                     <div className="w-7/12 ">
                       {el.state !== "free" 
                       ? <p className="inline-block text-lg font-semibold text-pink-800">
@@ -115,6 +126,7 @@ export default function Tables() {
                       {el.state}
                       </p>                    
                       }
+                      
                       <input  type="image" name={el.tableId} 
                         onClick={(e) => handleButton(e)}  className="inline-block float-right mt-3 mr-2"
                           src={detailTable === el.tableId 
@@ -130,9 +142,9 @@ export default function Tables() {
                 { detailTable === Number(el.tableId) &&
                   <div className={detailTable === el.tableId 
                     ? [" bg-gray-300 rounded-md  mx-1 mb-1 py-2"]: ""}>
-                    {detailTable === el.tableId && el.state !== "free" 
+                    {/* {detailTable === el.tableId && el.state !== "free" 
                       && <ChangeStatus/>
-                    }
+                    } */}
                     <ChangeOrder detailTable={el.tableId} />
                     <div className="flex flex-col ">
                     {el.ordered.length > 0 && el.currentOrder.products.length > 0 &&
@@ -176,7 +188,7 @@ export default function Tables() {
                       ))}
 
                         <button 
-                          onClick={handleCashPayment}
+                          onClick={() => handleCashPayment(el.idStaff)}
                           className="inline-block float-right  mt-2  mb-2 h-6 bg-pink-700 rounded-md text-white"
                           disabled={tables[detailTable - 1].state !== "pay_cash"}
                         >
@@ -200,13 +212,24 @@ export default function Tables() {
                                   <p className="inline-block float-left ml-2 w-2/12 truncate">{Moment(el.time).format("HH:mm:ss")}</p>
                             </div>
                           ))}
+                          {!el.idStaff && <div>
+                            <input 
+                              type="number"
+                              min="0"
+                              maxLength="9" 
+                              name="" 
+                              id=""
+                              onChange={(e) => setIdStaffInput(e.target.value)}
+                              />
+                          </div>}
                           <div className="inline-block float-right mix-blend-multiply bg-pink-400 rounded-full px-1 ">
                             <p className="inline-block  mt-2 mr-1  h-6">Food in table</p> 
                             <input
                               type="image"
                               src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-serving-dish-hotel-services-flatart-icons-outline-flatarticons.png"
-                              className="inline-block float-right  mt-2  mb-2 w-4 h-4  rounded-full " 
-                              onClick={e => handlePutEating(e)}
+                              className="inline-block float-right  mt-2  mb-2 w-4 h-4  rounded-full "
+                              disabled={!idStaffInput && !el.idStaff}
+                              onClick={e => handlePutEating(e, el.idStaff || idStaffInput)}
                               alt=""
                             />
                           </div>
