@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setActiveComponent, logout } from "../../../redux/actions";
+
+import Logo from "../../../img/dingbell_white.png";
+
 import Cookies from "js-cookie";
 
 
@@ -55,8 +58,8 @@ const Navbar = () => {
   
   return (
     <nav className="flex flex:row items-center justify-between px-8 h18  bg-pink-700 h-12 mb-3">
-      <span className="text-5xl text-gray-800 mb-1 mt-1">
-      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="40" alt="" />
+      <span className="text-sm text-gray-800 mb-1 mt-1">
+      <img className="invisible md:visible"  src={Logo} width="40" alt="" />
       </span>
       <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (  

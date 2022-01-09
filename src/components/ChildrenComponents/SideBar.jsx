@@ -21,6 +21,20 @@ function SideBar() {
 
     //////////////// VARIABLES LOCALES ////////////////    
 
+		const arrayImgs = [
+			"https://img.icons8.com/material-sharp/96/FFFFFF/simple-breakfast.png", // Logo 
+			"https://img.icons8.com/ios/50/FFFFFF/tapas.png", // Logo 
+			"https://img.icons8.com/external-wanicon-lineal-wanicon/64/ffffff/external-salad-cooking-wanicon-lineal-wanicon.png", // Logo 
+			"https://img.icons8.com/glyph-neue/64/ffffff/spaghetti.png", // Logo 
+			"https://img.icons8.com/ios/50/ffffff/pizza.png", // Logo 
+			"https://img.icons8.com/glyph-neue/64/ffffff/steak.png", // Logo 
+			"https://img.icons8.com/external-sbts2018-solid-sbts2018/58/ffffff/external-sandwich-fast-food-sbts2018-solid-sbts2018.png", // Logo 
+			"https://img.icons8.com/ios-glyphs/90/ffffff/globe--v1.png", // Logo 
+			"https://img.icons8.com/external-vitaliy-gorbachev-lineal-vitaly-gorbachev/60/ffffff/external-toy-car-children-toys-vitaliy-gorbachev-lineal-vitaly-gorbachev.png", // Logo 
+			"https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/ffffff/external-drink-grocery-flatart-icons-outline-flatarticons-1.png", // Logo 
+			"https://img.icons8.com/ios/100/ffffff/ice-cream-cone.png", // Logo 
+		]
+		
     let hidden;
     sidebar.sideBar ? hidden = "" : hidden = "hidden"
 
@@ -31,13 +45,13 @@ function SideBar() {
 
     const handleOnChange = (event) => {
       event.preventDefault();
-      console.log("event.target.value => ", event.target.value)
+      //console.log("event.target.value => ", event.target.value)
       dispatch( filterMenuByLabels(event.target.value))
     }
 
     const handleSort = (event) => {
       event.preventDefault();
-      console.log("event.target.value => ", event.target.value)
+      // console.log("event.target.value => ", event.target.value)
       dispatch(sortMenuByPrice(event.target.value))
     }
     const handleOnClick = e => {
@@ -47,7 +61,7 @@ function SideBar() {
         setActiveButton("All")
       } else {
         setActiveButton(Number(e.target.name))
-        console.log("active : => ",activeButton)      
+        // console.log("active : => ",activeButton)      
         dispatch( filterMenuByCategory(e.target.name))
       }
     }
@@ -74,13 +88,15 @@ function SideBar() {
           </div>
         {categories.map((cat,i) => (
           <div className={[ 
-                      activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 "]]}> 
-                      <button className='bg-white bg-opacity-20 h-8 w-20 rounded-3xl  mx-1  mt-2 '
-                        name={i+1} onClick={e => handleOnClick(e)}>
-          <div className=''></div>
-                    </button>
-                    <p className=' text-white'>{cat.name}</p>
-                  </div>
+            activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 "]]}> 
+						<div className='bg-white bg-opacity-20 h-8 w-20 rounded-3xl  mx-1  mt-2 '>
+            <input type="image" key={cat.name} alt="category button" 
+                   name={i+1} onClick={e => handleOnClick(e)} 
+              			src={arrayImgs[i]} className="h-6 inline-block mx-0"/>
+          		{/*<img  alt="category icon" src={arrayImgs[i]}/>*/}
+            </div>
+            <p className=' text-white'>{cat.name}</p>
+          </div>
         ))}
         </div>   
     </Fragment>
