@@ -8,12 +8,15 @@ import Settings from "../Settings/Settings";
 
 const HomeAdmin = () => {
   const token = useSelector((state) => state.token);
-  const active = useSelector((state) => state.activeComponent.activeComponent);
-  // let tokenAdmin;
-  // let tokenStaff;
+  var active = useSelector((state) => state.activeComponent.activeComponent);
+
 
   if (token.admin.length > 0 && token.admin !== "") {
     Cookies.set("token-admin", `${token.admin}`, {
+      expires: 0.35,
+      secure: true,
+    });
+    Cookies.set("logout-code", `${token.logoutCode}`, {
       expires: 0.35,
       secure: true,
     });
@@ -23,11 +26,12 @@ const HomeAdmin = () => {
       expires: 0.35,
       secure: true,
     });
+    Cookies.set("logout-code", `${token.logoutCode}`, {
+      expires: 0.35,
+      secure: true,
+    });
   }
 
-
-  // console.log("token staff", Cookies.get("token-staff"));
-  // console.log("tables", tables);
 
   return (
     <div className="bg-gray-200 h-screen w-screen flex flex-col ">

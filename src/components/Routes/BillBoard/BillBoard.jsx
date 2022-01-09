@@ -5,20 +5,19 @@ import { getOrders } from '../../../redux/actions';
 import BillBar from '../../ChildrenComponents/BillBar.jsx';
 import OrdersCarousel from '../../ChildrenComponents/OrdersCarousel.jsx';
 import PayBar from '../../ChildrenComponents/PayBar.jsx';
+import { sockets } from '../../../redux/actions';
 
 const BillBoard = () => {
 
   const dispatch = useDispatch();
   const { idResto, idTable } = useParams();
-  const [time, setTime] = useState(Date.now());
-  // this is what makes the cart self update from the put of the waiter
+
   useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 30000);
-    dispatch(getOrders(idResto, idTable));
-    return () => {
-      clearInterval(interval);
-    };
-  }, [time, dispatch, idTable, idResto]);
+    sockets.joinResto(idResto);
+    sockets.tableListen(()=>{
+			dispatch(getOrders(idResto, idTable));
+    });
+  }, [dispatch, idTable, idResto]);
 
   return (
     <div className='py-12 flex flex-col h-screen justify-between'>

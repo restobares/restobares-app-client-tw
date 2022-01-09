@@ -1,11 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { postOrderToMP, postPayCash, getOrders } from '../../../redux/actions';
+import { postOrderToMP, postPayCash, getOrders, sockets } from '../../../redux/actions';
 import Modal from './Modal';
-
 import Swal from 'sweetalert2';
 
 
@@ -19,10 +17,11 @@ const PayBoard = () => {
   const [showModal, setShowModal] = useState(false);
   const [tipPercentage, setTipPercentage] = useState(0);
   const [tip, setTip] = useState(0);
-  const [time, setTime] = useState(Date.now());
 
   const openModal = () => {
+  	sockets.joinResto(idResto);
     dispatch(postPayCash(idResto, idTable, tip))
+    sockets.tableSend();
     setShowModal(prev => !prev);
   }
 
@@ -44,19 +43,17 @@ const PayBoard = () => {
 
   const handlePayWithCard = async () => {
     let json = await dispatch(postOrderToMP(idResto, idTable, tip));
-    console.log(json)
     window.location.href = `${json.payload.response.init_point}`
   }
   
   useEffect(() => {
     if (totalPrice > 0) {
-      const interval = setInterval(() => setTime(Date.now()), 15000);
-      dispatch(getOrders(idResto, idTable));
-      return () => {
-        clearInterval(interval);
-      };
+      sockets.joinResto(idResto);
+      sockets.tableListen( ()=> {
+      	dispatch(getOrders(idResto, idTable));
+      });
     } 
-    if (cart.currentOrder.length === 0) {
+    if (totalPrice === 0) {
       async function paymentAlert() {
         await Swal.fire({
           position: 'center',
@@ -67,35 +64,13 @@ const PayBoard = () => {
         })
         // aca usar navigate a ruta feedback
         // navigate(`/resto/${idResto}/table/${idTable}`);
+      navigate(`/resto/${idResto}/table/${idTable}/feedback`)
       }
       paymentAlert();  
+      
     }
     
-  }, [time, dispatch, idTable, idResto, totalPrice, cart.currentOrder.length]);
-
-  
-  useEffect(() => {
-    if (totalPrice > 0){
-    
-    const interval = setInterval(() => setTime(Date.now()), 15000);
-    dispatch(getOrders(idResto, idTable));
-    return () => {
-      clearInterval(interval);
-    };
-  }
-  if(cart.currentOrder.length === 0){
-    async function paymentAlert(){
-    await Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Payment Successful',
-      showConfirmButton: false,
-      timer: 3000
-    })}
-    //Acá usar navigate
-  paymentAlert()
-}
-  }, [time, dispatch, idTable, idResto]);
+  }, [dispatch, idTable, idResto, totalPrice, cart]);
 
 
   return (
@@ -135,7 +110,7 @@ const PayBoard = () => {
           <option value="15"> 15% - Good!</option>
           <option value="10"> 10% - Nice!</option>
           <option value="5"> 5% - OK!</option>
-          <option value="0"> 0% - 🐀</option>
+          <option value="0"> 0% </option>
         </select>
 
         </div>
@@ -156,20 +131,9 @@ const PayBoard = () => {
       <button onClick={handlePayWithCard} className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
         Pay with Card
       </button>
-      
-
-    {/* <Link to={`/resto/${idResto}/table/${idTable}/payment`}>
-      <button className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
-        Pay with Card
-      </button>
-    </Link> */}
-
     </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal} />
-
-      {/* <Payment showModalPay={showModalPay} setShowModalPay={setShowModalPay}/> */} 
-
     </div>
   )
 }

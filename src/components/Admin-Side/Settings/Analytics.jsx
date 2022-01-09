@@ -1,7 +1,44 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import BackButton from '../BackButton';
+import Cookies from 'js-cookie';
+import { getFeedback, getRevenue, sockets } from '../../../redux/actions';
 
 const Analytics = () => {
+  const dispatch = useDispatch();
+  const { idResto } = useParams();
+  const tokenAdmin = Cookies.get("token-admin");
+  const revenue = useSelector((state) => state.revenue);
+  const feedback = useSelector((state) => state.feedback);
+  
+  let monthlyRevenue = 0;
+  let dailyRevenue = 0;
+  let monthlyOrders = 0;
+  let dailyOrders = 0;
+
+  for (var i = 0; i < revenue.monthly.length; i++) {
+    monthlyRevenue += Number(revenue.monthly[i].totalPrice);
+    monthlyOrders += revenue.monthly[i].SoldProducts.length;
+  }
+  for (var i = 0; i < revenue.daily.length; i++) {
+    dailyRevenue += Number(revenue.daily[i].totalPrice);
+    dailyOrders += revenue.daily[i].SoldProducts.length;
+  }
+
+
+  useEffect(() => {
+    sockets.joinResto(idResto);
+    dispatch(getRevenue(idResto, 'Daily', tokenAdmin));
+    dispatch(getRevenue(idResto, 'Monthly', tokenAdmin));
+    dispatch(getFeedback(idResto, tokenAdmin));
+    sockets.staffListen(() => {
+      dispatch(getRevenue(idResto, 'Daily', tokenAdmin));
+      dispatch(getRevenue(idResto, 'Monthly', tokenAdmin));
+      dispatch(getFeedback(idResto, tokenAdmin));
+    });
+    
+  }, [dispatch, idResto, tokenAdmin]);
 
     return (
         <Fragment>
@@ -31,9 +68,31 @@ const Analytics = () => {
                                       </div>
                                   </div>
                                   <div className="flex-1 text-right md:text-center">
-                                      <h5 className="font-bold uppercase text-gray-500">Total Revenue</h5>
+                                      <h5 className="font-bold uppercase text-gray-500">Monthly Revenue</h5>
                                       <h3 className="font-bold text-3xl">
-                                          $6666.66
+                                          ${monthlyRevenue}
+                                      </h3>
+                                  </div>
+                                    <span className="float-left">
+                                      <img src="https://img.icons8.com/material-rounded/48/48bb78/sort-up.png" width="50" alt="" />
+                                    </span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+                          {/* <!--Revenue--> */}
+                          <div className="bg-white border rounded shadow p-2">
+                              <div className="flex flex-row items-center">
+                                  <div className="flex-shrink pr-4">
+                                      <div className="rounded p-1 bg-green-600">
+                                        <img src="https://img.icons8.com/windows/50/000000/bank.png" width="45" alt="" />
+                                      </div>
+                                  </div>
+                                  <div className="flex-1 text-right md:text-center">
+                                      <h5 className="font-bold uppercase text-gray-500">Daily Revenue</h5>
+                                      <h3 className="font-bold text-3xl">
+                                          ${dailyRevenue}
                                       </h3>
                                   </div>
                                     <span className="float-left">
@@ -53,8 +112,8 @@ const Analytics = () => {
                                       </div>
                                   </div>
                                   <div className="flex-1 text-right md:text-center">
-                                      <h5 className="font-bold uppercase text-gray-500">Total Users per Month</h5>
-                                      <h3 className="font-bold text-3xl">666 <span className="text-pink-500"></span></h3>
+                                      <h5 className="font-bold uppercase text-gray-500">Total Users last Month</h5>
+                                      <h3 className="font-bold text-3xl">{revenue.monthly.length} <span className="text-pink-500"></span></h3>
                                   </div>
                               </div>
                           </div>
@@ -71,7 +130,7 @@ const Analytics = () => {
                                   </div>
                                   <div className="flex-1 text-right md:text-center">
                                       <h5 className="font-bold uppercase text-gray-500">Users today</h5>
-                                      <h3 className="font-bold text-3xl">66 <span className="text-yellow-600"></span></h3>
+                                      <h3 className="font-bold text-3xl">{revenue.daily.length} <span className="text-yellow-600"></span></h3>
                                   </div>
                               </div>
                           </div>
@@ -89,7 +148,7 @@ const Analytics = () => {
                                   </div>
                                   <div className="flex-1 text-right md:text-center">
                                       <h5 className="font-bold uppercase text-gray-500">Orders per Month</h5>
-                                      <h3 className="font-bold text-3xl">666 Orders</h3>
+                                      <h3 className="font-bold text-3xl">{monthlyOrders} Orders</h3>
                                   </div>
                               </div>
                           </div>
@@ -106,7 +165,7 @@ const Analytics = () => {
                                   </div>
                                   <div className="flex-1 text-right md:text-center">
                                       <h5 className="font-bold uppercase text-gray-500">Orders Today</h5>
-                                      <h3 className="font-bold text-3xl">66 Orders</h3>
+                                      <h3 className="font-bold text-3xl">{dailyOrders}{dailyOrders === 1 ? ' Order' : ' Orders'}</h3>
                                   </div>
                               </div>
                           </div>
@@ -123,7 +182,7 @@ const Analytics = () => {
                                   </div>
                                   <div className="flex-1 text-right md:text-center">
                                       <h5 className="font-bold uppercase text-gray-500">Feedbacks</h5>
-                                      <h3 className="font-bold text-3xl">45 <span className="text-red-500"></span></h3>
+                                      <h3 className="font-bold text-3xl">{feedback.length} <span className="text-red-500"></span></h3>
                                   </div>
                               </div>
                           </div>

@@ -1,14 +1,29 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setActiveComponent } from "../../../redux/actions";
+import { useNavigate } from "react-router-dom";
+import { setActiveComponent, logout } from "../../../redux/actions";
+
+import Logo from "../../../img/dingbell_white.png";
+
+import Cookies from "js-cookie";
 
 
 const Navbar = () => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   // Vars
+  const logoutCode = Cookies.get("logout-code");
+
+  const handleLogOut = async () => {
+    await dispatch(logout(logoutCode));
+    Cookies.remove('token-admin');
+    Cookies.remove('token-staff');
+    Cookies.remove('logout-code');
+    navigate('/resto/login');
+  }
 
   const WidthMedium = 768;
   const navItems = [
@@ -18,7 +33,7 @@ const Navbar = () => {
   ]
 
   // ACTIVE COMPONENT LOGIC
-  const [active, setActive] = useState(null)
+  const [active, setActive] = useState("Tables")
   const handlerActive = (e) => {
     e.preventDefault()
     setActive(Number(e.target.id))
@@ -31,17 +46,20 @@ const Navbar = () => {
   useEffect(() => {
   const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener("resize", handleResize);
+    
+    dispatch(setActiveComponent("Tables"))
+    setActive(0)
     return () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, [])
+  }, [dispatch])
 
   
   return (
     <nav className="flex flex:row items-center justify-between px-8 h18  bg-pink-700 h-12 mb-3">
-      <span className="text-5xl text-gray-800 mb-1 mt-1">
-      <img className="invisible md:visible"  src="https://img.icons8.com/ios/50/000000/restaurant-building.png" width="40" alt="" />
+      <span className="text-sm text-gray-800 mb-1 mt-1">
+      <img className="invisible md:visible"  src={Logo} width="40" alt="" />
       </span>
       <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (  
@@ -66,7 +84,7 @@ const Navbar = () => {
         
             ))}
             </div>
-      <button className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+      <button disabled={!logoutCode} onClick={handleLogOut} className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
         Logout
       </button>
     </nav>
