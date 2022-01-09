@@ -36,7 +36,11 @@ import { putMenu } from "./putMenu";
 import { postFeedback } from "./postFeedback";
 import { register } from "./register";
 import { getPasswordRecover } from "./getPasswordRecover";
+import { putAccount } from "./putAccount";
 import { logout } from "./logout";
+import { sockets } from "./sockets";
+import { getAccount } from "./getAccount";
+
 
 export {  
   getCategories,
@@ -81,5 +85,9 @@ export {
   postFeedback,
   register,
   getPasswordRecover,
-  logout
+  //change password admin/staff
+  putAccount,
+  logout,
+  sockets,
+  getAccount
 };

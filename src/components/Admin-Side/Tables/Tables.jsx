@@ -6,21 +6,19 @@ import Moment from 'moment';
 import { getTables } from "../../../redux/actions";
 import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
-import { deleteProductFromTable, putTableEating, putTableCashPayment } from '../../../redux/actions';
+import { deleteProductFromTable, putTableEating, putTableCashPayment, sockets } from '../../../redux/actions';
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 
-export default function Tables({sockets}) {
+export default function Tables() {
 
   const dispatch = useDispatch();
   const { idResto } = useParams();
-  const [time, setTime] = useState(Date.now());
   let tokenStaff = Cookies.get("token-staff");
   let tokenAdmin = Cookies.get("token-admin");
   const tables = useSelector((state) => state.tables);
   
   useEffect(() => {
 		sockets.joinResto(idResto);
-    //const interval = setInterval(() => setTime(Date.now()), 30000);
     if (tokenStaff) {
       dispatch(getTables(idResto, tokenStaff));
     }
@@ -36,89 +34,64 @@ export default function Tables({sockets}) {
     	  dispatch(getTables(idResto, tokenAdmin));
     	}
     });
-    //return () => {
-    //	clearInterval(interval);
-    //};
-  }, [dispatch, time, idResto]);
+  }, [dispatch, idResto]);
 
 
   const [detailTable,setDetailTable] = useState (null);
-  const [ deleteCounter, setDeleteCounter ] = useState(1);
 
 
   const handlePutEating = async (e) => {
     e.preventDefault()
-    // *** Elias agrega
     sockets.joinResto(idResto); 
-    // ***
     if (tokenStaff) {
       
       await dispatch(putTableEating(idResto, detailTable, tokenStaff))
       dispatch(getTables(idResto, tokenStaff));
-			// *** Elias agrega
 			sockets.staffSend();
-			// ***
     }
     if (!tokenStaff && tokenAdmin) {
       
       await dispatch(putTableEating(idResto, detailTable, tokenAdmin))
       dispatch(getTables(idResto, tokenAdmin));
-			// *** Elias agrega
 			sockets.staffSend();
-			// ***
     }    
   }
 
   const handleDelete = async (productId, quantity) => {
-    // *** Elias agrega
     sockets.joinResto(idResto); 
-    // ***
     if (tokenStaff) {
       
       await dispatch(deleteProductFromTable(idResto, detailTable, productId, quantity, tokenStaff));
       dispatch(getTables(idResto, tokenStaff));
-			// *** Elias agrega
 			sockets.staffSend();
-			// ***
     }
     if (!tokenStaff && tokenAdmin) {
       
       await dispatch(deleteProductFromTable(idResto, detailTable, productId, quantity, tokenAdmin));
       dispatch(getTables(idResto, tokenAdmin));
-			// *** Elias agrega
 			sockets.staffSend();
-			// ***
     }
   }
   
   const handleCashPayment = async () => {
-    // *** Elias agrega
     sockets.joinResto(idResto); 
-    // ***
     if (tokenStaff) {
       await dispatch(putTableCashPayment(idResto, detailTable, tokenStaff));
       dispatch(getTables(idResto, tokenStaff));
-			// *** Elias agrega
 			sockets.staffSend();
-			// ***
     }
     if (!tokenStaff && tokenAdmin) {
       await dispatch(putTableCashPayment(idResto, detailTable, tokenAdmin));
       dispatch(getTables(idResto, tokenAdmin));
-			// *** Elias agrega
 			sockets.staffSend();
-			// ***
     }
   }
 
   const handleButton = (e) => {
     e.preventDefault()
-    console.log("event ",e.target.name)
-    console.log("detail table ",detailTable)
     detailTable === Number(e.target.name) 
     ? setDetailTable(null)
     : setDetailTable(Number(e.target.name))
-    setDeleteCounter(1);
   }
   return  <div className=" h-full w-full  flex flex-col  overflow-scroll">
             <div className="h-8 bg-gray-300  text-sm flex flex-row mt-2 rounded-xl ">

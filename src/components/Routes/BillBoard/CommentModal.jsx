@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import { getOrders, postOrder } from "../../../redux/actions";
+import { sockets } from "../../../redux/actions";
 
-const CommentModal = ({ showModal, setShowModal, sockets}) => {
+const CommentModal = ({ showModal, setShowModal }) => {
 
 
 	const {cart}= useSelector((state)=>state);

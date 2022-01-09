@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, /* useParams */ } from 'react-router-dom';
 import { login } from '../../redux/actions';
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
+   /* const { idResto } = useParams(); */
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // let idResto = 1;
     Cookies.remove('token-admin');
     Cookies.remove('token-staff');
+    Cookies.remove('logout-code');
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,8 +34,11 @@ const Login = () => {
           if (!json.payload.error) {
             navigate(`../resto/${json.payload.id}/resto-home`)
           } else {
-            // this is where the credentials are invalid
-            console.log('invalid credentials')
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Email or Password are incorrect",
+            });
           }
         } else {
           console.log('invalid email');
@@ -77,10 +83,10 @@ const Login = () => {
                         
                         <button
                             className='bg-green py-2 px-4 text-sm text-black rounded border border-green focus:outline-none focus:border-green-dark'
-                            // onClick={
-                                //     () => navigate (`/resto/${idResto}/admin`)
-                                // }
-                                type='submit'
+                             /* onClick={
+                                     () => navigate (`/resto/${idResto}/admin/tables`)
+                                 }
+                                type='submit' */
                                 >
                             Login
                         </button>

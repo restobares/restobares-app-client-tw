@@ -13,7 +13,8 @@ import mercadoPago from "./mercadoPago";
 import token from "./token";
 import ordersFeed from "./ordersFeed";
 import activeComponent from "./activeComponent";
-import qrCode from "./qrCode"
+import qrCode from "./qrCode";
+import account from "./account"
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
@@ -31,5 +32,6 @@ export default combineReducers({
   token,
   ordersFeed,
   activeComponent,
-  qrCode
+  qrCode,
+  account
 });

@@ -101,7 +101,7 @@ const NavBar = ({ toggle }) => {
               </NavItem>
             </NavMenu>
             <NavBtn>
-              <NavBtnLink to="/resto/login">Sing In</NavBtnLink>
+              <NavBtnLink to="/resto/login">Sign In</NavBtnLink>
             </NavBtn>
           </NavbarContainer>
           <MobileIcon>{/* <FaBars /> */}</MobileIcon>

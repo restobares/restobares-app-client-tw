@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link, useParams } from "react-router-dom";
 import BackButton from '../BackButton';
 
-const Account = () => {
+const AccountSettings = () => {
 
     const { idResto } = useParams();
 
@@ -18,7 +18,7 @@ const Account = () => {
            </button>
         </nav>
          <div className="grid-rows-5 grid-flow-col gap-5 p-3">
-            <Link to={`/resto/${idResto}/resto-home/account/accountsettings`}>
+            <Link to={`/resto/${idResto}/resto-home/account/accountsettings/changeaccount`}>
              <div className="col-span-3 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
               <div className="float-left">
                 <img
@@ -26,32 +26,33 @@ const Account = () => {
                   width="38"
                   alt=""
                 />
-                
               </div>
               <div className="inline-flex items-center">
-                <h1 className="text-lg font-bold float-left">Account Setting</h1>
+                <h1 className="text-lg font-bold float-left">Edit Account</h1>
               </div>
              </div>
             </Link>
 
-            {/* <Link to={`/resto/${idResto}/resto-home/account/logotype`}>
+            <Link to={`/resto/${idResto}/resto-home/account/accountsettings/changepassword`}>
              <div className="col-span-3 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
               <div className="float-left">
                 <img
-                  src="https://img.icons8.com/color/48/000000/image.png"
+                  src="https://img.icons8.com/fluency/48/000000/password--v2.png"
                   width="38"
                   alt=""
                 />
+                
               </div>
               <div className="inline-flex items-center">
-                <h1 className="text-lg font-bold float-left">Logotype</h1>
+                <h1 className="text-lg font-bold float-left">Passwords</h1>
               </div>
              </div>
-            </Link> */}
+            </Link>
+
 
          </div>
         </Fragment>
     )
 }
 
-export default Account;
+export default AccountSettings;
