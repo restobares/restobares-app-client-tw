@@ -36,7 +36,7 @@
 }
 
 .nav-bar{
-  @apply h-12 bg-pink-800 fixed inset-x-0 top-0
+  @apply h-12 bg-pink-800 fixed inset-x-0 top-0 
 }
 
 .pill{
@@ -44,7 +44,7 @@
 }
 
 .button {
-  @apply  bg-pink-100 h-8 mt-2 w-8  rounded-full
+  @apply   h-10 mt-1 w-11  rounded-md border-pink-500 border-2
 }
 
 #printeable {
@@ -52,3 +52,19 @@
   width: 587px;
   height: 834px;
 } 
+
+.StarRate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+input[type="radio"]{
+  display: none;
+}
