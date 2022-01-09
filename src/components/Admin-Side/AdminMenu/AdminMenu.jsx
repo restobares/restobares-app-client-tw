@@ -279,7 +279,9 @@ return (
           value={input.detail}
           onChange={(e) => handleInputChanges(e)}
           />
-
+        <label>
+          Select your product image
+        </label>
         <input
           type="file"
           id="image"
