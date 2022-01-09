@@ -26,7 +26,7 @@ import FeedbackModal from './components/Routes/ClientFeedback/FeedbackModal.jsx'
 import ClientFeedback from './components/Routes/ClientFeedback/ClientFeedback.jsx';
 
 // Socket connection
-const socket = io('https://restobares-app-api.herokuapp.com' /*, { withCredentials: true }*/); 
+
 
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
 import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
