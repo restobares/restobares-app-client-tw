@@ -118,7 +118,7 @@ const Register = () => {
 
   const alert = async (e) => {
     if (
-      input.passAdmin !== input.passAdminRepeat &&
+      input.passAdmin !== input.passAdminRepeat ||
       input.passStaff !== input.passStaffRepeat
     ) {
       e.preventDefault();
@@ -128,7 +128,7 @@ const Register = () => {
         text: " Password and Repeat Password must be equal",
       });
     }
-    if (input.passAdmin === input.passStaff) {
+    else if  (input.passAdmin === input.passStaff) {
       e.preventDefault();
       Swal.fire({
         icon: "error",
@@ -136,28 +136,32 @@ const Register = () => {
         text: "The password of the admin and the staff must not be the same",
       });
     }
-    e.preventDefault();
-    await dispatch(register(input));
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Your account has been registered",
-      showConfirmButton: false,
-      timer: 2000,
-    });
-    setInput({
-      title: "",
-      email: "",
-      passAdmin: "",
-      passAdminRepeat: "",
-      passStaff: "",
-      passStaffRepeat: "",
-      logo: "",
-      payment_mp: "",
-      tables: "",
-    });
+    else {
+        e.preventDefault();
+        await dispatch(register(input));
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your account has been registered, check your email, :pencil: ",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        setInput({
+          title: "",
+          email: "",
+          passAdmin: "",
+          passAdminRepeat: "",
+          passStaff: "",
+          passStaffRepeat: "",
+          logo: "",
+          payment_mp: "",
+          tables: "",
+        });
 
-    document.getElementById("logo").value = null;
+        document.getElementById("logo").value = null;
+      
+    }
+  
   };
 
   const notAlert = (e) => {
