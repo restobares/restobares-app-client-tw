@@ -1,10 +1,24 @@
 import React, { Fragment } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { Link, useParams, useNavigate } from "react-router-dom";
 import BackButton from '../BackButton';
+import Cookies from 'js-cookie';
+import { logout } from '../../../redux/actions';
 
 const AccountSettings = () => {
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { idResto } = useParams();
+    const logoutCode = Cookies.get("logout-code");
+
+    const handleLogOut = async () => {
+      await dispatch(logout(logoutCode));
+      Cookies.remove('token-admin');
+      Cookies.remove('token-staff');
+      Cookies.remove('logout-code');
+      navigate('/resto/login');
+    }
 
     return (
         <Fragment>
@@ -13,7 +27,11 @@ const AccountSettings = () => {
            <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
              <h1>Account</h1>
            </div>
-           <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+           <button
+            type='button'
+            className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible"
+            onClick={handleLogOut}
+            >
              Logout
            </button>
         </nav>
