@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaStar } from "react-icons/fa";
 import { postFeedback } from "../../../redux/actions";
 import { useParams } from "react-router-dom";
-// import {sockets} from "../../../redux/actions";
+import {sockets} from "../../../redux/actions";
 
 const FeedbackModal = ({ showModal, setShowModal }) => {
 
@@ -22,9 +22,10 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
 
   const changeModal = async (e) => {
     e.preventDefault();
+    sockets.joinResto(idResto);
     await dispatch(postFeedback(idResto, idTable, comment, rating));
+    sockets.tableSend();
     setShowModal((prev) => !prev);
-    //sockets van acá
   };
 
   const NotFeed = () =>{
