@@ -7,7 +7,6 @@ import { getTables } from "../../../redux/actions";
 import ChangeStatus from "./ChangeStatus";
 import ChangeOrder from "./ChangeOrder";
 import { deleteProductFromTable, putTableEating, putTableCashPayment, sockets } from '../../../redux/actions';
-import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 export default function Tables() {
 
@@ -218,5 +217,7 @@ export default function Tables() {
                   }
               </div>
               ))}
+
+
           </div>
 }
