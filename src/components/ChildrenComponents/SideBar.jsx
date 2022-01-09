@@ -68,19 +68,20 @@ function SideBar() {
 
     return <Fragment>
          <div className={`w-40 h-screen bg-pink-900 flex-col overflow-auto ${hidden}`}>
-          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white'>Sort by:
+          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white shadow-md'>
+            <p className='my-1'>Sort by:</p>
           <div className=' min-h-min mx-1'>
-            <select name="" id="" className='text-xs truncate bg-pink-400 rounded-xl  w-20'  onChange={event => handleSort(event)}>
+            <select name="" id="" className='text-xs text-center truncate bg-pink-400 rounded-xl  w-20 shadow-md'  onChange={event => handleSort(event)}>
               <option value="default">Default</option>
               <option value="priceDescendant">Higher Price</option>
               <option value="priceAscendant">Lower Price</option>
             </select>
             </div>
           </div>
-          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white mb-2'>
-            <p>By Tags:</p> 
+          <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white mb-2 shadow-md'>
+            <p className='my-1'>By Tags:</p> 
             <div className=' min-h-min mx-1'>
-              <select name="" id="" onChange={event => handleOnChange(event)} className=' text-xs bg-pink-400 rounded-xl  text-center w-20 '>
+              <select name="" id="" onChange={event => handleOnChange(event)} className='shadow-md text-xs bg-pink-400 rounded-xl  text-center w-20 '>
                 <option value="All">Todas</option>
                 {labels.map(label =>( <option value={label.id}>{label.name}</option>))}
               </select>
@@ -88,16 +89,16 @@ function SideBar() {
           </div>
         {categories.map((cat,i) => (
           <div className={[ 
-            activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 "]]}> 
-						<div className='bg-white bg-opacity-20 h-8 w-20 rounded-3xl  mx-1  mt-2 '>
+            activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 shadow-lg"]]}> 
             <input type="image" key={cat.name} alt="category button" 
                    name={i+1} onClick={e => handleOnClick(e)} 
-              			src={arrayImgs[i]} className="h-6 inline-block mx-0"/>
+              			src={arrayImgs[i]} className="h-12 mt-1 inline-block mx-0"/>
           		{/*<img  alt="category icon" src={arrayImgs[i]}/>*/}
-            </div>
-            <p className=' text-white'>{cat.name}</p>
+
+            <p className=' text-white mb-1'>{cat.name}</p>
           </div>
         ))}
+        <div className='mx-2 h-24'></div>
         </div>   
     </Fragment>
         
