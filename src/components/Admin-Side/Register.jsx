@@ -1,14 +1,11 @@
 import React from 'react'
-import { useState, useEffect } from "react";
-// import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { inputValidatorRegister, register } from '../../redux/actions';
-// import { useParams } from "react-router-dom";
 
 const Register = () => {
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
     const [errors, setErrors] = useState({});
     
@@ -146,7 +143,7 @@ const Register = () => {
           }} >
               <div className='inline-block mx-auto my-auto justify-items-center '>
                 <div className=' mx-2 bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
-                <h1 className="m-5 text-lg font-bold">Restaurant Register</h1>
+                <h1 className="m-5 text-lg font-bold">Restaurant Register 📝</h1>
 
 <form className="w-76 h-40 inline-block">
   <input

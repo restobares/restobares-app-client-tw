@@ -11,7 +11,6 @@ import brianB from '../../../videosAndImages/brianBacarezza.jpg';
 import {ServicesContainer,
         ServicesH1,
         ServicesH2,
-        ServicesP,
         ServicesP2,
         ServicesWrapper,
         ServicesCard,
@@ -47,7 +46,7 @@ const CreatedBy = () => {
                   <FaGithub />
                 </SocialIconLink>
                 <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
+                  <FaTwitter />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
