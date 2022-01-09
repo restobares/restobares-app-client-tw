@@ -22,6 +22,12 @@ import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable
 import ForgotPassword from './components/Admin-Side/ForgotPassword.jsx';
 import Account from './components/Admin-Side/Settings/Account.jsx'
 import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
+import FeedbackModal from './components/Routes/ClientFeedback/FeedbackModal.jsx';
+import ClientFeedback from './components/Routes/ClientFeedback/ClientFeedback.jsx';
+
+// Socket connection
+const socket = io('https://restobares-app-api.herokuapp.com' /*, { withCredentials: true }*/); 
+
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
 import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
 
@@ -38,6 +44,7 @@ function App() {
           <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
           <Route path="resto/:idResto/table/:idTable/bill" element={<PayBoard />} ></Route>
           <Route path="resto/:idResto/table/:idTable/payment" element={<Payment />} ></Route>
+          <Route path="resto/:idResto/table/:idTable/feedback" element={<ClientFeedback/>}></Route>
 
 
           {/* Admin */}
@@ -60,6 +67,8 @@ function App() {
           
 
           <Route path='*' element={<ShowRun/>} ></Route>
+
+          
         </Routes>
       </div>
     </BrowserRouter>
