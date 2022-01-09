@@ -22,7 +22,7 @@ const QrManager = () => {
     let oneOnlyQr = [];
     oneOnlyQr.push(oneTable);
     dispatch(getQrCode(idResto, oneOnlyQr));
-    console.log(qrCode);
+    //console.log(qrCode);
   };
 
   const generateVariousQr = (e) => {
@@ -42,7 +42,7 @@ const QrManager = () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [width]);
 
   const notAlert = (e) => {
     e.preventDefault();
@@ -50,17 +50,6 @@ const QrManager = () => {
       position: "center",
       icon: "error",
       title: "Insert a table first",
-      showConfirmButton: false,
-      timer: 2000,
-    });
-  };
-
-  const notAlert2 = (e) => {
-    e.preventDefault();
-    Swal.fire({
-      position: "center",
-      icon: "error",
-      title: "Insert a range of tables",
       showConfirmButton: false,
       timer: 2000,
     });

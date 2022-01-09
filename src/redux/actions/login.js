@@ -10,7 +10,7 @@ export function login(email, password) {
         email,
         password
       });
-      console.log(json.data);
+      // console.log(json.data);
       return dispatch({
         type: ActionTypes.LOG_IN,
         payload: json.data

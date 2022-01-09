@@ -24,7 +24,7 @@ export function getRevenue(idResto, params, token) {
         });
       }
       if(params === 'Monthly') {
-        var json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/admin/revenue`, {
+        json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/admin/revenue`, {
           params: {
             filterTime: 'Month'
           },
@@ -38,7 +38,7 @@ export function getRevenue(idResto, params, token) {
           payload: json.data
         });
       }
-      var json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/admin/revenue`, {
+       json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/admin/revenue`, {
         params,
         headers: {
           'Authorization': `Bearer ${token}`

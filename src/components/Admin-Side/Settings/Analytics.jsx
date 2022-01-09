@@ -21,9 +21,9 @@ const Analytics = () => {
     monthlyRevenue += Number(revenue.monthly[i].totalPrice);
     monthlyOrders += revenue.monthly[i].SoldProducts.length;
   }
-  for (var i = 0; i < revenue.daily.length; i++) {
-    dailyRevenue += Number(revenue.daily[i].totalPrice);
-    dailyOrders += revenue.daily[i].SoldProducts.length;
+  for (var j = 0; j < revenue.daily.length; j++) {
+    dailyRevenue += Number(revenue.daily[j].totalPrice);
+    dailyOrders += revenue.daily[j].SoldProducts.length;
   }
 
 

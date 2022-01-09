@@ -14,7 +14,7 @@ const ForgotPassword = ()  => {
       let json = await dispatch(getPasswordRecover(email));
       // json undefined es cuando el email no existe
       // json.payload.msg para la alerta
-      console.log(json);
+      //console.log(json);
     }
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
@@ -69,7 +69,7 @@ const ForgotPassword = ()  => {
                   <div className='flex justify-center'>
                     <img src="https://img.icons8.com/ios/50/4299e1/move-left.png" width="30" alt="" />
                     
-                    <a className="py-2 px-4 text-blue-500" href="#">Back to Login</a>
+                    <a className="py-2 px-4 text-blue-500" href="/#">Back to Login</a>
                   </div>
                 </Link>
 

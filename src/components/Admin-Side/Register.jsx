@@ -1,7 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { inputValidatorRegister, register } from '../../redux/actions';
 // import { useParams } from "react-router-dom";

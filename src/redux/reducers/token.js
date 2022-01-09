@@ -5,7 +5,8 @@ const initialState = {
   staff: "",
   idResto: "",
   error: "",
-  logoutCode: ""
+  logoutCode: "",
+  idStaff: ""
 }
 
 function token(state = initialState, action) {
@@ -13,14 +14,15 @@ function token(state = initialState, action) {
   if (action.type === ActionTypes.LOG_IN) {
 
     let priviledge = action.payload.msg?.split(' ').pop().slice(0, -1);
-    console.log(priviledge)
+    // console.log(priviledge)
     if (action.payload.error) {
       return {
         admin: "",
         staff: "",
         idResto: "",
         error: action.payload.error,
-        logoutCode: ""
+        logoutCode: "",
+        idStaff: ""
       } 
     }
 
@@ -40,7 +42,8 @@ function token(state = initialState, action) {
         staff: action.payload.token,
         idResto: action.payload.id,
         error: "",
-        logoutCode: action.payload.logoutCode
+        logoutCode: action.payload.logoutCode,
+        idStaff: ""
       }
     }
     return state;
@@ -52,9 +55,11 @@ function token(state = initialState, action) {
       staff: "",
       idResto: "",
       error: "",
-      logoutCode: ""
+      logoutCode: "",
+      idStaff: ""
     }
   }
+
   return state;
 }
 

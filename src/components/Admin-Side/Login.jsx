@@ -7,8 +7,6 @@ import Swal from "sweetalert2";
 
 const Login = () => {
 
-   /* const { idResto } = useParams(); */
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     Cookies.remove('token-admin');
@@ -29,10 +27,11 @@ const Login = () => {
 
         if (validEmail(email)){
           
-          let json = await dispatch(login(email, password));        
-          // console.log(json);
+          let json = await dispatch(login(email, password));
+          
           if (!json.payload.error) {
             navigate(`../resto/${json.payload.id}/resto-home`)
+            
           } else {
             Swal.fire({
               icon: "error",
@@ -41,7 +40,7 @@ const Login = () => {
             });
           }
         } else {
-          console.log('invalid email');
+          //console.log('invalid email');
         }
     };
 
@@ -78,6 +77,17 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             />
                     </div>
+                    {/* <div>
+                        <label htmlFor=''>idStaff</label>
+                        <input
+                            type='number'
+                            className='w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'
+                            id='idStaff'
+                            placeholder='Your ID'
+                            min="0"
+                            onChange={(e) => setIdStaffInput(e.target.value)}
+                            />
+                    </div> */}
 
                     <div className='flex justify-center items-center mt-6'>
                         
@@ -92,7 +102,7 @@ const Login = () => {
                         </button>
 
                       <Link to={`/resto/login/forgotpassword`}>
-                        <a className="py-2 px-4 text-blue-500" href="#">Forgot your Password?</a>
+                        <a className="py-2 px-4 text-blue-500" href="/#">Forgot your Password?</a>
                       </Link>
                         
                     </div>

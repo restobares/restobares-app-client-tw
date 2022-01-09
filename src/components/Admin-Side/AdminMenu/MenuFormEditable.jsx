@@ -4,7 +4,6 @@ import Select from "react-select";
 import BackButton from "../BackButton";
 import Swal from "sweetalert2";
 import {
-  setActiveComponent,
   getLabels,
   getCategories,
   putMenu,
@@ -168,14 +167,6 @@ function MenuFormEditable() {
     dispatch(getCategories());
   }, [dispatch]);
 
-  // ACTIVE COMPONENT LOGIC
-  const [active, setActive] = useState(null);
-  const handlerActive = (e) => {
-    e.preventDefault();
-    setActive(Number(e.target.id));
-    console.log(active);
-    dispatch(setActiveComponent(e.target.name));
-  };
 
   // RESIZE WINDOW LOGIC
   const [width, setWidth] = useState(window.innerWidth);
@@ -186,7 +177,7 @@ function MenuFormEditable() {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [width]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
