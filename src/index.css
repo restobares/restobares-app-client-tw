@@ -52,3 +52,19 @@
   width: 587px;
   height: 834px;
 } 
+
+.StarRate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+input[type="radio"]{
+  display: none;
+}
