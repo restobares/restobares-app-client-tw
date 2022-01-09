@@ -1,7 +1,7 @@
 import { ActionTypes } from "../constants";
 import axios from "axios";
 
-export function putTableCashPayment(idResto, idTable, token) {
+export function putTableCashPayment(idResto, idTable, token, idStaff) {
 
   return async function(dispatch) {
     
@@ -10,7 +10,7 @@ export function putTableCashPayment(idResto, idTable, token) {
       {
         idTable: `${idTable}`,
         state: "pay_cash",
-        idStaff: "39672174"
+        idStaff: `${idStaff}`
       }, {
         headers: {
           'Authorization': `Bearer ${token}`

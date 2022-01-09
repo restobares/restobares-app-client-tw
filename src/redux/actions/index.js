@@ -93,5 +93,5 @@ export {
   sockets,
   getAccount,
   getFeedback,
-  getRevenue
+  getRevenue,
 };
