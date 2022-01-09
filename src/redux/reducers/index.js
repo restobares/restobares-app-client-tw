@@ -14,7 +14,9 @@ import token from "./token";
 import ordersFeed from "./ordersFeed";
 import activeComponent from "./activeComponent";
 import qrCode from "./qrCode";
-import account from "./account"
+import account from "./account";
+import feedback from "./feedback";
+import revenue from "./revenue";
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
@@ -33,5 +35,7 @@ export default combineReducers({
   ordersFeed,
   activeComponent,
   qrCode,
-  account
+  account,
+  feedback,
+  revenue
 });
