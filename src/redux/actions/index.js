@@ -40,6 +40,8 @@ import { putAccount } from "./putAccount";
 import { logout } from "./logout";
 import { sockets } from "./sockets";
 import { getAccount } from "./getAccount";
+import { getFeedback } from "./getFeedback";
+import { getRevenue } from "./getRevenue";
 
 
 export {  
@@ -89,5 +91,7 @@ export {
   putAccount,
   logout,
   sockets,
-  getAccount
+  getAccount,
+  getFeedback,
+  getRevenue
 };
