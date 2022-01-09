@@ -40,7 +40,7 @@ const BillBar = () => {
 			</div>
 			<Link to={`/resto/${idResto}/table/${idTable}/menu`}>
 				<button className='float-right button mr-2'>
-				<img src="https://img.icons8.com/ios/50/aa0020/restaurant-menu.png" alt='menu-icon' width="24" className='ml-1'/>
+				<img src="https://img.icons8.com/ios/50/ffffff/restaurant-menu.png" alt='menu-icon' width="24" className='ml-2'/>
 				</button>
 			</Link>
 			</div>
