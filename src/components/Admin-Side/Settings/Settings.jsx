@@ -24,7 +24,7 @@ const Settings = () => {
         </div>
       </div>
       ) : (
-      <Link to={`/resto/${idResto}/resto-home/account`}>
+      <Link to={`/resto/${idResto}/resto-home/account/accountsettings`}>
       <div className="col-span-3 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
         <div className="float-left">
           <img
@@ -34,7 +34,7 @@ const Settings = () => {
           />
         </div>
         <div className="inline-flex items-center">
-          <h1 className="text-lg font-bold float-left">Account</h1>
+          <h1 className="text-lg font-bold float-left">Account Settings</h1>
         </div>
       </div>
       </Link>
