@@ -145,6 +145,7 @@ return (
       <h1 className="m-2 text-lg font-bold">Edit your Account</h1>
 
       <form className="w-96 mx-auto h-auto">
+        <label className="px-1 text-sm text-gray-600">Change your title</label>
         <input
           type="text"
           name="title"
@@ -154,6 +155,8 @@ return (
           value={input.title}
           onChange={(e) => handleInputChanges(e)}
           />
+
+        <label className="px-1 text-sm text-gray-600">Change your token (MP)</label>
         <input
           type="text"
           name="payment_mp"
@@ -164,6 +167,7 @@ return (
           onChange={(e) => handleInputChanges(e)}
           />
 
+        <label className="px-1 text-sm text-gray-600">Change your table number</label>
         <input
           id="tables"
           type="number"
@@ -176,6 +180,7 @@ return (
           onChange={(e) => handleInputChanges(e)}
           />
 
+        <label className="px-1 text-sm text-gray-600">Change your e-mail</label>
         <input
           type="email"
           name="email"
@@ -186,6 +191,7 @@ return (
           onChange={(e) => handleInputChanges(e)}
           />
 
+        <label className="px-1 text-sm text-gray-600">Change your logo</label>
         <input
           type="file"
           id="logo"

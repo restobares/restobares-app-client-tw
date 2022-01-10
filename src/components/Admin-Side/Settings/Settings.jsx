@@ -24,7 +24,7 @@ const Settings = () => {
         </div>
       </div>
       ) : (
-      <Link to={`/resto/${idResto}/resto-home/account/accountsettings`}>
+      <Link to={`/resto/${idResto}/resto-home/accountsettings`}>
       <div className="col-span-3 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
         <div className="float-left">
           <img

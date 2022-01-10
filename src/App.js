@@ -20,7 +20,6 @@ import QrGenerated from './components/Admin-Side/Settings/QrManagement/QrGenerat
 import EditMenu from './components/Admin-Side/AdminMenu/EditMenu.jsx'
 import MenuFormEditable from './components/Admin-Side/AdminMenu/MenuFormEditable.jsx';
 import ForgotPassword from './components/Admin-Side/ForgotPassword.jsx';
-import Account from './components/Admin-Side/Settings/Account.jsx'
 import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
 import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
@@ -53,10 +52,9 @@ function App() {
           <Route path="resto/:idResto/resto-home/analytics" element={<Analytics />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu" element={<EditMenu />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu/:idProduct" element={<MenuFormEditable />}></Route>
-          <Route path="resto/:idResto/resto-home/account" element={<Account />}></Route>
-          <Route path="resto/:idResto/resto-home/account/accountsettings" element={<AccountSettings />}></Route>
-          <Route path="resto/:idResto/resto-home/account/accountsettings/changepassword" element={<ChangePass />}></Route>
-          <Route path="resto/:idResto/resto-home/account/accountsettings/changeaccount" element={<ChangeAccount />}></Route>
+          <Route path="resto/:idResto/resto-home/accountsettings" element={<AccountSettings />}></Route>
+          <Route path="resto/:idResto/resto-home/accountsettings/changepassword" element={<ChangePass />}></Route>
+          <Route path="resto/:idResto/resto-home/accountsettings/changeaccount" element={<ChangeAccount />}></Route>
           
 
           <Route path='*' element={<ShowRun/>} ></Route>
