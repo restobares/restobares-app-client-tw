@@ -1,29 +1,102 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import BackButton from '../BackButton';
 import Cookies from 'js-cookie';
-import { getFeedback, getRevenue, sockets } from '../../../redux/actions';
+import { getFeedback, getRevenue, sockets, logout } from '../../../redux/actions';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
 
 const Analytics = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { idResto } = useParams();
   const tokenAdmin = Cookies.get("token-admin");
   const revenue = useSelector((state) => state.revenue);
   const feedback = useSelector((state) => state.feedback);
+  const logoutCode = Cookies.get("logout-code");
   
   let monthlyRevenue = 0;
   let dailyRevenue = 0;
   let monthlyOrders = 0;
   let dailyOrders = 0;
+  let feedbacksCounter = [0, 0, 0, 0, 0];
+  let revenueCounter = [0, 0, 0, 0]
 
   for (var i = 0; i < revenue.monthly.length; i++) {
     monthlyRevenue += Number(revenue.monthly[i].totalPrice);
     monthlyOrders += revenue.monthly[i].SoldProducts.length;
+    if(revenue.monthly[i].totalPrice < 100) {
+      revenueCounter[0]++;
+    }
+    if(revenue.monthly[i].totalPrice >= 100 && revenue.monthly[i].totalPrice < 500) {
+      revenueCounter[1]++;
+    }
+    if(revenue.monthly[i].totalPrice >= 500 && revenue.monthly[i].totalPrice < 1000) {
+      revenueCounter[2]++;
+    }
+    if(revenue.monthly[i].totalPrice >= 1000) {
+      revenueCounter[3]++;
+    }
   }
+
   for (var j = 0; j < revenue.daily.length; j++) {
     dailyRevenue += Number(revenue.daily[j].totalPrice);
     dailyOrders += revenue.daily[j].SoldProducts.length;
+  }
+  for (var i = 0; i < feedback.length; i++) {
+
+    feedbacksCounter[feedback[i].rating - 1]++;
+  }
+
+  ChartJS.register(ArcElement, Tooltip, Legend);
+  const feedbackData = {
+    labels: [
+      '1 Star',
+      '2 Star',
+      '3 Star',
+      '4 Star',
+      '5 Star'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: feedbacksCounter,
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(235, 150, 86)',
+        'rgb(205, 205, 86)'
+      ],
+      hoverOffset: 4
+    }]
+  };
+  const revenueData = {
+    labels: [
+      '< 100',
+      '>100 & <500',
+      '>500 & <1000',
+      '>1000'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: revenueCounter,
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)',
+        'rgb(235, 150, 86)'
+      ],
+      hoverOffset: 4
+    }]
+  };
+
+  const handleLogOut = async () => {
+      await dispatch(logout(logoutCode));
+      Cookies.remove('token-admin');
+      Cookies.remove('token-staff');
+      Cookies.remove('logout-code');
+      navigate('/resto/login');
   }
 
 
@@ -36,7 +109,7 @@ const Analytics = () => {
       dispatch(getRevenue(idResto, 'Daily', tokenAdmin));
       dispatch(getRevenue(idResto, 'Monthly', tokenAdmin));
       dispatch(getFeedback(idResto, tokenAdmin));
-    });
+    });   
     
   }, [dispatch, idResto, tokenAdmin]);
 
@@ -47,7 +120,7 @@ const Analytics = () => {
            <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
              <h1>Analytics</h1>
            </div>
-           <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+           <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible" onClick={handleLogOut}>
              Logout
            </button>
         </nav>
@@ -186,16 +259,26 @@ const Analytics = () => {
                                   </div>
                               </div>
                           </div>
-                      </div>
-                   </div>
+                      </div>                      
+                    </div>
+                    <div className=''>
+                    <div className='w-1/2 md:w-1/1 mx-14 my-20 flex-shrink-0'>
+                      <h5 className="font-bold uppercase text-gray-500">Feedback Data</h5>
+                      <Doughnut data={feedbackData} />
+                    </div>
+                    <div className='w-1/2 md:w-1/1 mx-14 flex-shrink-0'>
+                      <h5 className="font-bold uppercase text-gray-500">Feedback Data</h5>
+                      <Doughnut data={revenueData} />
+                    </div>
+                    </div>
                 </div>
             </div>
 
             {/* Charts */}
-
-            <div className='ml-96'>
+            
+            {/* <div className='ml-96'>
              <img src="https://apexcharts.com/wp-content/uploads/2018/05/dashboard-modern.png" className='ml-40' width="700" alt="" />
-            </div>
+            </div> */}
         </Fragment>
     )
 }

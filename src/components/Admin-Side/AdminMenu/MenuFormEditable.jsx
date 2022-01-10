@@ -27,14 +27,7 @@ function MenuFormEditable() {
     (category) => category.id === product.CategoryId
   );
 
-  let labelNamesPlaceholder = [];
-
-  for (var i = 0; i < product.Labels.length; i++) {
-    let labelIdSelected = product.Labels[i];
-    let labelNameFound = labels.find((label) => label.id === labelIdSelected);
-    labelNamesPlaceholder.push(labelNameFound ? labelNameFound.name : "");
-  }
-
+  
   const [input, setInput] = useState({
     name: "",
     price: "",
@@ -59,6 +52,7 @@ function MenuFormEditable() {
     };
     options.push(eachOption);
   }
+  console.log(options)
   for (var k = 0; k < categories.length; k++) {
     let eachOption = {
       value: categories[k].id,
@@ -66,6 +60,17 @@ function MenuFormEditable() {
     };
     optionsCategories.push(eachOption);
   }
+
+  let labelNamesPlaceholder = [];
+
+  for (var i = 0; i < product.Labels.length; i++) {
+    let labelIdSelected = product.Labels[i];
+    let labelIndex = labels.findIndex(label => label.id === labelIdSelected);
+    labelNamesPlaceholder.push(options[labelIndex]);
+
+  }
+  console.log(labelNamesPlaceholder);
+
 
   function handleInputChanges(e) {
     setInput({
@@ -210,7 +215,7 @@ function MenuFormEditable() {
     Swal.fire({
       position: "center",
       icon: "error",
-      title: "All fields are required!",
+      title: "At least a field is required!",
       showConfirmButton: false,
       timer: 2000,
     });
@@ -232,6 +237,7 @@ function MenuFormEditable() {
         <h1 className="m-5 text-lg font-bold">Edit your Menu</h1>
 
         <form className="w-96 inline-block">
+          <label>Name*</label>
           <input
             type="text"
             name="name"
@@ -241,7 +247,7 @@ function MenuFormEditable() {
             value={input.name}
             onChange={(e) => handleInputChanges(e)}
           />
-
+          <label>Price*</label>
           <input
             type="number"
             name="price"
@@ -256,7 +262,7 @@ function MenuFormEditable() {
             //  value={Number(input.price)}
             onChange={(e) => handleInputChanges(e)}
           />
-
+          <label>Detail*</label>
           <input
             type="text"
             name="detail"
@@ -266,7 +272,7 @@ function MenuFormEditable() {
             value={input.detail}
             onChange={(e) => handleInputChanges(e)}
           />
-
+          <label>Image*</label>
           <input
             type="file"
             id="image"
@@ -277,7 +283,7 @@ function MenuFormEditable() {
           />
 
           <img src={product.image} alt="" className="px-5 py-3 rounded-lg" />
-
+          <label>Category*</label>
           <Select
             options={optionsCategories}
             value={reactSelectInput.categorySelector}
@@ -285,13 +291,14 @@ function MenuFormEditable() {
             placeholder={categorySelected ? categorySelected.name : ""}
             className="pb-3"
           />
-
+          <label>Labels</label>
           <Select
+            defaultValue={labelNamesPlaceholder}
             isMulti
             options={options}
-            value={reactSelectInput.labelsSelector}
+            // value={reactSelectInput.labelsSelector}
             onChange={(e) => handleLabelSelection(e)}
-            placeholder={labelNamesPlaceholder.join(", ")}
+            
           />
           {Object.values(input).join("").length === 0 ? (
             <button
