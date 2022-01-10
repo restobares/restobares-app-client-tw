@@ -77,7 +77,7 @@ const EditMenu = () => {
           return (
             <div
               key={product.id}
-              className={`flex py-2 mx-2  mt-2 border-2 rounded-md shadow-lg border-opacity-50
+              className={`flex pt-2 pb-4 mx-2  mt-2 border-2 rounded-md shadow-lg border-opacity-50
                             ${
                               !product.available
                                 ? "border-gray-700 bg-gray-200"
