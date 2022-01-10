@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import BackButton from "../BackButton";
 import { Switch } from "@headlessui/react";
 import {
   deleteProduct,
   getMenu,
+  logout,
   putAvailableProduct,
 } from "../../../redux/actions";
 import Cookies from "js-cookie";
@@ -16,6 +17,17 @@ const EditMenu = () => {
   const tokenAdmin = Cookies.get("token-admin");
   const tokenStaff = Cookies.get("token-staff");
   const menu = useSelector((state) => state.menus.menuAdmin);
+  const logoutCode = Cookies.get("logout-code");
+
+  const navigate = useNavigate();
+
+  const handleLogOut = async () => {
+    await dispatch(logout(logoutCode));
+    Cookies.remove("token-admin");
+    Cookies.remove("token-staff");
+    Cookies.remove("logout-code");
+    navigate("/resto/login");
+  };
 
   const handlePutAvailableProduct = async (idProduct) => {
     if (tokenAdmin || tokenStaff) {
@@ -43,7 +55,11 @@ const EditMenu = () => {
           <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
             <h1>Edit&nbsp;Menus</h1>
           </div>
-          <button className=" text-lg shadow-lg mr-2 bg-pink-800 hover:bg-pink-900 px-2 my-auto h-8  text-white rounded-lg font-medium tracking-wide leading-none  invisible md:visible">
+          <button
+            disabled={!logoutCode}
+            onClick={handleLogOut}
+            className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8"
+          >
             Logout
           </button>
         </nav>
@@ -95,9 +111,7 @@ const EditMenu = () => {
                     {product.name}
                   </p>
                   {!tokenAdmin ? (
-                    <button
-                      className="inline-block px-2 text-white  font-semibold float-right mr-2 mb-1 text-sm bg-gray-500 cursor-not-allowed rounded-xl"
-                    >
+                    <button className="inline-block px-2 text-white  font-semibold float-right mr-2 mb-1 text-sm bg-gray-500 cursor-not-allowed rounded-xl">
                       Delete
                     </button>
                   ) : (
@@ -109,9 +123,9 @@ const EditMenu = () => {
                     </button>
                   )}
                   {!tokenAdmin ? (
-                      <button className="px-2 text-white inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-gray-500 cursor-not-allowed rounded-xl">
-                        Edit
-                      </button>
+                    <button className="px-2 text-white inline-block  font-semibold float-right mr-2 mb-1 text-sm bg-gray-500 cursor-not-allowed rounded-xl">
+                      Edit
+                    </button>
                   ) : (
                     <Link
                       to={`/resto/${idResto}/resto-home/editmenu/${product.id}`}
