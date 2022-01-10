@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { getAccount, putAccount } from "../../../redux/actions";
+import LogoutButton from "../Navbar/LogoutButton";
 
 const ChangeAccount = () => {
   const dispatch = useDispatch();
@@ -115,7 +116,7 @@ const ChangeAccount = () => {
   // Getting labels and categories
   useEffect(() => {
     dispatch(getAccount(idResto, tokenAdmin))
-  }, [dispatch, idResto]);
+  }, [dispatch, idResto, tokenAdmin]);
 
 
   // RESIZE WINDOW LOGIC
@@ -127,7 +128,7 @@ const ChangeAccount = () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [width]);
 
 
 return (
@@ -137,9 +138,7 @@ return (
         <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Edit&nbsp;Account</h1>
         </div>
-        <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
-          Logout
-        </button>
+        <LogoutButton/>
       </nav>
       <div className="my-2">
       <h1 className="m-2 text-lg font-bold">Edit your Account</h1>

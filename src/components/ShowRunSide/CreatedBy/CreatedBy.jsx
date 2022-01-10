@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 import juanC from '../../../videosAndImages/juancanelon.jpg';
 import nahuelK from '../../../videosAndImages/nahuelKisser.jpg'
 import mateoL from '../../../videosAndImages/mateoLopez.jpg'
@@ -11,7 +11,6 @@ import brianB from '../../../videosAndImages/brianBacarezza.jpg';
 import {ServicesContainer,
         ServicesH1,
         ServicesH2,
-        ServicesP,
         ServicesP2,
         ServicesWrapper,
         ServicesCard,
@@ -47,7 +46,7 @@ const CreatedBy = () => {
                   <FaGithub />
                 </SocialIconLink>
                 <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
+                  <FaTwitter />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>

@@ -4,10 +4,10 @@ import Select from "react-select";
 import BackButton from "../BackButton";
 import Swal from "sweetalert2";
 import {
-  setActiveComponent,
   getLabels,
   getCategories,
   putMenu,
+  logout,
 } from "../../../redux/actions";
 import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -20,6 +20,8 @@ function MenuFormEditable() {
   const menu = useSelector((state) => state.menus.menuAdmin);
   const product = menu.find((product) => product.id === Number(idProduct));
 
+  const logoutCode = Cookies.get("logout-code");
+
   let tokenAdmin = Cookies.get("token-admin");
   const labels = useSelector((state) => state.labels);
   const categories = useSelector((state) => state.categories);
@@ -27,14 +29,6 @@ function MenuFormEditable() {
   categorySelected = categories.find(
     (category) => category.id === product.CategoryId
   );
-
-  let labelNamesPlaceholder = [];
-
-  for (var i = 0; i < product.Labels.length; i++) {
-    let labelIdSelected = product.Labels[i];
-    let labelNameFound = labels.find((label) => label.id === labelIdSelected);
-    labelNamesPlaceholder.push(labelNameFound ? labelNameFound.name : "");
-  }
 
   const [input, setInput] = useState({
     name: "",
@@ -60,6 +54,7 @@ function MenuFormEditable() {
     };
     options.push(eachOption);
   }
+  console.log(options);
   for (var k = 0; k < categories.length; k++) {
     let eachOption = {
       value: categories[k].id,
@@ -67,6 +62,15 @@ function MenuFormEditable() {
     };
     optionsCategories.push(eachOption);
   }
+
+  let labelNamesPlaceholder = [];
+
+  for (var i = 0; i < product.Labels.length; i++) {
+    let labelIdSelected = product.Labels[i];
+    let labelIndex = labels.findIndex((label) => label.id === labelIdSelected);
+    labelNamesPlaceholder.push(options[labelIndex]);
+  }
+  console.log(labelNamesPlaceholder);
 
   function handleInputChanges(e) {
     setInput({
@@ -168,15 +172,6 @@ function MenuFormEditable() {
     dispatch(getCategories());
   }, [dispatch]);
 
-  // ACTIVE COMPONENT LOGIC
-  const [active, setActive] = useState(null);
-  const handlerActive = (e) => {
-    e.preventDefault();
-    setActive(Number(e.target.id));
-    console.log(active);
-    dispatch(setActiveComponent(e.target.name));
-  };
-
   // RESIZE WINDOW LOGIC
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -186,7 +181,15 @@ function MenuFormEditable() {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [width]);
+
+  const handleLogOut = async () => {
+    await dispatch(logout(logoutCode));
+    Cookies.remove("token-admin");
+    Cookies.remove("token-staff");
+    Cookies.remove("logout-code");
+    navigate("/resto/login");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -219,7 +222,7 @@ function MenuFormEditable() {
     Swal.fire({
       position: "center",
       icon: "error",
-      title: "All fields are required!",
+      title: "At least a field is required!",
       showConfirmButton: false,
       timer: 2000,
     });
@@ -233,7 +236,11 @@ function MenuFormEditable() {
           <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
             <h1>Editable&nbsp;Form&nbsp;Menu</h1>
           </div>
-          <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+          <button
+            disabled={!logoutCode}
+            onClick={handleLogOut}
+            className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8"
+          >
             Logout
           </button>
         </nav>
@@ -241,6 +248,7 @@ function MenuFormEditable() {
         <h1 className="m-5 text-lg font-bold">Edit your Menu</h1>
 
         <form className="w-96 inline-block">
+          <label>Name*</label>
           <input
             type="text"
             name="name"
@@ -250,7 +258,7 @@ function MenuFormEditable() {
             value={input.name}
             onChange={(e) => handleInputChanges(e)}
           />
-
+          <label>Price*</label>
           <input
             type="number"
             name="price"
@@ -265,7 +273,7 @@ function MenuFormEditable() {
             //  value={Number(input.price)}
             onChange={(e) => handleInputChanges(e)}
           />
-
+          <label>Detail*</label>
           <input
             type="text"
             name="detail"
@@ -275,7 +283,7 @@ function MenuFormEditable() {
             value={input.detail}
             onChange={(e) => handleInputChanges(e)}
           />
-
+          <label>Image*</label>
           <input
             type="file"
             id="image"
@@ -286,7 +294,7 @@ function MenuFormEditable() {
           />
 
           <img src={product.image} alt="" className="px-5 py-3 rounded-lg" />
-
+          <label>Category*</label>
           <Select
             options={optionsCategories}
             value={reactSelectInput.categorySelector}
@@ -294,13 +302,13 @@ function MenuFormEditable() {
             placeholder={categorySelected ? categorySelected.name : ""}
             className="pb-3"
           />
-
+          <label>Labels</label>
           <Select
+            defaultValue={labelNamesPlaceholder}
             isMulti
             options={options}
-            value={reactSelectInput.labelsSelector}
+            // value={reactSelectInput.labelsSelector}
             onChange={(e) => handleLabelSelection(e)}
-            placeholder={labelNamesPlaceholder.join(", ")}
           />
           {Object.values(input).join("").length === 0 ? (
             <button

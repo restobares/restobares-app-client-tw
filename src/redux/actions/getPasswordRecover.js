@@ -15,7 +15,8 @@ export function getPasswordRecover(email) {
         payload: json.data
       })
     } catch(err) {
-      console.log(err);      
+      console.log(err);
+      return false;      
     }
   }
 }

@@ -15,7 +15,7 @@ export default function ChangeOrder(detailTable) {
             </p>
           
             <Link to={`../../resto/${idResto}/table/${table}/menu`} target="_blank">
-            <button className="w-12  ml-2 mr-2 h-6 bg-pink-700 rounded-md text-white">Go!</button>
+            <button className="w-12  ml-2 mr-2 h-6 bg-pink-600 rounded-md text-white">Go!</button>
             </Link>
         </div>
   );

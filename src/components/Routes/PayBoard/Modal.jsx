@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { getPayCash } from '../../../redux/actions/getPayCash';
 
 const featuredProducts = ['https://res.cloudinary.com/pozters/image/upload/w_350/v1531312884/prod_uploads/qdK8393G69QVD6M',
                           'https://media-cdn.tripadvisor.com/media/photo-s/0f/0b/ff/92/2x1-de-lunes-a-miercoles.jpg',
@@ -10,7 +8,6 @@ let count = 0;
 
 const Modal = ({showModal, setShowModal, idResto, idTable}) => {
 
-  const dispatch = useDispatch();
 
   const [currentIndex, setCurrentIndex] = useState (0);
 
@@ -18,15 +15,15 @@ const Modal = ({showModal, setShowModal, idResto, idTable}) => {
 
   
   useEffect(() => {
+    const startSlider = () => {
+      setInterval(() => {
+        handleOnNextClick();
+      }, 3000);
+    }
     
     startSlider();
   }, []);
 
-  const startSlider = () => {
-    setInterval(() => {
-      handleOnNextClick();
-    }, 3000);
-  }
 
   const handleOnNextClick = () => {
     count = (count + 1) % featuredProducts.length;

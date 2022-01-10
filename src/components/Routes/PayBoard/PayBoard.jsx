@@ -53,7 +53,7 @@ const PayBoard = () => {
       	dispatch(getOrders(idResto, idTable));
       });
     } 
-    if (cart.currentOrder.length === 0 && cart.ordered.length === 0) {
+    if (totalPrice === 0) {
       async function paymentAlert() {
         await Swal.fire({
           position: 'center',
@@ -63,12 +63,13 @@ const PayBoard = () => {
           timer: 3000
         })
         // aca usar navigate a ruta feedback
-        // navigate(`/resto/${idResto}/table/${idTable}`);
+      navigate(`/resto/${idResto}/table/${idTable}/feedback`)
       }
       paymentAlert();  
+      
     }
     
-  }, [dispatch, idTable, idResto, totalPrice, cart]);
+  }, [dispatch, navigate, idTable, idResto, totalPrice, cart]);
 
 
   return (
