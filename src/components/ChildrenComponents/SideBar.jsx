@@ -83,7 +83,11 @@ function SideBar() {
             <div className=' min-h-min mx-1'>
               <select name="" id="" onChange={event => handleOnChange(event)} className='shadow-md text-xs bg-pink-400 rounded-xl  text-center w-20 '>
                 <option value="All">Todas</option>
-                {labels.map(label =>( <option key={label.id} value={label.id}>{label.name}</option>))}
+                {/* { console.log("categories => labels ",categories[activeButton].labels) &&
+                  activeButton !== "All"  ? categories[activeButton].labels.map((label,i) =>( <option key={i} value={i}>{label}</option>)) 
+                                          : labels.map(label =>( <option key={label.id} value={label.id}>{label.name}</option>)) */ 
+                                          labels.map(label =>( <option key={label.id} value={label.id}>{label.name}</option>))}
+                
               </select>
             </div>
           </div>
