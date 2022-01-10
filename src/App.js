@@ -23,10 +23,6 @@ import ForgotPassword from './components/Admin-Side/ForgotPassword.jsx';
 import Account from './components/Admin-Side/Settings/Account.jsx'
 import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
 import ClientFeedback from './components/Routes/ClientFeedback/ClientFeedback.jsx';
-
-// Socket connection
-
-
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
 import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
 import UserConfirm from './components/Admin-Side/UserConfirm.jsx';
