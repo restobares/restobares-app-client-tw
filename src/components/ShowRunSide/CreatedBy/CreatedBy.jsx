@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaTwitter, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
 import juanC from '../../../videosAndImages/juancanelon.jpg';
 import nahuelK from '../../../videosAndImages/nahuelKisser.jpg'
 import mateoL from '../../../videosAndImages/mateoLopez.jpg'
