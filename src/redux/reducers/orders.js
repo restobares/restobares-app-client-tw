@@ -1,11 +1,12 @@
 import { ActionTypes } from "../constants";
 
-const initialState = [];
+const initialState = {};
 
 function orders(state = initialState, action) {
 
   if (action.type === ActionTypes.GET_ORDERS) {
-    return [...state, action.payload];
+    return action.payload;
   }
   return state;
 }
+export default orders;
