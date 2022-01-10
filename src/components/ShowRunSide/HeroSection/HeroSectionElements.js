@@ -51,13 +51,16 @@ export const HeroContent = styled.div`
 `;
 
 export const HeroH1 = styled.h1`
-    color: #fff;
+    color: #000;
+    font-style: italic;
+    opacity: 0.8;
+    -webkit-text-stroke: 2px white;
     font-size: 48px;
     text-align: center;
     margin-bottom: 24px;
     padding-top: 200px;
     line-height: 1.1;
-    font-weight: 600;
+    font-weight: 800;
 @media screen and (max-width: 480px){
     font-size: 32px
 }

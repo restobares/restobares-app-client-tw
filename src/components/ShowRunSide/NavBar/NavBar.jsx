@@ -54,7 +54,7 @@ const NavBar = ({ toggle }) => {
                   duration={500}
                   spy={true}
                   exact="true"
-                  offset={40}
+                  offset={0}
                   activeClass="active"
                 >
                   Sign Up
@@ -80,7 +80,7 @@ const NavBar = ({ toggle }) => {
                   duration={500}
                   spy={true}
                   exact="true"
-                  offset={40}
+                  offset={20}
                   activeClass="active"
                 >
                   Created By
