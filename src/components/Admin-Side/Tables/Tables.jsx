@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import Moment from "moment";
 import { getTables } from "../../../redux/actions";
 import ChangeOrder from "./ChangeOrder";
+import CallButtonStaff from "./CallButtonStaff";
 import {
   deleteProductFromTable,
   putTableEating,
@@ -135,7 +136,7 @@ export default function Tables() {
       {tables.map((el) => (
         <div
           key={el.tableId}
-          className="w-full border-2 border-gray-400 rounded-xl flex flex-col mt-2  text-sm  font-semibold  "
+          className={el.calling ? "w-full border-2 border-yellow-400 bg-yellow-200 rounded-xl flex flex-col mt-2  text-sm  font-semibold" : "w-full border-2 border-gray-400 rounded-xl flex flex-col mt-2  text-sm  font-semibold"}
         >
           <div className="h-8 w-full  flex flex-row  ">
             <p className="w-2/12 mt-1 font-semibold"> {Number(el.tableId)} </p>
@@ -168,6 +169,7 @@ export default function Tables() {
                 alt=""
                 width="12"
               />
+              {el.calling ? <CallButtonStaff idTable={el.tableId} /> : null}
             </div>
           </div>
           {detailTable === Number(el.tableId) && (

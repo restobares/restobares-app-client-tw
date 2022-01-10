@@ -41,7 +41,7 @@ const Navbar = () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, [dispatch])
+  }, [dispatch,width])
 
   
   return (
