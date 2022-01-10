@@ -39,7 +39,6 @@ function App() {
         <Routes>
           {/* Show-Run */}
           <Route path="/" element={<ShowRun/>}></Route>
-          
           <Route path="resto/:idResto/table/:idTable" element={<LandingPage />}></Route>
           <Route path="resto/:idResto/table/:idTable/menu" element={<OrderBoard />}></Route>
           <Route path="resto/:idResto/table/:idTable/order" element={<BillBoard />}></Route>
@@ -51,7 +50,7 @@ function App() {
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
           <Route path="resto/register" element={<LandingRegister />}></Route>
-          <Route path="resto/mail-confirmation/:token" element={<UserConfirm />}></Route>
+          <Route path="resto/mail-confirmation" element={<UserConfirm />}></Route>
           <Route path="resto/login/forgotpassword" element={<ForgotPassword />}></Route>
           <Route path="resto/:idResto/resto-home" element={<HomeAdmin />}></Route>
           

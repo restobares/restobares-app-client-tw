@@ -83,12 +83,12 @@ function SideBar() {
             <div className=' min-h-min mx-1'>
               <select name="" id="" onChange={event => handleOnChange(event)} className='shadow-md text-xs bg-pink-400 rounded-xl  text-center w-20 '>
                 <option value="All">Todas</option>
-                {labels.map(label =>( <option value={label.id}>{label.name}</option>))}
+                {labels.map(label =>( <option key={label.id} value={label.id}>{label.name}</option>))}
               </select>
             </div>
           </div>
         {categories.map((cat,i) => (
-          <div className={[ 
+          <div key={cat.id} className={[ 
             activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 shadow-lg"]]}> 
             <input type="image" key={cat.name} alt="category button" 
                    name={i+1} onClick={e => handleOnClick(e)} 

@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setActiveComponent,
   getLabels,
   getCategories,
 } from "../../../redux/actions";
@@ -172,14 +171,6 @@ const AdminMenu = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-  // ACTIVE COMPONENT LOGIC
-  const [active, setActive] = useState(null);
-  const handlerActive = (e) => {
-    e.preventDefault();
-    setActive(Number(e.target.id));
-    console.log(active);
-    dispatch(setActiveComponent(e.target.name));
-  };
 
   // RESIZE WINDOW LOGIC
   const [width, setWidth] = useState(window.innerWidth);
@@ -190,7 +181,7 @@ const AdminMenu = () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [width]);
 
   const alert = async (e) => {
     e.preventDefault();

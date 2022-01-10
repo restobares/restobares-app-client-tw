@@ -12,13 +12,14 @@ import {
 
 const SideBar = ({ isOpen, toggle }) => {
   return (
-    <SidebarContainer isOpen={isOpen} onClick={toggle}>
-      <Icon onClick={toggle}>
+    <SidebarContainer isOpen={isOpen} onClick={toggle} key="container">
+      <Icon onClick={toggle} key="1">
         <CloseIcon />
       </Icon>
-      <SidebarWrapper>
+      <SidebarWrapper key="2">
         <SidebarMenu>
           <SidebarLink
+            key="signup"
             to="signup"
             onClick={toggle}
             smooth={true}
@@ -31,6 +32,7 @@ const SideBar = ({ isOpen, toggle }) => {
             signup
           </SidebarLink>
           <SidebarLink
+            key="services"
             to="services"
             onClick={toggle}
             smooth={true}
@@ -43,6 +45,7 @@ const SideBar = ({ isOpen, toggle }) => {
             services
           </SidebarLink>
           <SidebarLink
+            key="createdby"
             to="createdby"
             onClick={toggle}
             smooth={true}
@@ -55,6 +58,7 @@ const SideBar = ({ isOpen, toggle }) => {
             Created By
           </SidebarLink>
           <SidebarLink
+            key="about"
             to="about"
             onClick={toggle}
             smooth={true}

@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import React from "react";
 import { useState } from "react";
+=======
+import React from 'react'
+import { useState } from "react";
+// import { useNavigate, Link } from 'react-router-dom';
+>>>>>>> 2d5b72f48b31479f1abd99434ec2a7933e156905
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { inputValidatorRegister, register } from "../../redux/actions";

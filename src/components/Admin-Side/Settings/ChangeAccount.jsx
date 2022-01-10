@@ -115,7 +115,7 @@ const ChangeAccount = () => {
   // Getting labels and categories
   useEffect(() => {
     dispatch(getAccount(idResto, tokenAdmin))
-  }, [dispatch, idResto]);
+  }, [dispatch, idResto, tokenAdmin]);
 
 
   // RESIZE WINDOW LOGIC
@@ -127,7 +127,7 @@ const ChangeAccount = () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [width]);
 
 
 return (

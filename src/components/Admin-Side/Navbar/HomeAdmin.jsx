@@ -36,7 +36,7 @@ const HomeAdmin = () => {
   return (
     <div className="bg-gray-200 h-screen w-screen flex flex-col ">
       <Navbar />
-      <div className=" w-full h-full  overflow-scroll">
+      <div className=" w-full h-full  overflow-auto">
         <div className=" mx-2">
           {active === "Tables" ? (
             <Tables />
