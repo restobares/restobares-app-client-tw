@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link, /* useParams */ } from 'react-router-dom';
-import { login, logout } from '../../redux/actions';
+import { login } from '../../redux/actions';
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 
@@ -40,7 +40,7 @@ const Login = () => {
             });
           }
         } else {
-          console.log('invalid email');
+          //console.log('invalid email');
         }
     };
 
@@ -102,7 +102,7 @@ const Login = () => {
                         </button>
 
                       <Link to={`/resto/login/forgotpassword`}>
-                        <a className="py-2 px-4 text-blue-500" href="#">Forgot your Password?</a>
+                        <a className="py-2 px-4 text-blue-500" href="/#">Forgot your Password?</a>
                       </Link>
                         
                     </div>
