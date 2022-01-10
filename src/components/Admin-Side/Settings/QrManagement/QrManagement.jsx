@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { getQrCode } from "../../../../redux/actions";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getQrCode, logout } from "../../../../redux/actions";
 import BackButton from "../../BackButton";
 import Swal from "sweetalert2";
+import LogoutButton from "../../Navbar/LogoutButton";
 
 const QrManager = () => {
   const { qrCode } = useSelector((state) => state);
@@ -62,9 +63,7 @@ const QrManager = () => {
         <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Qr&nbsp;Management</h1>
         </div>
-        <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
-          Logout
-        </button>
+        <LogoutButton/>
       </nav>
 
       <h1 className="m-5 text-lg font-bold">Select your Table</h1>
