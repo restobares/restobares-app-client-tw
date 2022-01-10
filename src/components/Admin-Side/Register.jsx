@@ -6,6 +6,7 @@ import { inputValidatorRegister, register } from "../../redux/actions";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import dingbellLogo from "../../img/dingbell_white.png";
 
 const Register = () => {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -192,13 +193,16 @@ const Register = () => {
   };
 
   return (
-    <div
-      className="min-h-screen  flex bg-gray-bg1"
+    <div className="min-h-screen  flex bg-gray-bg1"
       style={{
         backgroundImage: `url(${bgimg})`,
         backgroundSize: "cover",
       }}
     >
+      <span className="text-sm text-white mb-1 mt-1">
+      <img className="mx-5 invisible md:visible"  src={dingbellLogo} width="40" alt="" />
+      <h1 className=" text-lg font-bold">DingBell</h1>
+      </span>
       <div className="inline-block mx-auto my-auto justify-items-center ">
         <div className=" mx-2 bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
           <h1 className="m-5 text-lg font-bold">Restaurant Register 📝</h1>
