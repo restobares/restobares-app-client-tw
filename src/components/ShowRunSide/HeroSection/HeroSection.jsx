@@ -1,33 +1,14 @@
-<<<<<<< HEAD
 import React from "react";
-=======
-import React  from "react";
->>>>>>> 2d5b72f48b31479f1abd99434ec2a7933e156905
 import {
     HeroContainer,
     HeroBg,
     HeroContent,
     VideoBg,
     HeroH1,
-<<<<<<< HEAD
   } from "./HeroSectionElements.js";
 import video from '../../../videosAndImages/video.mp4';
 function HeroSection() {
     
-=======
-    // HeroP,
-    // HeroBtnWrapper,
-    // ArrowRigth,
-    // ArrowForward,
-  } from "./HeroSectionElements.js";
-// import { Button } from "../ButtonElements.js";
-import video from '../../../videosAndImages/video.mp4';
-function HeroSection() {
-    // const [hover, setHover] = useState(false);
-    // const onHover = () => {
-    //     setHover(!hover);
-    //   };
->>>>>>> 2d5b72f48b31479f1abd99434ec2a7933e156905
 
     return (
         <HeroContainer>
