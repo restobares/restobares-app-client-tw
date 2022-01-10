@@ -42,6 +42,7 @@ import { sockets } from "./sockets";
 import { getAccount } from "./getAccount";
 import { getFeedback } from "./getFeedback";
 import { getRevenue } from "./getRevenue";
+import {getMailConfirmation} from "./getMailConfirmation";
 
 
 export {  
@@ -94,4 +95,5 @@ export {
   getAccount,
   getFeedback,
   getRevenue,
+  getMailConfirmation,
 };

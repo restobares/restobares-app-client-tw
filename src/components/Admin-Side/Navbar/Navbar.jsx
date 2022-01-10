@@ -37,7 +37,6 @@ const Navbar = () => {
   const handlerActive = (e) => {
     e.preventDefault()
     setActive(Number(e.target.id))
-    console.log(active)
     dispatch(setActiveComponent(e.target.name))
   }
 
@@ -64,7 +63,7 @@ const Navbar = () => {
       <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (  
               width > WidthMedium 
-                ? <button  id={i} name={el.name} onClick={(e) => handlerActive(e)}
+                ? <button key={i} id={i} name={el.name} onClick={(e) => handlerActive(e)}
                 className= {
                   i === active 
                   ? " text-white text-2xl mx-4 w-20 bg-pink-100 bg-opacity-20 h-12  rounded-md md:w-32"

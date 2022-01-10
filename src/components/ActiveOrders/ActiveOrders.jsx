@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
@@ -10,7 +10,7 @@ const ActiveOrders = () => {
   let tokenStaff = Cookies.get("token-staff");
   let tokenAdmin = Cookies.get("token-admin");
   const ordersFeed = useSelector((state) => state.ordersFeed);
-  console.log(ordersFeed);
+  //console.log(ordersFeed);
   
   useEffect(() => {
 		sockets.joinResto(idResto);
@@ -29,7 +29,7 @@ const ActiveOrders = () => {
     	  dispatch(getOrdersFeed(idResto, tokenAdmin));
     	}
     });
-  }, [dispatch, idResto]);
+  }, [dispatch, idResto, tokenStaff, tokenAdmin]);
 
   
 
@@ -37,7 +37,7 @@ const ActiveOrders = () => {
     <div className="md:w-8/12 lg:7/12 mx-auto relative bg-gray-200 w-full">
       {ordersFeed.length > 0 && ordersFeed.map((order) => {
         return (
-          <div>
+          <div key={order}>
             <div className=" lg:px-6 py-4 bg-pink-700 text-white rounded-lg mb-5 capitalize">
               <h1 className="text-lg">Table: {order.idTable}</h1>
 

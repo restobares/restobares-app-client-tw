@@ -16,7 +16,6 @@ import {InfoContainer,
         ArrowRigth,
         NavBtnLink,
 } from './InfoSectionElements.js';
-import { NavLink } from 'react-router-dom';
 
 const InfoSection = ({LightBg, id, imgStart, topLine, LightText,
 headLine, darkText, description, buttonLabel, alt, dark, primary, dark2}) => {

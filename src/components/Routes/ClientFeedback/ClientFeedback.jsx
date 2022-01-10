@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import FeedbackModal from "./FeedbackModal";
 
 const ClientFeedback = () => {
   const [showModal, setShowModal] = useState(true);
-  const { idResto, idTable } = useParams();
 
   
   const onClose = () => {
@@ -16,10 +14,8 @@ const ClientFeedback = () => {
 
   const bgimg =
     "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
-  const logo =
-    "https://mir-s3-cdn-cf.behance.net/project_modules/disp/3eb3045266535.562d05b41c50a.png";
-
-  return (
+ 
+    return (
     <div>
       <div
         style={{

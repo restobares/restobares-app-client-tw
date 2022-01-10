@@ -71,23 +71,25 @@ export const ServicesP = styled.p`
 `;
 
 export const ServicesP2 = styled.p`
-    font-size: 1.5rem;
+    font-size: 18px;
     text-align: justify;
     padding-bottom: 15px;
     max-width: 60%;
     color: #fff;
-    line-height: 1.5rem;
+    line-height: 24px;
     @media screen and (max-width:768px){
         max-width: 90%;
     }
 `;
 
 export const ServicesH1 = styled.h1`
-    font-size: 2.5rem;
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 600;
     color: #fff;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
 @media screen and (max-width: 480px){
-    font-size: 2rem;
+    font-size: 32px
 }
 `;
 

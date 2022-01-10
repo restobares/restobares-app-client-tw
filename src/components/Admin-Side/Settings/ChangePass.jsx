@@ -11,8 +11,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Swal from "sweetalert2";
 
 const ChangePass = () => {
-
-  const [passwordCurrShown, setPasswordCurrShown] = useState(false);
+  
   const [passwordNewShown, setPasswordNewShown] = useState(false);
   const [passwordRepShown, setPasswordRepShown] = useState(false);
 
@@ -76,10 +75,6 @@ const ChangePass = () => {
   }
 
   //hideShow
-  const toggleCurrPassword = (e) => {
-    e.preventDefault();
-    setPasswordCurrShown(!passwordCurrShown);
-  };
 
   const toggleNewPassword = (e) => {
     e.preventDefault();
