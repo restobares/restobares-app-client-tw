@@ -44,6 +44,7 @@ import { getAccount } from "./getAccount";
 import { getFeedback } from "./getFeedback";
 import { getRevenue } from "./getRevenue";
 import {getMailConfirmation} from "./getMailConfirmation";
+import { callStaff } from "./callStaff";
 
 
 export {  
@@ -98,4 +99,5 @@ export {
   getFeedback,
   getRevenue,
   getMailConfirmation,
+  callStaff
 };
