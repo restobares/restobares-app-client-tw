@@ -19,6 +19,9 @@ function tables(state = initialState, action) {
   if (action.type === ActionTypes.POST_PAY_CASH) {
     return state;
   }
+  if (action.type === ActionTypes.PUT_CALL_STAFF) {
+    return state;
+  }
   return state;
 }
 

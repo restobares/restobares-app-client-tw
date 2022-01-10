@@ -1,29 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setActiveComponent, logout } from "../../../redux/actions";
+import { setActiveComponent } from "../../../redux/actions";
 
 import Logo from "../../../img/dingbell_white.png";
+import LogoutButton from "./LogoutButton";
 
-import Cookies from "js-cookie";
 
 
 const Navbar = () => {
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   // Vars
-  const logoutCode = Cookies.get("logout-code");
-
-  const handleLogOut = async () => {
-    await dispatch(logout(logoutCode));
-    Cookies.remove('token-admin');
-    Cookies.remove('token-staff');
-    Cookies.remove('logout-code');
-    navigate('/resto/login');
-  }
 
   const WidthMedium = 768;
   const navItems = [
@@ -56,7 +45,7 @@ const Navbar = () => {
 
   
   return (
-    <nav className="flex flex:row items-center justify-between px-8 h18  bg-pink-700 h-12 mb-3">
+    <nav className="flex flex:row items-center justify-between pl-8 h18  bg-pink-700 h-12 mb-3">
       <span className="text-sm text-gray-800 mb-1 mt-1">
       <img className="invisible md:visible"  src={Logo} width="40" alt="" />
       </span>
@@ -83,9 +72,7 @@ const Navbar = () => {
         
             ))}
             </div>
-      <button disabled={!logoutCode} onClick={handleLogOut} className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
-        Logout
-      </button>
+      <LogoutButton/>
     </nav>
   );
 };

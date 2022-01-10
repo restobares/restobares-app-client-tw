@@ -8,8 +8,8 @@ import {
 import Select from "react-select";
 import BackButton from "../BackButton";
 import Swal from "sweetalert2";
-import { inputValidator, postMenu } from "../../../redux/actions";
-import { useParams } from "react-router-dom";
+import { inputValidator, postMenu, logout } from "../../../redux/actions";
+import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const AdminMenu = () => {
@@ -75,6 +75,18 @@ const AdminMenu = () => {
       ...reactSelectInput,
       labelsSelector: e,
     });
+  }
+
+  const logoutCode = Cookies.get("logout-code");
+  
+  const navigate = useNavigate()
+
+  const handleLogOut = async () => {
+    await dispatch(logout(logoutCode));
+    Cookies.remove('token-admin');
+    Cookies.remove('token-staff');
+    Cookies.remove('logout-code');
+    navigate('/resto/login');
   }
 
   function handleCategorySelection(e) {
@@ -227,9 +239,9 @@ return (
         <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Create&nbsp;Menus</h1>
         </div>
-        <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
-          Logout
-        </button>
+        <button disabled={!logoutCode} onClick={handleLogOut} className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8">
+        Logout
+      </button>
       </nav>
       <div className="my-2">
       <h1 className="m-2 text-lg font-bold">Add your Menu</h1>

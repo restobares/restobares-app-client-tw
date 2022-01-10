@@ -41,6 +41,11 @@ const Login = () => {
             });
           }
         } else {
+          Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Email or Password are incorrect",
+          });
           //console.log('invalid email');
         }
     };

@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Swal from "sweetalert2";
+import LogoutButton from '../Navbar/LogoutButton';
 
 const ChangePass = () => {
   
@@ -93,9 +94,7 @@ const ChangePass = () => {
            <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
              <h1>Change&nbsp;Password</h1>
            </div>
-           <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
-             Logout
-           </button>
+           <LogoutButton/>
         </nav>
 
         

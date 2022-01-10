@@ -38,27 +38,40 @@ const ActiveOrders = () => {
       {ordersFeed.length > 0 && ordersFeed.map((order) => {
         return (
           <div key={order}>
-            <div className=" lg:px-6 py-4 bg-pink-700 text-white rounded-lg mb-5 capitalize">
-              <h1 className="text-lg">Table: {order.idTable}</h1>
-
-              <h1 className="text-left pl-4 text-xl md:text-3xl">Order:</h1>
-              {order.currentOrder.products.map((item) => {
-                return (
-                    <div className="w-fit bg-pink-500 mx-20 my-2 rounded-lg md:rounded-full grid grid-flow-col text-base lg:text-2xl">
-                      <h1 className="text-left px-2 md:pl-5">{item.productName}:</h1>
-                      <h1 className="text-right px-2 md:px-5">{item.quantity}</h1>
-                    </div>
-                );
-              })}
-              <div></div>
-              {order.currentOrder.comments !== "" && (
-                <div>
-                  <h4 className="text-left pl-4 text-xl md:text-3xl mt-5">Comments:</h4>
-                    <div className="text-xl bg-gray-100 bg-opacity-20 mx-2 mt-2 rounded-xl md:text-2xl">
-                      <h4 className="text-center">{order.currentOrder.comments.split("<br>").join('')}</h4>
-                    </div>
+            <div className=" lg:px-6  bg-gray-100 border-pink-700 border-2 border-opacity-50 rounded-lg mb-5 capitalize">
+              <h1 className="text-xl p-2 font-semibold">Table {order.idTable}</h1>
+              <hr className="border-1  mx-2 border-pink-500"/>
+              <div className='h-full w-full flex flex-row'>
+                <p className=" border-pink-700 border-r-2 mt-1 w-28 text-base font-semibold ">
+                  Order
+                </p>
+                <div className='float-right w-full'>
+                  {order.currentOrder.products.map((item) => {
+                    return (
+                        <div className=" bg-gray-200 mx-4 my-2 rounded-lg md:rounded-full grid grid-flow-col text-base lg:text-2xl font-semibold">
+                          <h1 className="text-left px-2 md:pl-5">{item.productName}:</h1>
+                          <h1 className="text-right px-2 md:px-5">{item.quantity}</h1>
+                        </div>
+                    );
+                  })}
                 </div>
-              )}
+              </div>
+                <div className='h-full w-full flex flex-row'>
+                <p className=" border-pink-700 border-r-2 mb-1 w-28 text-base font-semibold ">
+                  Comments
+                </p>
+                <div className='float-right w-full'>
+                  {order.currentOrder.comments !== "" &&
+                    <div className=" bg-gray-200 mx-4 my-2 py-2 rounded-lg md:rounded-full grid grid-flow-col text-base lg:text-2xl">
+                      <p> 
+                        {order.currentOrder.comments.split("<br>").join('') }
+                      </p>
+                    </div>
+                  }
+                </div>
+              </div>
+
+
             </div>
           </div>
         );

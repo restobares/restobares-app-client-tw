@@ -12,6 +12,7 @@ import { removeProduct } from "./removeProduct";
 import { addOrderToCart } from "./addOrderToCart";
 import { addComment } from "./addComment";
 import { getProductsByName} from "./getProductsByName";
+import { getProductsByEditName} from "./getProductsByEditName";
 import { hideSideBar } from "./hideSideBar";
 import { sortMenuByPrice } from "./sortMenuByPrice";
 import { postOrder } from "./postOrder";
@@ -43,6 +44,7 @@ import { getAccount } from "./getAccount";
 import { getFeedback } from "./getFeedback";
 import { getRevenue } from "./getRevenue";
 import {getMailConfirmation} from "./getMailConfirmation";
+import { callStaff } from "./callStaff";
 
 
 export {  
@@ -60,6 +62,7 @@ export {
   addOrderToCart,
   addComment,
   getProductsByName,
+  getProductsByEditName,
   hideSideBar,
   sortMenuByPrice,
   postOrder,
@@ -96,4 +99,5 @@ export {
   getFeedback,
   getRevenue,
   getMailConfirmation,
+  callStaff
 };

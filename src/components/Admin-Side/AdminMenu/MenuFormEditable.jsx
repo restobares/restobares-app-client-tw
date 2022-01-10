@@ -7,6 +7,7 @@ import {
   getLabels,
   getCategories,
   putMenu,
+  logout,
 } from "../../../redux/actions";
 import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -19,6 +20,8 @@ function MenuFormEditable() {
   const menu = useSelector((state) => state.menus.menuAdmin);
   const product = menu.find((product) => product.id === Number(idProduct));
 
+  const logoutCode = Cookies.get("logout-code");
+
   let tokenAdmin = Cookies.get("token-admin");
   const labels = useSelector((state) => state.labels);
   const categories = useSelector((state) => state.categories);
@@ -27,7 +30,6 @@ function MenuFormEditable() {
     (category) => category.id === product.CategoryId
   );
 
-  
   const [input, setInput] = useState({
     name: "",
     price: "",
@@ -52,7 +54,7 @@ function MenuFormEditable() {
     };
     options.push(eachOption);
   }
-  console.log(options)
+  console.log(options);
   for (var k = 0; k < categories.length; k++) {
     let eachOption = {
       value: categories[k].id,
@@ -65,12 +67,10 @@ function MenuFormEditable() {
 
   for (var i = 0; i < product.Labels.length; i++) {
     let labelIdSelected = product.Labels[i];
-    let labelIndex = labels.findIndex(label => label.id === labelIdSelected);
+    let labelIndex = labels.findIndex((label) => label.id === labelIdSelected);
     labelNamesPlaceholder.push(options[labelIndex]);
-
   }
   console.log(labelNamesPlaceholder);
-
 
   function handleInputChanges(e) {
     setInput({
@@ -172,7 +172,6 @@ function MenuFormEditable() {
     dispatch(getCategories());
   }, [dispatch]);
 
-
   // RESIZE WINDOW LOGIC
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
@@ -183,6 +182,14 @@ function MenuFormEditable() {
       window.removeEventListener("resize", handleResize);
     };
   }, [width]);
+
+  const handleLogOut = async () => {
+    await dispatch(logout(logoutCode));
+    Cookies.remove("token-admin");
+    Cookies.remove("token-staff");
+    Cookies.remove("logout-code");
+    navigate("/resto/login");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -229,7 +236,11 @@ function MenuFormEditable() {
           <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
             <h1>Editable&nbsp;Form&nbsp;Menu</h1>
           </div>
-          <button className="mr-2 bg-pink-800 hover:bg-pink-900 px-2 mt-1 h-10 text-xl text-white rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible">
+          <button
+            disabled={!logoutCode}
+            onClick={handleLogOut}
+            className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8"
+          >
             Logout
           </button>
         </nav>
@@ -298,7 +309,6 @@ function MenuFormEditable() {
             options={options}
             // value={reactSelectInput.labelsSelector}
             onChange={(e) => handleLabelSelection(e)}
-            
           />
           {Object.values(input).join("").length === 0 ? (
             <button
