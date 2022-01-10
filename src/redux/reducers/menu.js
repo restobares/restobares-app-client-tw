@@ -4,12 +4,14 @@ const initialState = {
   menu: [],
   backupMenu: [],
   categoriesSelected: '',
-  menuAdmin: []
+  menuAdmin: [],
+  backupMenuAdmin: []
 };
 
 function menu(state = initialState, action) {
 
   const backupMenu = state.backupMenu;
+  const backupMenuAdmin = state.backupMenuAdmin;
   /* const menuAdmin = state.menuAdmin; */
 
   if (action.type === ActionTypes.GET_MENU) {
@@ -21,7 +23,8 @@ function menu(state = initialState, action) {
       menu: availableMenu,
       backupMenu: availableMenu,
       categoriesSelected: '',
-      menuAdmin: action.payload
+      menuAdmin: action.payload,
+      backupMenuAdmin: action.payload
     };
   }
 
@@ -86,11 +89,11 @@ function menu(state = initialState, action) {
   }
 
 
-  //search en menu
+  //SearchBar Client-Side
   if (action.type === ActionTypes.GET_PRODUCTS_BY_NAME) {
 
     // si la searchBar se vacia vuelve a mostrar todos los productos
-    if (action.payload.lenght === 0) {
+    if (action.payload.length === 0) {
 
       return {
         ...state,
@@ -107,22 +110,22 @@ function menu(state = initialState, action) {
   }
 
    //search en edit menu
-   if (action.type === ActionTypes.GET_PRODUCTS_BY_EDITNAME) {
+  if (action.type === ActionTypes.GET_PRODUCTS_BY_EDITNAME) {
 
     // si la searchBar se vacia vuelve a mostrar todos los productos
-    if (action.payload.lenght === 0) {
+    if (action.payload.length === 0) {
 
       return {
         ...state,
-        menu: backupMenu
+        menuAdmin: backupMenuAdmin
       }
     }
 
-    const filteredMenu = backupMenu.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()))
+    const filteredMenu = backupMenuAdmin.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()));
 
     return {
       ...state,
-      menu: filteredMenu
+      menuAdmin: filteredMenu
     }
   }
 

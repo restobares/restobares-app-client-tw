@@ -17,7 +17,7 @@ const EditMenu = () => {
   const { idResto } = useParams();
   const tokenAdmin = Cookies.get("token-admin");
   const tokenStaff = Cookies.get("token-staff");
-  const menu = useSelector((state) => state.menus.menu);
+  const menu = useSelector((state) => state.menus.menuAdmin);
   const logoutCode = Cookies.get("logout-code");
 
   const navigate = useNavigate();
