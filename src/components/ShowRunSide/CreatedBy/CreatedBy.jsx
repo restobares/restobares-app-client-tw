@@ -46,7 +46,7 @@ const CreatedBy = () => {
                   <FaGithub />
                 </SocialIconLink>
                 <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
+                  <FaTwitter />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>

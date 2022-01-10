@@ -25,6 +25,7 @@ import ChangePass from './components/Admin-Side/Settings/ChangePass.jsx';
 import ClientFeedback from './components/Routes/ClientFeedback/ClientFeedback.jsx';
 import AccountSettings from './components/Admin-Side/Settings/AccountSettings.jsx';
 import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
+import UserConfirm from './components/Admin-Side/UserConfirm.jsx';
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
           {/* Admin */}
           <Route path="resto/login" element={<LandingLogin />}></Route>
           <Route path="resto/register" element={<LandingRegister />}></Route>
+          <Route path="resto/mail-confirmation" element={<UserConfirm />}></Route>
           <Route path="resto/login/forgotpassword" element={<ForgotPassword />}></Route>
           <Route path="resto/:idResto/resto-home" element={<HomeAdmin />}></Route>
           

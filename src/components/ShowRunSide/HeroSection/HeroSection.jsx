@@ -1,22 +1,14 @@
-import React  from "react";
+import React from "react";
 import {
     HeroContainer,
     HeroBg,
     HeroContent,
     VideoBg,
     HeroH1,
-    // HeroP,
-    // HeroBtnWrapper,
-    // ArrowRigth,
-    // ArrowForward,
   } from "./HeroSectionElements.js";
-// import { Button } from "../ButtonElements.js";
 import video from '../../../videosAndImages/video.mp4';
 function HeroSection() {
-    // const [hover, setHover] = useState(false);
-    // const onHover = () => {
-    //     setHover(!hover);
-    //   };
+    
 
     return (
         <HeroContainer>
