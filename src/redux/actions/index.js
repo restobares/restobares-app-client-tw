@@ -12,6 +12,7 @@ import { removeProduct } from "./removeProduct";
 import { addOrderToCart } from "./addOrderToCart";
 import { addComment } from "./addComment";
 import { getProductsByName} from "./getProductsByName";
+import { getProductsByEditName} from "./getProductsByEditName";
 import { hideSideBar } from "./hideSideBar";
 import { sortMenuByPrice } from "./sortMenuByPrice";
 import { postOrder } from "./postOrder";
@@ -61,6 +62,7 @@ export {
   addOrderToCart,
   addComment,
   getProductsByName,
+  getProductsByEditName,
   hideSideBar,
   sortMenuByPrice,
   postOrder,

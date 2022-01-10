@@ -1,6 +1,7 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { getProductsByEditName } from "../../../redux/actions";
 import BackButton from "../BackButton";
 import { Switch } from "@headlessui/react";
 import {
@@ -16,7 +17,7 @@ const EditMenu = () => {
   const { idResto } = useParams();
   const tokenAdmin = Cookies.get("token-admin");
   const tokenStaff = Cookies.get("token-staff");
-  const menu = useSelector((state) => state.menus.menuAdmin);
+  const menu = useSelector((state) => state.menus.menu);
   const logoutCode = Cookies.get("logout-code");
 
   const navigate = useNavigate();
@@ -47,14 +48,59 @@ const EditMenu = () => {
     dispatch(getMenu(idResto, 1));
   }, [dispatch, idResto]);
 
+ //searchbar
+ 
+  const [search, setSearch] = useState("");
+
+  function onChangeD (e){
+    dispatch(getProductsByEditName(e.target.value))
+    setSearch(e.target.value)
+  }
+
+  function ClearInput(e) {
+    e.preventDefault();
+    setSearch("");
+    dispatch(getProductsByEditName(""))
+  }
+
+
   return (
     <Fragment>
       <div>
         <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
           <BackButton />
-          <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
-            <h1>Edit&nbsp;Menus</h1>
+          
+          {/* searchbar */}
+          <div className="inline-block shadow-lg text-lg">
+            <div className="">
+                {search === "" ? <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
+                  <img
+                    src="https://img.icons8.com/ios/50/be185d/search--v1.png"
+                    width="24"
+                    className="ml-1"
+                    alt=""
+                  />
+                </button> : 
+                <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
+                <img
+                  src="https://img.icons8.com/ios-filled/50/be185d/delete-sign.png"
+                  width="24"
+                  className="ml-1"
+                  alt=""
+                />
+              </button> 
+                }
+                <input
+                  className="truncate text-pink-700 pill w-48 flex-grow-1 pb-1 "
+                  type="text"
+                  onChange={onChangeD}
+                  value={search}
+                  alt=""
+                />
+            </div>
           </div>
+  
+        
           <button
             disabled={!logoutCode}
             onClick={handleLogOut}
@@ -64,6 +110,7 @@ const EditMenu = () => {
           </button>
         </nav>
       </div>
+
 
       {menu.length > 0 &&
         menu.map((product) => {
@@ -192,7 +239,8 @@ const EditMenu = () => {
               </div>
             </div>
           );
-        })}
+        }) 
+      }
     </Fragment>
   );
 };

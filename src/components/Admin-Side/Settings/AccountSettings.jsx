@@ -20,7 +20,7 @@ const AccountSettings = () => {
            <LogoutButton/>
         </nav>
          <div className="grid-rows-5 grid-flow-col gap-5 p-3">
-            <Link to={`/resto/${idResto}/resto-home/account/accountsettings/changeaccount`}>
+            <Link to={`/resto/${idResto}/resto-home/accountsettings/changeaccount`}>
              <div className="col-span-3 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
               <div className="float-left">
                 <img
@@ -35,7 +35,7 @@ const AccountSettings = () => {
              </div>
             </Link>
 
-            <Link to={`/resto/${idResto}/resto-home/account/accountsettings/changepassword`}>
+            <Link to={`/resto/${idResto}/resto-home/accountsettings/changepassword`}>
              <div className="col-span-3 text-center px-3 py-3 mb-4 pb-5 border border-gray-300 hover:bg-gray-300 cursor-pointer rounded-xl">
               <div className="float-left">
                 <img

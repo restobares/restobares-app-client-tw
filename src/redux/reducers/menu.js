@@ -10,6 +10,7 @@ const initialState = {
 function menu(state = initialState, action) {
 
   const backupMenu = state.backupMenu;
+  /* const menuAdmin = state.menuAdmin; */
 
   if (action.type === ActionTypes.GET_MENU) {
     
@@ -84,6 +85,8 @@ function menu(state = initialState, action) {
     }
   }
 
+
+  //search en menu
   if (action.type === ActionTypes.GET_PRODUCTS_BY_NAME) {
 
     // si la searchBar se vacia vuelve a mostrar todos los productos
@@ -102,6 +105,27 @@ function menu(state = initialState, action) {
       menu: filteredMenu
     }
   }
+
+   //search en edit menu
+   if (action.type === ActionTypes.GET_PRODUCTS_BY_EDITNAME) {
+
+    // si la searchBar se vacia vuelve a mostrar todos los productos
+    if (action.payload.lenght === 0) {
+
+      return {
+        ...state,
+        menu: backupMenu
+      }
+    }
+
+    const filteredMenu = backupMenu.filter((product) => product.name.toLowerCase().includes(action.payload.toLowerCase()))
+
+    return {
+      ...state,
+      menu: filteredMenu
+    }
+  }
+
 
   if (action.type === ActionTypes.SORT_MENU_BY_PRICE) {
 
