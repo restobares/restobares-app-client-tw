@@ -46,7 +46,7 @@ const OrderCard = ({ product }) => {
             <button className="mt-6 mx-auto" disabled={!cart[id] || !cart[id].quantity} onClick={minus}>➖</button>
           </div>
           <div className="flex flex-col w-full  ">
-            <p className="text-left ml-1 mt-2 text-xs h-full ">{detail}</p>
+            <p className="text-left ml-1 mt-2 text-xs h-full overflow-y-auto my-2">{detail}</p>
             <hr className="mx-2 mb-1 border-pink-700 "/>
             <div className="inline-block float-left pb-1 bottom-0"> 
               <p className="inline-blcok float-left ml-1 ">Cant</p>

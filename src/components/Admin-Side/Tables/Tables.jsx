@@ -210,6 +210,7 @@ export default function Tables() {
                       ))}
                       {!el.idStaff && (
                         <div>
+                          <label>Enter your Staff ID: </label>
                           <input
                             type="number"
                             min="0"
@@ -220,12 +221,19 @@ export default function Tables() {
                           />
                         </div>
                       )}
-                      <button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-600 rounded-md text-white" 
+                      {el.idStaff 
+                      	? (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-600 rounded-md text-white" 
                           disabled={!idStaffInput && !el.idStaff} onClick={(e) =>
                             handlePutEating(e, el.idStaff || idStaffInput)
                           }>
                           Food in table
-                      </button>
+                      		</button>)
+                      	: (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-gray-600 rounded-md text-white" 
+                          disabled={!idStaffInput && !el.idStaff} onClick={(e) =>
+                            handlePutEating(e, el.idStaff || idStaffInput)
+                          }>
+                          Food in table
+                      		</button>)}
                     </div>
                   )}
                   {el.ordered.length > 0 &&
@@ -308,7 +316,7 @@ export default function Tables() {
 
                       <button
                         onClick={() => handleCashPayment(el.idStaff)}
-                        className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-700 rounded-md text-white"
+                        className={"inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-700 rounded-md text-white"}
                         disabled={tables[detailTable - 1].state !== "pay_cash"}
                       >
                         Confirm Pay

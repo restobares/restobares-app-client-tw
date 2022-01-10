@@ -14,6 +14,7 @@ function SideBar() {
     const sidebar = useSelector((state) => state.sideBar);
     const categories = useSelector((state)=> state.categories)
     const labels = useSelector((state)=> state.labels)
+  	const [currentLabels,setCurrentLabels] = useState(labels.map((l,i) => l.name));
     
     //////////////// ESTADOS LOCALES ////////////////    
 
@@ -45,8 +46,12 @@ function SideBar() {
 
     const handleOnChange = (event) => {
       event.preventDefault();
+      dispatch( filterMenuByCategory(activeButton) );
       //console.log("event.target.value => ", event.target.value)
       dispatch( filterMenuByLabels(event.target.value))
+      if (event.target.value === "All") {
+      	dispatch( filterMenuByCategory(activeButton) );
+      }
     }
 
     const handleSort = (event) => {
@@ -54,15 +59,17 @@ function SideBar() {
       // console.log("event.target.value => ", event.target.value)
       dispatch(sortMenuByPrice(event.target.value))
     }
-    const handleOnClick = e => {
+    const handleOnClick = (e,catLabels) => {
       e.preventDefault();
       if (activeButton === (Number(e.target.name))) {
         dispatch( filterMenuByCategory("All"))
         setActiveButton("All")
+        setCurrentLabels(labels.map((l,i) => l.name));
       } else {
         setActiveButton(Number(e.target.name))
         // console.log("active : => ",activeButton)      
         dispatch( filterMenuByCategory(e.target.name))
+        setCurrentLabels(catLabels);
       }
     }
 
@@ -85,8 +92,12 @@ function SideBar() {
                 <option value="All">Todas</option>
                 {/* { console.log("categories => labels ",categories[activeButton].labels) &&
                   activeButton !== "All"  ? categories[activeButton].labels.map((label,i) =>( <option key={i} value={i}>{label}</option>)) 
-                                          : labels.map(label =>( <option key={label.id} value={label.id}>{label.name}</option>)) */ 
-                                          labels.map(label =>( <option key={label.id} value={label.id}>{label.name}</option>))}
+                                          : labels.map(label =>( <option key={label.id} value={label.id}>{label.name}</option>)) */} 
+  							{ currentLabels.length <= 0
+  								? labels.map( (label,i) => ( <option key={label.id} value={label.id}>{label.name}</option>) )
+  								: labels.filter( (label,i) => (currentLabels.includes(label.name)) )
+  									.map((label,i) => ( <option key={label.id} value={label.id}>{label.name}</option>) )
+  							}
                 
               </select>
             </div>
@@ -95,7 +106,7 @@ function SideBar() {
           <div key={cat.id} className={[ 
             activeButton === "All" ? style : activeButton === cat.id ? style : [style,"bg-white opacity-60 shadow-lg"]]}> 
             <input type="image" key={cat.name} alt="category button" 
-                   name={i+1} onClick={e => handleOnClick(e)} 
+                   name={i+1} onClick={e => handleOnClick(e,cat.labels)} 
               			src={arrayImgs[i]} className="h-12 mt-1 inline-block mx-0"/>
           		{/*<img  alt="category icon" src={arrayImgs[i]}/>*/}
 
