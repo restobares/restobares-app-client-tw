@@ -5,7 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300&family=Cookie&family=Lobster&family=Press+Start+2P&display=swap%27');
 
 .global {
-  @apply font-sans text-sm
+  @apply font-sans text-xs
   bg-gray-50
   text-center
 }
@@ -36,13 +36,35 @@
 }
 
 .nav-bar{
-  @apply h-12 bg-pink-800 fixed inset-x-0 top-0
+  @apply h-12 bg-pink-800 fixed inset-x-0 top-0 
 }
 
 .pill{
-  @apply bg-pink-100 mt-2 h-8 rounded-full  ml-4  align-middle text-center text-xl
+  @apply bg-pink-100 mt-2 h-8 rounded-full mx-auto   align-middle text-center text-xl
 }
 
 .button {
-  @apply  bg-pink-100 h-8 mt-2 w-8  rounded-full 
+  @apply   h-10 mt-1 w-11  rounded-md border-pink-500 border-2
+}
+
+#printeable {
+  padding: 4px;
+  width: 587px;
+  height: 834px;
+} 
+
+.StarRate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.star {
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+input[type="radio"]{
+  display: none;
 }

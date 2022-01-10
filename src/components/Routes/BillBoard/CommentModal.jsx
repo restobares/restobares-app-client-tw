@@ -1,82 +1,53 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-import { addOrderToCart } from "../../../redux/actions";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from "react-router-dom";
+import { getOrders, postOrder } from "../../../redux/actions";
+import { sockets } from "../../../redux/actions";
 
 const CommentModal = ({ showModal, setShowModal }) => {
 
 
 	const {cart}= useSelector((state)=>state);
+  const dispatch = useDispatch();
 
-     const dispatch = useDispatch();
+  const [comment, setComment] = useState ('');
 
-    const [input, setInput] = useState ({
-        comment: ''
-    })
-
-
-    const pedir = () => {
-      dispatch(addOrderToCart());
-    };
-    
-    const changeModal = () => {
-        setShowModal((prev) => !prev);
-        pedir()
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-      };
-
-    const handleChange = (e) => {
-        setInput({
-        	...input,
-        	[e.target.name]: e.target.value
-    	})
-    }
+  const { idResto, idTable } = useParams();
   
-    
+  const changeModal = async (e) => {
+    e.preventDefault();
+    setShowModal((prev) => !prev);
+    var orderToPost = {
+      products: cart.preOrderCart,
+      comments: comment 
+    }
+    await dispatch(postOrder(orderToPost, idResto, idTable));
+    sockets.joinResto(idResto);
+    sockets.tableSend();
+    dispatch(getOrders(idResto, idTable));
+  };
+
 
   return (
     <>
       {showModal ? (
-        <div id="modal-component-container" className="fixed inset-0">
-          <div className="modal-flex-container flex items-end justify-center  pt-4 px-4 pb-60 text-center sm:block sm:p-0">
-            <div className="modal-bg-container fixed inset-0 bg-gray-700 bg-opacity-75 pt-60">
-              <div
-                id="modal-container"
-                className="modal-container inline-block align-bottom rounded-lg overflow-hidden transform transition-all sm:my-8 w-full"
-              >
-                <div className="modal-wrapper sm:p-6 sm:pb-4">
-                  <div className="modal-wrapper-flex sm:flex sm:items-start">
-                    <div className="p-2 mt-10 inline-block">
-                      <div className="w-60 h-max bg-pink-700 rounded-lg border-2 border-pink-900 sm:w-auto">
-                        <h1 className="pt-5"></h1>
-                        <h1 className="modal-content text-2xl text-red-50 font-bold"></h1>
-                        <h2>Desea añadir un comentario?</h2>
-                                             
-                        
-                        <form onSubmit={handleSubmit}>
-                            <label>
-                                <textarea onChange={(e)=>handleChange(e)} className="bg-pink-500 mt-4" type="text" name="comment" />
-                            </label>
-                            <button onClick={changeModal} 
-                                className="bg-red-500 rounded-xl px-4 mt-4">Enviar</button>
-                            </form>
-
-                        <button
-                          onClick={changeModal}
-                          className="bg-red-500 rounded-xl px-4 my-4"
-                        >
-                          No
-                        </button>
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="fixed inset-0 bg-black bg-opacity-40 pt-60">
+      <div className="relative w-8/12 mx-auto h-72 bg-pink-800  border-2 border-pink-900 rounded-3xl">
+        
+        <h1 className='my-4 text-white'>Would you like to add a comment?</h1>
+      <div className="mx-4">
+        <label>
+          <textarea onChange={(e)=> setComment(e.target.value)} className="bg-pink-900 w-full h-36 rounded-xl text-white text-xl px-1.5 resize-none" maxLength="100"></textarea>
+        </label>
+        <button onClick={(e) => changeModal(e)}className="float-left bg-pink-900 text-white rounded-xl ml-2 px-4 mt-2 ">
+          Send
+        </button>
+        <button onClick={(e) => changeModal(e)} className="float-right bg-pink-900 text-white rounded-xl mr-2 px-4 mt-2 ">
+          No
+        </button>
+      </div>
+        </div>  
+      </div>
       ) : null}
     </>
   );

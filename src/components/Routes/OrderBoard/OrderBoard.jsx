@@ -1,51 +1,56 @@
-import React, { Fragment, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom';
-import { getLabels, getCategories, getMenu } from '../../../redux/actions';
-import FilterBar from "../../ChildrenComponents/FilterBar"
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getMenu, getLabels, getCategories } from "../../../redux/actions";
 
 //componente platillo
-import OrderCard from '../../AuxiliarComponents/OrderCard';
-import OrderBar from '../../ChildrenComponents/OrderBar';
-import SideBar from '../../ChildrenComponents/SideBar';
+import OrderCard from "../../AuxiliarComponents/OrderCard";
+import MenuPayBar from "../../ChildrenComponents/MenuPayBar";
+import OrderBar from "../../ChildrenComponents/OrderBar";
+import SideBar from "../../ChildrenComponents/SideBar";
+import WaiterCallButton from "../../ChildrenComponents/WaiterCallButton";
 
-const idTable = 1;
-const idResto = 1;
-
-
-export default function OrderBoard (/* props: {name, description, price, img} */) {
-
-  const { idTable } = useParams();
+export default function OrderBoard() {
+  const { idResto, idTable } = useParams();
 
   const dispatch = useDispatch();
+
   const menu = useSelector((state) => state.menus.menu)
+  const hidden = useSelector((state) => state.sideBar.sideBar)
 
   useEffect(() => {
-    dispatch(getLabels())
+      dispatch(getLabels())
     dispatch(getCategories())
-    dispatch(getMenu())
-  }, [dispatch])
+    dispatch(getMenu(idResto, idTable))
+  }, [dispatch, idResto, idTable])
 
+
+    const handleHidden = e => {
+      e.preventDefault();
+      hidden &&
+      dispatch({
+        type: "HIDE_SIDEBAR",
+        payload: !hidden
+      })
+    }
     return (
-      <div className='pt-12'>
+      <div className='pt-12 flex flex-col'>
         <OrderBar/>
-        <div className='fixed min-h-screen right-0 left-0 flex  '>
+        <div className='fixed min-h-screen right-0 left-0 flex '>
             <SideBar/>
-            <div className='w-full pb-16 mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto '>
-            {menu.map((platillo) =>(
+            <div className='w-full pb-32 mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto '  onClick={e => handleHidden(e)}>
+            {menu && menu.map((product) =>(
             <OrderCard
-              product_id={platillo.product_id}
-              key={platillo.product_id}
-              platillo={platillo}
-              platillos={menu}  
+              product_id={product.id}
+              key={product.id}
+              product={product}
             />
+
             ))}
-            </div>
         </div>
+        <MenuPayBar/>
       </div>
-	)
-
+    </div>
+  );
 }
-

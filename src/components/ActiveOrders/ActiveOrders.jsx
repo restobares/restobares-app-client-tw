@@ -1,65 +1,70 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { getOrdersFeed, sockets } from '../../redux/actions';
 
 const ActiveOrders = () => {
+  const dispatch = useDispatch();
+  const { idResto } = useParams();
+  let tokenStaff = Cookies.get("token-staff");
+  let tokenAdmin = Cookies.get("token-admin");
+  const ordersFeed = useSelector((state) => state.ordersFeed);
+  //console.log(ordersFeed);
   
-  const dummyOrders = [
-    {
-      orderId: 1,
-      tableNumber: 2,
-      orderTime: "15:48",
-      // this has to have name and quatity of the orders
-      orderItems: [
-        {
-          name: "hamburgesa de pollo",
-          quantity: 2
-        },
-        {
-          name: "ensalada",
-          quantity: 1
-        }
-      ],
-      comments: "la ensalada sin aceite de oliva"
-    },
-    {
-      orderId: 2,
-      tableNumber: 4,
-      orderTime: "15:50",
-      orderItems: [
-        {
-          name: "budin",
-          quantity: 1
-        }
-      ],
-      comments: ""
+  useEffect(() => {
+		sockets.joinResto(idResto);
+    if (tokenStaff) {
+      dispatch(getOrdersFeed(idResto, tokenStaff));
     }
-  ];
+    if (!tokenStaff && tokenAdmin) {
+      dispatch(getOrdersFeed(idResto, tokenAdmin));
+    }
+		// Get tables when some diner does something
+		sockets.staffListen(() => {
+    	if (tokenStaff) {
+    	  dispatch(getOrdersFeed(idResto, tokenStaff));
+    	}
+    	if (!tokenStaff && tokenAdmin) {
+    	  dispatch(getOrdersFeed(idResto, tokenAdmin));
+    	}
+    });
+  }, [dispatch, idResto, tokenStaff, tokenAdmin]);
+
   
+
   return (
-    <div className="w-10/12 md:w-8/12 lg:7/12 mx-auto relative py-20">
-      {dummyOrders.map((order) => {
+    <div className="md:w-8/12 lg:7/12 mx-auto relative bg-gray-200 w-full">
+      {ordersFeed.length > 0 && ordersFeed.map((order) => {
         return (
-          <div className="px-6 py-4 bg-blue-600 text-white rounded-lg mb-5">
-            <h1 className="text-lg">Mesa: {order.tableNumber}</h1>
-            {order.orderItems.map((item) => {
-              return (
-                <div className="grid grid-cols-2 text-xl">
-                  <h1>{item.name}</h1>
-                  <h1>{item.quantity}</h1>
+          <div key={order}>
+            <div className=" lg:px-6 py-4 bg-pink-700 text-white rounded-lg mb-5 capitalize">
+              <h1 className="text-lg">Table: {order.idTable}</h1>
+
+              <h1 className="text-left pl-4 text-xl md:text-3xl">Order:</h1>
+              {order.currentOrder.products.map((item) => {
+                return (
+                    <div className="w-fit bg-pink-500 mx-20 my-2 rounded-lg md:rounded-full grid grid-flow-col text-base lg:text-2xl">
+                      <h1 className="text-left px-2 md:pl-5">{item.productName}:</h1>
+                      <h1 className="text-right px-2 md:px-5">{item.quantity}</h1>
+                    </div>
+                );
+              })}
+              <div></div>
+              {order.currentOrder.comments !== "" && (
+                <div>
+                  <h4 className="text-left pl-4 text-xl md:text-3xl mt-5">Comments:</h4>
+                    <div className="text-xl bg-gray-100 bg-opacity-20 mx-2 mt-2 rounded-xl md:text-2xl">
+                      <h4 className="text-center">{order.currentOrder.comments.split("<br>").join('')}</h4>
+                    </div>
                 </div>
-              )
-            })}
-            {order.comments !== "" &&
-            <>
-              <h1>Comentarios</h1>
-              <h1>{order.comments}</h1>
-            </>
-            }
-            
+              )}
+            </div>
           </div>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default ActiveOrders
+export default ActiveOrders;

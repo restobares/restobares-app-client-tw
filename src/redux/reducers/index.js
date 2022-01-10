@@ -7,6 +7,17 @@ import tables from "./tables";
 import user from "./user";
 import addOrder from "./addOrder";
 import cart from "./cart";
+import sideBar from "./sideBar";
+import cartOrder from "./cartOrder";
+import mercadoPago from "./mercadoPago";
+import token from "./token";
+import ordersFeed from "./ordersFeed";
+import activeComponent from "./activeComponent";
+import qrCode from "./qrCode";
+import account from "./account";
+import feedback from "./feedback";
+import revenue from "./revenue";
+import mailConfirmation from "./mailConfirmation";
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
@@ -17,5 +28,16 @@ export default combineReducers({
   tables,
   user,
   addOrder,
-  cart
+  cart,
+  sideBar,
+  cartOrder,
+  mercadoPago,
+  token,
+  ordersFeed,
+  activeComponent,
+  qrCode,
+  account,
+  feedback,
+  revenue,
+  mailConfirmation,
 });
