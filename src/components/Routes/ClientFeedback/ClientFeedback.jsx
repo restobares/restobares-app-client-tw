@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getOrders, sockets } from "../../../redux/actions";
 import FeedbackModal from "./FeedbackModal";
 
 const ClientFeedback = () => {
   const [showModal, setShowModal] = useState(true);
-
-  
+  const dispatch = useDispatch();
+  const { idResto, idTable } = useParams();
   const onClose = () => {
     window.opener = null;
     window.open(`/`, "_self", "");
     window.close();
   };
+
+  useEffect(() => {
+    sockets.joinResto(idResto);
+    dispatch(getOrders(idResto, idTable));
+		sockets.tableSend();
+  }, [idResto, idTable])
  
 
   const bgimg =
