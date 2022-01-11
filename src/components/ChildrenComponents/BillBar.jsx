@@ -40,8 +40,8 @@ const BillBar = () => {
 			</Link>
 			<div className='h-12 mr-2'>
 			<div className='float-right pill w-9/12'>
-				<p className='inline-block float-left font-semibold text-sm mt-1 ml-8'> {'Ordered: $'}{prevPrice} </p>
-				<p className='inline-block float-right font-semibold text-sm mt-1 mr-8'> {'Total: $'}{totalPrice}</p>
+				<p className='inline-block float-left font-semibold text-sm mt-1 ml-4'> {'Ordered: $'}{prevPrice} </p>
+				<p className='inline-block float-right font-semibold text-sm mt-1 mr-4'> {'Total: $'}{totalPrice}</p>
 			</div>
 			</div>
 		</div>
