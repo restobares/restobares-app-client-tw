@@ -42,34 +42,37 @@ const PayBoard = () => {
 
 
   const handlePayWithCard = async () => {
+    sockets.joinResto(idResto);
     let json = await dispatch(postOrderToMP(idResto, idTable, tip));
+		sockets.tableSend();
     window.location.href = `${json.payload.response.init_point}`
   }
   
   useEffect(() => {
-    if (totalPrice > 0) {
-      sockets.joinResto(idResto);
-      sockets.tableListen( ()=> {
-      	dispatch(getOrders(idResto, idTable));
-      });
-    } 
-    if (totalPrice === 0) {
-      async function paymentAlert() {
-        await Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Payment Successful',
-          showConfirmButton: false,
-          timer: 3000
-        })
-        // aca usar navigate a ruta feedback
-      navigate(`/resto/${idResto}/table/${idTable}/feedback`)
-      }
-      paymentAlert();  
+    dispatch(getOrders(idResto, idTable));
+    // if (totalPrice > 0) {
+    //   sockets.joinResto(idResto);
+    //   sockets.tableListen( ()=> {
+    //   	dispatch(getOrders(idResto, idTable));
+    //   });
+    // } 
+    // if (totalPrice === 0) {
+    //   async function paymentAlert() {
+    //     await Swal.fire({
+    //       position: 'center',
+    //       icon: 'success',
+    //       title: 'Payment Successful',
+    //       showConfirmButton: false,
+    //       timer: 3000
+    //     })
+    //     // aca usar navigate a ruta feedback
+    //   navigate(`/resto/${idResto}/table/${idTable}/feedback`)
+    //   }
+    //   paymentAlert();  
       
-    }
+    // }
     
-  }, [dispatch, navigate, idTable, idResto, totalPrice, cart]);
+  }, [idResto, idTable]);
 
 
   return (

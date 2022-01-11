@@ -10,9 +10,9 @@ import dingbellLogo from "../../img/dingbell_white.png";
 
 const Register = () => {
   const [passwordShown, setPasswordShown] = useState(false);
-  const [passwordRepShown, setPasswordRepShown] = useState(false);
+  // const [passwordRepShown, setPasswordRepShown] = useState(false);
   const [passwordStaffShown, setPasswordStaffShown] = useState(false);
-  const [passwordStaffRepShown, setPasswordStaffRepShown] = useState(false);
+  // const [passwordStaffRepShown, setPasswordStaffRepShown] = useState(false);
 
   const dispatch = useDispatch();
   const bgimg =
@@ -178,19 +178,19 @@ const Register = () => {
     setPasswordShown(!passwordShown);
   };
 
-  const toggleRepPassword = (e) => {
-    e.preventDefault();
-    setPasswordRepShown(!passwordRepShown);
-  };
+  // const toggleRepPassword = (e) => {
+  //   e.preventDefault();
+  //   setPasswordRepShown(!passwordRepShown);
+  // };
   const toggleStaffPassword = (e) => {
     e.preventDefault();
     setPasswordStaffShown(!passwordStaffShown);
   };
 
-  const toggleStaffRepPassword = (e) => {
-    e.preventDefault();
-    setPasswordStaffRepShown(!passwordStaffRepShown);
-  };
+  // const toggleStaffRepPassword = (e) => {
+  //   e.preventDefault();
+  //   setPasswordStaffRepShown(!passwordStaffRepShown);
+  // };
 
   return (
     <div className="min-h-screen  flex bg-gray-bg1"

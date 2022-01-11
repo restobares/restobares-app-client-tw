@@ -39,8 +39,8 @@ const EditMenu = () => {
     }
   };
 
-  const handleDeleteProduct = async (idResto, idProduct, token) => {
-    await dispatch(deleteProduct(idResto, idProduct, token));
+  const handleDeleteProduct = async (idProduct) => {
+    await dispatch(deleteProduct(idResto, idProduct, tokenAdmin));
     dispatch(getMenu(idResto, 1));
   };
 

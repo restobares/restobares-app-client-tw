@@ -246,7 +246,7 @@ export default function Tables() {
                           }>
                           Food in table
                       		</button>)
-                      	: (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-gray-600 rounded-md text-white" 
+                      	: (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-gray-400 rounded-md text-white cursor-not-allowed" 
                           disabled={!idStaffInput && !el.idStaff} onClick={(e) =>
                             handlePutEating(e, el.idStaff || idStaffInput)
                           }>
