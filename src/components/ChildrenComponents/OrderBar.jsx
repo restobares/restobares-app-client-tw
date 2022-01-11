@@ -20,8 +20,9 @@ const OrderBar = () => {
   return (
     <div className='nav-bar'>
         <div className=''>
-        <button className="inline-block float-left button ml-2 " onClick={event =>  handleSideBar(event)}>
-        <img src="https://img.icons8.com/material-outlined/48/ffffff/menu--v1.png"  width="24" alt='' className='ml-2  h-8'/>
+        <button className={[`inline-block float-left button ml-2 `,hidden && " bg-pink-200 bg-opacity-20 "]} onClick={event =>  handleSideBar(event)}>
+        <img src="https://img.icons8.com/material-outlined/48/ffffff/menu--v1.png"  width="24" alt='' 
+              className={`ml-2  h-8 `}/>
         </button>
         <Search/>
         <Link  to={`/resto/${idResto}/table/${idTable}/order`}> 
