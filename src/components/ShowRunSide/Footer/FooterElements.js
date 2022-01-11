@@ -55,11 +55,12 @@ export const FoooterLinkItems = styled.div`
 export const FooterLinkTitle = styled.h1`
   font-size: 16px;
   margin-bottom: 16px;
+  cursor: default;
 `;
 
 export const FooterLink = styled.div`
   color: #fff;
-  cursor: pointer;
+  cursor: default;
   text-decoration: none;
   margin-bottom: 0%.5rem;
   font-size: 14px;

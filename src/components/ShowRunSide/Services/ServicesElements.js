@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ServicesContainer = styled.div`
-    height: 700px;
+    height: 630px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,12 +41,18 @@ export const ServicesCard = styled.div`
     border-radius: 10px;
     max-height: 340px;
     padding: 30px;
+    cursor: default;
     box-shadow: 0 1px 3px rgba(0,0,0,0,2);
     transition: all 0.2s ease-in-out;
     &:hover{
         transform: scale(1.02);
         transition: all 0.2s ease-in-out;
-        cursor: pointer;
+        /* cursor: pointer; */
+    }
+    @media screen and (max-width: 1000px){
+        margin-top: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 `;
 

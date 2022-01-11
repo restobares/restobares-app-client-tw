@@ -24,8 +24,10 @@ const CreatedBy = () => {
     return (
             <ServicesContainer id='createdby'>
                 <ServicesH1>Created By</ServicesH1>
-                <ServicesP2>This app is a project created by eight partners in a month for Henry Bootcamp. It consists 
+                <ServicesP2><p className='mx-4'>
+                  This app is a project created by eight partners in a month for Henry Bootcamp. It consists 
                     in a interactive menu which can be scanned from QR code streamlining the ordering services in restaurants. 
+                    </p>
                 </ServicesP2>
                 <ServicesWrapper>
                     <ServicesCard>
