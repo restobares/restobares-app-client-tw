@@ -18,7 +18,7 @@ const MenuPayBar = () => {
 
   return (
     <div className="h-12 w-full bg-pink-800 flex text-xl fixed bottom-0  ">
-      <h1 className="float-left text-white text-left  ml-2 text-sm mt-4 w-5/6">
+      <h1 className="float-left text-white text-left  ml-2 text-sm mt-1 w-5/6">
         New Consumption ${totalPrice}{" "}
       </h1>
       <WaiterCallButton/>

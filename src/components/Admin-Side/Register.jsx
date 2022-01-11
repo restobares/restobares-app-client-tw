@@ -1,6 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch} from "react-redux";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { inputValidatorRegister, register } from "../../redux/actions";
 import IconButton from "@material-ui/core/IconButton";
@@ -192,6 +192,20 @@ const Register = () => {
   //   setPasswordStaffRepShown(!passwordStaffRepShown);
   // };
 
+  const WidthMedium = 768;
+
+  // RESIZE WINDOW LOGIC
+  const [width, setWidth] = useState(window.innerWidth)
+  useEffect(() => {
+  const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize);
+     
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [dispatch,width])
+
   return (
     <div className="min-h-screen  flex bg-gray-bg1"
       style={{
@@ -199,10 +213,14 @@ const Register = () => {
         backgroundSize: "cover",
       }}
     >
-      <span className="text-sm text-white mb-1 mt-1">
-      <img className="mx-5 invisible md:visible"  src={dingbellLogo} width="40" alt="" />
-      <h1 className=" text-lg font-bold">DingBell</h1>
-      </span>
+     {width > WidthMedium &&
+        <Link to="/">
+              <div className="absolute flex text-sm text-white mb-1 mt-1">
+              <img className="mx-auto"  src={dingbellLogo} width="40" alt="" />
+                <h1 className="my-auto text-lg font-roboto font-semibold">DingBell</h1>
+                </div>
+              </Link>
+     }
       <div className="inline-block mx-auto my-auto justify-items-center ">
         <div className=" mx-2 bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16">
           <h1 className="m-5 text-lg font-bold">Restaurant Register 📝</h1>

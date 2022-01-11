@@ -64,10 +64,12 @@ const Login = () => {
             backgroundImage: `url(${bgimg})`,
             backgroundSize: "cover", 
           }} >
-            <span className="text-sm text-white mb-1 mt-1">
-            <img className="mx-5 invisible md:visible"  src={dingbellLogo} width="40" alt="" />
-            <h1 className=" text-lg font-bold">DingBell</h1>
-            </span>
+           <Link to="/">
+          <div className="absolute flex text-sm text-white mb-1 mt-1">
+           <img className="mx-auto"  src={dingbellLogo} width="40" alt="" />
+            <h1 className="my-auto text-lg font-roboto font-semibold">DingBell</h1>
+            </div>
+           </Link> 
             <div className='inline-block mx-auto my-auto justify-items-center '>
 
             <div className=' mx-2 bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>

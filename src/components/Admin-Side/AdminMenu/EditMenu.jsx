@@ -11,6 +11,7 @@ import {
   putAvailableProduct,
 } from "../../../redux/actions";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 
 const EditMenu = () => {
   const dispatch = useDispatch();
@@ -40,8 +41,26 @@ const EditMenu = () => {
   };
 
   const handleDeleteProduct = async (idProduct) => {
-    await dispatch(deleteProduct(idResto, idProduct, tokenAdmin));
-    dispatch(getMenu(idResto, 1));
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      allowOutsideClick: false,
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        await dispatch(deleteProduct(idResto, idProduct, tokenAdmin));
+        dispatch(getMenu(idResto, 1));
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   };
 
   useEffect(() => {
