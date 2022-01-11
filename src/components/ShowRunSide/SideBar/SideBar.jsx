@@ -26,7 +26,7 @@ const SideBar = ({ isOpen, toggle }) => {
             duration={1000}
             spy={true}
             exact="true"
-            offset={40}
+            offset={10}
             activeClass="active"
           >
             signup
@@ -39,7 +39,7 @@ const SideBar = ({ isOpen, toggle }) => {
             duration={1000}
             spy={true}
             exact="true"
-            offset={40}
+            offset={70}
             activeClass="active"
           >
             services

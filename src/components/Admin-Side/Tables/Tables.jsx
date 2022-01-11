@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import Moment from "moment";
 import { getTables } from "../../../redux/actions";
 import ChangeOrder from "./ChangeOrder";
+import CallButtonStaff from "./CallButtonStaff";
 import {
   deleteProductFromTable,
   putTableEating,
@@ -19,7 +20,7 @@ export default function Tables() {
   let tokenStaff = Cookies.get("token-staff");
   let tokenAdmin = Cookies.get("token-admin");
   const tables = useSelector((state) => state.tables);
-  const [idStaffInput, setIdStaffInput] = useState("");
+  const [idStaffInput, setIdStaffInput] = useState(0);
   const [hover, setHover] = useState("null");
 
   useEffect(() => {
@@ -120,6 +121,20 @@ export default function Tables() {
       : setDetailTable(Number(e.target.name));
   };
 
+  const handleIdStaff = (e) => {
+    let input = e.target.value * 1
+    let inputString = input.toString();
+    if ( inputString.length === 0 || inputString.length > 9 ) {
+      e.target.value = idStaffInput;
+      //return Swal.fire({
+      //  icon: "error",
+      //  title: "Oops...",
+      //  text: "Be sure to check your Staff ID.",
+      //});
+    }
+		setIdStaffInput(e.target.value);
+  }
+
   const showOption = () => {
     return setHover(true);
   };
@@ -135,7 +150,7 @@ export default function Tables() {
       {tables.map((el) => (
         <div
           key={el.tableId}
-          className="w-full border-2 border-gray-400 rounded-xl flex flex-col mt-2  text-sm  font-semibold  "
+          className={el.calling ? "w-full border-2 border-yellow-400 bg-yellow-200 rounded-xl flex flex-col mt-2  text-sm  font-semibold" : "w-full border-2 border-gray-400 rounded-xl flex flex-col mt-2  text-sm  font-semibold"}
         >
           <div className="h-8 w-full  flex flex-row  ">
             <p className="w-2/12 mt-1 font-semibold"> {Number(el.tableId)} </p>
@@ -168,6 +183,7 @@ export default function Tables() {
                 alt=""
                 width="12"
               />
+              {el.calling ? <CallButtonStaff idTable={el.tableId} /> : null}
             </div>
           </div>
           {detailTable === Number(el.tableId) && (
@@ -209,23 +225,33 @@ export default function Tables() {
                         </div>
                       ))}
                       {!el.idStaff && (
-                        <div>
-                          <input
+                        <div className="mt-2">
+                          <label>Enter your Staff ID (Numbers Only): </label>
+                          <input className="rounded-md text-center ml-2 w-28"
                             type="number"
                             min="0"
                             maxLength="9"
                             name=""
                             id=""
-                            onChange={(e) => setIdStaffInput(e.target.value)}
+              							oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
+              							pattern="^[0-9]+"
+                            onChange={handleIdStaff}
                           />
                         </div>
                       )}
-                      <button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-600 rounded-md text-white" 
+                      {idStaffInput || idStaffInput.toString().length > 9 
+                      	? (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-600 rounded-md text-white" 
                           disabled={!idStaffInput && !el.idStaff} onClick={(e) =>
                             handlePutEating(e, el.idStaff || idStaffInput)
                           }>
                           Food in table
-                      </button>
+                      		</button>)
+                      	: (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-gray-400 rounded-md text-white cursor-not-allowed" 
+                          disabled={!idStaffInput && !el.idStaff} onClick={(e) =>
+                            handlePutEating(e, el.idStaff || idStaffInput)
+                          }>
+                          Food in table
+                      		</button>)}
                     </div>
                   )}
                   {el.ordered.length > 0 &&
@@ -254,8 +280,8 @@ export default function Tables() {
                       {el.ordered.map((el) => (
                         <button
                         className="w-full font-semibold"
-                        onMouseEnter={() => setHover(showOption)}
-                        onMouseLeave={() => setHover(null)}
+                        // onMouseEnter={() => setHover(showOption)}
+                        // onMouseLeave={() => setHover(null)}
                       >
                         <div
                           key={el.productId}
@@ -274,18 +300,12 @@ export default function Tables() {
                           <p className="inline-block float-left ml-2 w-2/12 truncate mt-1">
                             {Moment(el.time).format("HH:mm:ss")}
                           </p>
-                          <div 
-                          className={
-                            hover ?
-                            "visible" :
-                            "invisible"
-                          }
-                          >
-                            <div className="float-right h-6 mr-1 w-6 rounded-full mt-1 ">
+                          <div className="">
+                            <div className="float-right h-6  w-6 rounded-full mt-1 ">
                               <input
                                 type="image"
                                 src="https://img.icons8.com/pastel-glyph/64/be185d/trash.png"
-                                className="mt-1 inline-block text-left ml-1 pr-1 text-md h-4"
+                                className="mt-1 inline-block text-left  pr-1 text-md h-4"
                                 onClick={() =>
                                   handleDelete(el.productId, el.quantity)
                                 }
@@ -293,12 +313,12 @@ export default function Tables() {
                               />
                             </div>
                             <button
-                              className="px-1 mt-1 inline-block float-right bg-pink-600 text-white rounded-md align-middle mr-28 -ml-3"
+                              className="px-1 mt-1 inline-block float-right bg-pink-600 text-white rounded-md align-middle mr-28 ml-3"
                               onClick={() => handleDelete(el.productId, 1)}
                             >
                               one
                             </button>
-                            <p className="inline-block float-right ml-4 w-1/12 truncate mt-1 text-pink-600">
+                            <p className="inline-block float-right ml-1  truncate mt-1 text-pink-600">
                               Delete:
                             </p>
                           </div>
@@ -308,7 +328,7 @@ export default function Tables() {
 
                       <button
                         onClick={() => handleCashPayment(el.idStaff)}
-                        className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-700 rounded-md text-white"
+                        className={"inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-700 rounded-md text-white"}
                         disabled={tables[detailTable - 1].state !== "pay_cash"}
                       >
                         Confirm Pay

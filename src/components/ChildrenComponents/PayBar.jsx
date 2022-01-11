@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import CommentModal from "../Routes/BillBoard/CommentModal";
+import Swal from "sweetalert2";
 
 const PayBar = () => {
   const { cart } = useSelector((state) => state);
@@ -10,7 +11,15 @@ const PayBar = () => {
 
 
   const openModal = () => {
-    setShowModal((prev) => !prev);
+    if (cart.preOrderCart.length <= 0) {
+    	Swal.fire({
+    	  position: "center",
+    	  icon: "error",
+    	  title: "You must select at least one product.",
+    	  showConfirmButton: false,
+    	  timer: 3000,
+    	});
+    } else setShowModal((prev) => !prev);
   };
 
   var totalPrice = 0;
@@ -42,7 +51,10 @@ const PayBar = () => {
       
       }
       <button
-        className="float-right bg-pink-900 border-2 border-pink-500 text-white mt-2 w-16 rounded-xl mr-2"
+        className={ cart.preOrderCart.length > 0
+        	?"float-right bg-pink-900 border-2 border-pink-500 text-white mt-2 w-16 rounded-xl mr-2"
+        	:"float-right bg-gray-500 text-white border-2 border-grey-900 mt-2 w-16 rounded-xl mr-2"}
+        disabled={cart.preOrderCart <= 0}
         onClick={openModal}
       >
         {" "}

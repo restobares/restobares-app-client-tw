@@ -51,17 +51,24 @@ export const HeroContent = styled.div`
 `;
 
 export const HeroH1 = styled.h1`
-    color: #fff;
+    color: #000;
+    font-style: italic;
+    opacity: 0.8;
+    -webkit-text-stroke: 2px white;
     font-size: 48px;
     text-align: center;
     margin-bottom: 24px;
     padding-top: 200px;
     line-height: 1.1;
-    font-weight: 600;
+    font-weight: 800;
+<<<<<<< HEAD
 @media screen and (max-width: 480px){
+=======
+    @media screen and (max-width: 480px){
+>>>>>>> acb9e4a081e004fba880caabd46236ba60b5eab7
     font-size: 32px
-}
-`;
+}`
+;
 
 export const HeroP = styled.p`
   margin-top: 24px;

@@ -17,7 +17,7 @@ const EditMenu = () => {
   const { idResto } = useParams();
   const tokenAdmin = Cookies.get("token-admin");
   const tokenStaff = Cookies.get("token-staff");
-  const menu = useSelector((state) => state.menus.menu);
+  const menu = useSelector((state) => state.menus.menuAdmin);
   const logoutCode = Cookies.get("logout-code");
 
   const navigate = useNavigate();
@@ -39,8 +39,8 @@ const EditMenu = () => {
     }
   };
 
-  const handleDeleteProduct = async (idResto, idProduct, token) => {
-    await dispatch(deleteProduct(idResto, idProduct, token));
+  const handleDeleteProduct = async (idProduct) => {
+    await dispatch(deleteProduct(idResto, idProduct, tokenAdmin));
     dispatch(getMenu(idResto, 1));
   };
 
@@ -124,7 +124,7 @@ const EditMenu = () => {
           return (
             <div
               key={product.id}
-              className={`flex py-2 mx-2  mt-2 border-2 rounded-md shadow-lg border-opacity-50
+              className={`flex pt-2 pb-4 mx-2  mt-2 border-2 rounded-md shadow-lg border-opacity-50
                             ${
                               !product.available
                                 ? "border-gray-700 bg-gray-200"

@@ -10,9 +10,9 @@ import dingbellLogo from "../../img/dingbell_white.png";
 
 const Register = () => {
   const [passwordShown, setPasswordShown] = useState(false);
-  const [passwordRepShown, setPasswordRepShown] = useState(false);
+  // const [passwordRepShown, setPasswordRepShown] = useState(false);
   const [passwordStaffShown, setPasswordStaffShown] = useState(false);
-  const [passwordStaffRepShown, setPasswordStaffRepShown] = useState(false);
+  // const [passwordStaffRepShown, setPasswordStaffRepShown] = useState(false);
 
   const dispatch = useDispatch();
   const bgimg =
@@ -115,18 +115,18 @@ const Register = () => {
   }
 
   const alert = async (e) => {
-    if (
-      input.passAdmin !== input.passAdminRepeat ||
-      input.passStaff !== input.passStaffRepeat
-    ) {
-      e.preventDefault();
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: " Password and Repeat Password must be equal",
-      });
-    }
-    else if  (input.passAdmin === input.passStaff) {
+    //if (
+    //  input.passAdmin !== input.passAdminRepeat ||
+    //  input.passStaff !== input.passStaffRepeat
+    //) {
+    //  e.preventDefault();
+    //  Swal.fire({
+    //    icon: "error",
+    //    title: "Oops...",
+    //    text: " Password and Repeat Password must be equal",
+    //  });
+    //}
+    if  (input.passAdmin === input.passStaff) {
       e.preventDefault();
       Swal.fire({
         icon: "error",
@@ -178,19 +178,19 @@ const Register = () => {
     setPasswordShown(!passwordShown);
   };
 
-  const toggleRepPassword = (e) => {
-    e.preventDefault();
-    setPasswordRepShown(!passwordRepShown);
-  };
+  // const toggleRepPassword = (e) => {
+  //   e.preventDefault();
+  //   setPasswordRepShown(!passwordRepShown);
+  // };
   const toggleStaffPassword = (e) => {
     e.preventDefault();
     setPasswordStaffShown(!passwordStaffShown);
   };
 
-  const toggleStaffRepPassword = (e) => {
-    e.preventDefault();
-    setPasswordStaffRepShown(!passwordStaffRepShown);
-  };
+  // const toggleStaffRepPassword = (e) => {
+  //   e.preventDefault();
+  //   setPasswordStaffRepShown(!passwordStaffRepShown);
+  // };
 
   return (
     <div className="min-h-screen  flex bg-gray-bg1"
@@ -228,55 +228,64 @@ const Register = () => {
               onChange={(e) => handleInputChanges(e)}
             />
 
-            <input
-              id="password"
-              name="passAdmin"
-              type={passwordShown ? "text" : "password"}
-              className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-              placeholder="Your Admin-Password"
-              value={input.passAdmin}
-              onChange={(e) => handleInputChanges(e)}
-            />
-            <IconButton onClick={(e) => togglePassword(e)}>
-              {passwordShown ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-            <input
-              type={passwordRepShown ? "text" : "password"}
-              id="password"
-              name="passAdminRepeat"
-              className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-              placeholder="Repeat Admin-Password"
-              value={input.passAdminRepeat}
-              onChange={(e) => handleInputChanges(e)}
-            />
-            <IconButton onClick={(e) => toggleRepPassword(e)}>
-              {passwordRepShown ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
-            <input
-              type={passwordStaffShown ? "text" : "password"}
-              id="password"
-              name="passStaff"
-              className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-              placeholder="Your Staff-Password"
-              value={input.passStaff}
-              onChange={(e) => handleInputChanges(e)}
-            />
-            <IconButton onClick={(e) => toggleStaffPassword(e)}>
-              {passwordStaffShown ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
+            <div className="flex">
+            	<input
+            	  id="password"
+            	  name="passAdmin"
+            	  type={passwordShown ? "text" : "password"}
+            	  className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+            	  placeholder="Your Admin-Password"
+            	  value={input.passAdmin}
+            	  onChange={(e) => handleInputChanges(e)}
+            	/>
+            	<IconButton className="inline-block h-10 w-10 mt-2" onClick={(e) => togglePassword(e)}>
+            	  {passwordShown ? <Visibility /> : <VisibilityOff />}
+            	</IconButton>
+            </div>
+            {/*<div className="flex">
+            	<input
+            	  type={passwordRepShown ? "text" : "password"}
+            	  id="password"
+            	  name="passAdminRepeat"
+            	  className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+            	  placeholder="Repeat Admin-Password"
+            	  value={input.passAdminRepeat}
+            	  onChange={(e) => handleInputChanges(e)}
+            	/>
+            	<IconButton className="inline-block h-10 w-10 mt-2" onClick={(e) => toggleRepPassword(e)}>
+            	  {passwordRepShown ? <Visibility /> : <VisibilityOff />}
+            	</IconButton>
+            </div>*/}
 
-            <input
-              type={passwordStaffRepShown ? "text" : "password"}
-              id="password"
-              name="passStaffRepeat"
-              className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
-              placeholder="Repeat Staff-Password"
-              value={input.passStaffRepeat}
-              onChange={(e) => handleInputChanges(e)}
-            />
-            <IconButton onClick={(e) => toggleStaffRepPassword(e)}>
-              {passwordStaffRepShown ? <Visibility /> : <VisibilityOff />}
-            </IconButton>
+            <div className="flex">
+            	<input
+            	  type={passwordStaffShown ? "text" : "password"}
+            	  id="password"
+            	  name="passStaff"
+            	  className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+            	  placeholder="Your Staff-Password"
+            	  value={input.passStaff}
+            	  onChange={(e) => handleInputChanges(e)}
+            	/>
+            	<IconButton className="inline-block h-10 w-10 mt-2" onClick={(e) => toggleStaffPassword(e)}>
+            	  {passwordStaffShown ? <Visibility /> : <VisibilityOff />}
+            	</IconButton>
+            </div>
+
+            {/*<div className="flex">
+            	<input
+            	  type={passwordStaffRepShown ? "text" : "password"}
+            	  id="password"
+            	  name="passStaffRepeat"
+            	  className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
+            	  placeholder="Repeat Staff-Password"
+            	  value={input.passStaffRepeat}
+            	  onChange={(e) => handleInputChanges(e)}
+            	/>
+            	<IconButton className="inline-block h-10 w-10 mt-2" onClick={(e) => toggleStaffRepPassword(e)}>
+            	  {passwordStaffRepShown ? <Visibility /> : <VisibilityOff />}
+            	</IconButton>
+            </div>*/}
             <input
               type="number"
               id="tables"

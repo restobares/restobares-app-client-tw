@@ -76,7 +76,7 @@ const Analytics = () => {
     ],
   };
   const revenueData = {
-    labels: [" -100", " +100 & -500", "+500 & -1000", " +1000"],
+    labels: ["$0 - $100", "$100 - $500", "$500 - $1000", " +$1000"],
     datasets: [
       {
         label: "My First Dataset",
@@ -317,7 +317,7 @@ const Analytics = () => {
           <Doughnut data={feedbackData} />
         </div>
         <div className=" w-10/12 m-auto md:w-1/3 xl:w-1/3 flex-shrink-0 mr-auto md:ml-12 xl:ml-20">
-          <h5 className="font-bold uppercase text-gray-500">Feedback Data</h5>
+          <h5 className="font-bold uppercase text-gray-500">Revenue Data</h5>
           <Doughnut data={revenueData} />
         </div>
       </div>

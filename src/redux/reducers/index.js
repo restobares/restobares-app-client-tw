@@ -18,6 +18,7 @@ import account from "./account";
 import feedback from "./feedback";
 import revenue from "./revenue";
 import mailConfirmation from "./mailConfirmation";
+import orders from "./orders";
 // import productsByCategory from "./productsByCategory";
 
 export default combineReducers({
@@ -40,4 +41,5 @@ export default combineReducers({
   feedback,
   revenue,
   mailConfirmation,
+  orders
 });

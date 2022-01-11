@@ -33,16 +33,16 @@ const BillBar = () => {
   }
 	return (
 		<div className='nav-bar z-10'>
-			<div className='h-12 ml-2'>
-
-			<div className='float-left pill w-9/12'>
-				<p className='text-left font-semibold text-sm mt-1 ml-4'> {'Ordered:$'}{prevPrice} {'Total:$'}{totalPrice}</p>
-			</div>
 			<Link to={`/resto/${idResto}/table/${idTable}/menu`}>
-				<button className='float-right button mr-2'>
+				<button className='float-left button ml-2'>
 				<img src="https://img.icons8.com/ios/50/ffffff/restaurant-menu.png" alt='menu-icon' width="24" className='ml-2'/>
 				</button>
 			</Link>
+			<div className='h-12 mr-2'>
+			<div className='float-right pill w-9/12'>
+				<p className='inline-block float-left font-semibold text-sm mt-1 ml-8'> {'Ordered: $'}{prevPrice} </p>
+				<p className='inline-block float-right font-semibold text-sm mt-1 mr-8'> {'Total: $'}{totalPrice}</p>
+			</div>
 			</div>
 		</div>
 	)
