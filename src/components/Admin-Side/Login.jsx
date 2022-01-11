@@ -4,6 +4,9 @@ import { useNavigate, Link, /* useParams */ } from 'react-router-dom';
 import { login } from '../../redux/actions';
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
+import IconButton from "@material-ui/core/IconButton";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import dingbellLogo from "../../img/dingbell_white.png";
 
 const Login = () => {
@@ -16,12 +19,18 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordLogin, setPasswordLogin] = useState(false);
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
 
     function validEmail(email) {
       return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
     }    
+
+  	const togglePasswordLogin = (e) => {
+  	  e.preventDefault();
+  	  setPasswordLogin(!passwordLogin);
+  	};
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -77,15 +86,18 @@ const Login = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             />
                     </div>
-                    <div>
-                        <label htmlFor='password'>Password</label>
+                    <label htmlFor='password'>Password</label>
+                    <div className="flex">
                         <input
-                            type='password'
+            	  						type={passwordLogin ? "text" : "password"}
                             className='w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4'
                             id='password'
                             placeholder='Your Password'
                             onChange={(e) => setPassword(e.target.value)}
                             />
+            						<IconButton className="inline-block h-10 w-10 mt-2" onClick={(e) => togglePasswordLogin(e)}>
+            						  {passwordLogin ? <Visibility /> : <VisibilityOff />}
+            						</IconButton>
                     </div>
                     {/* <div>
                         <label htmlFor=''>idStaff</label>

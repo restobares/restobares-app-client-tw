@@ -13,6 +13,7 @@ const BillBoard = () => {
   const { idResto, idTable } = useParams();
 
   useEffect(() => {
+    console.log("Entra al useEffect");
     sockets.joinResto(idResto);
     sockets.tableListen(()=>{
 			dispatch(getOrders(idResto, idTable));
