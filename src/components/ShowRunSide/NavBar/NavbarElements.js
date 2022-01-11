@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Link as LinkScroll } from 'react-scroll'
 
+
 export const Nav = styled.nav`
   background: ${({ scrollNav }) => (scrollNav ? "#b83280" : "transparent")};
   height: 80px;
@@ -13,7 +14,6 @@ export const Nav = styled.nav`
   position: sticky;
   top: 0;
   z-index: 10;
-
   @media screen and(max-width:960px) {
     transition: 0.8s all ease;
   }
@@ -43,6 +43,8 @@ export const NavLogo = styled(LinkScroll)`
   margin-left: 24px;
   font-weight: bold;
   text-decoration: none;
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap%27');
+  font-family: 'Roboto', sans-serif;
 `;
 
 export const ImgLogo = styled.img`

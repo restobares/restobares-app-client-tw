@@ -21,8 +21,11 @@ function qrCode(state = initialState, action) {
       
       let data = `restobaresUrlFE/resto/ANzbx5Pa3dPizabR/table/${i}`;
       let url = `${baseUrl}?data=${data}&ecc=Q`;
-
-      newQrCodes.push(url);
+      let obj = {
+        url,
+        index: i
+      }
+      newQrCodes.push(obj);
     }
     return newQrCodes;
   }
