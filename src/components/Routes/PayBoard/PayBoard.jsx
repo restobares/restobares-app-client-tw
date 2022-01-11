@@ -83,7 +83,7 @@ const PayBoard = () => {
       </div>
 
       <div className="p-4 inline-flex">
-			 <div className=" bg-pink-700 w-52 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+			 <div className=" bg-pink-700 w-56 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
           <p className='inline-block text-left'> {'Total Price: '}</p>
           <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice)}</p>
        </div>
@@ -113,11 +113,11 @@ const PayBoard = () => {
         </select>
 
         </div>
-        <p className='inline-block font-bold mb-2'>Tips: {tip}</p>
+        <p className='inline-block font-bold mb-2'>Tips: $ {tip}</p>
       </div>
 
       <div className="p-4 inline-flex">
-			 <div className=" bg-pink-700 w-52 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+			 <div className=" bg-pink-700 w-56 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
           <p className='inline-block text-left'> {'Total Price: '}</p>
           <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice) + tip}</p>
        </div>

@@ -20,7 +20,7 @@ export default function Tables() {
   let tokenStaff = Cookies.get("token-staff");
   let tokenAdmin = Cookies.get("token-admin");
   const tables = useSelector((state) => state.tables);
-  const [idStaffInput, setIdStaffInput] = useState("");
+  const [idStaffInput, setIdStaffInput] = useState(0);
   const [hover, setHover] = useState("null");
 
   useEffect(() => {
@@ -121,6 +121,20 @@ export default function Tables() {
       : setDetailTable(Number(e.target.name));
   };
 
+  const handleIdStaff = (e) => {
+    let input = e.target.value * 1
+    let inputString = input.toString();
+    if ( inputString.length === 0 || inputString.length > 9 ) {
+      e.target.value = idStaffInput;
+      //return Swal.fire({
+      //  icon: "error",
+      //  title: "Oops...",
+      //  text: "Be sure to check your Staff ID.",
+      //});
+    }
+		setIdStaffInput(e.target.value);
+  }
+
   const showOption = () => {
     return setHover(true);
   };
@@ -211,19 +225,21 @@ export default function Tables() {
                         </div>
                       ))}
                       {!el.idStaff && (
-                        <div>
-                          <label>Enter your Staff ID: </label>
-                          <input
+                        <div className="mt-2">
+                          <label>Enter your Staff ID (Numbers Only): </label>
+                          <input className="rounded-md text-center ml-2 w-28"
                             type="number"
                             min="0"
                             maxLength="9"
                             name=""
                             id=""
-                            onChange={(e) => setIdStaffInput(e.target.value)}
+              							oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
+              							pattern="^[0-9]+"
+                            onChange={handleIdStaff}
                           />
                         </div>
                       )}
-                      {el.idStaff 
+                      {idStaffInput || idStaffInput.toString().length > 9 
                       	? (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-600 rounded-md text-white" 
                           disabled={!idStaffInput && !el.idStaff} onClick={(e) =>
                             handlePutEating(e, el.idStaff || idStaffInput)
