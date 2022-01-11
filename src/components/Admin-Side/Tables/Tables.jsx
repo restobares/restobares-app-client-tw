@@ -256,8 +256,8 @@ export default function Tables() {
                       {el.ordered.map((el) => (
                         <button
                         className="w-full font-semibold"
-                        onMouseEnter={() => setHover(showOption)}
-                        onMouseLeave={() => setHover(null)}
+                        // onMouseEnter={() => setHover(showOption)}
+                        // onMouseLeave={() => setHover(null)}
                       >
                         <div
                           key={el.productId}
@@ -276,18 +276,12 @@ export default function Tables() {
                           <p className="inline-block float-left ml-2 w-2/12 truncate mt-1">
                             {Moment(el.time).format("HH:mm:ss")}
                           </p>
-                          <div 
-                          className={
-                            hover ?
-                            "visible" :
-                            "invisible"
-                          }
-                          >
-                            <div className="float-right h-6 mr-1 w-6 rounded-full mt-1 ">
+                          <div className="">
+                            <div className="float-right h-6  w-6 rounded-full mt-1 ">
                               <input
                                 type="image"
                                 src="https://img.icons8.com/pastel-glyph/64/be185d/trash.png"
-                                className="mt-1 inline-block text-left ml-1 pr-1 text-md h-4"
+                                className="mt-1 inline-block text-left  pr-1 text-md h-4"
                                 onClick={() =>
                                   handleDelete(el.productId, el.quantity)
                                 }
@@ -295,12 +289,12 @@ export default function Tables() {
                               />
                             </div>
                             <button
-                              className="px-1 mt-1 inline-block float-right bg-pink-600 text-white rounded-md align-middle mr-28 -ml-3"
+                              className="px-1 mt-1 inline-block float-right bg-pink-600 text-white rounded-md align-middle mr-28 ml-3"
                               onClick={() => handleDelete(el.productId, 1)}
                             >
                               one
                             </button>
-                            <p className="inline-block float-right ml-4 w-1/12 truncate mt-1 text-pink-600">
+                            <p className="inline-block float-right ml-1  truncate mt-1 text-pink-600">
                               Delete:
                             </p>
                           </div>
