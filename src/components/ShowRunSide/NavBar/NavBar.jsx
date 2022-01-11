@@ -14,7 +14,7 @@ import {
   NavBtn,
   NavBtnLink,
 } from "./NavbarElements";
-import logo from "../../../videosAndImages/logo.jpg";
+import logo from '../../../img/dingbell_red.png'
 const NavBar = ({ toggle }) => {
   const [scrollNav, setScrollNav] = useState(false);
 
@@ -40,8 +40,8 @@ const NavBar = ({ toggle }) => {
         <Nav scrollNav={scrollNav}>
           <NavbarContainer>
             <NavLogo to="/resto" onClick={toogleHome}>
-              DingBell
               <ImgLogo src={logo} type="img"></ImgLogo>
+              DingBell
             </NavLogo>
             <MobileIcon onClick={toggle}>
               <FaBars />
