@@ -25,6 +25,10 @@ const Revenues = () => {
   const [revenue, setRevenue] = useState([]);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  
+  const [offset, setOffset] = useState(0);
+  const [perPage] = useState(10);
+  const [pageCount, setPageCount] = useState(0);
 
   useEffect(async () => {
     setLoading(true);
@@ -178,14 +182,19 @@ const Revenues = () => {
                 ) : (
                   <>
                     {revenue.map((data, i) => (
-                      <tr className={` h-8 ${i%2 === 0 ? "bg-gray-100" : "bg-gray-300"} `} key={data.uid}>
-                      	  <td>{data.date}</td>
-                      	  <td>{data.totalPrice}</td>
-                      	  <td>{data.tip}</td>
-                      	  <td>{data.idStaff}</td>
-                      	  <td>{data.idTable}</td>
-                      	  <td>{data.paymentMethod}</td>
-                      	</tr>
+                      <tr
+                        className={` h-8 ${
+                          i % 2 === 0 ? "bg-gray-100" : "bg-gray-300"
+                        } `}
+                        key={data.uid}
+                      >
+                        <td>{data.date}</td>
+                        <td>{data.totalPrice}</td>
+                        <td>{data.tip}</td>
+                        <td>{data.idStaff}</td>
+                        <td>{data.idTable}</td>
+                        <td>{data.paymentMethod}</td>
+                      </tr>
                     ))}
                   </>
                 )}

@@ -13,9 +13,9 @@ import {
 const SideBar = ({ isOpen, toggle }) => {
   return (
     <SidebarContainer isOpen={isOpen} onClick={toggle} key="container">
-      <Icon onClick={toggle} key="1">
+      {/* <Icon onClick={toggle} key="1">
         <CloseIcon />
-      </Icon>
+      </Icon> */}
       <SidebarWrapper key="2">
         <SidebarMenu>
           <SidebarLink
