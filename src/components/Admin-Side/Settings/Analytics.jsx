@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import BackButton from "../BackButton";
 import Cookies from "js-cookie";
 import {
@@ -20,11 +20,14 @@ const Analytics = () => {
   const feedback = useSelector((state) => state.feedback);
 
   let monthlyRevenue = 0;
+  let weeklyRevenue = 0;
   let dailyRevenue = 0;
   let monthlyOrders = 0;
+  let weeklyOrders = 0;
   let dailyOrders = 0;
   let feedbacksCounter = [0, 0, 0, 0, 0];
   let revenueCounter = [0, 0, 0, 0];
+  let feedbackSum = 0;
 
   for (var i = 0; i < revenue.monthly.length; i++) {
     monthlyRevenue += Number(revenue.monthly[i].totalPrice);
@@ -53,9 +56,17 @@ const Analytics = () => {
     dailyRevenue += Number(revenue.daily[j].totalPrice);
     dailyOrders += revenue.daily[j].SoldProducts.length;
   }
+  
+  for (var l = 0; l < revenue.weekly.length; l++) {
+    weeklyRevenue += Number(revenue.weekly[l].totalPrice);
+    weeklyOrders += revenue.weekly[l].SoldProducts.length;
+  }
   for (var k = 0; k < feedback.length; k++) {
     feedbacksCounter[feedback[k].rating - 1]++;
+    feedbackSum += feedback[k].rating;
   }
+
+  let feedbackAvg = (feedbackSum / feedback.length).toFixed(2);
 
   ChartJS.register(ArcElement, Tooltip, Legend);
   const feedbackData = {
@@ -96,10 +107,12 @@ const Analytics = () => {
     sockets.joinResto(idResto);
     dispatch(getRevenue(idResto, "Daily", tokenAdmin));
     dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
+    dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
     dispatch(getFeedback(idResto, tokenAdmin));
     sockets.staffListen(() => {
       dispatch(getRevenue(idResto, "Daily", tokenAdmin));
       dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
+      dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
       dispatch(getFeedback(idResto, tokenAdmin));
     });
   }, [dispatch, idResto, tokenAdmin]);
@@ -132,7 +145,7 @@ const Analytics = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-right md:text-center">
+                  <div className="flex-1 text-center">
                     <h5 className="font-bold uppercase text-gray-500">
                       Monthly Revenue
                     </h5>
@@ -162,7 +175,37 @@ const Analytics = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-right md:text-center">
+                  <div className="flex-1 text-center">
+                    <h5 className="font-bold uppercase text-gray-500">
+                      Weekly Revenue
+                    </h5>
+                    <h3 className="font-bold text-3xl">${weeklyRevenue}</h3>
+                  </div>
+                  <span className="float-left">
+                    <img
+                      src="https://img.icons8.com/material-rounded/48/48bb78/sort-up.png"
+                      width="50"
+                      alt=""
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+              {/* <!--Revenue--> */}
+              <div className="bg-white border rounded shadow p-2">
+                <div className="flex flex-row items-center">
+                  <div className="flex-shrink pr-4">
+                    <div className="rounded p-1 bg-green-600">
+                      <img
+                        src="https://img.icons8.com/windows/50/000000/bank.png"
+                        width="45"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-1 text-center">
                     <h5 className="font-bold uppercase text-gray-500">
                       Daily Revenue
                     </h5>
@@ -192,12 +235,38 @@ const Analytics = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-right md:text-center">
+                  <div className="flex-1 text-center">
                     <h5 className="font-bold uppercase text-gray-500">
                       Total Users last Month
                     </h5>
                     <h3 className="font-bold text-3xl">
                       {revenue.monthly.length}{" "}
+                      <span className="text-pink-500"></span>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+              {/* <!--Users per week--> */}
+              <div className="bg-white border rounded shadow p-2">
+                <div className="flex flex-row items-center">
+                  <div className="flex-shrink pr-4">
+                    <div className="rounded p-1 bg-pink-600">
+                      <img
+                        src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/000000/external-users-cv-resume-flatart-icons-outline-flatarticons.png"
+                        width="45"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-1 text-center">
+                    <h5 className="font-bold uppercase text-gray-500">
+                      Total Users last Week
+                    </h5>
+                    <h3 className="font-bold text-3xl">
+                      {revenue.weekly.length}{" "}
                       <span className="text-pink-500"></span>
                     </h3>
                   </div>
@@ -218,7 +287,7 @@ const Analytics = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-right md:text-center">
+                  <div className="flex-1 text-center">
                     <h5 className="font-bold uppercase text-gray-500">
                       Users today
                     </h5>
@@ -246,12 +315,39 @@ const Analytics = () => {
                       {/* down btn */}
                     </div>
                   </div>
-                  <div className="flex-1 text-right md:text-center">
+                  <div className="flex-1 text-center">
                     <h5 className="font-bold uppercase text-gray-500">
                       Orders per Month
                     </h5>
                     <h3 className="font-bold text-3xl">
                       {monthlyOrders} Orders
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+              {/* <!--Orders per month--> */}
+              <div className="bg-white border rounded shadow p-2">
+                <div className="flex flex-row items-center">
+                  <div className="flex-shrink pr-4">
+                    <div className="rounded p-1 bg-blue-600">
+                      <img
+                        src="https://img.icons8.com/ios/50/000000/order-history.png"
+                        width="45"
+                        alt=""
+                      />
+                      {/* <img src="https://img.icons8.com/ios-glyphs/30/f56565/sort-down.png"/> */}{" "}
+                      {/* down btn */}
+                    </div>
+                  </div>
+                  <div className="flex-1 text-center">
+                    <h5 className="font-bold uppercase text-gray-500">
+                      Orders per Week
+                    </h5>
+                    <h3 className="font-bold text-3xl">
+                      {weeklyOrders} Orders
                     </h3>
                   </div>
                 </div>
@@ -271,7 +367,7 @@ const Analytics = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-right md:text-center">
+                  <div className="flex-1 text-center">
                     <h5 className="font-bold uppercase text-gray-500">
                       Orders Today
                     </h5>
@@ -284,7 +380,9 @@ const Analytics = () => {
               </div>
             </div>
 
+            
             <div className="w-full md:w-1/2 xl:w-1/3 p-3">
+              <Link to="feedbacks">
               {/* <!--Feedback--> */}
               <div className="bg-white border rounded shadow p-2">
                 <div className="flex flex-row items-center">
@@ -297,16 +395,17 @@ const Analytics = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex-1 text-right md:text-center">
+                  <div className="flex-1 text-center">
                     <h5 className="font-bold uppercase text-gray-500">
-                      Feedbacks
+                      Feedbacks&nbsp;&nbsp;-&nbsp;&nbsp;Rating Average
                     </h5>
                     <h3 className="font-bold text-3xl">
-                      {feedback.length} <span className="text-red-500"></span>
+                      {feedback.length} - {feedbackAvg}<span className="text-red-500"></span>
                     </h3>
                   </div>
                 </div>
               </div>
+              </Link>
             </div>
           </div>
         </div>
