@@ -50,29 +50,29 @@ const PayBoard = () => {
   
   useEffect(() => {
     dispatch(getOrders(idResto, idTable));
-    // if (totalPrice > 0) {
-    //   sockets.joinResto(idResto);
-    //   sockets.tableListen( ()=> {
-    //   	dispatch(getOrders(idResto, idTable));
-    //   });
-    // } 
-    // if (totalPrice === 0) {
-    //   async function paymentAlert() {
-    //     await Swal.fire({
-    //       position: 'center',
-    //       icon: 'success',
-    //       title: 'Payment Successful',
-    //       showConfirmButton: false,
-    //       timer: 3000
-    //     })
-    //     // aca usar navigate a ruta feedback
-    //   navigate(`/resto/${idResto}/table/${idTable}/feedback`)
-    //   }
-    //   paymentAlert();  
+    if (totalPrice > 0) {
+      sockets.joinResto(idResto);
+      sockets.tableListen( ()=> {
+      	dispatch(getOrders(idResto, idTable));
+      });
+    } 
+    if (totalPrice === 0) {
+      async function paymentAlert() {
+        await Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Payment Successful',
+          showConfirmButton: false,
+          timer: 3000
+        })
+        // aca usar navigate a ruta feedback
+      navigate(`/resto/${idResto}/table/${idTable}/feedback`)
+      }
+      paymentAlert();  
       
-    // }
+    }
     
-  }, [idResto, idTable]);
+  },[dispatch,idResto, idTable, navigate, totalPrice]);
 
 
   return (
