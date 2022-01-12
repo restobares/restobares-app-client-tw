@@ -26,6 +26,7 @@ import AccountSettings from './components/Admin-Side/Settings/AccountSettings.js
 import ChangeAccount from './components/Admin-Side/Settings/ChangeAccount.jsx';
 import UserConfirm from './components/Admin-Side/UserConfirm.jsx';
 import Feedbacks from './components/Admin-Side/Settings/AnalyticsDetails/Feedbacks.jsx';
+import Revenues from './components/Admin-Side/Settings/AnalyticsDetails/Revenues.jsx';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="resto/:idResto/resto-home/qrmanager/qrs" element={<QrGenerated />}></Route>
           <Route path="resto/:idResto/resto-home/analytics" element={<Analytics />}></Route>
           <Route path="resto/:idResto/resto-home/analytics/feedbacks" element={<Feedbacks />}></Route>
+          <Route path="resto/:idResto/resto-home/analytics/revenues/:time" element={<Revenues />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu" element={<EditMenu />}></Route>
           <Route path="resto/:idResto/resto-home/editmenu/:idProduct" element={<MenuFormEditable />}></Route>
           <Route path="resto/:idResto/resto-home/accountsettings" element={<AccountSettings />}></Route>

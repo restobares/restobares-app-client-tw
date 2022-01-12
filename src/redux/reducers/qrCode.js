@@ -10,16 +10,21 @@ function qrCode(state = initialState, action) {
 
     if (action.payload.tables.length === 1) {
 
-      let data = `restobaresUrlFE/resto/ANzbx5Pa3dPizabR/table/${action.payload.tables[0]}`;
+      let data = `https://restobares-app.web.app/resto/ANzbx5Pa3dPizabR/table/${action.payload.tables[0]}`;
       let url = `${baseUrl}?data=${data}&ecc=Q`;
+			
+			let obj = {
+				url,
+				index: action.payload.tables[0],
+			}
 
-      return [url];
+      return [obj];
     }
     let newQrCodes = [];
 
     for (var i = action.payload.tables[0]; i <= action.payload.tables[1]; i++) {
       
-      let data = `restobaresUrlFE/resto/ANzbx5Pa3dPizabR/table/${i}`;
+      let data = `https://restobares-app.web.app/resto/ANzbx5Pa3dPizabR/table/${i}`;
       let url = `${baseUrl}?data=${data}&ecc=Q`;
       let obj = {
         url,
