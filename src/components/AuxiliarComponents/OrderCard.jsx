@@ -42,8 +42,12 @@ const OrderCard = ({ product }) => {
         </div>
         <div className=" flex flex-row-reverse  w-full h-full">
           <div className="float-right bg-pink-700 h-full w-8 item-center rounded-br-xl">
-            <button className="mt-8 text-center text-xl" onClick={add}>➕</button>
-            <button className="mt-6 mx-auto" disabled={!cart[id] || !cart[id].quantity} onClick={minus}>➖</button>
+            <button className="mt-8 text-center text-xl" onClick={add}>
+              <img src="https://img.icons8.com/ios-glyphs/48/ffffff/plus-math.png" width="30" alt=""/>
+            </button>
+            <button className="mt-6 mx-auto" disabled={!cart[id] || !cart[id].quantity} onClick={minus}>
+              <img src="https://img.icons8.com/ios-glyphs/30/ffffff/minus-math.png" width="30" alt=""/>
+            </button>
           </div>
           <div className="flex flex-col w-full  ">
             <p className="text-left ml-1 mt-2 text-xs h-full overflow-y-auto my-2">{detail}</p>
