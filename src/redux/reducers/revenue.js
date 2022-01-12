@@ -3,7 +3,8 @@ import { ActionTypes } from "../constants";
 const initialState = {
   custom: [],
   daily: [],
-  monthly: []
+  monthly: [],
+  weekly: []
 }
 function revenue(state = initialState, action) {
 
@@ -23,6 +24,12 @@ function revenue(state = initialState, action) {
     return {
       ...state,
       monthly: action.payload
+    }
+  }
+  if (action.type === ActionTypes.GET_WEEKLY_REVENUE) {
+    return {
+      ...state,
+      weekly: action.payload
     }
   }
   return state;

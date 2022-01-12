@@ -38,6 +38,21 @@ export function getRevenue(idResto, params, token) {
           payload: json.data
         });
       }
+      if(params === 'Weekly') {
+        json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/admin/revenue`, {
+          params: {
+            filterTime: 'Last7days'
+          },
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        return dispatch({
+          type: ActionTypes.GET_WEEKLY_REVENUE,
+          payload: json.data
+        });
+      }
        json = await axios.get(`https://restobares-app-api.herokuapp.com/resto/${idResto}/admin/revenue`, {
         params,
         headers: {
