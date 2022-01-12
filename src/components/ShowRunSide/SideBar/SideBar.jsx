@@ -29,7 +29,7 @@ const SideBar = ({ isOpen, toggle }) => {
             offset={10}
             activeClass="active"
           >
-            signup
+            Signup
           </SidebarLink>
           <SidebarLink
             key="services"
@@ -39,10 +39,10 @@ const SideBar = ({ isOpen, toggle }) => {
             duration={1000}
             spy={true}
             exact="true"
-            offset={70}
+            offset={60}
             activeClass="active"
           >
-            services
+            Services
           </SidebarLink>
           <SidebarLink
             key="createdby"
@@ -52,7 +52,7 @@ const SideBar = ({ isOpen, toggle }) => {
             duration={1000}
             spy={true}
             exact="true"
-            offset={10}
+            offset={-25}
             activeClass="active"
           >
             Created By

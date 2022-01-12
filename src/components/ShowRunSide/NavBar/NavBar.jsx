@@ -80,7 +80,7 @@ const NavBar = ({ toggle }) => {
                   duration={500}
                   spy={true}
                   exact="true"
-                  offset={20}
+                  offset={40}
                   activeClass="active"
                 >
                   Created By
