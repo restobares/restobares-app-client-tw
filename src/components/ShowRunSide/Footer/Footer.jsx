@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 import {
   FooterContainer,
@@ -57,18 +57,14 @@ const Footer = () => {
                 DingBell © {new Date().getFullYear()} All rights reserved.
               </WebSiteRights>
               <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
+                <SocialIconLink>
+                  {/* <FaFacebook /> */}
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
-                  <FaLinkedin />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/restobares" target="_blank" arial-label="GitHub">
                   <FaGithub />
+                </SocialIconLink>
+                <SocialIconLink >
+                  {/* <FaLinkedin /> */}
                 </SocialIconLink>
               </SocialIcons>
             </SocialMediaWrap>
