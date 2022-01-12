@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaTwitter, FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import juanC from '../../../videosAndImages/juancanelon.jpg';
 import nahuelK from '../../../videosAndImages/nahuelKisser.jpg'
 import mateoL from '../../../videosAndImages/mateoLopez.jpg'
@@ -34,43 +34,26 @@ const CreatedBy = () => {
                         <ServicesIcon src={juanC}/>
                         <ServicesH2>Juan Antonio Canelon</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/liscanojac/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/liscanojac" target="_blank" arial-label="GitHub">
                   <FaGithub />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
+                {/* <SocialIconLink href="/" target="_blank" arial-label="Twitter">
                   <FaTwitter />
-                </SocialIconLink>
+                </SocialIconLink> */}
               </SocialIcons>
                     </ServicesCard>
                     <ServicesCard>
                         <ServicesIcon src={nahuelK}/>
                         <ServicesH2>Nahuel Kisser</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/nahuel-kisser/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/kisser91" target="_blank" arial-label="GitHub">
                   <FaGithub />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
@@ -78,21 +61,11 @@ const CreatedBy = () => {
                         <ServicesIcon src={mateoL}/>
                         <ServicesH2>Mateo López</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/mateo-lopez-salgado/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/MateolLopez" target="_blank" arial-label="GitHub">
                   <FaGithub />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
@@ -100,21 +73,11 @@ const CreatedBy = () => {
                         <ServicesIcon src={nicolasM}/>
                         <ServicesH2>Nicolás Morel</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/nicolas-m-morel/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/NicolasMarianoMorel" target="_blank" arial-label="GitHub">
                   <FaGithub />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
@@ -122,21 +85,11 @@ const CreatedBy = () => {
                         <ServicesIcon src={eliasB}/>
                         <ServicesH2>Elías Borda</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/eliasdbr/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/Eliasdbr" target="_blank" arial-label="GitHub">
                   <FaGithub />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
@@ -144,21 +97,11 @@ const CreatedBy = () => {
                         <ServicesIcon src={sebastianM}/>
                         <ServicesH2>Sebastian Mesa</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/sebastianmesazafra/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/Smesaz" target="_blank" arial-label="GitHub">
                   <FaGithub />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
@@ -166,21 +109,11 @@ const CreatedBy = () => {
                         <ServicesIcon src={chardH}/>
                         <ServicesH2>Chard Hernández</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/chardhm/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/chardhm" target="_blank" arial-label="GitHub">
                   <FaGithub />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
@@ -188,25 +121,14 @@ const CreatedBy = () => {
                         <ServicesIcon src={brianB}/>
                         <ServicesH2>Brian Bacarezza</ServicesH2>
                         <SocialIcons>
-                <SocialIconLink
-                  href="https://es-la.facebook.com/leomessi"
-                  target="_blank"
-                  arial-label="Facebook"
-                >
-                  <FaFacebook />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Linkedin">
+                <SocialIconLink href="https://www.linkedin.com/in/brian-bacarezza/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />
                 </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="GitHub">
+                <SocialIconLink href="https://github.com/brianbacca" target="_blank" arial-label="GitHub">
                   <FaGithub />
-                </SocialIconLink>
-                <SocialIconLink href="/" target="_blank" arial-label="Instagram">
-                  <FaInstagram />
                 </SocialIconLink>
               </SocialIcons>
                     </ServicesCard>
-                    
                 </ServicesWrapper>
             </ServicesContainer>
     )
