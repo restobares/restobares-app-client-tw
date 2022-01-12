@@ -11,17 +11,18 @@ const WaiterCallButton = () => {
     const { idResto, idTable } = useParams();
     const orders = useSelector((state) => state.orders);
     
-    if(orders.calling){Swal.fire({
-      icon: "success",
-      title: 'The waiter has been called!',
-      html: 'The waiter is on his way, wait a few moments...',
-      showConfirmButton: false,
-      timer: 3000
-    });}
+    
 
     const handleCallStaff = async () => {
       sockets.joinResto(idResto);
       await dispatch(callStaff(idResto, idTable));
+      if(!orders.calling){Swal.fire({
+        icon: "success",
+        title: 'The waiter has been called!',
+        html: 'The waiter is on his way, wait a few moments...',
+        showConfirmButton: false,
+        timer: 3000
+      });}
       dispatch(getOrders(idResto, idTable));
       sockets.tableSend();
     }
