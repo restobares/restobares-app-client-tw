@@ -239,7 +239,7 @@ export default function Tables() {
                           />
                         </div>
                       )}
-                      {idStaffInput || idStaffInput.toString().length > 9 
+                      {idStaffInput || idStaffInput.toString().length > 9 || el.idStaff 
                       	? (<button className="inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-600 rounded-md text-white" 
                           disabled={!idStaffInput && !el.idStaff} onClick={(e) =>
                             handlePutEating(e, el.idStaff || idStaffInput)

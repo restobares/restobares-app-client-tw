@@ -56,14 +56,11 @@ const Revenues = () => {
       setRevenueData(revenue.slice(offset, offset + perPage));
     }
     await fetchData();
-  }, [time, offset, idResto, tokenAdmin, revenue, perPage]); 
+  }, [time, offset, idResto, tokenAdmin, revenue, perPage, dispatch]); 
   
   const handlePageClick = (e) => {
     const selectedPage = e.selected;
-    console.log(selectedPage*perPage)
-
     setOffset((selectedPage + 1)*perPage)
-
   }
 
   const DataSet = [
