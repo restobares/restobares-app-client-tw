@@ -85,29 +85,29 @@ const Revenues = () => {
         {
           value: data.tip,
           style: {
-            font: { color: { rgb: "ffffff" } },
-            fill: { patternType: "solid", fgColor: { rgb: "3461eb" } },
+            font: { color: { rgb: "000000" } },
+            fill: { patternType: "solid", fgColor: { rgb: "9aaeea" } },
           },
         },
         {
           value: data.idStaff,
           style: {
-            font: { color: { rgb: "ffffff" } },
-            fill: { patternType: "solid", fgColor: { rgb: "eb1207" } },
+            font: { color: { rgb: "000000" } },
+            fill: { patternType: "solid", fgColor: { rgb: "e8b9b7" } },
           },
         },
         {
           value: data.idTable,
           style: {
-            font: { color: { rgb: "ffffff" } },
-            fill: { patternType: "solid", fgColor: { rgb: "4bd909" } },
+            font: { color: { rgb: "000000" } },
+            fill: { patternType: "solid", fgColor: { rgb: "afd39e" } },
           },
         },
         {
           value: data.paymentMethod,
           style: {
-            font: { color: { rgb: "ffffff" } },
-            fill: { patternType: "solid", fgColor: { rgb: "ebc907" } },
+            font: { color: { rgb: "000000" } },
+            fill: { patternType: "solid", fgColor: { rgb: "e5deb5" } },
           },
         },
       ]),
@@ -117,6 +117,7 @@ const Revenues = () => {
   return (
     <div>
       <div className="container">
+        {/* NavBar */}
         <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12 mb-5">
           <BackButton />
           <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
@@ -124,9 +125,9 @@ const Revenues = () => {
           </div>
           <LogoutButton />
         </nav>
+        {/* Cards */}
         <Card>
           <Card.Body>
-            <Card.Title>revenues</Card.Title>
             {/* <Form>
               <Form.Label className="text-danger font-weight-bold">
                 Select Country
@@ -142,16 +143,16 @@ const Revenues = () => {
                 element={
                   <button
                     type="button"
-                    className="btn btn-success float-right m-3"
+                    className="shadow-lg bg-green-500 hover:bg-green-300 text-white font-bold text-lg my-2 mb-6 px-2 rounded"
                   >
-                    Export Data
+                    Export to Excel
                   </button>
                 }
               >
                 <ExcelSheet dataSet={DataSet} name="Revenues Dinkelbert" />
               </ExcelFile>
             ) : null}
-            <Table responsive>
+            <Table responsive className=" w-screen  ">
               <thead>
                 <tr>
                   <th>Date</th>
@@ -176,15 +177,15 @@ const Revenues = () => {
                   </tr>
                 ) : (
                   <>
-                    {revenue.map((data) => (
-                      <tr  key={data.uid}>
-                        <td>{data.date}</td>
-                        <td>{data.totalPrice}</td>
-                        <td>{data.tip}</td>
-                        <td>{data.idStaff}</td>
-                        <td>{data.idTable}</td>
-                        <td>{data.paymentMethod}</td>
-                      </tr>
+                    {revenue.map((data, i) => (
+                      <tr className={` h-8 ${i%2 === 0 ? "bg-gray-100" : "bg-gray-300"} `} key={data.uid}>
+                      	  <td>{data.date}</td>
+                      	  <td>{data.totalPrice}</td>
+                      	  <td>{data.tip}</td>
+                      	  <td>{data.idStaff}</td>
+                      	  <td>{data.idTable}</td>
+                      	  <td>{data.paymentMethod}</td>
+                      	</tr>
                     ))}
                   </>
                 )}
