@@ -1,20 +1,25 @@
 import React from "react";
-import { Link, useParams, useNavigate  } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch  } from "react-redux";
-import { changeTableFilled, sockets } from "../../../redux/actions";
+import { changeTableFilled, getTables, sockets } from "../../../redux/actions";
+import Cookies from "js-cookie";
 
-export default function ChangeOrder(detailTable) {
+export default function ChangeOrder({ tableId, status }) {
     const {idResto} = useParams()
-    const table = detailTable.detailTable
-    const currentOrder = useSelector(state => state.tables[table-1].currentOrder)
+    const currentOrder = useSelector(state => state.tables[tableId - 1].currentOrder)
   	const dispatch = useDispatch();
-  	const navigate = useNavigate();
+    let tokenStaff = Cookies.get("token-staff");
+    let tokenAdmin = Cookies.get("token-admin");
 
-  	const goToClientSide = (e) => {
+  	const goToClientSide = async () => {
+      console.log(status)
       sockets.joinResto(idResto);
-			dispatch(changeTableFilled(idResto,table));
-		  sockets.tableSend();
-			navigate(`/resto/${idResto}/table/${table}/menu`);
+      if (status === "free") {        
+			  await dispatch(changeTableFilled(idResto,tableId));
+      }
+      await dispatch(getTables(idResto, tokenAdmin || tokenStaff));
+      sockets.tableSend();
+      window.open(`/resto/${idResto}/table/${tableId}/menu`)
   	}
     return ( 
         <div className=" h-8 mx-2 bg-gray-700 bg-opacity-10 rounded-md mb-2 flex justify-between items-center">

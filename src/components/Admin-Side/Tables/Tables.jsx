@@ -197,7 +197,7 @@ export default function Tables() {
               {/* {detailTable === el.tableId && el.state !== "free" 
                       && <ChangeStatus/>
                     } */}
-              <ChangeOrder detailTable={el.tableId} />
+              <ChangeOrder tableId={el.tableId} status={el.state} />
               
                 <div className=" flex flex-col ">
                 {el.currentOrder.products.length > 0 && (
