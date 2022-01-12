@@ -131,7 +131,7 @@ const PayBoard = () => {
         Pay at Table
       </button>
       <button onClick={handlePayWithCard} className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
-        Pay with Card
+        Pay Online
       </button>
     </div>
 

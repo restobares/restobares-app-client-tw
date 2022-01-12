@@ -3,12 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Logo from "../../img/dingbell_white.png";
 import { sockets, callStaff, getOrders } from "../../redux/actions";
+import Swal from "sweetalert2";
 
 const WaiterCallButton = () => {
   
     const dispatch = useDispatch();
     const { idResto, idTable } = useParams();
     const orders = useSelector((state) => state.orders);
+    
+    if(orders.calling){Swal.fire({
+      icon: "success",
+      title: 'The waiter has been called!',
+      html: 'The waiter is on his way, wait a few moments...',
+      showConfirmButton: false,
+      timer: 3000
+    });}
 
     const handleCallStaff = async () => {
       sockets.joinResto(idResto);

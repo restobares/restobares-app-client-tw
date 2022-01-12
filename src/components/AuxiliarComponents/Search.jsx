@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProductsByName } from "../../redux/actions";
 
 const Search = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
+  const {state} = useSelector((state)=> state);
 
   function onChangeD (e){
     dispatch(getProductsByName(e.target.value))
@@ -19,7 +20,7 @@ const Search = () => {
 
   return (
     <div className="inline-block shadow-lg text-lg">
-      <div className="">
+       <div className="">
           {search === "" ? <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
             <img
               src="https://img.icons8.com/ios/50/be185d/search--v1.png"
@@ -28,14 +29,14 @@ const Search = () => {
               alt=""
             />
           </button> : 
-          <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
+            <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
           <img
             src="https://img.icons8.com/ios-filled/50/be185d/delete-sign.png"
             width="24"
             className="ml-1"
             alt=""
           />
-        </button> 
+        </button>  
           }
           <input
             className="truncate text-pink-700 pill w-48 flex-grow-1 pb-1 "
