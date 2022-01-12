@@ -25,7 +25,7 @@ const OrdersCarousel = () => {
               </div>
               <div className="  ml-1 w-full">
                   <div className="inline-block   h-4 w-full">
-                    <p className="inline-block flex-shrink-1 float-left  text-gray-500 font-semibold  text-sm truncate">{order.productName}</p>
+                    <p className="inline-block flex-shrink-1 float-left  text-gray-500 font-semibold  text-sm truncate text-left  w-7/12">{order.productName}</p>
                     <p className="inline-block flex-shrink-0  float-right mr-2  text-gray-500 font-semibold  text-sm">{" "}$ {order.price * order.quantity}{" "}</p>
                     <p className="inline-block flex-shrink-0 float-right mr-4 text-gray-500 font-semibold  text-sm"> {order.quantity}</p>
                     <p className="inline-block flex-shrink-0 float-right text-gray-500 font-semibold  text-sm "> x </p>
@@ -56,7 +56,7 @@ const OrdersCarousel = () => {
               </div>
               <div className="  ml-1 w-full">
                   <div className="inline-block   h-4 w-full">
-                    <p className="inline-block  float-left  text-gray-500 font-semibold  text-sm truncate">{order.productName}</p>
+                    <p className="inline-block  float-left  text-gray-500 font-semibold  text-sm truncate text-left  w-7/12 ">{order.productName}</p>
                     <p className="inline-block  float-right mr-2  text-gray-500 font-semibold  text-sm">{" "}$ {order.price * order.quantity}{" "}</p>
                     <p className="inline-block  float-right mr-4 text-gray-500 font-semibold  text-sm"> {order.quantity}</p>
                     <p className="inline-block  float-right text-gray-500 font-semibold  text-sm "> x </p>
@@ -84,21 +84,23 @@ const OrdersCarousel = () => {
               </div>
               <div className="  ml-1 w-full">
                   <div className="inline-block   h-4 w-full">
-                    <p className="inline-block  float-left  text-black font-semibold  text-sm truncate">{order.productName}</p>
+                    <p className="inline-block  float-left   text-black font-semibold text-left text-sm w-7/12 truncate">{order.productName}</p>
                     <p className="inline-block  float-right mr-2  text-black font-semibold  text-sm">{" "}$ {order.price * order.quantity}{" "}</p>
                     <p className="inline-block  float-right mr-4 text-blackfont-semibold  text-sm"> {order.quantity}</p>
                     <p className="inline-block  float-right text-black font-semibold  text-sm "> x </p>
                   </div> 
-                  <hr className=" border-pink-700 border-1  mx-2" />
-                  <div className="flex mx-0 flex-grow-0">
-                    <p className="inline-block float-left text-black h-8 text-left text-xs overflow-hidden flex-shrink-1">{order.detail}</p> 
-                    <div className="inline-block float-right h-6  bg-pink-700 rounded-full  mt-1  w-12 flex-shrink-0"> 
-                      <button className="mt-1 inline-block text-left  align-middle " onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
-                        ➖
-                      </button>
-                      <button className="mt-1 inline-block text-left ml-2 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
-                        ➕
-                      </button>  
+                  <hr className=" border-pink-700 border-1  mx-2 " />
+                  <div className="flex mx-0  flex-row justify-between">
+                    <p className="inline-block   text-black h-8 text-left text-xs overflow-hidden flex-grow-1">{order.detail}</p> 
+                    <div className="w-12  float-right">
+                      <div className="inline-block float-right  h-6  bg-pink-700 rounded-full  mt-1 mr-1 w-12 flex-shrink-0"> 
+                        <button className="mt-1 inline-block text-left  align-middle " onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
+                          ➖
+                        </button>
+                        <button className="mt-1 inline-block text-left ml-2 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
+                          ➕
+                        </button>  
+                      </div>
                     </div>
                   </div>
 
