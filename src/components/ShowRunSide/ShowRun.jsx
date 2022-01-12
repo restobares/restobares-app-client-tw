@@ -14,7 +14,7 @@ export default function ShowRun() {
   };
 
   return (
-    <div>
+    <div className="w-screen">
       {/* {isOpen ? ( */}
       <SideBar isOpen={isOpen} toggle={toggle} />
       {/* ) : ( */}

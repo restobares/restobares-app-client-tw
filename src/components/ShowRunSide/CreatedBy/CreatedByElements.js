@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ServicesContainer = styled.div`
     height: 750px;
+    width: 100%;
     display: flex;
     padding-top: 20px;
     flex-direction: column;
