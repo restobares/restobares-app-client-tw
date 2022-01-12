@@ -8,11 +8,18 @@ import { getRevenue } from "../../../../redux/actions";
 import { Card, Form, Table } from "react-bootstrap";
 import { ScaleLoader } from "react-spinners";
 import ReactExport from "react-data-export";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import ReactPaginate from 'react-paginate';
+import "./Revenues.css"
 const ExcelFile = ReactExport.ExcelFile;
 const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
+
+
 const Revenues = () => {
+  const [offset, setOffset] = useState(0);
+  const [perPage] = useState(20);
+  const [revenueData, setRevenueData] = useState([])
+  const [pageCount, setPageCount] = useState(0);
   const override = `
         display: flex;
         align-items: center;
@@ -27,23 +34,34 @@ const Revenues = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(async () => {
-    setLoading(true);
-    await dispatch(getRevenue(idResto, time, tokenAdmin));
-    switch (time) {
-      case "Monthly":
-        setRevenue(monthly);
-        break;
-      case "Weekly":
-        setRevenue(weekly);
-        break;
-      case "Daily":
-        setRevenue(daily);
-        break;
-      default:
-        console.log("Elegi bien pinchila");
+    
+    const fetchData = async () => {
+      setLoading(true);
+      await dispatch(getRevenue(idResto, time, tokenAdmin));
+      switch (time) {
+        case "Monthly":
+          setRevenue(monthly);
+          break;
+        case "Weekly":
+          setRevenue(weekly);
+          break;
+        case "Daily":
+          setRevenue(daily);
+          break;
+        default:
+          console.log("Elegi bien pinchila");
+      }
+      setLoading(false);
+      setPageCount(Math.ceil((revenue.length /perPage) )- 1);
+      setRevenueData(revenue.slice(offset, offset + perPage));
     }
-    setLoading(false);
-  }, [time]);
+    await fetchData();
+  }, [time, offset, idResto, tokenAdmin, revenue, perPage, dispatch]); 
+  
+  const handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    setOffset((selectedPage + 1)*perPage)
+  }
 
   const DataSet = [
     {
@@ -137,13 +155,14 @@ const Revenues = () => {
                 defaultValue="Choose....."
               ></Form.Control>
             </Form> */}
+            <div className="flex flex-col items-center">
             {revenue.length !== 0 ? (
               <ExcelFile
                 filename="Revenues"
                 element={
                   <button
                     type="button"
-                    className="shadow-lg bg-green-500 hover:bg-green-300 text-white font-bold text-lg my-2 mb-6 px-2 rounded"
+                    className="shadow-lg bg-green-500 hover:bg-green-300 text-white font-bold text-lg my-2 mb-4 px-2 rounded"
                   >
                     Export to Excel
                   </button>
@@ -152,7 +171,23 @@ const Revenues = () => {
                 <ExcelSheet dataSet={DataSet} name="Revenues Dinkelbert" />
               </ExcelFile>
             ) : null}
+            <div className="inline-block mb-4">
+              <ReactPaginate
+              previousLabel={"prev"}
+              nextLabel={"next"}
+              breakLabel={"..."}
+              breakClassName={"break-me"}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              subContainerClassName={"pages pagination"}
+              activeClassName={"active"}/>
+            </div>
+            </div>
             <Table responsive className=" w-screen  ">
+              
               <thead>
                 <tr>
                   <th>Date</th>
@@ -177,8 +212,8 @@ const Revenues = () => {
                   </tr>
                 ) : (
                   <>
-                    {revenue.map((data, i) => (
-                      <tr className={` h-8 ${i%2 === 0 ? "bg-gray-100" : "bg-gray-300"} `} key={data.uid}>
+                    {revenueData.map((data, i) => (
+                      <tr key={i} className={` h-8 ${i%2 === 0 ? "bg-gray-100" : "bg-gray-300"} `}>
                       	  <td>{data.date}</td>
                       	  <td>{data.totalPrice}</td>
                       	  <td>{data.tip}</td>
@@ -194,6 +229,22 @@ const Revenues = () => {
           </Card.Body>
         </Card>
       </div>
+      {/* F good soldier */}
+      {/* <div className="inline-block">
+        <ReactPaginate
+        previousLabel={"prev"}
+        nextLabel={"next"}
+        breakLabel={"..."}
+        breakClassName={"break-me"}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={handlePageClick}
+        containerClassName={"pagination"}
+        subContainerClassName={"pages pagination"}
+        activeClassName={"active"}/>
+      </div> */}
+      
     </div>
   );
 };
