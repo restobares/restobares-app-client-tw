@@ -114,7 +114,7 @@ function SideBar() {
             <p className=' text-white mb-1'>{cat.name}</p>
           </div>
         ))}
-        <div className='mx-2 h-24'></div>
+        <div className='mx-2 h-36'></div>
         </div>   
     </Fragment>
         

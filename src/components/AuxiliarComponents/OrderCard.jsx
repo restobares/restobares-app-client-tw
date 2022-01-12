@@ -2,12 +2,10 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { useParams } from "react-router-dom";
 import { removeProduct, addProduct } from "../../redux/actions";
-
-
 const OrderCard = ({ product }) => {
-  const {name, detail, price, image, id} = product
+const {name, detail, price, image, id} = product
   
-  // const { idTable } = useParams();
+// const { idTable } = useParams();
   
   const dispatch = useDispatch();  
   
@@ -64,7 +62,6 @@ const OrderCard = ({ product }) => {
     </div>
   </div>
     )
-  };
-  
+  };  
 export default OrderCard;
 

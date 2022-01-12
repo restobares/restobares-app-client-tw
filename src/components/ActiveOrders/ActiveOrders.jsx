@@ -76,6 +76,11 @@ const ActiveOrders = () => {
           </div>
         );
       })}
+    	{!ordersFeed.length &&
+          (<div className=" mt-4 shadow-lg font-semibold text-xl  border-2 border-pink-700 rounded-lg py-2 px-4">
+            There's no pending orders.
+          </div>)
+    	}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { sockets, callStaff, getTables } from '../../../redux/actions';
 import Cookies from 'js-cookie';

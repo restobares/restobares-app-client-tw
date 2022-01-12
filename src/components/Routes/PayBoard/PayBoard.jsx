@@ -86,8 +86,8 @@ const PayBoard = () => {
       </div>
 
       <div className="p-4 inline-flex">
-			 <div className=" bg-pink-700 w-56 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
-          <p className='inline-block text-left'> {'Total Price: '}</p>
+			 <div className=" bg-pink-700 w-72 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+          <p className='inline-block text-left'> {'SubTotal Price: '}</p>
           <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice)}</p>
        </div>
       </div>
@@ -120,8 +120,8 @@ const PayBoard = () => {
       </div>
 
       <div className="p-4 inline-flex">
-			 <div className=" bg-pink-700 w-56 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
-          <p className='inline-block text-left'> {'Total Price: '}</p>
+			 <div className=" bg-pink-700 w-72 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out inline-flex">
+          <p className='inline-block text-left'> {'Total Price + Tip: '}</p>
           <p className='inline-block float-right ml-14'>$ {parseInt(totalPrice) + tip}</p>
        </div>
       </div>
@@ -131,11 +131,12 @@ const PayBoard = () => {
         Pay at Table
       </button>
       <button onClick={handlePayWithCard} className="bg-pink-700 text-md font-semibold text-white  py-2 w-32 rounded-full hover:bg-pink-900 focus:outline-none focus:ring shadow-lg hover:shadow-none transition-all m-2">
-        Pay with Card
+        Pay Online
       </button>
     </div>
-
-      <Modal showModal={showModal} setShowModal={setShowModal} />
+			<div className="">
+      	<Modal showModal={showModal} setShowModal={setShowModal} />
+    	</div>
     </div>
   )
 }
