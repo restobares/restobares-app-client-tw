@@ -93,7 +93,7 @@ const OrdersCarousel = () => {
                   <div className="flex mx-0  flex-row justify-between">
                     <p className="inline-block   text-black h-8 text-left text-xs overflow-hidden flex-grow-1">{order.detail}</p> 
                     <div className="w-12  float-right">
-                      <div className="inline-block float-right  h-6  bg-pink-700 rounded-full  mt-1  w-12 flex-shrink-0"> 
+                      <div className="inline-block float-right  h-6  bg-pink-700 rounded-full  mt-1 mr-1 w-12 flex-shrink-0"> 
                         <button className="mt-1 inline-block text-left  align-middle " onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
                           ➖
                         </button>
