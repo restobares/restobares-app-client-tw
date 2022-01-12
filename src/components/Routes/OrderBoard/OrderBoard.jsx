@@ -40,11 +40,10 @@ export default function OrderBoard() {
         <SideBar />
         {menu.length === 0 ? (
           
-          <div className=" h-full flex-shrink-0 mt-4 shadow-lg font-semibold text-xl mx-auto border-2 border-pink-700 rounded-lg py-2 px-4">
-            
+          <div className=" h-full  mt-4 shadow-lg font-semibold text-xl mx-2 border-2 border-pink-700 rounded-lg py-2 px-4">
             Does not match any results!</div>) : (
           <div
-            className="w-full pb-32 mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto "
+            className="w-full pb-44 mx-2 mr-2 mt-2 h-screen flex flex-col overflow-auto "
             onClick={(e) => handleHidden(e)}
           >
             {menu.map((product) => (
@@ -55,6 +54,7 @@ export default function OrderBoard() {
               />
             ))}
           </div>
+
         )}
         <MenuPayBar />
       </div>

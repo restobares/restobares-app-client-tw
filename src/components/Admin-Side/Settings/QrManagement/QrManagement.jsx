@@ -14,7 +14,7 @@ const QrManager = () => {
   // Bring the amount of tables the restaurant has
   const { tables } = useSelector((state) => state);
   const { idResto } = useParams();
-  const [oneTable, setOneTable] = useState(1);
+  const [oneTable, setOneTable] = useState(0);
   const [firstTable, setFirstTable] = useState(1);
   const [lastTable, setLastTable] = useState(Math.min(9,tables.length));
 
@@ -127,17 +127,20 @@ const QrManager = () => {
         <input
           type="number"
           name="oneTable"
-          value={oneTable}
           min="1"
           max={tables.length}
-          onChange={(e) => setOneTable( Math.min( Math.max(1,e.target.value), tables.length ) ) }
+          onChange={(e) => {
+          	setOneTable( Math.min( Math.max(0,e.target.value), tables.length ) )
+          	e.target.value = Math.min( Math.max(0,e.target.value), tables.length )
+          }}
           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
-          placeholder="Enter Number, print 1 Qr only"
+          placeholder="Enter value"
         />
-        {!oneTable ? (
+        {oneTable===0 || oneTable > tables.length ? (
           <button
             type="submit"
             onClick={notAlert}
+            disabled
             className="text-white bg-gray-600 mt-2 mb-5 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
           >
             Print QR
