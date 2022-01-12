@@ -186,7 +186,7 @@ const Revenues = () => {
               activeClassName={"active"}/>
             </div>
             </div>
-            <Table responsive className=" w-screen  ">
+            <Table responsive className=" w-screen mb-24 ">
               
               <thead>
                 <tr>

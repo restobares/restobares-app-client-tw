@@ -140,7 +140,7 @@ export default function Tables() {
   // };
 
   return (
-    <div className=" h-full w-full  flex flex-col  overflow-auto">
+    <div className=" h-full w-full pb-24 flex flex-col  overflow-auto">
       <div className="h-8 bg-gray-300  text-sm flex flex-row mt-2 rounded-xl ">
         <p className="w-2/12 ml-2 mt-1">Number</p>
         <p className="w-3/12 ml-4  mt-1">Time</p>
