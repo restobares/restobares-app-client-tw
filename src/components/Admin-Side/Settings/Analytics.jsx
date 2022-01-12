@@ -121,7 +121,7 @@ const Analytics = () => {
     <Fragment>
       <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
         <BackButton />
-        <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
+        <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Analytics</h1>
         </div>
         <LogoutButton/>
@@ -134,7 +134,8 @@ const Analytics = () => {
           <div className="flex flex-wrap">
             <div className="w-full md:w-1/2 xl:w-1/3 p-3">
               {/* <!--Revenue--> */}
-              <div className="bg-white border rounded shadow p-2">
+              <Link to="revenues/Monthly">
+              <div className="bg-white border rounded shadow p-2 hover:bg-gray-200">
                 <div className="flex flex-row items-center">
                   <div className="flex-shrink pr-4">
                     <div className="rounded p-1 bg-green-600">
@@ -160,11 +161,13 @@ const Analytics = () => {
                   </span>
                 </div>
               </div>
+              </Link>
             </div>
 
             <div className="w-full md:w-1/2 xl:w-1/3 p-3">
               {/* <!--Revenue--> */}
-              <div className="bg-white border rounded shadow p-2">
+              <Link to="revenues/Weekly">
+              <div className="bg-white border rounded shadow p-2 hover:bg-gray-200">
                 <div className="flex flex-row items-center">
                   <div className="flex-shrink pr-4">
                     <div className="rounded p-1 bg-green-600">
@@ -190,11 +193,13 @@ const Analytics = () => {
                   </span>
                 </div>
               </div>
+              </Link>
             </div>
 
             <div className="w-full md:w-1/2 xl:w-1/3 p-3">
               {/* <!--Revenue--> */}
-              <div className="bg-white border rounded shadow p-2">
+              <Link to="revenues/Daily">
+              <div className="bg-white border rounded shadow p-2 hover:bg-gray-200">
                 <div className="flex flex-row items-center">
                   <div className="flex-shrink pr-4">
                     <div className="rounded p-1 bg-green-600">
@@ -220,6 +225,7 @@ const Analytics = () => {
                   </span>
                 </div>
               </div>
+              </Link>
             </div>
 
             <div className="w-full md:w-1/2 xl:w-1/3 p-3">
@@ -384,7 +390,7 @@ const Analytics = () => {
             <div className="w-full md:w-1/2 xl:w-1/3 p-3">
               <Link to="feedbacks">
               {/* <!--Feedback--> */}
-              <div className="bg-white border rounded shadow p-2">
+              <div className="bg-white border rounded shadow p-2 hover:bg-gray-200">
                 <div className="flex flex-row items-center">
                   <div className="flex-shrink pr-4">
                     <div className="rounded p-1 bg-red-600">
