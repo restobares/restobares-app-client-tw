@@ -12,7 +12,6 @@ export default function ChangeOrder({ tableId, status }) {
     let tokenAdmin = Cookies.get("token-admin");
 
   	const goToClientSide = async () => {
-      console.log(status)
       sockets.joinResto(idResto);
       if (status === "free") {        
 			  await dispatch(changeTableFilled(idResto,tableId));
