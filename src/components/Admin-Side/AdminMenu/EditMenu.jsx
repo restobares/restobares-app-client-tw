@@ -131,7 +131,7 @@ const EditMenu = () => {
       </div>
 
 
-      {menu.length > 0 &&
+      {menu.length ?
         menu.map((product) => {
           let productDetailShortened;
           if (product.detail.length > 60) {
@@ -258,7 +258,28 @@ const EditMenu = () => {
               </div>
             </div>
           );
-        }) 
+        }) :
+        <div className=" lg:px-6  bg-gray-100 border-gray-400 border-2 border-opacity-50 rounded-md mt-2 mx-2 text-center">
+              <div className='h-full w-full flex flex-row text-center'>
+                <div className='w-full'>
+                  {/* <div className=" bg-gray-200 mx-4 my-2 rounded-lg md:rounded-full grid grid-flow-col text-center lg:text-2xl font-normal">
+                    <p className="text-left px-2 md:pl-5 tracking-wide py-1">ssss</p>
+                  </div> */}
+                  
+                  <div className=" bg-gray-200 mx-4 my-2 py-1 rounded-lg md:rounded-full text-base font-semibold lg:text-2xl">
+                      <p>Does not match any results!</p>
+                    </div>
+                </div>
+              </div>
+                <div className='h-full w-full flex flex-row text-center'>
+                <div className='w-full'>
+                    <div className="mx-4 my-2 py-1 rounded-lg md:rounded-full text-base lg:text-2xl">
+                      <p>We can't seem to find any products that match your search</p>
+                    </div>
+                </div>
+              </div>
+            </div>
+        
       }
     </Fragment>
   );
