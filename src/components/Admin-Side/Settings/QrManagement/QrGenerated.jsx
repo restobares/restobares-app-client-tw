@@ -48,7 +48,7 @@ const QrGenerated = () => {
           {qrCode.map((qr, index) => {
             return (
               <div>
-                <h4 className="mb-2">Table&nbsp;{(qrCode, qr.index)}</h4>
+                <h4 key={index} className="mb-2">Table&nbsp;{(qrCode, qr.index)}</h4>
                 <img src={ qr.url } alt=""/>
                 
               </div>
