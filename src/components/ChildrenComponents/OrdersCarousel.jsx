@@ -95,12 +95,12 @@ const OrdersCarousel = () => {
                     <div className="w-12  float-right">
                       <div className="inline-block float-right h-6 mt-1 mr-1 w-12 shrink-0"> 
                         <button className="mt-1 inline-block text-left align-middle bg-pink-700 rounded-full h-5 w-5" onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
-                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/minus-math.png" width="16" alt=""/>
+                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/minus-math.png" width="16" alt="" className="h-3 w-3 ml-1" />
                         </button>
 
                         
                         <button className="mt-1 inline-block text-left ml-2 align-middle text-md bg-pink-700 rounded-full h-5 w-5" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
-                          <img src="https://img.icons8.com/ios-glyphs/48/ffffff/plus-math.png" width="16" alt="" />
+                          <img src="https://img.icons8.com/ios-glyphs/48/ffffff/plus-math.png" width="16" alt="" className="h-3 w-3 ml-1" />
                         </button>  
                       </div>
                     </div>
