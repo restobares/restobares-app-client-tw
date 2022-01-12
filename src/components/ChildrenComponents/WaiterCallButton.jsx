@@ -16,7 +16,7 @@ const WaiterCallButton = () => {
       title: 'The waiter has been called!',
       html: 'The waiter is on his way, wait a few moments...',
       showConfirmButton: false,
-      timer: 1500
+      timer: 3000
     });}
 
     const handleCallStaff = async () => {
