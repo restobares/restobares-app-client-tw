@@ -93,12 +93,16 @@ const OrdersCarousel = () => {
                   <div className="flex mx-0  flex-row justify-between">
                     <p className="inline-block   text-black h-8 text-left text-xs overflow-hidden flex-grow-1">{order.detail}</p> 
                     <div className="w-12  float-right">
-                      <div className="inline-block float-right  h-6  bg-pink-700 rounded-full  mt-1 mr-1 w-12 flex-shrink-0"> 
-                        <button className="mt-1 inline-block text-left  align-middle " onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
-                          ➖
+                      <div className="inline-block float-right h-6 mt-1 mr-1 w-12 shrink-0"> 
+                        <button className="mt-1 inline-block text-left align-middle bg-pink-700 rounded-full h-5 w-5" onClick={() => dispatch(removeProduct(order.productId, order.productName, order.image, order.price, order.detail))} disabled={!cart[order.productId] || !cart[order.productId].quantity}>
+                        <img src="https://img.icons8.com/ios-glyphs/30/ffffff/minus-math.png" width="16" alt=""/>
+                          {/* ➖ */}
                         </button>
-                        <button className="mt-1 inline-block text-left ml-2 align-middle text-md" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
-                          ➕
+
+                        
+                        <button className="mt-1 inline-block text-left ml-2 align-middle text-md bg-pink-700 rounded-full h-5 w-5" onClick={() => dispatch(addProduct(order.productId, order.productName, order.image, order.price, order.detail))}>
+                          <img src="https://img.icons8.com/ios-glyphs/48/ffffff/plus-math.png" width="16" alt="" />
+                          {/* ➕ */}
                         </button>  
                       </div>
                     </div>
