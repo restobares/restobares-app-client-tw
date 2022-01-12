@@ -21,7 +21,7 @@ export default function Tables() {
   let tokenAdmin = Cookies.get("token-admin");
   const tables = useSelector((state) => state.tables);
   const [idStaffInput, setIdStaffInput] = useState(0);
-  const [hover, setHover] = useState("null");
+  // const [hover, setHover] = useState("null");
 
   useEffect(() => {
     sockets.joinResto(idResto);
@@ -135,9 +135,9 @@ export default function Tables() {
 		setIdStaffInput(e.target.value);
   }
 
-  const showOption = () => {
-    return setHover(true);
-  };
+  // const showOption = () => {
+  //   return setHover(true);
+  // };
 
   return (
     <div className=" h-full w-full  flex flex-col  overflow-auto">
