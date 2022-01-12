@@ -49,7 +49,7 @@ const QrGenerated = () => {
             return (
               <div>
                 <h4 className="mb-2">Table&nbsp;{(qrCode, qr.index)}</h4>
-                <img src={qr.url} alt=""/>
+                <img src={ qr.url } alt=""/>
                 
               </div>
             );
