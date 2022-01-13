@@ -107,7 +107,7 @@ const CreatedBy = () => {
                     </ServicesCard>
                     <ServicesCard>
                         <ServicesIcon src={chardH}/>
-                        <ServicesH2>Chard Hernández</ServicesH2>
+                        <ServicesH2>Chard Muñiz</ServicesH2>
                         <SocialIcons>
                 <SocialIconLink href="https://www.linkedin.com/in/chardhm/" target="_blank" arial-label="Linkedin">
                   <FaLinkedin />

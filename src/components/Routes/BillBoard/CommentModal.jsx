@@ -38,9 +38,11 @@ const CommentModal = ({ showModal, setShowModal }) => {
       {showModal ? (
       <div className="fixed inset-0 bg-black bg-opacity-40 pt-36">
           <div className=" w-8/12  mx-auto  bg-pink-700  border-2 border-gray-700 rounded-3xl">
-            <button onClick={(e) => backTrack(e)}className="absolute -top-3 -right-3">
-              <p className="text-xl bg-gray-300 pb-1 px-3 rounded-full">x</p>
-            </button>
+              <div className="float-right -mr-2 -mt-2">
+                <button onClick={(e) => backTrack(e)}className="">
+                  <p className="text-xl bg-gray-300 pb-1 px-3 rounded-full">x</p>
+                </button>
+              </div>
             <h1 className=' mt-8 text-base text-white mb-2'>Would you like to add a comment?</h1>
           <div className="mx-4">
             <label>
