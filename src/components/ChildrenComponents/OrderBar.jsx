@@ -27,7 +27,7 @@ const OrderBar = () => {
         <Search/>
         <Link  to={`/resto/${idResto}/table/${idTable}/order`}> 
           <button className="inline-block float-right mr-2  button  ">
-            { Cart &&
+            { Cart.length > 0 &&
             <div className='fixed h-6 w-6 rounded-full bg-red-600 text-white top-7 right-1'>
               <p className= {['mt-1 ', Cart.length < 10  ? "" 
                                                           : "mr-1"
