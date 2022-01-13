@@ -14,7 +14,7 @@ export default function ShowRun() {
   };
 
   return (
-    <div className="overflow-y-auto">
+    <div >
       {/* {isOpen ? ( */}
       <SideBar isOpen={isOpen} toggle={toggle} />
       {/* ) : ( */}
