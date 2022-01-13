@@ -48,15 +48,15 @@ const PayBoard = () => {
     window.location.href = `${json.payload.response.init_point}`
   }
   
-  useEffect(() => {
-    dispatch(getOrders(idResto, idTable));
+  useEffect(async () => {
+    let json = await dispatch(getOrders(idResto, idTable));
     if (totalPrice > 0) {
       sockets.joinResto(idResto);
-      sockets.tableListen( ()=> {
+      sockets.tableListen(()=> {
       	dispatch(getOrders(idResto, idTable));
       });
     } 
-    if (cart.ordered.length === 0) {
+    if (json.payload.ordered.length === 0) {
       async function paymentAlert() {
         await Swal.fire({
           position: 'center',
@@ -65,7 +65,6 @@ const PayBoard = () => {
           showConfirmButton: false,
           timer: 3000
         })
-        // aca usar navigate a ruta feedback
       navigate(`/resto/${idResto}/table/${idTable}/feedback`)
       }
       paymentAlert();  
