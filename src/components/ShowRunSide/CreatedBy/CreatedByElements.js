@@ -96,13 +96,12 @@ export const ServicesH1 = styled.h1`
 `;
 
 export const SocialIcons = styled.small`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 240px;
+display: flex;
+justify-content: center;
+align-items: center;
 `;
 
 export const SocialIconLink = styled.a`
-  color: #000;
-  font-size: 24px;
+color: #000;
+font-size: 24px;
 `;

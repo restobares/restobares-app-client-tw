@@ -37,7 +37,6 @@ const CommentModal = ({ showModal, setShowModal }) => {
     <>
       {showModal ? (
       <div className="fixed inset-0 bg-black bg-opacity-40 pt-36">
-        <div className="w-8/12 bg-green-200 h-full">
           <div className=" w-8/12  mx-auto  bg-pink-700  border-2 border-gray-700 rounded-3xl">
             <button onClick={(e) => backTrack(e)}className="absolute -top-3 -right-3">
               <p className="text-xl bg-gray-300 pb-1 px-3 rounded-full">x</p>
@@ -62,7 +61,6 @@ const CommentModal = ({ showModal, setShowModal }) => {
               </button>
             </div>
           </div>
-            </div>  
         </div>
       </div>
       ) : null}
