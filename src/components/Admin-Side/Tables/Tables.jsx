@@ -15,6 +15,10 @@ import {
 import Swal from "sweetalert2";
 
 export default function Tables() {
+
+
+  const WidthMedium = 768;
+
   const dispatch = useDispatch();
   const { idResto } = useParams();
   let tokenStaff = Cookies.get("token-staff");
@@ -126,18 +130,20 @@ export default function Tables() {
     let inputString = input.toString();
     if ( inputString.length === 0 || inputString.length > 9 ) {
       e.target.value = idStaffInput;
-      //return Swal.fire({
-      //  icon: "error",
-      //  title: "Oops...",
-      //  text: "Be sure to check your Staff ID.",
-      //});
     }
 		setIdStaffInput(e.target.value);
   }
 
-  // const showOption = () => {
-  //   return setHover(true);
-  // };
+  const [width, setWidth] = useState(window.innerWidth)
+
+  useEffect(() => {
+  const handleResize = () => setWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [dispatch,width])
+
 
   return (
 
@@ -316,14 +322,18 @@ export default function Tables() {
                                 />
                               </div>
                               <button
-                                className="px-1 mt-1 inline-block float-right bg-pink-600 text-white rounded-md align-middle mr-28 ml-3"
+                                className="px-1 mt-1 inline-block float-right bg-pink-600 text-white rounded-md align-middle mr-4 ml-1 "
                                 onClick={() => handleDelete(el.productId, 1)}
                               >
                                 one
                               </button>
-                              <p className="inline-block float-right ml-1  truncate mt-1 text-pink-600">
-                                Delete:
-                              </p>
+
+
+                              { width > WidthMedium &&
+                                <p className="inline-block float-right w-1/12 truncate mt-1 text-pink-600">
+                                  Delete:
+                                </p>
+                              }
                             </div>
                           </div>
                           </button>
