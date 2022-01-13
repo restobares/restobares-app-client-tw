@@ -29,8 +29,8 @@ export default function LandingPage () {
     return (<div>
       <div style={{ 
         backgroundImage: `url(${bgimg})` 
-      }} className="relative container h-screen justify-center bg-cover">
-      <div className="absolute container h-screen justify-center bg-cover bg-pink-600 bg-opacity-30">
+      }} className="relative  h-screen justify-center bg-cover">
+      <div className="absolute w-screen h-screen justify-center bg-cover bg-pink-600 bg-opacity-30">
       </div>
             
       <div className="relative place-self-center">
