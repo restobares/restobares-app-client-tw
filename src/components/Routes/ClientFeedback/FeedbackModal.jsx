@@ -36,9 +36,9 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
           
 
             {showModal ? (
-              <div className="fixed -mt-40 inset-0 bg-black bg-opacity-40 pt-60 ">
-                <div className="relative w-8/12 mx-auto h-72 bg-pink-800  border-2 border-pink-900 rounded-3xl ">
-                  <h1 className="my-4 text-white">
+              <div className="fixed  inset-0 bg-black bg-opacity-40 pt-60 ">
+                <div className="relative w-9/12 mx-auto h-80 bg-pink-800  border-2 border-pink-900 rounded-3xl mt-24 ">
+                  <h1 className="my-2 mx-2 text-white text-xl">
                     We appreciate your feedback!
                   </h1>
                   <div className="mx-4">
@@ -61,7 +61,7 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                     >
                       No
                     </button>
-                    <div className="flex mt-12 justify-center items-center">
+                    <div className="flex mt-14 justify-center items-center">
                       {[...Array(5)].map((star, i) => {
                         const ratingValue = i + 1;
                         return (

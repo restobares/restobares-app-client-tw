@@ -26,27 +26,26 @@ const ClientFeedback = () => {
  
     return (
     <div>
-      <div
+      <div 
         style={{
           backgroundImage: `url(${bgimg})`,
         }}
-        className="relative container h-screen justify-center bg-cover"
+        className=" h-screen  bg-cover flex flex-col justify-between"
       >
-        <div className="absolute container h-screen justify-center bg-cover bg-pink-600 bg-opacity-30"></div>
+        <div className="absolute w-full h-screen justify-center bg-cover bg-pink-600 bg-opacity-30"></div>
 
-        <div className="relative place-self-center">
-          <h2 className="titulo mb-10 pt-10 text-center text-white ">
+        <div className="relative place-self-center text-2xl">
+          <h2 className=" mb-10 pt-10 text-center text-white text-3xl mx-2">
             Thank you for choosing us.
           </h2>
-          <h2 className=" pt-20 text-center text-white text-4xl px-2 mb-2">
+        
+          <h2 className="  text-center text-white  text-3xl px-2 mb-2 mx-2">
             We can’t wait to see you again soon!
           </h2>
-
-          <button className="btn text-button text-white" onClick={onClose}>Close</button>
-
           <div>
             <FeedbackModal showModal={showModal} setShowModal={setShowModal} />
           </div>
+          <button className=" bottom-0 btn text-button  text-white" onClick={onClose}>Close</button>
         </div>
       </div>
     </div>
