@@ -56,7 +56,7 @@ const PayBoard = () => {
       	dispatch(getOrders(idResto, idTable));
       });
     } 
-    if (totalPrice === 0) {
+    if (cart.ordered.length === 0) {
       async function paymentAlert() {
         await Swal.fire({
           position: 'center',
@@ -69,7 +69,6 @@ const PayBoard = () => {
       navigate(`/resto/${idResto}/table/${idTable}/feedback`)
       }
       paymentAlert();  
-      
     }
     
   },[dispatch,idResto, idTable, navigate, totalPrice]);
