@@ -20,7 +20,7 @@ function qrCode(state = initialState, action) {
     let newQrCodes = [];
 
     for (var i = action.payload.tables[0]; i <= action.payload.tables[1]; i++) {
-      let data = `https://restobares-app.web.app/resto/ANzbx5Pa3dPizabR/table/${i}`;
+      let data = `https://restobares-app.web.app/resto/${action.payload.idResto}/table/${i}`;
       let url = `${baseUrl}?data=${data}&ecc=Q`;
       let obj = {
         url,
