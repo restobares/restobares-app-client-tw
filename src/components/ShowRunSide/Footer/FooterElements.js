@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 export const FooterContainer = styled.footer`
   background-color: #101522;
-  height: 700px;
+  height: 800px;
+  width: 100%;
   justify-content: center;
   align-items: center;
 `;
