@@ -14,7 +14,7 @@ export default function ShowRun() {
   };
 
   return (
-    <div >
+    <div>
       {/* {isOpen ? ( */}
       <SideBar isOpen={isOpen} toggle={toggle} />
       {/* ) : ( */}
