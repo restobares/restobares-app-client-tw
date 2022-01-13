@@ -34,7 +34,7 @@ export default function LandingPage () {
       </div>
             
       <div className="relative place-self-center">
-            <h2 className=" pt-20 text-center text-white text-4xl ">¡Bienvenidos!</h2>
+            <h2 className=" pt-20 text-center text-white text-4xl ">Welcome to</h2>
             <h2 className="titulo mb-10 pt-10 text-center text-white ">{user.title}</h2>
 
             <div className="flex items-center justify-center mb-10  mx-auto rounded-full ">
@@ -44,7 +44,7 @@ export default function LandingPage () {
 
             <button className="btn text-button text-white" onClick={
                 () => navigate (`/resto/${idResto}/table/${idTable}/menu`)
-            }>Entrar</button>
+            }>Enter</button>
 
         </div>
       </div>
