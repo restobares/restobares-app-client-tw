@@ -62,7 +62,7 @@ export const FooterLink = styled.div`
   color: #fff;
   cursor: default;
   text-decoration: none;
-  margin-bottom: 0%.5rem;
+  margin-bottom: 0.5rem;
   font-size: 14px;
   &:hover {
     color: #01bf71;
