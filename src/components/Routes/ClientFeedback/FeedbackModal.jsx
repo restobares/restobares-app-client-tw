@@ -37,7 +37,7 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
 
             {showModal ? (
               <div className="fixed  inset-0 bg-black bg-opacity-40 pt-60 ">
-                <div className="relative w-9/12 mx-auto h-80 bg-pink-800  border-2 border-pink-900 rounded-3xl mt-24 ">
+                <div className="relative w-9/12 md:w-4/12 mx-auto h-80 bg-pink-800  border-2 border-pink-900 rounded-3xl mt-24 ">
                   <h1 className="my-2 mx-2 text-white text-xl">
                     We appreciate your feedback!
                   </h1>
