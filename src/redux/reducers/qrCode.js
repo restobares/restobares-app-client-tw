@@ -10,7 +10,7 @@ function qrCode(state = initialState, action) {
 
     if (action.payload.tables.length === 1) {
 
-      let data = `https://restobares-app.web.app/resto/ANzbx5Pa3dPizabR/table/${action.payload.tables[0]}`;
+      let data = `https://restobares-app.web.app/resto/${action.payload.idResto}/table/${action.payload.tables[0]}`;
       let url = `${baseUrl}?data=${data}&ecc=Q`;
 			
 			let obj = {
