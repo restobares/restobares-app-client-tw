@@ -21,6 +21,9 @@ const PayBoard = () => {
   const openModal = () => {
   	sockets.joinResto(idResto);
     dispatch(postPayCash(idResto, idTable, tip))
+    sockets.tableListen(()=>{
+			dispatch(postPayCash(idResto, idTable, tip))
+    });
     sockets.tableSend();
     setShowModal(prev => !prev);
   }
