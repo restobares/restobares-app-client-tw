@@ -22,7 +22,7 @@ const PayBoard = () => {
   	sockets.joinResto(idResto);
     dispatch(postPayCash(idResto, idTable, tip))
     sockets.tableListen(()=>{
-			dispatch(postPayCash(idResto, idTable, tip))
+      dispatch(getOrders(idResto, idTable));
     });
     sockets.tableSend();
     setShowModal(prev => !prev);
