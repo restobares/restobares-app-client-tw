@@ -26,8 +26,8 @@ const CommentModal = ({ showModal, setShowModal }) => {
       products: cart.preOrderCart,
       comments: comment 
     }
-    await dispatch(postOrder(orderToPost, idResto, idTable));
     sockets.joinResto(idResto);
+    await dispatch(postOrder(orderToPost, idResto, idTable));
     sockets.tableSend();
     dispatch(getOrders(idResto, idTable));
   };

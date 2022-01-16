@@ -29,12 +29,12 @@ export default function LandingPage () {
     return (<div>
       <div style={{ 
         backgroundImage: `url(${bgimg})` 
-      }} className="relative container h-screen justify-center bg-cover">
-      <div className="absolute container h-screen justify-center bg-cover bg-pink-600 bg-opacity-30">
+      }} className="relative  h-screen justify-center bg-cover">
+      <div className="absolute w-screen h-screen justify-center bg-cover bg-pink-600 bg-opacity-30">
       </div>
             
       <div className="relative place-self-center">
-            <h2 className=" pt-20 text-center text-white text-4xl ">¡Bienvenidos!</h2>
+            <h2 className=" pt-20 text-center text-white text-4xl ">Welcome to</h2>
             <h2 className="titulo mb-10 pt-10 text-center text-white ">{user.title}</h2>
 
             <div className="flex items-center justify-center mb-10  mx-auto rounded-full ">
@@ -44,7 +44,7 @@ export default function LandingPage () {
 
             <button className="btn text-button text-white" onClick={
                 () => navigate (`/resto/${idResto}/table/${idTable}/menu`)
-            }>Entrar</button>
+            }>Enter</button>
 
         </div>
       </div>

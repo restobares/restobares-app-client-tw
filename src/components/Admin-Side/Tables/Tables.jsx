@@ -229,7 +229,7 @@ export default function Tables() {
                               {el.quantity * el.price} $
                             </p>
                             <p className="inline-block float-left ml-2 w-2/12 truncate">
-                              {Moment(el.time).format("HH:mm:ss")}
+                              {el.time.split(' ')[1]}
                             </p>
                           </div>
                         ))}
@@ -307,7 +307,7 @@ export default function Tables() {
                             </p>
 
                             <p className="inline-block float-left ml-2 w-2/12 truncate mt-1">
-                              {Moment(el.time).format("HH:mm:ss")}
+                              {el.time.split(' ')[1]}
                             </p>
                             <div className="">
                               <div className="float-right h-6  w-6 rounded-full mt-1 ">

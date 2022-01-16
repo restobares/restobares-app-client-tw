@@ -11,7 +11,7 @@ const OrdersCarousel = () => {
     <div className="mb-auto">
       { cart.ordered.length > 0 
       &&  <div className="mx-2 mt-2 h-8 bg-gray-400 text-white rounded-md ">
-            <p className="text-lg ">Consumed</p>
+            <p className="text-lg ">Delivered</p>
           </div> 
       }
       { cart.ordered.map((order) => {
@@ -41,7 +41,7 @@ const OrdersCarousel = () => {
         })}
       { cart.currentOrder.length > 0 
         &&  <div className="mx-2 mt-2 h-8 bg-gray-500 text-white rounded-md ">
-              <p className="text-lg ">Ordered</p>
+              <p className="text-lg ">In Progress</p>
             </div> 
       }
       {cart.currentOrder.length > 0 &&
