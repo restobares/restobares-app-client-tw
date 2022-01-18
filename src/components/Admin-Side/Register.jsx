@@ -3,6 +3,7 @@ import { useDispatch} from "react-redux";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { inputValidatorRegister, register } from "../../redux/actions";
+import { PulseLoader } from "react-spinners";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
@@ -30,6 +31,19 @@ const Register = () => {
     tables: "",
     payment_mp: "",
   });
+
+	const [loading, setLoading] = useState(false);
+	const override = `
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #0008;
+				z-index: 1000;
+				transition: all .5s ease-out;
+	`;
 
   function handleInputChanges(e) {
     setInput({
@@ -136,25 +150,35 @@ const Register = () => {
     }
     else {
         e.preventDefault();
-        await dispatch(register(input));
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Your account has been registered, check your email, 📧 ",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-        setInput({
-          title: "",
-          email: "",
-          passAdmin: "",
-          passAdminRepeat: "",
-          passStaff: "",
-          passStaffRepeat: "",
-          logo: "",
-          payment_mp: "",
-          tables: "",
-        });
+      	setLoading(true);
+        let json = await dispatch(register(input));
+      	setLoading(false);
+      	if (json.payload.error) {
+      		Swal.fire({
+      		  icon: "error",
+      		  title: "Oops...",
+      		  text: json.payload.error,
+      		});
+      	}
+        else { 
+        	Swal.fire({
+        	  position: "center",
+        	  icon: "success",
+        	  title: "Success!",
+        	  text: "You have to enter to your Email inbox/spambox to confirm this account. You have 1 hour to do so.",
+        	});
+        	setInput({
+        	  title: "",
+        	  email: "",
+        	  passAdmin: "",
+        	  passAdminRepeat: "",
+        	  passStaff: "",
+        	  passStaffRepeat: "",
+        	  logo: "",
+        	  payment_mp: "",
+        	  tables: "",
+        	});
+        }
 
         document.getElementById("logo").value = null;
       
@@ -213,6 +237,13 @@ const Register = () => {
         backgroundSize: "cover",
       }}
     >
+    	{loading && (<PulseLoader
+			css={override}
+			margin={10}
+			size={30}
+			color={"#E0125A"}
+			loading={loading}
+		/>)}
      {width > WidthMedium &&
         <Link to="/">
               <div className="absolute flex text-sm text-white mb-1 mt-1">

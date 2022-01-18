@@ -6,7 +6,7 @@ import LogoutButton from "../../Navbar/LogoutButton";
 import Cookies from "js-cookie";
 import { getRevenue } from "../../../../redux/actions";
 import { Card, Form, Table } from "react-bootstrap";
-import { ScaleLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 import ReactExport from "react-data-export";
 import ReactPaginate from 'react-paginate';
 import "./Revenues.css"
@@ -24,7 +24,6 @@ const Revenues = () => {
         display: flex;
         align-items: center;
         justify-content: center;    
-        border-color: red;
     `;
   const { monthly, weekly, daily } = useSelector((state) => state.revenue);
   const { time, idResto } = useParams();
@@ -202,12 +201,13 @@ const Revenues = () => {
                 {revenue.length === 0 ? (
                   <tr>
                     <td colSpan="10">
-                      <ScaleLoader
-                        css={override}
-                        size={150}
-                        color={"#eb4034"}
-                        loading={loading}
-                      />
+                      <PulseLoader
+												css={override}
+												margin={10}
+												size={30}
+												color={"#D0024A"}
+												loading={loading}
+											/>
                     </td>
                   </tr>
                 ) : (

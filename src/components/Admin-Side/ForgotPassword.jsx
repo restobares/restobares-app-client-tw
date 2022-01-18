@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getPasswordRecover } from '../../redux/actions';
+import { PulseLoader } from "react-spinners";
 import Swal from "sweetalert2";
 import dingbellLogo from "../../img/dingbell_white.png"
 
@@ -10,22 +11,35 @@ const ForgotPassword = ()  => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState("");
 
+		const [loading, setLoading] = useState(false);
+		const override = `
+					position: fixed;
+					width: 100vw;
+					height: 100vh;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background-color: #0008;
+					z-index: 1000;
+					transition: all .5s ease-out;
+		`;
+
     const handleSubmitPasswordRecover = async (e) => {
       e.preventDefault();
-
+			setLoading(true);
       let json = await dispatch(getPasswordRecover(email));
-      // console.log(json)
+			setLoading(false);
       if (json) {
         Swal.fire({
           icon: "success",
-          title: "Check your email to reset your password, 📧",
-          timer: 3500
+          title: "Success!",
+          text: "Check your email to reset your password, 📧",
         });
       } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "this email 📧 is not registered",
+          text: "This email 📧 is not registered",
         });
       }
     }
@@ -39,6 +53,13 @@ const ForgotPassword = ()  => {
             backgroundImage: `url(${bgimg})`,
             backgroundSize: "cover", 
           }} >
+          	{loading && (<PulseLoader
+						css={override}
+						margin={10}
+						size={30}
+						color={"#E0125A"}
+						loading={loading}
+					/>)}
            <Link to="/">
           <div className="absolute flex text-sm text-white mb-1 mt-1">
            <img className="mx-auto"  src={dingbellLogo} width="40" alt="" />
