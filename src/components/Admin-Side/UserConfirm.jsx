@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import { getMailConfirmation } from '../../redux/actions';
 import dingbellLogo from "../../img/dingbell_white.png";
-import { ScaleLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
 
 const UserConfirm = () => {
 		const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
@@ -17,7 +17,6 @@ const UserConfirm = () => {
 					display: flex;
 					align-items: center;
 					justify-content: center;		
-					border-color: red;
 		`;
 		
 		useEffect(async() => {
@@ -41,10 +40,11 @@ const UserConfirm = () => {
 						<div className='inline-block mx-auto my-auto justify-items-center '>
 							<div className=' mx-2 bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
 								{loading 
-									? (<ScaleLoader
+									? (<PulseLoader
 										css={override}
-										size={150}
-										color={"#eb4034"}
+										margin={10}
+										size={30}
+										color={"#D0024A"}
 										loading={loading}
 									/>)
 									:(

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, Link, /* useParams */ } from 'react-router-dom';
 import { login } from '../../redux/actions';
+import { PulseLoader } from "react-spinners";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import IconButton from "@material-ui/core/IconButton";
@@ -20,6 +21,18 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordLogin, setPasswordLogin] = useState(false);
+		const [loading, setLoading] = useState(false);
+		const override = `
+					position: fixed;
+					width: 100vw;
+					height: 100vh;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background-color: #0008;
+					z-index: 1000;
+					transition: all .5s ease-out;
+		`;
 
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
 
@@ -36,9 +49,9 @@ const Login = () => {
         e.preventDefault();
 
         if (validEmail(email)){
-          
+          setLoading(true); 
           let json = await dispatch(login(email, password));
-          
+          setLoading(false);
           if (!json.payload.error) {
             navigate(`../resto/${json.payload.id}/resto-home`)
             
@@ -64,6 +77,13 @@ const Login = () => {
             backgroundImage: `url(${bgimg})`,
             backgroundSize: "cover", 
           }} >
+          	{loading && (<PulseLoader
+						css={override}
+						margin={10}
+						size={30}
+						color={"#E0125A"}
+						loading={loading}
+					/>)}
            <Link to="/">
           <div className="absolute flex text-sm text-white mb-1 mt-1">
            <img className="mx-auto"  src={dingbellLogo} width="40" alt="" />

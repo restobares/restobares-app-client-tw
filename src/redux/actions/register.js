@@ -15,6 +15,12 @@ export function register(clientInfo) {
       });
     } catch(err) {
       console.log(err);
+      return dispatch({
+        type: ActionTypes.POST_REGISTER,
+        payload: {
+					error: "There was a problem sending the Email. Either it's incorrect, or it already exists."
+        }
+      });
     }
   }
 }

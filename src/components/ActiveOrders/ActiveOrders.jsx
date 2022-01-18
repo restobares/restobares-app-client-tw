@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { getOrdersFeed, sockets } from '../../redux/actions';
+import { PulseLoader } from "react-spinners";
 
 const ActiveOrders = () => {
   const dispatch = useDispatch();
@@ -11,15 +12,23 @@ const ActiveOrders = () => {
   let tokenAdmin = Cookies.get("token-admin");
   const ordersFeed = useSelector((state) => state.ordersFeed);
   //console.log(ordersFeed);
+	const [loading, setLoading] = useState(false);
+	const override = `
+				display: flex;
+				margin-top: 40px;
+				justify-content: center;
+	`;
   
-  useEffect(() => {
-		sockets.joinResto(idResto);
+  useEffect(async() => {
+		setLoading(true);
+		await sockets.joinResto(idResto);
     if (tokenStaff) {
-      dispatch(getOrdersFeed(idResto, tokenStaff));
+      await dispatch(getOrdersFeed(idResto, tokenStaff));
     }
     if (!tokenStaff && tokenAdmin) {
-      dispatch(getOrdersFeed(idResto, tokenAdmin));
+      await dispatch(getOrdersFeed(idResto, tokenAdmin));
     }
+		setLoading(false);
 		// Get tables when some diner does something
 		sockets.staffListen(() => {
     	if (tokenStaff) {
@@ -33,7 +42,16 @@ const ActiveOrders = () => {
 
   
 
-  return (
+	if (loading) return (
+		<PulseLoader
+			css={override}
+			margin={10}
+			size={30}
+			color={"#D0024A"}
+			loading={loading}
+		/>
+	);
+  else return (
     <div className="md:w-8/12 lg:7/12 mx-auto relative bg-gray-200 w-full">
       {ordersFeed.length > 0 && ordersFeed.map((order) => {
         return (
