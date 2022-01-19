@@ -19,25 +19,28 @@ const ActiveOrders = () => {
 				justify-content: center;
 	`;
   
-  useEffect(async() => {
-		setLoading(true);
-		await sockets.joinResto(idResto);
-    if (tokenStaff) {
-      await dispatch(getOrdersFeed(idResto, tokenStaff));
-    }
-    if (!tokenStaff && tokenAdmin) {
-      await dispatch(getOrdersFeed(idResto, tokenAdmin));
-    }
-		setLoading(false);
-		// Get tables when some diner does something
-		sockets.staffListen(() => {
+  useEffect(() => {
+		async function fetchData() {
+			setLoading(true);
+			await sockets.joinResto(idResto);
     	if (tokenStaff) {
-    	  dispatch(getOrdersFeed(idResto, tokenStaff));
+    	  await dispatch(getOrdersFeed(idResto, tokenStaff));
     	}
     	if (!tokenStaff && tokenAdmin) {
-    	  dispatch(getOrdersFeed(idResto, tokenAdmin));
+    	  await dispatch(getOrdersFeed(idResto, tokenAdmin));
     	}
-    });
+			setLoading(false);
+			// Get tables when some diner does something
+			sockets.staffListen(() => {
+    		if (tokenStaff) {
+    		  dispatch(getOrdersFeed(idResto, tokenStaff));
+    		}
+    		if (!tokenStaff && tokenAdmin) {
+    		  dispatch(getOrdersFeed(idResto, tokenAdmin));
+    		}
+    	});
+    }
+    fetchData();
   }, [dispatch, idResto, tokenStaff, tokenAdmin]);
 
   
@@ -53,9 +56,9 @@ const ActiveOrders = () => {
 	);
   else return (
     <div className="md:w-8/12 lg:7/12 mx-auto relative bg-gray-200 w-full">
-      {ordersFeed.length > 0 && ordersFeed.map((order) => {
+      {ordersFeed.length > 0 && ordersFeed.map((order,idx) => {
         return (
-          <div key={order}>
+          <div key={"order"+idx}>
             <div className=" lg:px-6  bg-gray-100 border-pink-700 border-2 border-opacity-50 rounded-lg mb-5 capitalize">
               <h1 className="text-xl p-2 font-semibold">Table {order.idTable}</h1>
               <hr className="border-1  mx-2 border-pink-500"/>
@@ -64,9 +67,9 @@ const ActiveOrders = () => {
                   Order
                 </p>
                 <div className='float-right w-full'>
-                  {order.currentOrder.products.map((item) => {
+                  {order.currentOrder.products.map((item,i) => {
                     return (
-                        <div className=" bg-gray-200 mx-4 my-2 rounded-lg md:rounded-full grid grid-flow-col text-base lg:text-2xl font-semibold">
+                        <div key={"item"+i} className=" bg-gray-200 mx-4 my-2 rounded-lg md:rounded-full grid grid-flow-col text-base lg:text-2xl font-semibold">
                           <h1 className="text-left px-2 md:pl-5">{item.productName}:</h1>
                           <h1 className="text-right px-2 md:px-5">{item.quantity}</h1>
                         </div>

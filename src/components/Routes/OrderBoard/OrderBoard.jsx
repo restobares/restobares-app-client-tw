@@ -10,7 +10,7 @@ import OrderCard from "../../AuxiliarComponents/OrderCard";
 import MenuPayBar from "../../ChildrenComponents/MenuPayBar";
 import OrderBar from "../../ChildrenComponents/OrderBar";
 import SideBar from "../../ChildrenComponents/SideBar";
-import WaiterCallButton from "../../ChildrenComponents/WaiterCallButton";
+//import WaiterCallButton from "../../ChildrenComponents/WaiterCallButton";
 
 export default function OrderBoard() {
   const { idResto, idTable } = useParams();
@@ -27,12 +27,15 @@ export default function OrderBoard() {
 				justify-content: center;
 	`;
 
-  useEffect(async() => {
-		setLoading(true);
-    await dispatch(getLabels());
-    await dispatch(getCategories());
-    await dispatch(getMenu(idResto, idTable));
-		setLoading(false);
+  useEffect(() => {
+		async function fetchData() {
+			setLoading(true);
+    	await dispatch(getLabels());
+    	await dispatch(getCategories());
+    	await dispatch(getMenu(idResto, idTable));
+			setLoading(false);
+		}
+		fetchData();
   }, [dispatch, idResto, idTable]);
 
   const handleHidden = (e) => {

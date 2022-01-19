@@ -33,8 +33,8 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
   return (
     <div className="flex">
             {showModal ? (
-              <div className="fixed  inset-0 bg-black bg-opacity-40  ">
-                <div className="relative w-9/12 md:w-4/12 mx-auto h-80 bg-pink-800  border-2 border-pink-900 rounded-3xl mt-24 ">
+              <div className="fixed flex items-center inset-0 bg-black bg-opacity-40  ">
+                <div className="relative w-9/12 md:w-4/12 mx-auto h-80 bg-pink-800  border-2 border-pink-900 rounded-3xl ">
                   <h1 className="my-2 mx-2 text-white text-xl">
                     We appreciate your feedback!
                   </h1>
@@ -43,7 +43,7 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                       <textarea
                         onChange={(e) => setComment(e.target.value)}
                         className="bg-pink-900 w-full h-36 rounded-xl text-white text-xl px-1.5 resize-none"
-                        maxlength="100"
+                        maxLength="100"
                       ></textarea>
                     </label>
                     <button
@@ -54,7 +54,7 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                     </button>
                     <button
                       onClick={NotFeed}
-                      className="float-right bg-pink-900 text-white text-sm rounded-xl mr-2 py-1.5 px-6 mt-2 "
+                      className="float-right bg-pink-900 text-white text-sm rounded-xl mr-2 py-1.5 px-3 mt-2 "
                     >
                       No, thanks
                     </button>
@@ -62,9 +62,8 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                       {[...Array(5)].map((star, i) => {
                         const ratingValue = i + 1;
                         return (
-                          <label>
+                          <label key={"stari"+i}>
                             <input
-                            	key={"stari"+i}
                               type="radio"
                               name="rating"
                               value={ratingValue}

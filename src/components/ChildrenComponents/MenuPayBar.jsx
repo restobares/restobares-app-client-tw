@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Logo from "../../img/dingbell_white.png";
+//import Logo from "../../img/dingbell_white.png";
 import WaiterCallButton from "./WaiterCallButton";
 
 

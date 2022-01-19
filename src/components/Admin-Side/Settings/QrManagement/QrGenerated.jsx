@@ -36,7 +36,7 @@ const QrGenerated = () => {
 
   return (
     <div>
-      <div className="w-full flex justify-evenly h-15 bg-gray-300 p-1 rounded-b-2xl mb-4">
+      <div className="sticky top-0 w-full flex justify-evenly h-15 bg-gray-300 p-1 rounded-b-2xl mb-4">
       <BackButton />
         <button onClick={generatePDF} type="primary" className="shadow-lg bg-pink-600 hover:bg-pink-800 text-white font-bold text-lg my-2 mx-2  px-2 rounded"
         /* className="inline-block bg-pink-600 hover:bg-pink-800 text-white font-bold text-base my-2 mx-2 p-1 rounded" */>
@@ -47,7 +47,7 @@ const QrGenerated = () => {
         <div id="printeable" className="inline-grid items-start grid-cols-2 md:grid-cols-3 grid-rows-3 gap-5" >
           {qrCode.map((qr, index) => {
             return (
-              <div>
+              <div key={"qr"+index}>
                 <h4 key={"qrtitle"+index} className="mb-2">Table&nbsp;{(qrCode, qr.index)}</h4>
                 <img key={"qrimg"+index} src={ qr.url } alt=""/>
                 

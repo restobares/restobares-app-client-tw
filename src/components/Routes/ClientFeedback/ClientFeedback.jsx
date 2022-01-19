@@ -18,7 +18,7 @@ const ClientFeedback = () => {
     sockets.joinResto(idResto);
     dispatch(getOrders(idResto, idTable));
 		sockets.tableSend();
-  }, [idResto, idTable])
+  }, [idResto, idTable, dispatch])
  
 
   const bgimg =

@@ -23,12 +23,15 @@ const QrManager = () => {
   const tokenStaff = Cookies.get("token-staff");
   var token = tokenAdmin || tokenStaff;
 
-  useEffect( async () => {
-    if(!tables.length) {
-    await dispatch(getTables(idResto, token))
-    setLastTable(Math.min(9,tables.length))
+  useEffect(() => {
+    async function fetchData() {
+    	if(!tables.length) {
+    		await dispatch(getTables(idResto, token))
+    		setLastTable(Math.min(9,tables.length))
+    	}
     }
-  }, [idResto])
+    fetchData();
+  }, [idResto,dispatch,tables.length,token])
 
   const generateOneQr = async (e) => {
     e.preventDefault();
@@ -113,9 +116,9 @@ const QrManager = () => {
 
   return (
     <div>
-      <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+      <nav className="sticky top-0 flex flex-row w-screen justify-between bg-pink-700 h-12">
         <BackButton />
-        <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
+        <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>QR&nbsp;Management</h1>
         </div>
         <LogoutButton/>
