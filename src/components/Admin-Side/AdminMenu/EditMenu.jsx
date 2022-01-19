@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, /*useNavigate,*/ useParams } from "react-router-dom";
 import { getProductsByEditName } from "../../../redux/actions";
 import BackButton from "../BackButton";
 import LogoutButton from "../Navbar/LogoutButton.jsx";
@@ -9,7 +9,6 @@ import { PulseLoader } from "react-spinners";
 import {
   deleteProduct,
   getMenu,
-  logout,
   putAvailableProduct,
 } from "../../../redux/actions";
 import Cookies from "js-cookie";
@@ -21,9 +20,9 @@ const EditMenu = () => {
   const tokenAdmin = Cookies.get("token-admin");
   const tokenStaff = Cookies.get("token-staff");
   const menu = useSelector((state) => state.menus.menuAdmin);
-  const logoutCode = Cookies.get("logout-code");
+  //const logoutCode = Cookies.get("logout-code");
 
-	const navigate = useNavigate();
+	//const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 	const override = `
 				position: fixed;
@@ -35,13 +34,13 @@ const EditMenu = () => {
 				transition: all .5s ease-out;
 	`;
 
-  const handleLogOut = async () => {
-    await dispatch(logout(logoutCode));
-    Cookies.remove("token-admin");
-    Cookies.remove("token-staff");
-    Cookies.remove("logout-code");
-    navigate("/resto/login");
-  };
+  //const handleLogOut = async () => {
+  //  await dispatch(logout(logoutCode));
+  //  Cookies.remove("token-admin");
+  //  Cookies.remove("token-staff");
+  //  Cookies.remove("logout-code");
+  //  navigate("/resto/login");
+  //};
 
   const handlePutAvailableProduct = async (idProduct) => {
     if (tokenAdmin || tokenStaff) {
@@ -75,10 +74,13 @@ const EditMenu = () => {
     })
   };
 
-  useEffect(async() => {
-    setLoading(true);
-    await dispatch(getMenu(idResto, 1));
-    setLoading(false);
+  useEffect(() => {
+    async function fetchData() {
+    	setLoading(true);
+    	await dispatch(getMenu(idResto, 1));
+    	setLoading(false);
+    }
+    fetchData();
   }, [dispatch, idResto]);
 
  //searchbar

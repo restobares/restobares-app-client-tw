@@ -6,9 +6,6 @@ import { postOrderToMP, postPayCash, getOrders, sockets } from '../../../redux/a
 import Modal from './Modal';
 import Swal from 'sweetalert2';
 
-
-
-
 const PayBoard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -51,28 +48,30 @@ const PayBoard = () => {
     window.location.href = `${json.payload.response.init_point}`
   }
   
-  useEffect(async () => {
-    let json = await dispatch(getOrders(idResto, idTable));
-    if (totalPrice > 0) {
-      sockets.joinResto(idResto);
-      sockets.tableListen(()=> {
-      	dispatch(getOrders(idResto, idTable));
-      });
-    } 
-    if (json.payload.ordered.length === 0) {
-      async function paymentAlert() {
-        await Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Payment Successful',
-          showConfirmButton: false,
-          timer: 3000
-        })
-      navigate(`/resto/${idResto}/table/${idTable}/feedback`)
-      }
-      paymentAlert();  
+  useEffect(() => {
+    async function fetchData() {
+    	let json = await dispatch(getOrders(idResto, idTable));
+    	if (totalPrice > 0) {
+    	  sockets.joinResto(idResto);
+    	  sockets.tableListen(()=> {
+    	  	dispatch(getOrders(idResto, idTable));
+    	  });
+    	} 
+    	if (json.payload.ordered.length === 0) {
+    	  async function paymentAlert() {
+    	    await Swal.fire({
+    	      position: 'center',
+    	      icon: 'success',
+    	      title: 'Payment Successful',
+    	      showConfirmButton: false,
+    	      timer: 3000
+    	    })
+    	  navigate(`/resto/${idResto}/table/${idTable}/feedback`)
+    	  }
+    	  paymentAlert();  
+    	}
     }
-    
+    fetchData();
   },[dispatch,idResto, idTable, navigate, totalPrice]);
 
 
@@ -106,7 +105,7 @@ const PayBoard = () => {
           }}
           className="font-bold px-2 py-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
         >
-          <option selected value="0">
+          <option value="0">
             -- Tip percentage --
           </option>
           <option value="20"> 20% - Excellent!</option>

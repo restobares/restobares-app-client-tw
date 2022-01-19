@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import BackButton from '../BackButton';
 import Select from "react-select";
 import { useDispatch } from 'react-redux';

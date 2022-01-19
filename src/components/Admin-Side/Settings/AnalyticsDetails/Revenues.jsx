@@ -5,7 +5,7 @@ import BackButton from "../../BackButton";
 import LogoutButton from "../../Navbar/LogoutButton";
 import Cookies from "js-cookie";
 import { getRevenue } from "../../../../redux/actions";
-import { Card, Form, Table } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 import { PulseLoader } from "react-spinners";
 import ReactExport from "react-data-export";
 import ReactPaginate from 'react-paginate';
@@ -32,9 +32,10 @@ const Revenues = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  useEffect(async () => {
-    
-    const fetchData = async () => {
+  useEffect(() => {
+		let isMounted = true; 
+    async function fetchData() {
+    	setLoading(true);
       await dispatch(getRevenue(idResto, time, tokenAdmin));
       switch (time) {
         case "Monthly":
@@ -51,17 +52,15 @@ const Revenues = () => {
       }
       setPageCount(Math.ceil((revenue.length /perPage) )- 1);
       setRevenueData(revenue.slice(offset, offset + perPage));
+    	setLoading(false);
     }
-    setLoading(true);
-    await fetchData();
-    setLoading(false);
-  }, [time, offset, idResto, tokenAdmin, revenue, perPage, dispatch]); 
+    if (isMounted) fetchData();
+    return () => isMounted = false;
+  }, [time, offset, idResto, tokenAdmin, revenue, perPage, dispatch, daily, weekly, monthly]); 
   
-  const handlePageClick = async(e) => {
+  const handlePageClick = (e) => {
     const selectedPage = e.selected;
-    setLoading(true);
-    await setOffset((selectedPage + 1)*perPage)
-    setLoading(false);
+    setOffset((selectedPage + 1)*perPage)
   }
 
   const DataSet = [
@@ -136,7 +135,7 @@ const Revenues = () => {
   return (
     <div className=" w-full ">
         {/* NavBar */}
-        <nav className="flex flex-row justify-between bg-pink-700 h-12 mb-5">
+        <nav className="sticky top-0 flex flex-row justify-between bg-pink-700 h-12 mb-5">
           <BackButton />
           <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
             <h1>{time}&nbsp;revenues</h1>
@@ -146,15 +145,6 @@ const Revenues = () => {
         {/* Cards */}
         <Card className=" w-full ">
           <Card.Body className=" w-full ">
-            {/* <Form>
-              <Form.Label className="text-danger font-weight-bold">
-                Select Country
-              </Form.Label>
-              <Form.Control
-                as="select"
-                defaultValue="Choose....."
-              ></Form.Control>
-            </Form> */}
             <div className="flex flex-col items-center">
             {revenue.length !== 0 ? (
               <ExcelFile

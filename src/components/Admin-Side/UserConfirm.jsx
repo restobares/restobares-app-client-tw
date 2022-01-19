@@ -19,11 +19,13 @@ const UserConfirm = () => {
 					justify-content: center;		
 		`;
 		
-		useEffect(async() => {
-			setLoading(true);
-			await dispatch(getMailConfirmation(token));
-			setLoading(false);
-				 
+		useEffect(() => {
+			async function fetchData() {
+				setLoading(true);
+				await dispatch(getMailConfirmation(token));
+				setLoading(false);
+			}
+			fetchData(); 
 		}, [dispatch, token]);
 
 		return (

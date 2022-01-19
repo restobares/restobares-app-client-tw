@@ -9,7 +9,6 @@ import {
   getLabels,
   getCategories,
   putMenu,
-  logout,
 } from "../../../redux/actions";
 import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -22,7 +21,7 @@ function MenuFormEditable() {
   const menu = useSelector((state) => state.menus.menuAdmin);
   const product = menu.find((product) => product.id === Number(idProduct));
 
-  const logoutCode = Cookies.get("logout-code");
+  //const logoutCode = Cookies.get("logout-code");
 
   let tokenAdmin = Cookies.get("token-admin");
   const labels = useSelector((state) => state.labels);
@@ -83,7 +82,6 @@ function MenuFormEditable() {
     let labelIndex = labels.findIndex((label) => label.id === labelIdSelected);
     labelNamesPlaceholder.push(options[labelIndex]);
   }
-  console.log(labelNamesPlaceholder);
 
   function handleInputChanges(e) {
     setInput({
@@ -196,18 +194,18 @@ function MenuFormEditable() {
     };
   }, [width]);
 
-  const handleLogOut = async () => {
-    await dispatch(logout(logoutCode));
-    Cookies.remove("token-admin");
-    Cookies.remove("token-staff");
-    Cookies.remove("logout-code");
-    navigate("/resto/login");
-  };
+  //const handleLogOut = async () => {
+  //  await dispatch(logout(logoutCode));
+  //  Cookies.remove("token-admin");
+  //  Cookies.remove("token-staff");
+  //  Cookies.remove("logout-code");
+  //  navigate("/resto/login");
+  //};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true); 
-    let json = await dispatch(putMenu(idResto, idProduct, input, tokenAdmin));
+    await dispatch(putMenu(idResto, idProduct, input, tokenAdmin));
     setLoading(false); 
     await Swal.fire({
       position: "center",

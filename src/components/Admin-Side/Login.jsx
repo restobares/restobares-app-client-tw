@@ -37,7 +37,7 @@ const Login = () => {
     const bgimg = "https://houseofruthinc.org/wp-content/uploads/2019/04/dinner.jpg";
 
     function validEmail(email) {
-      return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+      return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
     }    
 
   	const togglePasswordLogin = (e) => {
@@ -146,7 +146,7 @@ const Login = () => {
                         </button>
 
                       <Link to={`/resto/login/forgotpassword`}>
-                        <a className="py-2 px-4 text-blue-500" href="/#">Forgot your Password?</a>
+                        <p className="py-2 px-4 text-blue-500" href="/#">Forgot your Password?</p>
                       </Link>
                         
                     </div>

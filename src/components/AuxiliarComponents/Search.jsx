@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch/*, useSelector*/ } from "react-redux";
 import { getProductsByName } from "../../redux/actions";
 
 const Search = () => {
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
-  const {state} = useSelector((state)=> state);
+  //const {state} = useSelector((state)=> state);
 
   function onChangeD (e){
     dispatch(getProductsByName(e.target.value))

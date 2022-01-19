@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
-import Moment from "moment";
+//import Moment from "moment";
 import { getTables } from "../../../redux/actions";
 import ChangeOrder from "./ChangeOrder";
 import CallButtonStaff from "./CallButtonStaff";
@@ -158,7 +158,7 @@ export default function Tables() {
       <div className=" overflow-y-auto">
         {tables.map((el) => (
           <div
-            key={el.tableId}
+            key={"table"+el.tableId}
             className={el.calling ? "w-full border-2 border-yellow-400 bg-yellow-200 rounded-xl flex flex-col mt-2  text-sm  font-semibold" : "w-full border-2 border-gray-400 rounded-xl flex flex-col mt-2  text-sm  font-semibold"}
           >
             <div className="h-8 w-full  flex flex-row  ">
@@ -182,6 +182,7 @@ export default function Tables() {
                 <input
                   type="image"
                   name={el.tableId}
+                  key={"tblimg"+el.tableId}
                   onClick={(e) => handleButton(e)}
                   className="inline-block float-right mt-3 mr-2"
                   src={
@@ -242,7 +243,6 @@ export default function Tables() {
                               maxLength="9"
                               name=""
                               id=""
-                              oninput="validity.valid||(value=value.replace(/\D+/g, 0))"
                               pattern="^[0-9]+"
                               onChange={handleIdStaff}
                             />
@@ -286,12 +286,8 @@ export default function Tables() {
                           Ordered
                         </div>
 
-                        {el.ordered.map((el) => (
-                          <button
-                          className="w-full font-semibold"
-                          // onMouseEnter={() => setHover(showOption)}
-                          // onMouseLeave={() => setHover(null)}
-                        >
+                        {el.ordered.map((el,idx) => (
+                          <div key={"ordered"+idx} >
                           <div
                             key={el.productId}
                             className="h-8 mx-2 bg-gray-100 rounded-md border-b-2 border-gray-300 mt-1  "
@@ -303,7 +299,7 @@ export default function Tables() {
                               {el.quantity}
                             </p>
                             <p className="inline-block float-left ml-2 w-1/12 truncate mt-1">
-                              {el.price * el.quantity}$
+                              $ {el.price * el.quantity}
                             </p>
 
                             <p className="inline-block float-left ml-2 w-2/12 truncate mt-1">
@@ -327,8 +323,6 @@ export default function Tables() {
                               >
                                 one
                               </button>
-
-
                               { width > WidthMedium &&
                                 <p className="inline-block float-right w-1/12 truncate mt-1 text-pink-600">
                                   Delete:
@@ -336,12 +330,48 @@ export default function Tables() {
                               }
                             </div>
                           </div>
-                          </button>
+                        </div>
                         ))}
 
+													{/* Tip */
+														el.tip ? (
+                          <div
+                            className="h-8 mx-2 bg-gray-100 rounded-md border-b-2 border-gray-300 mt-1  "
+                          >
+                            <p className="inline-block float-left ml-2 w-3/12 truncate text-left mt-1">
+                            	Tip
+                            </p>
+                            <p className="inline-block float-left ml-2 w-1/12 truncate mt-1">
+                            </p>
+                            <p className="inline-block float-left ml-2 w-1/12 truncate mt-1">
+                            	$ {el.tip}
+                            </p>
+                            <p className="inline-block float-left ml-2 w-2/12 truncate mt-1">
+                            </p>
+                          </div>
+														) : (<div></div>)
+													}
+													
+                          {/* Total Ordered*/}
+                          <div
+                            className="h-8 mx-2 bg-pink-100 rounded-md border-b-2 border-pink-300 mt-1  "
+                          >
+                            <p className="inline-block float-left ml-2 w-3/12 truncate text-left mt-1">
+                            	TOTAL
+                            </p>
+                            <p className="inline-block float-left ml-2 w-1/12 truncate mt-1">
+                            </p>
+                            <p className="inline-block float-left ml-2 w-1/12 truncate mt-1">
+                            	$ {el.totalPrice + el.tip}
+                            </p>
+                            <p className="inline-block float-left ml-2 w-2/12 truncate mt-1">
+                            </p>
+                          </div>
                         <button
                           onClick={() => handleCashPayment(el.idStaff)}
-                          className={"inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 bg-pink-700 rounded-md text-white"}
+                          className={"inline-block float-right  mt-2 px-2 mr-2 mb-2 h-6 rounded-md text-white "
+															+ (tables[detailTable - 1].state === "pay_cash" ? " bg-pink-700" : " bg-gray-500")
+                          }
                           disabled={tables[detailTable - 1].state !== "pay_cash"}
                         >
                           Confirm Pay

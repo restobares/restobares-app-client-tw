@@ -33,7 +33,7 @@ const WaiterCallButton = () => {
       sockets.tableListen(() => {
         dispatch(getOrders(idResto, idTable));
       });
-    }, [dispatch, idResto])
+    }, [dispatch, idResto, idTable])
     
     return(
         <button onClick={handleCallStaff}>

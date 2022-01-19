@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useParams, useNavigate } from "react-router-dom";
+//import { useDispatch } from 'react-redux';
+import { Link, useParams/*, useNavigate*/ } from "react-router-dom";
 import BackButton from '../BackButton';
 import LogoutButton from '../Navbar/LogoutButton';
 
 const AccountSettings = () => {
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    //const dispatch = useDispatch();
+    //const navigate = useNavigate();
     const { idResto } = useParams();
 
     return (

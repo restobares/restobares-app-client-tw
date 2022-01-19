@@ -155,14 +155,14 @@ return (
 				color={"#E0125A"}
 				loading={loading}
 			/>)}
-      <nav className=" flex flex-row justify-between bg-pink-700 h-12">
+      <nav className="sticky top-0 flex flex-row justify-between bg-pink-700 h-12">
         <BackButton className=" mx-6 "/>
         <div className="flex justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Edit&nbsp;Account</h1>
         </div>
         <LogoutButton/>
       </nav>
-      <div className="my-2">
+      <div className="my-2 pb-36">
 
       <form className="w-96 mx-auto h-auto">
         <label className="px-1 text-sm text-gray-600">Change your title</label>

@@ -9,7 +9,7 @@ const Feedbacks = () => {
   const feedback = useSelector((state) => state.feedback)
   return (
     <div>
-      <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12 mb-5">
+      <nav className="sticky top-0 flex flex-row w-full justify-between bg-pink-700 h-12 mb-5">
         <BackButton />
         <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Analytics</h1>

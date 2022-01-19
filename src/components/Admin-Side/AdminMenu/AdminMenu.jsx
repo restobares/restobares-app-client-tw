@@ -10,8 +10,8 @@ import BackButton from "../BackButton";
 import LogoutButton from "../Navbar/LogoutButton.jsx";
 import Swal from "sweetalert2";
 import { PulseLoader } from "react-spinners";
-import { inputValidator, postMenu, logout } from "../../../redux/actions";
-import { useNavigate, useParams } from "react-router-dom";
+import { inputValidator, postMenu } from "../../../redux/actions";
+import { /*useNavigate,*/ useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const AdminMenu = () => {
@@ -91,17 +91,17 @@ const AdminMenu = () => {
     });
   }
 
-  const logoutCode = Cookies.get("logout-code");
+  //const logoutCode = Cookies.get("logout-code");
   
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
-  const handleLogOut = async () => {
-    await dispatch(logout(logoutCode));
-    Cookies.remove('token-admin');
-    Cookies.remove('token-staff');
-    Cookies.remove('logout-code');
-    navigate('/resto/login');
-  }
+  //const handleLogOut = async () => {
+  //  await dispatch(logout(logoutCode));
+  //  Cookies.remove('token-admin');
+  //  Cookies.remove('token-staff');
+  //  Cookies.remove('logout-code');
+  //  navigate('/resto/login');
+  //}
 
   function handleCategorySelection(e) {
     setInput({
@@ -249,7 +249,7 @@ const AdminMenu = () => {
     });
   }
 return (
-  <div className="bg-gray-100 w-screen h-screen">
+  <div className="bg-gray-100 w-full h-full pb-36">
           	{loading && (<PulseLoader
 						css={override}
 						margin={10}
@@ -257,7 +257,7 @@ return (
 						color={"#E0125A"}
 						loading={loading}
 					/>)}
-      <nav className=" flex flex-row w-screen justify-between bg-pink-700 h-12">
+      <nav className="sticky top-0 flex flex-row w-full justify-between bg-pink-700 h-12">
         <BackButton />
         <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Create&nbsp;Menus</h1>
@@ -315,6 +315,8 @@ return (
           onChange={(e) => handleImageSelection(e)}
           />
 
+          <img src={input.image} alt="Menu Preview" 
+          	className="mx-auto my-6 rounded-lg shadow-lg object-cover" width="300" height="200"/>
         <Select
           options={optionsCategories}
           value={reactSelectInput.categorySelector}

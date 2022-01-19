@@ -43,7 +43,7 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                       <textarea
                         onChange={(e) => setComment(e.target.value)}
                         className="bg-pink-900 w-full h-36 rounded-xl text-white text-xl px-1.5 resize-none"
-                        maxlength="100"
+                        maxLength="100"
                       ></textarea>
                     </label>
                     <button
@@ -62,9 +62,8 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                       {[...Array(5)].map((star, i) => {
                         const ratingValue = i + 1;
                         return (
-                          <label>
+                          <label key={"stari"+i}>
                             <input
-                            	key={"stari"+i}
                               type="radio"
                               name="rating"
                               value={ratingValue}
