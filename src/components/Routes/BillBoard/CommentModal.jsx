@@ -36,8 +36,8 @@ const CommentModal = ({ showModal, setShowModal }) => {
   return (
     <>
       {showModal ? (
-      <div className="fixed inset-0 bg-black bg-opacity-40 pt-36">
-          <div className=" w-10/12 mx-auto py-2 bg-pink-800 rounded-lg shadow-md">
+      <div className="fixed flex items-centar inset-0 bg-black bg-opacity-40">
+          <div className=" w-10/12 mx-auto my-auto py-2 bg-pink-800 rounded-lg shadow-md">
               <div className="float-right -mr-2 -mt-2">
                 <button onClick={(e) => backTrack(e)}className="">
                   <p className="text-xl text-white bg-red-500 pb-1 px-3 rounded-full shadow-lg">x</p>
@@ -54,11 +54,11 @@ const CommentModal = ({ showModal, setShowModal }) => {
                 Send
               </button>
               ) : (
-                <button onClick={(e) => changeModal(e)}className="float-left bg-gray-200 rounded-md ml-2 px-4 mt-2 ">
+                <button onClick={(e) => changeModal(e)}className="float-left bg-gray-200 rounded-md ml-2 py-0.5 px-4 mt-2 ">
                 Send
               </button>
               )}
-              <button onClick={(e) => changeModal(e)} className="float-right bg-gray-200 rounded-md mr-1 px-2 mt-2">
+              <button onClick={(e) => changeModal(e)} className="float-right bg-gray-200 rounded-md mr-1 text-sm py-1 px-2 mt-2">
                 Nothing to add
               </button>
             </div>
