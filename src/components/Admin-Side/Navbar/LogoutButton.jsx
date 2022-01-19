@@ -23,8 +23,9 @@ const LogoutButton = () => {
     }
   
     return(
-        <button disabled={!logoutCode} onClick={handleLogOut} className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8">
-        Logout
+        <button disabled={!logoutCode} onClick={handleLogOut} 
+        	className="shadow-lg bg-red-400 hover:bg-red-600 text-white font-bold text-lg my-2 mx-2  px-2 rounded">
+        Sign Out
       </button>
     )
 }

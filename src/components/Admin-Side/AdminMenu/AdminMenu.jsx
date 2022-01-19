@@ -7,7 +7,9 @@ import {
 } from "../../../redux/actions";
 import Select from "react-select";
 import BackButton from "../BackButton";
+import LogoutButton from "../Navbar/LogoutButton.jsx";
 import Swal from "sweetalert2";
+import { PulseLoader } from "react-spinners";
 import { inputValidator, postMenu, logout } from "../../../redux/actions";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -33,6 +35,18 @@ const AdminMenu = () => {
   });
 
   const [errors, setErrors] = useState({});
+	const [loading, setLoading] = useState(false);
+	const override = `
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #0008;
+				z-index: 1000;
+				transition: all .5s ease-out;
+	`;
 
   let options = [];
   let optionsCategories = [];
@@ -197,7 +211,9 @@ const AdminMenu = () => {
 
   const alert = async (e) => {
     e.preventDefault();
+    setLoading(true); 
     await dispatch(postMenu(idResto, input, tokenAdmin));
+    setLoading(false); 
     // console.log(json);
     Swal.fire({
       position: "center",
@@ -234,14 +250,19 @@ const AdminMenu = () => {
   }
 return (
   <div className="bg-gray-100 w-screen h-screen">
+          	{loading && (<PulseLoader
+						css={override}
+						margin={10}
+						size={30}
+						color={"#E0125A"}
+						loading={loading}
+					/>)}
       <nav className=" flex flex-row w-screen justify-between bg-pink-700 h-12">
         <BackButton />
         <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Create&nbsp;Menus</h1>
         </div>
-        <button disabled={!logoutCode} onClick={handleLogOut} className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8">
-        Logout
-      </button>
+        <LogoutButton />
       </nav>
       <div className="my-2">
       <h1 className="m-2 text-lg font-bold">Add your Menu</h1>

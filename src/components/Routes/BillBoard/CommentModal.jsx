@@ -37,16 +37,16 @@ const CommentModal = ({ showModal, setShowModal }) => {
     <>
       {showModal ? (
       <div className="fixed inset-0 bg-black bg-opacity-40 pt-36">
-          <div className=" w-8/12  mx-auto  bg-pink-700  border-2 border-gray-700 rounded-3xl">
+          <div className=" w-10/12 mx-auto py-2 bg-pink-800 rounded-lg shadow-md">
               <div className="float-right -mr-2 -mt-2">
                 <button onClick={(e) => backTrack(e)}className="">
-                  <p className="text-xl bg-gray-300 pb-1 px-3 rounded-full">x</p>
+                  <p className="text-xl text-white bg-red-500 pb-1 px-3 rounded-full shadow-lg">x</p>
                 </button>
               </div>
             <h1 className=' mt-8 text-base text-white mb-2'>Would you like to add a comment?</h1>
           <div className="mx-4">
             <label>
-              <textarea onChange={(e)=> setComment(e.target.value)} className="bg-gray-200 bg-opacity-50 w-full h-36 rounded-xl  text-xl px-1.5 resize-none" maxLength="100"></textarea>
+              <textarea onChange={(e)=> setComment(e.target.value)} className="bg-gray-200 bg-opacity-50 w-full h-36 rounded-lg text-lg text-white px-1.5 resize-none shadow-lg shadow-inner" maxLength="100"></textarea>
             </label>
             <div className="inline-block w-full ">
               {comment === "" ? (
@@ -58,8 +58,8 @@ const CommentModal = ({ showModal, setShowModal }) => {
                 Send
               </button>
               )}
-              <button onClick={(e) => changeModal(e)} className="float-right bg-gray-200 rounded-md mr-2 px-4 mt-2">
-                No
+              <button onClick={(e) => changeModal(e)} className="float-right bg-gray-200 rounded-md mr-1 px-2 mt-2">
+                Nothing to add
               </button>
             </div>
           </div>

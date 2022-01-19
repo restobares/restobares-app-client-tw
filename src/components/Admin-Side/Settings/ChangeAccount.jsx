@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import BackButton from "../BackButton";
 import Swal from "sweetalert2";
+import { PulseLoader } from "react-spinners";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { getAccount, putAccount } from "../../../redux/actions";
@@ -21,16 +22,30 @@ const ChangeAccount = () => {
     logo: "",
     payment_mp: ""
   });
+	const [loading, setLoading] = useState(false);
+	const override = `
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #0008;
+				z-index: 1000;
+				transition: all .5s ease-out;
+		`;
 
   const handleEditAccount = async () => {
 
     if (Object.values(input).join('').length > 0) {
+      setLoading(true); 
       await dispatch(putAccount(idResto, input, tokenAdmin));
+      setLoading(false); 
       await Swal.fire({
           icon: "success",
           title: "Great",
           text: "Your account has been edited",
-          timer: 1500
+          timer: 2000
         });
       return navigate(-2);
     }
@@ -132,16 +147,22 @@ const ChangeAccount = () => {
 
 
 return (
-  <div className="bg-gray-100 w-screen h-screen">
-      <nav className=" flex flex-row w-screen justify-between bg-pink-700 h-12">
-        <BackButton />
-        <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
+  <div className="bg-gray-100 h-full">
+      {loading && (<PulseLoader
+				css={override}
+				margin={10}
+				size={30}
+				color={"#E0125A"}
+				loading={loading}
+			/>)}
+      <nav className=" flex flex-row justify-between bg-pink-700 h-12">
+        <BackButton className=" mx-6 "/>
+        <div className="flex justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Edit&nbsp;Account</h1>
         </div>
         <LogoutButton/>
       </nav>
       <div className="my-2">
-      <h1 className="m-2 text-lg font-bold">Edit your Account</h1>
 
       <form className="w-96 mx-auto h-auto">
         <label className="px-1 text-sm text-gray-600">Change your title</label>
@@ -161,7 +182,7 @@ return (
           name="payment_mp"
           maxLength="140"
           className="text-center block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
-          placeholder="token mercadopago"
+          placeholder={account.payment_mp}
           value={input.payment_mp}
           onChange={(e) => handleInputChanges(e)}
           />
@@ -198,8 +219,10 @@ return (
           className="block mb-4 w-full px-5 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none"
           accept="image/*"
           onChange={(e) => handleImageSelection(e)}
-          />
-          <img src={account.logo} alt="" />
+        />
+        <img className=" mx-auto rounded-xl shadow-md object-cover" 
+        	src={input.logo || account.logo} alt="Restaurant Logo" 
+        />
 
         <button
           type="button"

@@ -44,9 +44,9 @@ export default function OrderBoard() {
       });
   };
   return (
-    <div className="pt-12 flex flex-col">
+    <div className="flex flex-col">
       <OrderBar />
-      <div className="fixed min-h-screen right-0 left-0 flex justify-center ">
+      <div className="min-h-screen mt-12 right-0 left-0 flex justify-center ">
         <SideBar />
         {loading 
 					? (<PulseLoader

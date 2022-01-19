@@ -35,7 +35,6 @@ const Revenues = () => {
   useEffect(async () => {
     
     const fetchData = async () => {
-      setLoading(true);
       await dispatch(getRevenue(idResto, time, tokenAdmin));
       switch (time) {
         case "Monthly":
@@ -50,16 +49,19 @@ const Revenues = () => {
         default:
           console.log("Elegi bien pinchila");
       }
-      setLoading(false);
       setPageCount(Math.ceil((revenue.length /perPage) )- 1);
       setRevenueData(revenue.slice(offset, offset + perPage));
     }
+    setLoading(true);
     await fetchData();
+    setLoading(false);
   }, [time, offset, idResto, tokenAdmin, revenue, perPage, dispatch]); 
   
-  const handlePageClick = (e) => {
+  const handlePageClick = async(e) => {
     const selectedPage = e.selected;
-    setOffset((selectedPage + 1)*perPage)
+    setLoading(true);
+    await setOffset((selectedPage + 1)*perPage)
+    setLoading(false);
   }
 
   const DataSet = [
@@ -132,10 +134,9 @@ const Revenues = () => {
   ];
 
   return (
-    <div>
-      <div className="container">
+    <div className=" w-full ">
         {/* NavBar */}
-        <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12 mb-5">
+        <nav className="flex flex-row justify-between bg-pink-700 h-12 mb-5">
           <BackButton />
           <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
             <h1>{time}&nbsp;revenues</h1>
@@ -143,8 +144,8 @@ const Revenues = () => {
           <LogoutButton />
         </nav>
         {/* Cards */}
-        <Card>
-          <Card.Body>
+        <Card className=" w-full ">
+          <Card.Body className=" w-full ">
             {/* <Form>
               <Form.Label className="text-danger font-weight-bold">
                 Select Country
@@ -185,7 +186,7 @@ const Revenues = () => {
               activeClassName={"active"}/>
             </div>
             </div>
-            <Table responsive className=" w-screen mb-24 ">
+            <Table responsive className=" w-full mb-24 ">
               
               <thead>
                 <tr>
@@ -228,22 +229,6 @@ const Revenues = () => {
             </Table>
           </Card.Body>
         </Card>
-      </div>
-      {/* F good soldier */}
-      {/* <div className="inline-block">
-        <ReactPaginate
-        previousLabel={"prev"}
-        nextLabel={"next"}
-        breakLabel={"..."}
-        breakClassName={"break-me"}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={handlePageClick}
-        containerClassName={"pagination"}
-        subContainerClassName={"pages pagination"}
-        activeClassName={"active"}/>
-      </div> */}
       
     </div>
   );

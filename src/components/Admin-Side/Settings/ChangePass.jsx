@@ -88,19 +88,15 @@ const ChangePass = () => {
   };
 
     return (
-        <Fragment>
+        <div className=" h-screen ">
         <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
-          <BackButton/>
-           <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32"> 
+          <BackButton className=" mx-6 "/>
+           <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32"> 
              <h1>Change&nbsp;Password</h1>
            </div>
            <LogoutButton/>
         </nav>
-
-        
-      
-
-        <div className="bg-gray-200 font-sans">
+        <div className=" font-sans">
           <div className="max-w-sm mx-auto px-6">
 
           <Select
@@ -109,7 +105,6 @@ const ChangePass = () => {
           placeholder="Choose your password type..."
           className="pt-4"
         />
-
             <div className="relative flex flex-wrap">
               <div className="w-full relative">
                 <div className="mt-6">
@@ -175,7 +170,7 @@ const ChangePass = () => {
 
 
 
-        </Fragment>
+        </div>
     )
 }
 

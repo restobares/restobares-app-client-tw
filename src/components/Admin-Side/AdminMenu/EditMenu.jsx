@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getProductsByEditName } from "../../../redux/actions";
 import BackButton from "../BackButton";
+import LogoutButton from "../Navbar/LogoutButton.jsx";
 import { Switch } from "@headlessui/react";
+import { PulseLoader } from "react-spinners";
 import {
   deleteProduct,
   getMenu,
@@ -21,7 +23,17 @@ const EditMenu = () => {
   const menu = useSelector((state) => state.menus.menuAdmin);
   const logoutCode = Cookies.get("logout-code");
 
-  const navigate = useNavigate();
+	const navigate = useNavigate();
+	const [loading, setLoading] = useState(false);
+	const override = `
+				position: fixed;
+				display: flex;
+				margin-top: 100px;
+				justify-content: center;
+				width: 100vw;
+				z-index: 1000;
+				transition: all .5s ease-out;
+	`;
 
   const handleLogOut = async () => {
     await dispatch(logout(logoutCode));
@@ -53,18 +65,20 @@ const EditMenu = () => {
     }).then( async (result) => {
       if (result.isConfirmed) {
         await dispatch(deleteProduct(idResto, idProduct, tokenAdmin));
-        dispatch(getMenu(idResto, 1));
+        await dispatch(getMenu(idResto, 1));
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'Your menu has been deleted.',
           'success'
         )
       }
     })
   };
 
-  useEffect(() => {
-    dispatch(getMenu(idResto, 1));
+  useEffect(async() => {
+    setLoading(true);
+    await dispatch(getMenu(idResto, 1));
+    setLoading(false);
   }, [dispatch, idResto]);
 
  //searchbar
@@ -86,7 +100,7 @@ const EditMenu = () => {
   return (
     <Fragment>
       <div>
-        <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+        <nav className="flex justify-between bg-pink-700 h-12">
           <BackButton />
           
           {/* searchbar */}
@@ -118,15 +132,7 @@ const EditMenu = () => {
                 />
             </div>
           </div>
-  
-        
-          <button
-            disabled={!logoutCode}
-            onClick={handleLogOut}
-            className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8"
-          >
-            Logout
-          </button>
+          <LogoutButton/>
         </nav>
       </div>
 
@@ -258,14 +264,20 @@ const EditMenu = () => {
               </div>
             </div>
           );
-        }) :
-        <div className=" lg:px-6  bg-gray-100 border-gray-400 border-2 border-opacity-50 rounded-md mt-2 mx-2 text-center">
+        }) 
+        : loading 
+        	? (
+
+					<PulseLoader
+						css={override}
+						margin={10}
+						size={30}
+						color={"#D0124A"}
+						loading={loading}
+					/> )
+        	: (<div className=" lg:px-6  bg-gray-100 border-gray-400 border-2 border-opacity-50 rounded-md mt-2 mx-2 text-center">
               <div className='h-full w-full flex flex-row text-center'>
                 <div className='w-full'>
-                  {/* <div className=" bg-gray-200 mx-4 my-2 rounded-lg md:rounded-full grid grid-flow-col text-center lg:text-2xl font-normal">
-                    <p className="text-left px-2 md:pl-5 tracking-wide py-1">ssss</p>
-                  </div> */}
-                  
                   <div className=" bg-gray-200 mx-4 my-2 py-1 rounded-lg md:rounded-full text-base font-semibold lg:text-2xl">
                       <p>Does not match any results!</p>
                     </div>
@@ -279,7 +291,7 @@ const EditMenu = () => {
                 </div>
               </div>
             </div>
-        
+        )
       }
     </Fragment>
   );
