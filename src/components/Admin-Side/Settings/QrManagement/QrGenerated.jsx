@@ -28,7 +28,7 @@ const QrGenerated = () => {
       var doc = new jsPDf("p", "pt", "a4");
       doc.html(document.querySelector("#printeable"), {
         callback: function (pdf) {
-          pdf.save("newQrsPDF.pdf");
+          pdf.save("TableQRs.pdf");
         },
       });
     //}) 
@@ -48,8 +48,8 @@ const QrGenerated = () => {
           {qrCode.map((qr, index) => {
             return (
               <div>
-                <h4 key={index} className="mb-2">Table&nbsp;{(qrCode, qr.index)}</h4>
-                <img src={ qr.url } alt=""/>
+                <h4 key={"qrtitle"+index} className="mb-2">Table&nbsp;{(qrCode, qr.index)}</h4>
+                <img key={"qrimg"+index} src={ qr.url } alt=""/>
                 
               </div>
             );

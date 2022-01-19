@@ -40,7 +40,7 @@ const QrManager = () => {
       icon: "success",
       title: "Your QR has been generated",
       showConfirmButton: false,
-      timer: 3000,
+      timer: 1500,
     });
     //console.log(qrCode);
   };
@@ -197,17 +197,6 @@ const QrManager = () => {
           </button>
         )}
 
-        {/* <Link to={`/resto/${idResto}/resto-home/qrmanager/qrs`}>
-          <div
-            type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-            className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
-          >
-            a ver los Qr
-          </div>
-        </Link> */}
 
         {qrCode.length ? (
           <Link to={`/resto/${idResto}/resto-home/qrmanager/qrs`}>

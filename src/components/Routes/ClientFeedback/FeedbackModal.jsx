@@ -32,11 +32,8 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
 
   return (
     <div className="flex">
-
-          
-
             {showModal ? (
-              <div className="fixed  inset-0 bg-black bg-opacity-40 pt-60 ">
+              <div className="fixed  inset-0 bg-black bg-opacity-40  ">
                 <div className="relative w-9/12 md:w-4/12 mx-auto h-80 bg-pink-800  border-2 border-pink-900 rounded-3xl mt-24 ">
                   <h1 className="my-2 mx-2 text-white text-xl">
                     We appreciate your feedback!
@@ -57,9 +54,9 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                     </button>
                     <button
                       onClick={NotFeed}
-                      className="float-right bg-pink-900 text-white rounded-xl mr-2 px-4 mt-2 "
+                      className="float-right bg-pink-900 text-white text-sm rounded-xl mr-2 py-1.5 px-6 mt-2 "
                     >
-                      No
+                      No, thanks
                     </button>
                     <div className="flex mt-14 justify-center items-center">
                       {[...Array(5)].map((star, i) => {
@@ -67,12 +64,14 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                         return (
                           <label>
                             <input
+                            	key={"stari"+i}
                               type="radio"
                               name="rating"
                               value={ratingValue}
                               onClick={() => handleRating(ratingValue)}
                             />
                             <FaStar
+                            	key={"star"+i}
                               className="star"
                               color={
                                 ratingValue <= (hover || rating)
@@ -91,8 +90,6 @@ const FeedbackModal = ({ showModal, setShowModal }) => {
                 </div>
               </div>
             ) : null}
-          
-      )
     </div>
   );
 };

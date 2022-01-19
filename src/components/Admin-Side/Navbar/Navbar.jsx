@@ -52,15 +52,15 @@ const Navbar = () => {
       <div className="flex flex-row h-12 justify-center"> { 
             navItems.map((el,i) => (  
               width > WidthMedium 
-                ? <button key={i} id={i} name={el.name} onClick={(e) => handlerActive(e)}
+                ? <button key={"navbar"+i} id={i} name={el.name} onClick={(e) => handlerActive(e)}
                 className= {
                   i === active 
-                  ? " text-white text-2xl mx-4 w-20 bg-pink-100 bg-opacity-20 h-12  rounded-md md:w-32"
-                  : " text-black text-2xl mx-4 w-20 h-8  mt-2  md:w-32" 
+                  ? " text-white text-2xl mx-4 my-auto w-20 bg-pink-100 bg-opacity-30 h-10 rounded-md md:w-32"
+                  : " text-white text-2xl mx-4 my-auto w-20 hover:bg-pink-100 hover:bg-opacity-40 h-10 rounded-md md:w-32 transition-all " 
                  }>
                    {el.name}
                  </button>
-                : <div  className= {
+                : <div key={"navbar"+i} className= {
                   i === active 
                   ? " text-white text-2xl mx-4 px-4  bg-pink-100 bg-opacity-20  rounded-md "
                   : " text-black text-2xl mx-4 px-4 " 

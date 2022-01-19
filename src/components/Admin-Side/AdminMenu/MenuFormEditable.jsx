@@ -2,7 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import BackButton from "../BackButton";
+import LogoutButton from "../Navbar/LogoutButton.jsx";
 import Swal from "sweetalert2";
+import { PulseLoader } from "react-spinners";
 import {
   getLabels,
   getCategories,
@@ -43,6 +45,18 @@ function MenuFormEditable() {
     categorySelector: "",
     labelsSelector: "",
   });
+	const [loading, setLoading] = useState(false);
+	const override = `
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #0008;
+				z-index: 1000;
+				transition: all .5s ease-out;
+	`;
 
   let options = [];
   let optionsCategories = [];
@@ -54,7 +68,6 @@ function MenuFormEditable() {
     };
     options.push(eachOption);
   }
-  console.log(options);
   for (var k = 0; k < categories.length; k++) {
     let eachOption = {
       value: categories[k].id,
@@ -193,7 +206,9 @@ function MenuFormEditable() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let json = dispatch(putMenu(idResto, idProduct, input, tokenAdmin));
+    setLoading(true); 
+    let json = await dispatch(putMenu(idResto, idProduct, input, tokenAdmin));
+    setLoading(false); 
     await Swal.fire({
       position: "center",
       icon: "success",
@@ -230,24 +245,23 @@ function MenuFormEditable() {
 
   return (
     <Fragment>
-      <div>
-        <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+      <div className="bg-gray-100 w-full h-full">
+          	{loading && (<PulseLoader
+						css={override}
+						margin={10}
+						size={30}
+						color={"#E0125A"}
+						loading={loading}
+					/>)}
+        <nav className="flex justify-between bg-pink-700 h-12">
           <BackButton />
-          <div className="flex flex-row justify-center text-black text-2xl mx-4 w-20 mt-2  md:w-32">
-            <h1>Editable&nbsp;Form&nbsp;Menu</h1>
+          <div className="flex text-white text-2xl mx-4 w-20 mt-2  md:w-32">
+            <h1>Edit&nbsp;your&nbsp;Menu</h1>
           </div>
-          <button
-            disabled={!logoutCode}
-            onClick={handleLogOut}
-            className="bg-pink-800 hover:bg-pink-900 border-2 border-gray-800 text-xl text-white py-1 px-2 rounded-lg font-medium tracking-wide leading-none pb-2 invisible md:visible my-1.5 mr-8"
-          >
-            Logout
-          </button>
+          <LogoutButton/>
         </nav>
 
-        <h1 className="m-5 text-lg font-bold">Edit your Menu</h1>
-
-        <form className="w-96 inline-block">
+        <form className="w-96 mt-10 inline-block">
           <label>Name*</label>
           <input
             type="text"
@@ -293,7 +307,8 @@ function MenuFormEditable() {
             onChange={(e) => handleImageSelection(e)}
           />
 
-          <img src={product.image} alt="" className="px-5 py-3 rounded-lg" />
+          <img src={input.image || product.image} alt="" 
+          	className="mx-auto my-6 rounded-lg shadow-lg object-cover" width="300" height="200"/>
           <label>Category*</label>
           <Select
             options={optionsCategories}
@@ -314,7 +329,8 @@ function MenuFormEditable() {
             <button
               type="submit"
               onClick={notAlert}
-              className="text-white bg-gray-600 mt-4 mb-36 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
+              className="text-white bg-gray-600 mt-4 mb-36 w-40 px-4 py-2 rounded-3xl text-sm font-semibold cursor-default"
+              disabled
             >
               Save Changes
             </button>
@@ -322,7 +338,7 @@ function MenuFormEditable() {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="mt-4 mb-36 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
+              className="mt-4 mb-36 bg-pink-700 w-40 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
             >
               Save Changes
             </button>

@@ -38,9 +38,9 @@ const WaiterCallButton = () => {
     return(
         <button onClick={handleCallStaff}>
           {orders.calling ? (
-          <img className="float-right z-20 -mt-10 rounded-full bg-pink-500 w-2/12 mr-4 ring ring-yellow-400 p-1 content-center"  src={Logo} width="40" alt="" />
+          <img className="float-right z-20 -mt-10 rounded-full bg-pink-500 w-16 mr-4 ring ring-yellow-400 p-1 content-center"  src={Logo} width="40" alt="" />
           ) : (
-            <img className="float-right z-20 -mt-10 rounded-full bg-pink-800 w-2/12 mr-4 ring ring-pink-500 p-1 content-center"  src={Logo} width="40" alt="" />
+            <img className="float-right z-20 -mt-10 rounded-full bg-pink-800 w-16 mr-4 ring ring-pink-500 p-1 content-center"  src={Logo} width="40" alt="" />
           )}
           
         </button>

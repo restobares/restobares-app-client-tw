@@ -20,31 +20,29 @@ const Search = () => {
 
   return (
     <div className="inline-block shadow-lg text-lg">
-       <div className="">
-          {search === "" ? <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
-            <img
-              src="https://img.icons8.com/ios/50/be185d/search--v1.png"
-              width="24"
-              className="ml-1"
-              alt=""
-            />
-          </button> : 
-            <button className="relative float-right mt-3 right-9" type="submit" onClick={ClearInput}>
-          <img
-            src="https://img.icons8.com/ios-filled/50/be185d/delete-sign.png"
-            width="24"
-            className="ml-1"
-            alt=""
-          />
-        </button>  
-          }
+       <div className="flex justify-end items-center mx-auto">
           <input
-            className="truncate text-pink-700 pill w-48 flex-grow-1 pb-1 "
+            className="truncate text-pink-700 w-48 pill py-1"
             type="text"
             onChange={onChangeD}
             value={search}
             alt=""
           />
+          {search === "" ? <button className="absolute mr-2 mt-2" type="submit" onClick={ClearInput}>
+            <img
+              src="https://img.icons8.com/ios/50/be185d/search--v1.png"
+              width="24"
+              alt=""
+            />
+          </button> : 
+            <button className="absolute mr-2 mt-2" type="submit" onClick={ClearInput}>
+          <img
+            src="https://img.icons8.com/ios-filled/50/be185d/delete-sign.png"
+            width="24"
+            alt=""
+          />
+        </button>  
+          }
       </div>
     </div>
   );

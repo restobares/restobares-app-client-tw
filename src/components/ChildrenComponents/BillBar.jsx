@@ -14,13 +14,13 @@ const BillBar = () => {
   for (var i = 0; i < cart.currentOrder.length; i++) {
 
     var order = cart.currentOrder[i];
-	prevPrice = prevPrice + (order.quantity * order.price);
 
     totalPrice = totalPrice + (order.quantity * order.price);
   }
   for (var j = 0; j < cart.ordered.length; j++) {
 
     order = cart.ordered[j];
+		prevPrice = prevPrice + (order.quantity * order.price);
 
     totalPrice = totalPrice + (order.quantity * order.price);
   }

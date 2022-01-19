@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import BackButton from "../BackButton";
@@ -11,6 +11,7 @@ import {
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import LogoutButton from "../Navbar/LogoutButton";
+import { PulseLoader } from "react-spinners";
 
 const Analytics = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,19 @@ const Analytics = () => {
   const tokenAdmin = Cookies.get("token-admin");
   const revenue = useSelector((state) => state.revenue);
   const feedback = useSelector((state) => state.feedback);
+
+	const [loading, setLoading] = useState(false);
+	const override = `
+				position: fixed;
+				width: 100vw;
+				height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: #0008;
+				z-index: 1000;
+				transition: all .5s ease-out;
+	`;
 
   let monthlyRevenue = 0;
   let weeklyRevenue = 0;
@@ -103,12 +117,14 @@ const Analytics = () => {
     ],
   };
 
-  useEffect(() => {
-    sockets.joinResto(idResto);
-    dispatch(getRevenue(idResto, "Daily", tokenAdmin));
-    dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
-    dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
-    dispatch(getFeedback(idResto, tokenAdmin));
+  useEffect(async() => {
+  	setLoading(true);
+    await sockets.joinResto(idResto);
+    await dispatch(getRevenue(idResto, "Daily", tokenAdmin));
+    await dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
+    await dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
+    await dispatch(getFeedback(idResto, tokenAdmin));
+  	setLoading(false);
     sockets.staffListen(() => {
       dispatch(getRevenue(idResto, "Daily", tokenAdmin));
       dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
@@ -119,7 +135,14 @@ const Analytics = () => {
 
   return (
     <Fragment>
-      <nav className="flex flex-row w-screen justify-between bg-pink-700 h-12">
+          	{loading && (<PulseLoader
+						css={override}
+						margin={10}
+						size={30}
+						color={"#E0125A"}
+						loading={loading}
+					/>)}
+      <nav className="flex flex-row justify-between bg-pink-700 h-12">
         <BackButton />
         <div className="flex flex-row justify-center text-white text-2xl mx-4 w-20 mt-2  md:w-32">
           <h1>Analytics</h1>

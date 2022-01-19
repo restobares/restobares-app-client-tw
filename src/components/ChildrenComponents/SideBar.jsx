@@ -74,7 +74,7 @@ function SideBar() {
     }
 
     return <Fragment>
-         <div className={`w-40 h-screen bg-pink-900 flex-col overflow-auto ${hidden}`}>
+         <div className={`fixed top-12 left-0 w-30 h-screen bg-pink-900 flex-col overflow-auto ${hidden}`}>
           <div className='flex-shrink-0 bg-pink-700 h-12 flex-grow-1 mx-1  mt-2 rounded-md text-white shadow-md'>
             <p className='my-1'>Sort by:</p>
           <div className=' min-h-min mx-1'>

@@ -17,6 +17,7 @@ const Settings = () => {
             src="https://img.icons8.com/fluency/48/000000/test-account.png"
             width="38"
             alt=""
+            className="absolute"
           />
         </div>
         <div className="inline-flex items-center">
@@ -31,6 +32,7 @@ const Settings = () => {
             src="https://img.icons8.com/fluency/48/000000/test-account.png"
             width="38"
             alt=""
+            className="absolute"
           />
         </div>
         <div className="inline-flex items-center">
@@ -46,6 +48,7 @@ const Settings = () => {
               src="https://img.icons8.com/ios-filled/50/000000/qr-code--v1.png"
               width="38"
               alt=""
+            	className="absolute"
             />
           </div>
           <div className="inline-flex items-center">
@@ -61,6 +64,7 @@ const Settings = () => {
               src="https://img.icons8.com/color/48/000000/restaurant-menu.png"
               width="38"
               alt=""
+            	className="absolute"
             />
           </div>
           <div className="inline-flex items-center">
@@ -75,6 +79,7 @@ const Settings = () => {
                 src="https://img.icons8.com/color/48/000000/restaurant-menu.png"
                 width="38"
                 alt=""
+                className="absolute"
               />
             </div>
             <div className="inline-flex items-center">
@@ -91,6 +96,7 @@ const Settings = () => {
               src="https://img.icons8.com/fluency/48/000000/restaurant-menu.png"
               width="38"
               alt=""
+            	className="absolute"
             />
           </div>
           <div className="inline-flex items-center">
@@ -105,6 +111,7 @@ const Settings = () => {
                 src="https://img.icons8.com/fluency/48/000000/restaurant-menu.png"
                 width="38"
                 alt=""
+            		className="absolute"
               />
             </div>
             <div className="inline-flex items-center">
@@ -121,6 +128,7 @@ const Settings = () => {
               src="https://img.icons8.com/fluency/48/000000/stocks-growth.png"
               width="38"
               alt=""
+            	className="absolute"
             />
           </div>
           <div className="inline-flex items-center">
@@ -135,6 +143,7 @@ const Settings = () => {
                 src="https://img.icons8.com/fluency/48/000000/stocks-growth.png"
                 width="38"
                 alt=""
+            		className="absolute"
               />
             </div>
             <div className="inline-flex items-center">
