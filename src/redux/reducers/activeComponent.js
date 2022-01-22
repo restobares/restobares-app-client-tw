@@ -1,6 +1,6 @@
 import { ActionTypes } from "../constants";
 
-const initialState = {activeComponent : null};
+const initialState = {activeComponent : 'Tables'};
 
 function activeComponent(state = initialState, action) {
   if (action.type === ActionTypes.SET_ACTIVE_COMPONENT) {      

@@ -36,7 +36,7 @@ const Revenues = () => {
 		let isMounted = true; 
     async function fetchData() {
     	setLoading(true);
-      await dispatch(getRevenue(idResto, time, tokenAdmin));
+      if (monthly.length <= 0) await dispatch(getRevenue(idResto, time, tokenAdmin));
       switch (time) {
         case "Monthly":
           setRevenue(monthly);
@@ -142,8 +142,18 @@ const Revenues = () => {
           </div>
           <LogoutButton />
         </nav>
-        {/* Cards */}
-        <Card className=" w-full ">
+      	{
+      	loading
+      	? (<PulseLoader
+						css={override}
+						margin={10}
+						size={30}
+						color={"#D0024A"}
+						loading={loading}
+					/> )
+				: 
+        /* Cards */
+        (<Card className=" w-full ">
           <Card.Body className=" w-full ">
             <div className="flex flex-col items-center">
             {revenue.length !== 0 ? (
@@ -158,7 +168,7 @@ const Revenues = () => {
                   </button>
                 }
               >
-                <ExcelSheet dataSet={DataSet} name="Revenues Dinkelbert" />
+                <ExcelSheet dataSet={DataSet} name="Revenues DingBell" />
               </ExcelFile>
             ) : null}
             <div className="inline-block mb-4">
@@ -192,13 +202,9 @@ const Revenues = () => {
                 {revenue.length === 0 ? (
                   <tr>
                     <td colSpan="10">
-                      <PulseLoader
-												css={override}
-												margin={10}
-												size={30}
-												color={"#D0024A"}
-												loading={loading}
-											/>
+											<div className=" max-w-lg mx-auto mt-4 shadow-lg font-semibold text-xl  border-2 border-pink-700 rounded-lg py-2 px-4">
+            						There aren't {time} revenues.
+          						</div>
                     </td>
                   </tr>
                 ) : (
@@ -218,8 +224,7 @@ const Revenues = () => {
               </tbody>
             </Table>
           </Card.Body>
-        </Card>
-      
+        </Card> ) }
     </div>
   );
 };

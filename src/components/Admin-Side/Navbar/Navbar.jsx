@@ -32,6 +32,7 @@ const Navbar = () => {
 
   // RESIZE WINDOW LOGIC
   const [width, setWidth] = useState(window.innerWidth)
+
   useEffect(() => {
   const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener("resize", handleResize);

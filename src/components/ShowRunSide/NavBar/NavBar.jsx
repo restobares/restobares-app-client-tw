@@ -28,6 +28,10 @@ const NavBar = ({ toggle }) => {
 
   useEffect(() => {
     window.addEventListener("scroll", changeNav);
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener("scroll", changeNav);
+    };
   }, []);
 
   const toogleHome = () => {

@@ -121,20 +121,23 @@ const Analytics = () => {
   	async function fetchData() {
   		setLoading(true);
     	await sockets.joinResto(idResto);
-    	await dispatch(getRevenue(idResto, "Daily", tokenAdmin));
-    	await dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
-    	await dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
-    	await dispatch(getFeedback(idResto, tokenAdmin));
+    	if (feedback.length <= 0) 
+    		await dispatch(getFeedback(idResto, tokenAdmin));
+    	if (revenue.monthly.length <= 0) {
+    		await dispatch(getRevenue(idResto, "Daily", tokenAdmin));
+    		await dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
+    		await dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
+    	}
   		setLoading(false);
     	sockets.staffListen(() => {
-    	  dispatch(getRevenue(idResto, "Daily", tokenAdmin));
-    	  dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
-    	  dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
     	  dispatch(getFeedback(idResto, tokenAdmin));
+    	  dispatch(getRevenue(idResto, "Daily", tokenAdmin));
+    	  dispatch(getRevenue(idResto, "Weekly", tokenAdmin));
+    	  dispatch(getRevenue(idResto, "Monthly", tokenAdmin));
     	});
     }
 		fetchData();
-  }, [dispatch, idResto, tokenAdmin]);
+  }, [dispatch, idResto, tokenAdmin, feedback, revenue]);
 
   return (
     <Fragment>
