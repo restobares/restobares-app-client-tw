@@ -8,7 +8,7 @@ import Settings from "../Settings/Settings";
 
 const HomeAdmin = () => {
   const token = useSelector((state) => state.token);
-  var active = useSelector((state) => state.activeComponent.activeComponent);
+  const active = useSelector((state) => state.activeComponent.activeComponent);
 
 
   if (token.admin.length > 0 && token.admin !== "") {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setActiveComponent } from "../../../redux/actions";
 
 import Logo from "../../../img/dingbell_white.png";
@@ -22,21 +22,23 @@ const Navbar = () => {
   ]
 
   // ACTIVE COMPONENT LOGIC
-  const [active, setActive] = useState("Tables")
+  const activeComponent = useSelector(state => state.activeComponent.activeComponent);
+  // const [active, setActive] = useState(activeComponent)
   const handlerActive = (e) => {
     e.preventDefault()
-    setActive(Number(e.target.id))
+    // setActive(Number(e.target.id))
     dispatch(setActiveComponent(e.target.name))
   }
 
   // RESIZE WINDOW LOGIC
   const [width, setWidth] = useState(window.innerWidth)
+
   useEffect(() => {
   const handleResize = () => setWidth(window.innerWidth)
     window.addEventListener("resize", handleResize);
     
-    dispatch(setActiveComponent("Tables"))
-    setActive(0)
+    // dispatch(setActiveComponent("Tables"))
+    // setActive(0)
     return () => {
       // unsubscribe "onComponentDestroy"
       window.removeEventListener("resize", handleResize);
@@ -54,14 +56,14 @@ const Navbar = () => {
               width > WidthMedium 
                 ? <button key={"navbar"+i} id={i} name={el.name} onClick={(e) => handlerActive(e)}
                 className= {
-                  i === active 
+                  el.name === activeComponent 
                   ? " text-white text-2xl mx-4 my-auto w-20 bg-pink-100 bg-opacity-30 h-10 rounded-md md:w-32"
                   : " text-white text-2xl mx-4 my-auto w-20 hover:bg-pink-100 hover:bg-opacity-40 h-10 rounded-md md:w-32 transition-all " 
                  }>
                    {el.name}
                  </button>
                 : <div key={"navbar"+i} className= {
-                  i === active 
+                  el.name === activeComponent 
                   ? " text-white text-2xl mx-4 px-4  bg-pink-100 bg-opacity-20  rounded-md "
                   : " text-black text-2xl mx-4 px-4 " 
                   }>
