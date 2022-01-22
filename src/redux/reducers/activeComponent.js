@@ -5,8 +5,7 @@ const initialState = {activeComponent : null};
 function activeComponent(state = initialState, action) {
   if (action.type === ActionTypes.SET_ACTIVE_COMPONENT) {      
       let activeComponent= {activeComponent : action.payload}
-      //console.log(activeComponent)
-      return  activeComponent
+      return activeComponent
     }
     return state;
 }
