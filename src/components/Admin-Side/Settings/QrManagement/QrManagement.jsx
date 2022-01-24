@@ -103,15 +103,6 @@ const QrManager = () => {
     	  timer: 4000,
     	});
     }
-    else if (lastTable-firstTable >= 9) {
-    	Swal.fire({
-    	  position: "center",
-    	  icon: "error",
-    	  title: "You can only print 9 QR codes at a time.",
-    	  showConfirmButton: false,
-    	  timer: 4000,
-    	});
-    }
   };
 
   return (
@@ -146,7 +137,7 @@ const QrManager = () => {
             disabled
             className="text-white bg-gray-600 mt-2 mb-5 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
           >
-            Print QR
+            Generate QR
           </button>
         ) : (
           <button
@@ -154,11 +145,11 @@ const QrManager = () => {
             onClick={(e) => generateOneQr(e)}
             className="mt-2 mb-5 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
           >
-            Print QR
+            Generate QR
           </button>
         )}
-        <h1 className="m-5 text-lg font-bold">
-          Select your Tables (max: 9 per time)
+        <h1 className="mt-5 text-lg font-bold">
+          You can generate QR Codes for several tables:
         </h1>
 
         <input
@@ -169,7 +160,7 @@ const QrManager = () => {
           max={tables.length}
           onChange={(e) => setFirstTable(Math.min( Math.max(1,e.target.value ), tables.length ))}
           className="text-center my-4 w-1/3 px-5 py-3 mx-2 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
-          placeholder="Enter value"
+          placeholder="From..."
         />
         <input
           type="number"
@@ -179,16 +170,16 @@ const QrManager = () => {
           max={tables.length}
           onChange={(e) => setLastTable(Math.min( Math.max(1,e.target.value ), tables.length ))}
           className="text-center my-4 w-1/3 px-5 mx-2 py-3 border rounded-lg bg-white shadow-lg placeholder-gray-400 text-gray-700 focus:ring focus:outline-none" /* form-control */
-          placeholder="Enter value"
+          placeholder="To..."
         />
         {/*lastTable.length === 0 || firstTable.length === 0*/
-        	firstTable >= lastTable || lastTable-firstTable >= 9 ? (
+        	firstTable >= lastTable || lastTable > tables.length ? (
           <button
             type="submit"
             onClick={notAlert}
             className="text-white bg-gray-600 mt-4 mb-10 w-32 px-4 py-2 rounded-3xl text-sm font-semibold"
           >
-            Print QRs
+            Generate QRs
           </button>
         ) : (
           <button
@@ -196,7 +187,7 @@ const QrManager = () => {
             onClick={(e) => generateVariousQr(e)}
             className="mt-4 mb-10 bg-pink-700 w-32 px-4 py-2 rounded-3xl text-sm text-white font-semibold each-in-out"
           >
-            Print QRs
+            Generate QRs
           </button>
         )}
 
