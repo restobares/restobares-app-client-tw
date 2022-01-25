@@ -3,8 +3,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
-      fontFamily: {
-        'cookie': ['Cookie', 'cursive']
+        fontFamily: {
+        'cookie': ['Cookie', 'cursive'],
+        'roboto': ['Roboto', 'sans-serif']
       }
     },
   },
